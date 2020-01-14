@@ -5,7 +5,7 @@ Open Source White Label Customer Support Chat – Powered by Stream Chat. Comin
 
 Step 1: Deploy to Heroku
 
-[![Heroku Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://app.netlify.com/start/deploy?repository=https://github.com/GetStream/comda)
+[![Heroku Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/GetStream/comda)
 
 Step 2: Deploy to Netlify
 
