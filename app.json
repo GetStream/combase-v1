@@ -1,16 +1,16 @@
 {
 	"name": "Comda",
-	"description": "Open Source White Label Customer Support Chat – Powered by Stream Chat",
+	"description": "Open Source White Label Customer Support Chat – Powered by Stream",
 	"keywords": [ "Customer Support", "Stream", "Open Source" ],
 	"website": "https://comda.io/",
 	"repository": "https://github.com/GetStream/comda",
 	"logo": "https://avatars3.githubusercontent.com/u/8597527?s=200",
 	"env": {
 		"ORGANIZATION": {
-			"description": "Your organization name.",
-        },
-        "LOGO": {
-			"description": "An absolute URL to your organization logo.",
+			"description": "Your organization name."
+		},
+		"LOGO": {
+			"description": "An absolute URL to your organization logo."
 		}
 	},
 	"formation": {
@@ -23,12 +23,12 @@
 	"addons": [
 		{
 			"plan": "stream:chat-trial",
-			"as": "STREAM"
+			"as": "STREAM_URI"
 		},
 		{
 			"plan": "mongolab:shared-single-small",
-			"as": "MONGODB"
-		},
+			"as": "MONGODB_URI"
+		}
 	],
 	"buildpacks": [
 		{

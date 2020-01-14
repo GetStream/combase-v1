@@ -15,6 +15,18 @@ export const OrganizationSchema = new Schema(
 			trim: true,
 			required: true,
 		},
+		tagline: {
+			type: String,
+			trim: true,
+		},
+		phone: {
+			type: String,
+			trim: true,
+		},
+		email: {
+			type: String,
+			trim: true,
+		},
 	},
 	{
 		collection: 'organizatons',

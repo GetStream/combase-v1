@@ -16,10 +16,10 @@ exports.create = async (req, res) => {
 			{
 				name: {
 					first: data.name.first,
-					last: data.name.last
+					last: data.name.last,
 				},
 				email: data.email, // email is set to lowercase automatically by mongoose via model
-				password: data.password // password is hashed using bcrypt automatically by mongoose plugin
+				password: data.password, // password is hashed using bcrypt automatically by mongoose plugin
 			}
 		);
 
@@ -46,7 +46,7 @@ exports.create = async (req, res) => {
 		// return the response with agent data, token, and api key
 		return res.json(agent);
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 		res.status(500).json({ error: error.message });
 	}
 };

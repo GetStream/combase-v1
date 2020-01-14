@@ -25,10 +25,19 @@ export const AgentSchema = new Schema(
 			unique: true,
 			required: true,
 		},
+		organization: {
+			type: Schema.Types.ObjectId,
+			ref: 'Organization',
+			required: true,
+		},
 		password: {
 			type: String,
 			required: true,
 			bcrypt: true,
+		},
+		recovery: {
+			type: String,
+			default: '',
 		},
 	},
 	{

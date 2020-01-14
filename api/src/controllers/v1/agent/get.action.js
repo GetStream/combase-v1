@@ -1,10 +1,10 @@
-import Organization from '../../../models/organization';
+import Agent from '../../../models/agent';
 
-exports.create = async (req, res) => {
+exports.get = async (req, res) => {
 	try {
 		const data = { ...req.body, ...req.params };
 
-		const organization = await Organization.create(data);
+		const organization = await Organization.findById(data.organization);
 		res.status(200).json(organization);
 	} catch (error) {
 		res.status(500).json({ error: error.message });

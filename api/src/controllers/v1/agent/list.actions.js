@@ -15,10 +15,18 @@ exports.list = async (req, res) => {
 			});
 		}
 
-		const organizations = await Organization.apiQuery(data);
-		res.status(200).json(organizations);
+		const agents = await Agent.apiQuery(data);
+
+		const sanitized = agents.map(agent => {
+			agent.password = undefined;
+			agent.recovery = undefined;
+
+			return agent;
+		});
+
+		res.status(200).json(sanitized);
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 		res.status(500).json({ error: error.message });
 	}
 };

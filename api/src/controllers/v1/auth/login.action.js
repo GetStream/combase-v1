@@ -33,7 +33,7 @@ exports.login = async (req, res) => {
 		// return the response with user data, token, and api key
 		return res.json(agent);
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 		res.status(500).json({ error: error.message });
 	}
 };

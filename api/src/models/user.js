@@ -1,7 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 import findOneOrCreate from 'mongoose-findoneorcreate';
 import mongooseStringQuery from 'mongoose-string-query';
-import bcrypt from 'mongoose-bcrypt';
 import timestamps from 'mongoose-timestamp';
 
 export const UserSchema = new Schema(
@@ -22,7 +21,11 @@ export const UserSchema = new Schema(
 			type: String,
 			lowercase: true,
 			trim: true,
-			unique: true,
+			required: true,
+		},
+		organization: {
+			type: Schema.Types.ObjectId,
+			ref: 'Organization',
 			required: true,
 		},
 	},
@@ -32,7 +35,6 @@ export const UserSchema = new Schema(
 );
 
 UserSchema.plugin(findOneOrCreate);
-UserSchema.plugin(bcrypt);
 UserSchema.plugin(timestamps);
 UserSchema.plugin(mongooseStringQuery);
 
