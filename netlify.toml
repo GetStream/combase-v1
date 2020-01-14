@@ -1,0 +1,8 @@
+[build]
+  command = "cd dashboard && yarn build"
+  publish = "build/"
+
+[template.environment]
+  SASS_PATH = "./node_modules"
+  STREAM_APP_ID = "You can locate this value on https://getstream.io/dashboard"
+  STREAM_API_KEY = "You can locate this value on https://getstream.io/dashboard"
