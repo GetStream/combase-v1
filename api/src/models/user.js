@@ -9,28 +9,32 @@ export const UserSchema = new Schema(
 			first: {
 				type: String,
 				trim: true,
-				required: true,
+				required: true
 			},
 			last: {
 				type: String,
 				trim: true,
-				required: true,
-			},
+				required: true
+			}
 		},
 		email: {
 			type: String,
 			lowercase: true,
 			trim: true,
-			required: true,
+			required: true
 		},
 		organization: {
 			type: Schema.Types.ObjectId,
 			ref: 'Organization',
-			required: true,
+			required: true
 		},
+		enriched: {
+			type: Schema.Types.Mixed,
+			default: {}
+		}
 	},
 	{
-		collection: 'users',
+		collection: 'users'
 	}
 );
 
