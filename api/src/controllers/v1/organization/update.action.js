@@ -1,10 +1,10 @@
-import Agent from '../../../models/agent';
+import Organization from '../../../models/organization';
 
-exports.get = async (req, res) => {
+exports.update = async (req, res) => {
 	try {
 		const data = { ...req.body, ...req.params };
 
-		const organization = await Organization.findById(data.organization);
+		const organization = await Organization.updateOne({ _id: data.organization }, { $set: data });
 		res.status(200).json(organization);
 	} catch (error) {
 		console.error(error);

@@ -5,7 +5,7 @@ import Agent from '../../../models/agent';
 
 dotenv.config();
 
-exports.create = async (req, res) => {
+exports.post = async (req, res) => {
 	try {
 		// extract json from body
 		const data = req.body;
@@ -16,10 +16,10 @@ exports.create = async (req, res) => {
 			{
 				name: {
 					first: data.name.first,
-					last: data.name.last,
+					last: data.name.last
 				},
 				email: data.email, // email is set to lowercase automatically by mongoose via model
-				password: data.password, // password is hashed using bcrypt automatically by mongoose plugin
+				password: data.password // password is hashed using bcrypt automatically by mongoose plugin
 			}
 		);
 

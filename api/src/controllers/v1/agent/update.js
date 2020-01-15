@@ -1,11 +1,11 @@
 import Agent from '../../../models/agent';
 
-exports.destroy = async (req, res) => {
+exports.update = async (req, res) => {
 	try {
 		const data = { ...req.body, ...req.params };
 
-		await Agent.findByIdAndRemove(data.agent);
-		res.sendStatus(204);
+		const agent = await Agent.updateOne({ _id: data.agent }, { $set: data });
+		res.status(200).json(agent);
 	} catch (error) {
 		console.error(error);
 		res.status(500).json({ error: error.message });

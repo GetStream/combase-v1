@@ -1,6 +1,4 @@
-import Organization from '../../../models/organization';
-import Agent from '../../../models/agent';
-import User from '../../../models/user';
+import Invite from '../../../models/invite';
 
 exports.destroy = async (req, res) => {
 	try {
@@ -13,9 +11,7 @@ exports.destroy = async (req, res) => {
 			});
 		}
 
-		await Organization.findByIdAndRemove(data.organization);
-		await Agent.remove({ organization: data.organization });
-		await User.remove({ organization: data.organization });
+		await Invite.findByIdAndRemove(data.invite);
 
 		res.sendStatus(204);
 	} catch (error) {

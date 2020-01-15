@@ -1,11 +1,11 @@
-import Agent from '../../../models/agent';
+import User from '../../../models/user';
 
-exports.destroy = async (req, res) => {
+exports.post = async (req, res) => {
 	try {
 		const data = { ...req.body, ...req.params };
 
-		await Agent.findByIdAndRemove(data.agent);
-		res.sendStatus(204);
+		const user = await User.create(data);
+		res.status(200).json(user);
 	} catch (error) {
 		console.error(error);
 		res.status(500).json({ error: error.message });
