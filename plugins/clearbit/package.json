@@ -1,0 +1,36 @@
+{
+	"name": "@comda/clearbit",
+	"version": "1.0.0",
+	"description": "Clearbit plugin for Comda",
+	"main": "dist/index.js",
+	"repository": "https://github.com/GetStream/comda/tree/master/plugins/clearbit",
+	"author": "Nick Parsons <nparsons08@gmail.com>",
+	"license": "MIT",
+	"private": false,
+	"scripts": {
+		"postinstall": "rm -rf dist && yarn run build",
+		"build": "babel src --out-dir dist",
+		"start": "node dist/index.js",
+		"dev": "nodemon --exec npx babel-node src/index.js",
+		"lint": "yarn prettier --write --check --config ./.prettierrc \"**/*.js\" && eslint --fix ./src"
+	},
+	"dependencies": {
+		"clearbit": "^1.3.4",
+		"dotenv": "^8.2.0"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.8.3",
+		"@babel/core": "^7.8.3",
+		"@babel/preset-env": "^7.8.3",
+		"babel-eslint": "^10.0.3",
+		"eslint": "^6.8.0",
+		"eslint-config-airbnb": "^18.0.1",
+		"eslint-plugin-babel": "^5.3.0",
+		"eslint-plugin-import": "^2.20.0",
+		"eslint-plugin-jsx-a11y": "^6.2.3",
+		"eslint-plugin-react": "^7.17.0",
+		"eslint-plugin-react-hooks": "^2.3.0",
+		"nodemon": "^2.0.2",
+		"prettier": "^1.19.1"
+	}
+}
