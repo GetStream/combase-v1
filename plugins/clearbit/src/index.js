@@ -1,9 +1,17 @@
+import dotenv from 'dotenv';
 import { Client } from 'clearbit';
 
-const client = new Client({ key: process.env.CLEARBIT_API_KEY });
+dotenv.config();
 
 export default async email => {
 	try {
+		if (!process.env.CLEARBIT_API_KEY) {
+			console.error('Clearbit API key is not valid.');
+			throw new Error('Clearbit API Key is not valid.');
+		}
+
+		const client = new Client({ key: process.env.CLEARBIT_API_KEY });
+
 		const { person } = await client.Enrichment.find({ email });
 
 		return {
@@ -29,13 +37,22 @@ export default async email => {
 				url: person.site,
 			},
 			social: {
-				twitter: `https://twitter.com/@${person.twitter.handle}`,
-				linkedin: `https://linkedin.com/in/${person.linkedin.handle}`,
-				github: `https://github.com/${person.github.handle}`,
+				twitter: {
+					url: `https://twitter.com/@${person.twitter.handle}`,
+					handle: `@${person.twitter.handle}`,
+				},
+				linkedin: {
+					url: `https://linkedin.com/in/${person.linkedin.handle}`,
+					handle: person.linkedin.handle,
+				},
+				github: {
+					url: `https://github.com/${person.github.handle}`,
+					handle: person.github.handle,
+				},
 			},
 		};
 	} catch (error) {
 		console.error(error);
-		return throw new Error(error);
+		throw new Error(error);
 	}
 };
