@@ -9,7 +9,7 @@ To install Comba, user npm or yarn (yarn is the preferred method for installatio
 ### 1. Install
 
 ```bash
-yarn add @comba/plugin-clearbit
+$ yarn add @comba/plugin-clearbit
 ```
 
 ### 2. Create an account with Clearbit
