@@ -30,12 +30,12 @@ const ThreadItem = () => (
       <Row>
         <Text weight="500">Luke S.</Text>
         <Fill />
-        <Text faded size={12}>
+        <Text color="gray" size={12}>
           {moment().format("hh:mma")}
         </Text>
       </Row>
       <Row>
-        <Text faded size={12}>
+        <Text faded color="slate" size={12} weight="500">
           Latest Message
         </Text>
       </Row>
