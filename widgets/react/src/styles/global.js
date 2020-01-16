@@ -19,6 +19,7 @@ export default createGlobalStyle`
     background-color: ${({ theme }) => theme.color.background};
     margin: 0;
     -webkit-font-smoothing: antialiased;
+    font-family: "Circular Std", sans-serif;
   }
 
   #root {
@@ -34,5 +35,9 @@ export default createGlobalStyle`
       display: flex;
       flex-direction: column;
       align-items: stretch;
+  }
+
+  p {
+    margin: 0;
   }
 `;

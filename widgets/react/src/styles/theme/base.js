@@ -2,7 +2,7 @@ import breakpoints from "./breakpoints";
 import * as colorUtils from "./colorUtils";
 
 export default {
-  borderRadius: 16,
+  borderRadius: 8,
   breakpoints,
   colorUtils,
   easing: {
