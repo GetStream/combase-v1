@@ -1,4 +1,4 @@
-# Comba
+# Clearbit Plugin for [Comba](https://github.com/getstream/comba)
 
 [Comba](https://github.com/getstream/comba) is an open-source and white-label customer support dashboard and widget that is powered by [Stream](https://getstream.io/). This is a plugin for Comba that adds support for people enrichment via [Clearbit](https://clearbit.com).
 
