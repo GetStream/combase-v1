@@ -1,0 +1,16 @@
+{
+  "devDependencies": {
+    "jsmin": "^1.0.1"
+  },
+  "name": "js-widget",
+  "version": "1.0.0",
+  "description": "JS widget for Comda",
+  "main": "index.js",
+  "repository": "https://github.com/GetStream/comba/tree/master/widgets/js",
+  "author": "Nick Parsons <nparsons08@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "rm -rf dist && mkdir dist && jsmin --level 3 --output dist/comba-js-min.js index.js"
+  }
+}
