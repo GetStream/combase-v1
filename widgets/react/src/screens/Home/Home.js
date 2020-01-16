@@ -18,24 +18,22 @@ const Wrapper = styled(Container)`
   padding-bottom: ${({ theme }) => theme.gutter}px;
 `;
 
-const Home = () => {
-  return (
-    <Root>
-      <Header />
-      <Wrapper>
-        <Card>
-          <CardHeader title="Conversations">
-            <Text size={12} color="primary">
-              5 total
-            </Text>
-          </CardHeader>
-          <ThreadItem />
-          <ThreadItem />
-          <ThreadItem />
-        </Card>
-      </Wrapper>
-    </Root>
-  );
-};
+const Home = () => (
+  <Root>
+    <Header />
+    <Wrapper>
+      <Card>
+        <CardHeader title="Conversations">
+          <Text size={12} color="primary">
+            5 total
+          </Text>
+        </CardHeader>
+        <ThreadItem />
+        <ThreadItem />
+        <ThreadItem />
+      </Card>
+    </Wrapper>
+  </Root>
+);
 
 export default Home;

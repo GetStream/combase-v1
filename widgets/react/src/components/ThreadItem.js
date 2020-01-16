@@ -11,6 +11,7 @@ const Root = styled.div`
   flex-direction: row;
   align-items: center;
   padding: 12px 24px;
+  cursor: pointer;
 `;
 
 const Content = styled.div`
