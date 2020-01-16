@@ -1,9 +1,9 @@
 {
-	"name": "@comda/clearbit",
+	"name": "@comba/plugin-clearbit",
 	"version": "1.0.0",
-	"description": "Clearbit plugin for Comda",
+	"description": "Official Clearbit user enrichment plugin for Comba.",
 	"main": "dist/index.js",
-	"repository": "https://github.com/GetStream/comda/tree/master/plugins/clearbit",
+	"repository": "https://github.com/GetStream/comba/tree/master/plugins/clearbit",
 	"author": "Nick Parsons <nparsons08@gmail.com>",
 	"license": "MIT",
 	"private": false,
