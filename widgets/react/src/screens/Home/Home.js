@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Container from "components/Container";
 import Card from "components/Card";
 import CardHeader from "components/CardHeader";
+import CardFooter from "components/CardFooter";
 import Header from "components/Header";
 import ThreadItem from "components/ThreadItem";
 import Text from "components/Text";
@@ -31,6 +32,7 @@ const Home = () => (
         <ThreadItem />
         <ThreadItem />
         <ThreadItem />
+        <CardFooter />
       </Card>
     </Wrapper>
   </Root>
