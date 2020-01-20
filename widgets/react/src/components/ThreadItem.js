@@ -37,7 +37,7 @@ const ThreadItem = () => (
       </Row>
       <Row>
         <Text faded color="slate" size={12} weight="500">
-          Latest Message
+          Latest message
         </Text>
       </Row>
     </Content>
