@@ -33,12 +33,34 @@ export const OrganizationSchema = new Schema(
 			},
 		},
 		phone: {
-			type: String,
-			trim: true,
+			number: {
+				type: String,
+				trim: true,
+			},
+			display: {
+				type: Boolean,
+				default: false,
+			},
 		},
 		email: {
-			type: String,
-			trim: true,
+			address: {
+				type: String,
+				trim: true,
+			},
+			display: {
+				type: Boolean,
+				default: true,
+			},
+		},
+		website: {
+			url: {
+				type: String,
+				trim: true,
+			},
+			display: {
+				type: Boolean,
+				default: true,
+			},
 		},
 	},
 	{

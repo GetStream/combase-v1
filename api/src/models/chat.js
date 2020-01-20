@@ -25,7 +25,7 @@ export const ChatSchema = new Schema(
 		score: {
 			rating: {
 				type: Boolean,
-				default: 1,
+				default: true,
 			},
 			comment: {
 				type: String,
