@@ -1,5 +1,4 @@
-import { login } from '../controllers/v1/auth/login';
-import { post } from '../controllers/v1/invite/post';
+import { login, post } from '../controllers/v1/auth';
 
 import { wrapAsync } from '../utils/controllers';
 

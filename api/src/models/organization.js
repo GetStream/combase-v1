@@ -1,5 +1,4 @@
 import mongoose, { Schema } from 'mongoose';
-import findOneOrCreate from 'mongoose-findoneorcreate';
 import mongooseStringQuery from 'mongoose-string-query';
 import timestamps from 'mongoose-timestamp';
 
@@ -8,32 +7,31 @@ export const OrganizationSchema = new Schema(
 		name: {
 			type: String,
 			trim: true,
-			required: true,
+			required: true
 		},
 		logo: {
 			type: String,
 			trim: true,
-			required: true,
+			required: true
 		},
 		tagline: {
 			type: String,
-			trim: true,
+			trim: true
 		},
 		phone: {
 			type: String,
-			trim: true,
+			trim: true
 		},
 		email: {
 			type: String,
-			trim: true,
-		},
+			trim: true
+		}
 	},
 	{
-		collection: 'organizatons',
+		collection: 'organizatons'
 	}
 );
 
-OrganizationSchema.plugin(findOneOrCreate);
 OrganizationSchema.plugin(timestamps);
 OrganizationSchema.plugin(mongooseStringQuery);
 

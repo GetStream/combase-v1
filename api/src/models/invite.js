@@ -1,5 +1,4 @@
 import mongoose, { Schema } from 'mongoose';
-import findOneOrCreate from 'mongoose-findoneorcreate';
 import mongooseStringQuery from 'mongoose-string-query';
 import timestamps from 'mongoose-timestamp';
 
@@ -38,7 +37,6 @@ export const InviteSchema = new Schema(
 	}
 );
 
-InviteSchema.plugin(findOneOrCreate);
 InviteSchema.plugin(timestamps);
 InviteSchema.plugin(mongooseStringQuery);
 
