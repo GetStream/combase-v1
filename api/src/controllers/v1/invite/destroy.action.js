@@ -3,9 +3,9 @@ import Invite from '../../../models/invite';
 exports.destroy = async (req, res) => {
 	try {
 		const data = { ...req.body, ...req.params };
-		const serialized = req.agent;
+		const serialized = req.serialized;
 
-		if (!serialized.admin) {
+		if (serialized.role !== 'admin') {
 			return res.status(403).json({
 				status: 'Invalid permissions to view or modify this resource.'
 			});
