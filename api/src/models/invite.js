@@ -22,10 +22,12 @@ export const InviteSchema = new Schema(
 			trim: true,
 			required: true,
 		},
-		organization: {
-			type: Schema.Types.ObjectId,
-			ref: 'Organization',
-			required: true,
+		refs: {
+			organization: {
+				type: Schema.Types.ObjectId,
+				ref: 'Organization',
+				required: true,
+			},
 		},
 		accepted: {
 			type: Boolean,

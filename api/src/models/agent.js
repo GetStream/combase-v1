@@ -26,12 +26,14 @@ export const AgentSchema = new Schema(
 			unique: true,
 			required: true,
 		},
-		organization: {
-			type: Schema.Types.ObjectId,
-			ref: 'Organization',
-			required: true,
-			autopopulate: true,
-		},
+		refs: {
+			organization: {
+				type: Schema.Types.ObjectId,
+				ref: 'Organization',
+				required: true,
+				autopopulate: true,
+			},
+		}
 		password: {
 			type: String,
 			required: true,
@@ -40,6 +42,11 @@ export const AgentSchema = new Schema(
 		recovery: {
 			type: String,
 			default: '',
+		},
+		role: {
+			type: String,
+			enum: ['admin', 'moderator', 'viewer'],
+			default: 'admin',
 		},
 	},
 	{

@@ -9,14 +9,28 @@ export const OrganizationSchema = new Schema(
 			trim: true,
 			required: true,
 		},
-		logo: {
-			type: String,
-			trim: true,
-			required: true,
-		},
-		tagline: {
-			type: String,
-			trim: true,
+		meta: {
+			logo: {
+				type: String,
+				trim: true,
+				required: true,
+			},
+			tagline: {
+				type: String,
+				trim: true,
+			},
+			colors: {
+				primary: {
+					type: String,
+					trim: true,
+					default: '#ffffff',
+				},
+				secondary: {
+					type: String,
+					trim: true,
+					default: '#000000',
+				},
+			},
 		},
 		phone: {
 			type: String,

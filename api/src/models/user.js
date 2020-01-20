@@ -24,11 +24,13 @@ export const UserSchema = new Schema(
 			trim: true,
 			required: true,
 		},
-		organization: {
-			type: Schema.Types.ObjectId,
-			ref: 'Organization',
-			required: true,
-			autopopulate: true,
+		refs: {
+			organization: {
+				type: Schema.Types.ObjectId,
+				ref: 'Organization',
+				required: true,
+				autopopulate: true,
+			},
 		},
 		enriched: {
 			type: Schema.Types.Mixed,
