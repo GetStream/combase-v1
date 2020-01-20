@@ -2,9 +2,10 @@ import User from '../../../models/user';
 
 exports.update = async (req, res) => {
 	try {
-		const data = { ...req.body, ...req.params };
+		const data = req.body;
+		const params = req.params;
 
-		const user = await User.updateOne({ _id: user }, { $set: data });
+		const user = await User.updateOne({ _id: params.user }, { $set: data });
 		res.status(200).json(user);
 	} catch (error) {
 		console.error(error);

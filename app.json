@@ -20,6 +20,9 @@
 		{
 			"plan": "mongolab:shared-single-small",
 			"as": "MONGODB_URI"
+		},
+		{
+			"plan": "papertrail:choklad"
 		}
 	],
 	"buildpacks": [
@@ -27,11 +30,10 @@
 			"url": "https://github.com/lstoll/heroku-buildpack-monorepo"
 		}
 	],
-	"environments": {
-		"test": {
-			"scripts": {
-				"test": "bundle exec rake test"
-			}
+	"env": {
+		"AUTH_SECRET": {
+			"description": "A secret key for verifying the integrity of signed JWTs.",
+			"generator": "secret"
 		}
 	}
 }
