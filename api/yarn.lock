@@ -3309,6 +3309,11 @@ mongodb@3.4.1:
   optionalDependencies:
     saslprep "^1.0.0"
 
+mongoose-autopopulate@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/mongoose-autopopulate/-/mongoose-autopopulate-0.10.0.tgz#117ec617ad76ff2867afbb8e98c3684e4236e0ab"
+  integrity sha512-2Uj4A8OvbllEEqUYBeTRP98/TAa7cWrsBxJkQ5IgIUUW1XuOL5FLUijCvdOKw/rQOhNvXmA87q9EpHLpIMLhyA==
+
 mongoose-bcrypt@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/mongoose-bcrypt/-/mongoose-bcrypt-1.6.0.tgz#a2807aa7ec4d98bec99f011398ab51faebdf17e5"

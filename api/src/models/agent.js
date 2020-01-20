@@ -1,8 +1,9 @@
 import mongoose, { Schema } from 'mongoose';
 import findOneOrCreate from 'mongoose-findoneorcreate';
-import mongooseStringQuery from 'mongoose-string-query';
+import query from 'mongoose-string-query';
 import bcrypt from 'mongoose-bcrypt';
 import timestamps from 'mongoose-timestamp';
+import autopopulate from 'mongoose-autopopulate';
 
 export const AgentSchema = new Schema(
 	{
@@ -29,6 +30,7 @@ export const AgentSchema = new Schema(
 			type: Schema.Types.ObjectId,
 			ref: 'Organization',
 			required: true,
+			autopopulate: true,
 		},
 		password: {
 			type: String,
@@ -48,7 +50,8 @@ export const AgentSchema = new Schema(
 AgentSchema.plugin(findOneOrCreate);
 AgentSchema.plugin(bcrypt);
 AgentSchema.plugin(timestamps);
-AgentSchema.plugin(mongooseStringQuery);
+AgentSchema.plugin(query);
+AgentSchema.plugin(autopopulate);
 
 AgentSchema.index({ createdAt: 1, updatedAt: 1 });
 

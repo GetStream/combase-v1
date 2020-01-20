@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import mongooseStringQuery from 'mongoose-string-query';
+import query from 'mongoose-string-query';
 import timestamps from 'mongoose-timestamp';
 
 export const InviteSchema = new Schema(
@@ -8,37 +8,37 @@ export const InviteSchema = new Schema(
 			first: {
 				type: String,
 				trim: true,
-				required: true
+				required: true,
 			},
 			last: {
 				type: String,
 				trim: true,
-				required: true
-			}
+				required: true,
+			},
 		},
 		email: {
 			type: String,
 			lowercase: true,
 			trim: true,
-			required: true
+			required: true,
 		},
 		organization: {
 			type: Schema.Types.ObjectId,
 			ref: 'Organization',
-			required: true
+			required: true,
 		},
 		accepted: {
 			type: Boolean,
-			default: false
-		}
+			default: false,
+		},
 	},
 	{
-		collection: 'invites'
+		collection: 'invites',
 	}
 );
 
 InviteSchema.plugin(timestamps);
-InviteSchema.plugin(mongooseStringQuery);
+InviteSchema.plugin(query);
 
 InviteSchema.index({ createdAt: 1, updatedAt: 1 });
 

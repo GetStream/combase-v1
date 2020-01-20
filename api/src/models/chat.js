@@ -1,6 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
-import mongooseStringQuery from 'mongoose-string-query';
+import query from 'mongoose-string-query';
 import timestamps from 'mongoose-timestamp';
+import autopopulate from 'mongoose-autopopulate';
 
 export const ChatSchema = new Schema(
 	{
@@ -8,58 +9,81 @@ export const ChatSchema = new Schema(
 			id: {
 				type: String,
 				trim: true,
-				required: true
+				required: true,
 			},
 			subject: {
 				type: String,
 				trim: true,
-				required: true
+				required: true,
 			},
 			excerpt: {
 				type: String,
 				trim: true,
-				required: true
-			}
+				required: true,
+			},
 		},
 		score: {
 			rating: {
 				type: Boolean,
-				default: 1
+				default: 1,
 			},
 			comment: {
 				type: String,
 				trim: true,
-				default: ''
-			}
+				default: '',
+			},
 		},
-		user: {
-			type: Schema.Types.ObjectId,
-			ref: 'User',
-			required: true
+		refs: {
+			user: {
+				type: Schema.Types.ObjectId,
+				ref: 'User',
+				required: true,
+				autopopulate: true,
+			},
+			agent: {
+				type: Schema.Types.ObjectId,
+				ref: 'Agent',
+				required: true,
+				autopopulate: {
+					select: ['name', 'email'],
+				},
+			},
+			organization: {
+				type: Schema.Types.ObjectId,
+				ref: 'Organization',
+				required: true,
+				autopopulate: true,
+			},
 		},
-		agent: {
-			type: Schema.Types.ObjectId,
-			ref: 'Agent',
-			required: true
-		},
-		organization: {
-			type: Schema.Types.ObjectId,
-			ref: 'Organization',
-			required: true
-		},
-		status: {
-			type: String,
-			enum: [ 'Open', 'Closed', 'Pending User', 'Pending Agent', 'Closed', 'Archived' ],
-			default: 'Open'
-		}
+		status: [
+			{
+				type: {
+					type: String,
+					enum: [
+						'Open',
+						'Closed',
+						'Pending User',
+						'Pending Agent',
+						'Closed',
+						'Archived',
+					],
+					default: 'Open',
+				},
+				timestamp: {
+					type: Date,
+					default: Date.now,
+				},
+			},
+		],
 	},
 	{
-		collection: 'chats'
+		collection: 'chats',
 	}
 );
 
 ChatSchema.plugin(timestamps);
-ChatSchema.plugin(mongooseStringQuery);
+ChatSchema.plugin(query);
+ChatSchema.plugin(autopopulate);
 
 ChatSchema.index({ createdAt: 1, updatedAt: 1 });
 

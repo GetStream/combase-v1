@@ -31,6 +31,7 @@
 		"helmet": "^3.21.2",
 		"jsonwebtoken": "^8.5.1",
 		"mongoose": "^5.8.7",
+		"mongoose-autopopulate": "^0.10.0",
 		"mongoose-bcrypt": "^1.6.0",
 		"mongoose-findoneorcreate": "^1.0.3",
 		"mongoose-string-query": "^0.2.7",
