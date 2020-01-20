@@ -12,7 +12,7 @@ exports.update = async (req, res) => {
 			});
 		}
 
-		const agent = await Agent.updateOne({ _id: params.agent }, { $set: data });
+		const agent = await Agent.updateOne({ _id: params.agent }, { $set: data }).lean();
 		res.status(200).json(agent);
 	} catch (error) {
 		console.error(error);

@@ -5,7 +5,7 @@ exports.update = async (req, res) => {
 		const data = req.body;
 		const params = req.params;
 
-		const chat = await Chat.updateOne({ _id: params.chat }, { $set: data });
+		const chat = await Chat.updateOne({ _id: params.chat }, { $set: data }).lean();
 		res.status(200).json(chat);
 	} catch (error) {
 		console.error(error);

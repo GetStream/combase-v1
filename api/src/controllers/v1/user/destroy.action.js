@@ -12,8 +12,8 @@ exports.destroy = async (req, res) => {
 			});
 		}
 
-		await User.findByIdAndRemove(data.user);
-		await Chat.remove({ 'refs.organization': data.organization });
+		await User.findByIdAndRemove(data.user).lean();
+		await Chat.remove({ 'refs.organization': data.organization }).lean();
 
 		res.sendStatus(204);
 	} catch (error) {

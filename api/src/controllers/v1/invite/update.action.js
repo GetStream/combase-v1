@@ -12,7 +12,7 @@ exports.update = async (req, res) => {
 			});
 		}
 
-		const invite = await Invite.updateOne({ _id: params.invite }, { $set: data });
+		const invite = await Invite.updateOne({ _id: params.invite }, { $set: data }).lean();
 		res.status(200).json(invite);
 	} catch (error) {
 		console.error(error);

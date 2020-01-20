@@ -4,7 +4,7 @@ exports.post = async (req, res) => {
 	try {
 		const data = { ...req.body, ...req.params };
 
-		const organization = await Organization.create(data);
+		const organization = await Organization.create(data).lean();
 		res.status(200).json(organization);
 	} catch (error) {
 		console.error(error);

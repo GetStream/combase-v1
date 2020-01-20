@@ -11,7 +11,7 @@ exports.destroy = async (req, res) => {
 			});
 		}
 
-		const chat = await Chat.updateOne({ _id: data.chat }, { $set: { status: 'Archived' } });
+		const chat = await Chat.updateOne({ _id: data.chat }, { $set: { status: 'Archived' } }).lean();
 		res.status(200).json(chat);
 	} catch (error) {
 		console.error(error);

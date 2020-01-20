@@ -16,13 +16,13 @@ exports.destroy = async (req, res) => {
 			});
 		}
 
-		await Organization.findByIdAndRemove(data.organization);
+		await Organization.findByIdAndRemove(data.organization).lean();
 
-		await Invite.remove({ 'refs.organization': data.organization });
-		await Agent.remove({ 'refs.organization': data.organization });
-		await User.remove({ 'refs.organization': data.organization });
-		await Chat.remove({ 'refs.organization': data.organization });
-		await Faq.remove({ 'refs.organization': data.organization });
+		await Invite.remove({ 'refs.organization': data.organization }).lean();
+		await Agent.remove({ 'refs.organization': data.organization }).lean();
+		await User.remove({ 'refs.organization': data.organization }).lean();
+		await Chat.remove({ 'refs.organization': data.organization }).lean();
+		await Faq.remove({ 'refs.organization': data.organization }).lean();
 
 		res.sendStatus(204);
 	} catch (error) {

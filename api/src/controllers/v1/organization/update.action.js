@@ -12,7 +12,7 @@ exports.update = async (req, res) => {
 			});
 		}
 
-		const organization = await Organization.updateOne({ _id: params.organization }, { $set: data });
+		const organization = await Organization.updateOne({ _id: params.organization }, { $set: data }).lean();
 		res.status(200).json(organization);
 	} catch (error) {
 		console.error(error);

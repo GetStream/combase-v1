@@ -11,7 +11,7 @@ exports.destroy = async (req, res) => {
 			});
 		}
 
-		const agent = await Agent.updateOne({ _id: data.agent }, { $set: { status: 'inactive' } });
+		const agent = await Agent.updateOne({ _id: data.agent }, { $set: { status: 'inactive' } }).lean();
 		res.sendStatus(204);
 	} catch (error) {
 		console.error(error);

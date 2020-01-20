@@ -5,7 +5,7 @@ exports.update = async (req, res) => {
 		const data = req.body;
 		const params = req.params;
 
-		const faq = await Faq.updateOne({ _id: params.faq }, { $set: data });
+		const faq = await Faq.updateOne({ _id: params.faq }, { $set: data }).lean();
 		res.status(200).json(faq);
 	} catch (error) {
 		console.error(error);

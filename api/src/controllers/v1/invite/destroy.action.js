@@ -11,7 +11,7 @@ exports.destroy = async (req, res) => {
 			});
 		}
 
-		await Invite.findByIdAndRemove(data.invite);
+		await Invite.findByIdAndRemove(data.invite).lean();
 
 		res.sendStatus(204);
 	} catch (error) {
