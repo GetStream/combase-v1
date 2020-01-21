@@ -38,6 +38,9 @@
 	"buildpacks": [
 		{
 			"url": "https://github.com/lstoll/heroku-buildpack-monorepo"
+		},
+		{
+			"url": "heroku/node"
 		}
 	],
 	"env": {
