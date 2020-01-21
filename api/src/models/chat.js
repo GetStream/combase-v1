@@ -9,75 +9,68 @@ export const ChatSchema = new Schema(
 			id: {
 				type: String,
 				trim: true,
-				required: true,
+				required: true
 			},
 			subject: {
 				type: String,
 				trim: true,
-				required: true,
+				required: true
 			},
 			excerpt: {
 				type: String,
 				trim: true,
-				required: true,
-			},
+				required: true
+			}
 		},
 		score: {
 			rating: {
 				type: Boolean,
-				default: true,
+				default: true
 			},
 			comment: {
 				type: String,
 				trim: true,
-				default: '',
-			},
+				default: ''
+			}
 		},
 		refs: {
 			user: {
 				type: Schema.Types.ObjectId,
 				ref: 'User',
 				required: true,
-				autopopulate: true,
+				autopopulate: true
 			},
 			agent: {
 				type: Schema.Types.ObjectId,
 				ref: 'Agent',
 				required: true,
 				autopopulate: {
-					select: ['name', 'email'],
-				},
+					select: [ 'name', 'email' ]
+				}
 			},
 			organization: {
 				type: Schema.Types.ObjectId,
 				ref: 'Organization',
 				required: true,
-				autopopulate: true,
-			},
+				autopopulate: true
+			}
 		},
 		status: [
 			{
 				type: {
 					type: String,
-					enum: [
-						'Open',
-						'Closed',
-						'Pending User',
-						'Pending Agent',
-						'Closed',
-						'Archived',
-					],
-					default: 'Open',
+					enum: [ 'Open', 'Pending User', 'Pending Agent', 'Closed', 'Archived' ],
+					default: 'Open'
 				},
 				timestamp: {
 					type: Date,
-					default: Date.now,
-				},
-			},
-		],
+					default: Date.now
+				}
+			}
+		]
 	},
 	{
-		collection: 'chats',
+		collection: 'chats'
 	}
 );
 
