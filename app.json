@@ -33,6 +33,10 @@
 		{
 			"plan": "papertrail:choklad",
 			"as": "PAPERTRAIL"
+		},
+		{
+			"plan": "cloudinary:starter",
+			"as": "CLOUDINARY"
 		}
 	],
 	"buildpacks": [
