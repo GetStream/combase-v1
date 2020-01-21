@@ -11,46 +11,46 @@ export const AgentSchema = new Schema(
 			first: {
 				type: String,
 				trim: true,
-				required: true,
+				required: true
 			},
 			last: {
 				type: String,
 				trim: true,
-				required: true,
-			},
+				required: true
+			}
 		},
 		email: {
 			type: String,
 			lowercase: true,
 			trim: true,
 			unique: true,
-			required: true,
+			required: true
 		},
 		refs: {
 			organization: {
 				type: Schema.Types.ObjectId,
 				ref: 'Organization',
 				required: true,
-				autopopulate: true,
-			},
-		}
+				autopopulate: true
+			}
+		},
 		password: {
 			type: String,
 			required: true,
-			bcrypt: true,
+			bcrypt: true
 		},
 		recovery: {
 			type: String,
-			default: '',
+			default: ''
 		},
 		role: {
 			type: String,
-			enum: ['admin', 'moderator', 'viewer'],
-			default: 'admin',
-		},
+			enum: [ 'admin', 'moderator', 'viewer' ],
+			default: 'admin'
+		}
 	},
 	{
-		collection: 'agents',
+		collection: 'agents'
 	}
 );
 
