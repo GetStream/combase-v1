@@ -5,7 +5,7 @@
 	"main": "dist/index.js",
 	"repository": "https://github.com/GetStream/comda/tree/master/api",
 	"engines": {
-		"node": ">=12.13.0"
+		"node": ">=13.x"
 	},
 	"scripts": {
 		"postinstall": "rm -rf dist && yarn run build",
