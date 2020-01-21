@@ -42,6 +42,7 @@ exports.post = async (req, res) => {
 					height: data.height,
 					width: data.width,
 				},
+				format: data.format,
 				url: data.url,
 			});
 		});
