@@ -27,7 +27,7 @@
 		},
 		{
 			"plan": "algoliasearch:free",
-			"as": "ALGOLIA"
+			"as": "ALGOLIASEARCH"
 		},
 		{
 			"plan": "papertrail:choklad",
