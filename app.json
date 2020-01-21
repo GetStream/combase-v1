@@ -5,6 +5,7 @@
 	"website": "https://comba.io/",
 	"repository": "https://github.com/GetStream/comba",
 	"logo": "https://i.imgur.com/jwPM769.png",
+	"success_url": "https://github.com/GetStream/comba",
 	"formation": {
 		"web": {
 			"quantity": 1,
@@ -43,6 +44,14 @@
 		"AUTH_SECRET": {
 			"description": "A secret key for verifying the integrity of signed JWTs.",
 			"generator": "secret"
+		},
+		"WEB_CONCURRENCY": "1"
+	},
+	"environments": {
+		"production": {
+			"env": {
+				"AUTH_SECRET": "secret"
+			}
 		}
 	}
 }
