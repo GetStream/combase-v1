@@ -53,7 +53,7 @@
 			"generator": "secret"
 		},
 		"APP_BASE": {
-			"description": "Absolute path to API in monorepo.",
+			"description": "Absolute path to API in monorepo (default = /api).",
 			"value": "api/"
 		}
 	}
