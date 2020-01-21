@@ -1,9 +1,9 @@
 {
-	"name": "Comda",
-	"description": "Open Source White Label Customer Support Chat – Powered by Stream",
+	"name": "Comba",
+	"description": "Open Source & White Label Customer Support Chat – Powered by Stream",
 	"keywords": [ "Customer Support", "Stream", "Open Source" ],
-	"website": "https://comda.io/",
-	"repository": "https://github.com/GetStream/comda",
+	"website": "https://comba.io/",
+	"repository": "https://github.com/GetStream/comba",
 	"logo": "https://i.imgur.com/jwPM769.png",
 	"formation": {
 		"web": {
@@ -15,14 +15,23 @@
 	"addons": [
 		{
 			"plan": "stream:chat-trial",
-			"as": "STREAM_URI"
+			"as": "STREAM"
 		},
 		{
 			"plan": "mongolab:shared-single-small",
-			"as": "MONGODB_URI"
+			"as": "MONGODB"
 		},
 		{
-			"plan": "papertrail:choklad"
+			"plan": "heroku-redis:hobby-dev",
+			"as": "REDIS"
+		},
+		{
+			"plan": "algolia:free",
+			"as": "ALGOLIA"
+		},
+		{
+			"plan": "papertrail:choklad",
+			"as": "PAPERTRAIL"
 		}
 	],
 	"buildpacks": [
