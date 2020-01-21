@@ -26,7 +26,7 @@
 			"as": "REDIS"
 		},
 		{
-			"plan": "algolia:free",
+			"plan": "algolia-realtime-search:free",
 			"as": "ALGOLIA"
 		},
 		{
