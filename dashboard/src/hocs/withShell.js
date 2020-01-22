@@ -6,15 +6,17 @@ import { useStyledMedia } from "layout-hooks";
 import ShellContext from "contexts/Shell";
 
 // Components //
+import Sidenav from "components/Sidenav";
+
 const Root = styled.div`
   flex: 1;
   overflow: hidden;
+  flex-direction: row;
 `;
 
 export default (WrappedComponent, routes = []) => props => {
   const [drawerOpen, toggleDrawer] = useState(false);
   const isMobile = useStyledMedia("sm", "min");
-  console.log(isMobile);
   const value = useMemo(
     () => ({
       drawer: {
@@ -27,6 +29,7 @@ export default (WrappedComponent, routes = []) => props => {
   return (
     <ShellContext.Provider {...{ value }}>
       <Root>
+        <Sidenav />
         <WrappedComponent {...props} />
       </Root>
     </ShellContext.Provider>
