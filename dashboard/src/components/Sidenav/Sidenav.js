@@ -5,8 +5,13 @@ import styled from "styled-components";
 import SidenavItem from "./SidenavItem";
 
 const Root = styled.div`
+  display: none;
   width: 96px;
   background-color: ${({ theme }) => theme.color.background};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
+    display: flex;
+  }
 `;
 
 const Brand = styled.div`
