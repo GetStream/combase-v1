@@ -4,5 +4,4 @@
 
 [template.environment]
   SASS_PATH = "./node_modules"
-  STREAM_APP_ID = "YOUR STREAM APP ID"
-  STREAM_API_KEY = "YOUR STREAM API KEY"
+  STREAM_APP_ID = "YOUR CLEARBIT API KEY"
