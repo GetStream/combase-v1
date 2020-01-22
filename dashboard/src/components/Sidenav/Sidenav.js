@@ -6,8 +6,12 @@ import SidenavItem from "./SidenavItem";
 
 const Root = styled.div`
   display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
   width: 96px;
-  background-color: ${({ theme }) => theme.color.background};
+  z-index: ${({ theme }) => theme.z.sidenav};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
     display: flex;

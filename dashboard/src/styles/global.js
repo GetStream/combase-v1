@@ -16,7 +16,7 @@ export default createGlobalStyle`
   
   body {
     display: flex;
-    background-color: ${({ theme }) => theme.color.background};
+    background-color: ${({ theme }) => theme.color.surface};
     margin: 0;
     height: 100%;
     overflow: hidden;

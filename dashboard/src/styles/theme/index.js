@@ -6,7 +6,7 @@ export default {
   color: {
     ...colors,
     primary: colors.blue,
-    background: colors.white,
+    background: colors.off_white,
     surface: colors.white,
     error: colors.red,
     shadow: colors.black,

@@ -11,5 +11,9 @@ export default {
     standard: [0.4, 0.0, 0.2, 1],
     css: easing => `cubic-bezier(${easing.join(",")})`
   },
-  gutter: 16
+  gutter: 16,
+  z: {
+    page: 0,
+    sidenav: 1
+  }
 };
