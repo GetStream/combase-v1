@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 // Components //
+import SidenavItem from "./SidenavItem";
+
 const Root = styled.div`
   width: 96px;
   background-color: ${({ theme }) => theme.color.background};
@@ -23,7 +25,7 @@ const Logo = styled.div`
 const Menu = styled.div`
   flex: 1;
   width: 100%;
-  padding-top: 48px;
+  margin-top: 24px;
 `;
 
 export default () => {
@@ -32,7 +34,12 @@ export default () => {
       <Brand>
         <Logo />
       </Brand>
-      <Menu></Menu>
+      <Menu>
+        <SidenavItem />
+        <SidenavItem />
+        <SidenavItem />
+        <SidenavItem />
+      </Menu>
     </Root>
   );
 };
