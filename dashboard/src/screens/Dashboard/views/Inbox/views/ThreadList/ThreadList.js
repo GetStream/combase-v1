@@ -41,7 +41,7 @@ export default () => {
       <ListView
         {...{ data, layoutProvider, onResize, renderRow, style }}
         ListHeaderComponent={ListHeader}
-        rowCount={160}
+        rowCount={40}
         showEmptyHeader
       />
     </Root>

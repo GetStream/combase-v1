@@ -9,6 +9,7 @@ export default {
     background: colors.off_white,
     surface: colors.white,
     error: colors.red,
+    light_text: colors.light_gray,
     shadow: colors.black,
     border: colors.light_gray,
     text: colors.black
