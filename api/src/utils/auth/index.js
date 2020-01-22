@@ -23,6 +23,14 @@ const auth = async (req, res, next) => {
 			return next();
 		}
 
+		// whitelist password reset when token is included
+		if (
+			req.path.includes('password-reset') &&
+			token === process.env.AUTH_SECRET
+		) {
+			return next();
+		}
+
 		if (token) {
 			const { sub } = jwt.verify(token, process.env.AUTH_SECRET);
 

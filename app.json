@@ -37,6 +37,10 @@
 		{
 			"plan": "cloudinary:starter",
 			"as": "CLOUDINARY"
+		},
+		{
+			"plan": "mailgun:starter",
+			"as": "MAILGUN"
 		}
 	],
 	"buildpacks": [
