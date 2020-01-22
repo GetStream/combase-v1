@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
+// CSS //
+import pageCard from "styles/css/pageCard";
+
 // Components //
 const Root = styled.div`
   flex: 1;
@@ -8,9 +11,7 @@ const Root = styled.div`
   background-color: ${({ theme }) => theme.color.surface};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
-    box-shadow: -4px 0px 24px rgba(0, 0, 0, 0.12);
-    border-top-left-radius: ${({ theme }) => theme.borderRadius}px;
-    border-bottom-left-radius: ${({ theme }) => theme.borderRadius}px;
+    ${pageCard}
   }
 `;
 
