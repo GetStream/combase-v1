@@ -16,7 +16,7 @@ export default createGlobalStyle`
   body {
     height: 100%;
     display: flex;
-    background-color: ${({ theme }) => theme.color.background};
+    background-color: ${({ theme }) => theme.color.surface};
     margin: 0;
     -webkit-font-smoothing: antialiased;
     font-family: "Circular Std", sans-serif;
