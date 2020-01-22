@@ -3,6 +3,7 @@
   publish = "build/"
 
 [context.production]
+  command = "yarn build"
 
 [template.environment]
   SASS_PATH = "./node_modules"
