@@ -1230,6 +1230,11 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
+"@juggle/resize-observer@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@juggle/resize-observer/-/resize-observer-3.0.2.tgz#f4f326806826c0da5221411374e4c54902c327bb"
+  integrity sha512-9fEfZIxZ1qTahMSX50pigfSJ/1N6X2oABhmgd4Dt2SsPkZi0lTlvoHu5V2yrGZ6m+oALfS4tJrpx9nbVIxwOYQ==
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -6272,6 +6277,13 @@ last-call-webpack-plugin@^3.0.0:
   dependencies:
     lodash "^4.17.5"
     webpack-sources "^1.1.0"
+
+layout-hooks@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/layout-hooks/-/layout-hooks-1.1.1.tgz#3c75c78da0ebe4dd5378bca7e5e698e3621d9851"
+  integrity sha512-SjlI2pZtq9Sn5cqPa5plyucTnFlwsORBN1XkgT+NtNFXPu7VvbhgXhBngF8H4aEDLNyGPxaG9b+FomHr8EN45Q==
+  dependencies:
+    "@juggle/resize-observer" "^3.0.2"
 
 lazy-cache@^0.2.3:
   version "0.2.7"
