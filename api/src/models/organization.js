@@ -23,12 +23,12 @@ export const OrganizationSchema = new Schema(
 				primary: {
 					type: String,
 					trim: true,
-					default: '#ffffff',
+					default: '#4D7CFE',
 				},
 				secondary: {
 					type: String,
 					trim: true,
-					default: '#000000',
+					default: '#ffffff',
 				},
 			},
 		},
