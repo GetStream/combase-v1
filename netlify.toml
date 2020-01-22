@@ -1,6 +1,6 @@
 [build]
   base = "dashboard/"
-  publish = "dashboard/build/"
+  publish = "build/"
 
 [context.production]
 
