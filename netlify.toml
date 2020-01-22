@@ -5,5 +5,4 @@
 [context.production]
 
 [template.environment]
-  NODE_ENV = "production"
   SASS_PATH = "./node_modules"
