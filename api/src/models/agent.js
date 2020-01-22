@@ -26,6 +26,11 @@ export const AgentSchema = new Schema(
 			unique: true,
 			required: true,
 		},
+		title: {
+			type: String,
+			trim: true,
+			default: 'Support Agent',
+		},
 		image: {
 			type: String,
 			trim: true,
