@@ -28,15 +28,18 @@ const Menu = styled.div`
   margin-top: 24px;
 `;
 
-const renderItems = routes => routes.map(route => <SidenavItem {...route} />);
+const renderItems = (routes, match) =>
+  routes.map(({ component, ...route }) => (
+    <SidenavItem {...route} path={`${match.url}${route.path}`} />
+  ));
 
-export default ({ routes }) => {
+export default ({ match, routes }) => {
   return (
     <Root>
       <Brand>
         <Logo />
       </Brand>
-      <Menu>{renderItems(routes)}</Menu>
+      <Menu>{renderItems(routes, match)}</Menu>
     </Root>
   );
 };

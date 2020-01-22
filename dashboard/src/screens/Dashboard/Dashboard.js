@@ -8,9 +8,6 @@ import routes from "./routes";
 // HOCs //
 import withShell from "hocs/withShell";
 
-// Views //
-import Chat from "./views/Chat";
-
 // Components //
 const Root = styled.div`
   flex: 1;
