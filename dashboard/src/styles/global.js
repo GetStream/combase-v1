@@ -33,6 +33,13 @@ export default createGlobalStyle`
     height: 100%;
   }
 
+  div {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
   button {
     font-family: inherit;
     border: 0;

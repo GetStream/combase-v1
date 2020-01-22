@@ -1,10 +1,19 @@
 import React from "react";
+import { Route, Switch } from "react-router-dom";
+
+// Data //
+import routes from "./routes";
 
 // HOCs //
 import withShell from "hocs/withShell";
 
-const Dashboard = () => {
-  return <p>dashboard</p>;
+const renderRoutes = match =>
+  routes.map(({ slug, component, isExact }) => (
+    <Route {...{ component, isExact }} path={`${match.url}${slug}`} />
+  ));
+
+const Dashboard = ({ match }) => {
+  return <Switch>{renderRoutes(match)}</Switch>;
 };
 
-export default withShell(Dashboard);
+export default withShell(Dashboard, routes);
