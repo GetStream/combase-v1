@@ -10,7 +10,6 @@ export default (breakpoint, minmax = "min") => {
 
   const theme = useContext(ThemeContext);
 
-  // eslint-disable-next-line no-undef
   const query = window.matchMedia(
     `(${minmax}-width: ${theme.breakpoints[breakpoint]}px)`
   );

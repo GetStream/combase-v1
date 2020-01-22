@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 // Components //
+import ListHeader from "components/ListHeader";
+import ThreadItem from "components/ThreadItem";
+
 const Root = styled.div`
   flex: 1;
   order: -1;
@@ -17,8 +19,16 @@ const Root = styled.div`
 export default ({ match }) => {
   return (
     <Root>
-      <p>Thread List</p>
-      <Link to={`${match.url}/channelId`}>Nick Parsons</Link>
+      <ListHeader />
+      <ThreadItem />
+      <ThreadItem />
+      <ThreadItem />
+      <ThreadItem />
+      <ThreadItem />
+      <ThreadItem />
+      <ThreadItem />
+      <ThreadItem />
+      <ThreadItem />
     </Root>
   );
 };
