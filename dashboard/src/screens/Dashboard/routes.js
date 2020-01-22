@@ -1,12 +1,12 @@
 import Agents from "./views/Agents";
 import Analytics from "./views/Analytics";
-import Chat from "./views/Chat";
+import Inbox from "./views/Inbox";
 import Settings from "./views/Settings";
 
 export default [
   {
-    slug: "chat",
-    component: Chat,
+    slug: "inbox",
+    component: Inbox,
     isExact: false
   },
   {
