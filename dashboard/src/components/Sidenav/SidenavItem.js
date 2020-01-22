@@ -9,6 +9,10 @@ const Root = styled.div`
   padding: 24px 0px;
 `;
 
+const NavLink = styled(Link)`
+  pointer-events: ${({ active }) => (active ? "none" : "auto")};
+`;
+
 const Icon = styled.div`
   width: 24px;
   height: 24px;
@@ -18,16 +22,15 @@ const Icon = styled.div`
 `;
 
 export default ({ isExact, path }) => {
-  console.log(path);
   return (
     <Route
       {...{ path, isExact }}
       children={({ match: active }) => (
-        <Link to={path}>
+        <NavLink {...{ active }} to={path}>
           <Root>
             <Icon {...{ active }} />
           </Root>
-        </Link>
+        </NavLink>
       )}
     />
   );
