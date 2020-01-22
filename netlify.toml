@@ -1,6 +1,9 @@
 [build]
-  command = "cd dashboard && yarn build"
-  publish = "build/"
+  base = "dashboard/"
+  publish = "dashboard/build/"
+
+[context.production]
 
 [template.environment]
+  NODE_ENV = "production"
   SASS_PATH = "./node_modules"
