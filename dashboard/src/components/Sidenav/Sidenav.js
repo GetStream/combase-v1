@@ -28,18 +28,15 @@ const Menu = styled.div`
   margin-top: 24px;
 `;
 
-export default () => {
+const renderItems = routes => routes.map(route => <SidenavItem {...route} />);
+
+export default ({ routes }) => {
   return (
     <Root>
       <Brand>
         <Logo />
       </Brand>
-      <Menu>
-        <SidenavItem />
-        <SidenavItem />
-        <SidenavItem />
-        <SidenavItem />
-      </Menu>
+      <Menu>{renderItems(routes)}</Menu>
     </Root>
   );
 };

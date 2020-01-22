@@ -29,7 +29,7 @@ export default (WrappedComponent, routes = []) => props => {
   return (
     <ShellContext.Provider {...{ value }}>
       <Root>
-        <Sidenav />
+        <Sidenav {...{ routes }} />
         <WrappedComponent {...props} />
       </Root>
     </ShellContext.Provider>
