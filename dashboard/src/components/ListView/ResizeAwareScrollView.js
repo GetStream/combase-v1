@@ -13,6 +13,7 @@ const Root = styled.div`
 class ExternalScrollView extends Component {
   observer = null;
   root = React.createRef();
+  scrollView = React.createRef();
 
   componentDidMount() {
     this.observer = new ResizeObserver(this.handleResize);
@@ -39,15 +40,14 @@ class ExternalScrollView extends Component {
   };
 
   scrollTo(arg) {
-    this.refs.scrollView.scrollTo(arg);
+    this.scrollView.current.scrollTo(arg);
   }
 
   render() {
     const { children, ListHeaderComponent, ...rest } = this.props;
-
     return (
       <Root ref={this.root}>
-        <ScrollViewer ref="scrollView" {...rest}>
+        <ScrollViewer ref={this.scrollView} {...rest}>
           {ListHeaderComponent && <ListHeaderComponent />}
           {children}
         </ScrollViewer>

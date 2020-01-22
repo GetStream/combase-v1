@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import moment from "moment";
@@ -47,4 +47,4 @@ const ThreadItem = () => (
   </Root>
 );
 
-export default ThreadItem;
+export default memo(ThreadItem);

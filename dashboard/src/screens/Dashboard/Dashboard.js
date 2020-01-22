@@ -8,8 +8,8 @@ import routes from "./routes";
 import withShell from "hocs/withShell";
 
 const renderRoutes = match =>
-  routes.map(({ slug, component, isExact }) => (
-    <Route {...{ component, isExact }} path={`${match.url}${slug}`} />
+  routes.map(({ slug, component, isExact }, key) => (
+    <Route {...{ component, isExact, key }} path={`${match.url}${slug}`} />
   ));
 
 const Dashboard = ({ match }) => {

@@ -20,21 +20,29 @@ const Root = styled.div`
   }
 `;
 
+const data = [];
 const initialState = { height: 0, width: 0 };
+const style = { flex: 1 };
+
+const renderRow = () => <ThreadItem />;
+
 export default () => {
   const [{ width }, onResize] = useState(initialState);
-  const [layoutProvider, setLayoutProvider] = useState(LayoutUtil(0, 72));
+  const [layoutProvider, setLayoutProvider] = useState(
+    LayoutUtil.getLayoutProvider(width, 72)
+  );
+
   useEffect(() => {
-    setLayoutProvider(LayoutUtil(width, 72));
+    setLayoutProvider(LayoutUtil.getLayoutProvider(width, 72));
   }, [width]);
+
   return (
     <Root>
       <ListView
-        {...{ layoutProvider, onResize }}
-        data={new Array(100)}
+        {...{ data, layoutProvider, onResize, renderRow, style }}
         ListHeaderComponent={ListHeader}
-        renderRow={() => <ThreadItem />}
-        rowCount={100}
+        rowCount={160}
+        showEmptyHeader
       />
     </Root>
   );

@@ -38,8 +38,8 @@ const Menu = styled.div`
 `;
 
 const renderItems = (routes, match) =>
-  routes.map(({ component, ...route }) => (
-    <SidenavItem {...route} path={`${match.url}${route.slug}`} />
+  routes.map(({ component, ...route }, key) => (
+    <SidenavItem {...{ key }} {...route} path={`${match.url}${route.slug}`} />
   ));
 
 export default ({ match, routes }) => {

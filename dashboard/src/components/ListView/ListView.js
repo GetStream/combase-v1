@@ -62,7 +62,7 @@ class ListView extends Component {
   constructor(props) {
     super(props);
 
-    let dataProvider = new DataProvider((r1, r2) => {
+    const dataProvider = new DataProvider((r1, r2) => {
       return r1 !== r2;
     });
 
@@ -121,6 +121,7 @@ class ListView extends Component {
       extendedState,
       externalScrollView = ResizeAwareScrollView,
       data,
+      distanceFromWindow,
       layoutProvider,
       ListHeaderComponent,
       renderAheadOffset,
@@ -142,20 +143,22 @@ class ListView extends Component {
 
     return (
       <RecyclerListView
-        // useWindowScroll={true}
         canChangeSize
-        extendedState={extendedState}
-        externalScrollView={externalScrollView}
-        contentContainerStyle={contentContainerStyle}
-        dataProvider={dataProvider}
+        {...{
+          contentContainerStyle,
+          dataProvider,
+          distanceFromWindow,
+          extendedState,
+          externalScrollView,
+          layoutProvider,
+          ListHeaderComponent,
+          renderAheadOffset,
+          style
+        }}
         extraData={data}
         itemAnimator={layoutItemAnimator}
-        layoutProvider={layoutProvider}
-        ListHeaderComponent={ListHeaderComponent}
-        renderAheadOffset={renderAheadOffset}
         rowRenderer={this.renderRow}
         onResize={this.handleResize}
-        style={style}
       />
     );
   }
