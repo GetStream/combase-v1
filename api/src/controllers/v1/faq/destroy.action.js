@@ -1,4 +1,4 @@
-import Invite from '../../../models/invite';
+import Faq from '../../../models/faq';
 
 exports.destroy = async (req, res) => {
 	try {
@@ -11,9 +11,8 @@ exports.destroy = async (req, res) => {
 			});
 		}
 
-		await Invite.findByIdAndRemove(data.invite).lean();
-
-		res.sendStatus(204);
+		const chat = await Faq.updateOne({ _id: data.faq }, { $set: data }).lean();
+		res.status(200).json(faq);
 	} catch (error) {
 		console.error(error);
 		res.status(500).json({ error: error.message });

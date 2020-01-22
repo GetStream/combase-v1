@@ -1,6 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import findOneOrCreate from 'mongoose-findoneorcreate';
-import mongooseStringQuery from 'mongoose-string-query';
+import query from 'mongoose-string-query';
 import timestamps from 'mongoose-timestamp';
 
 export const OrganizationSchema = new Schema(
@@ -10,22 +9,58 @@ export const OrganizationSchema = new Schema(
 			trim: true,
 			required: true,
 		},
-		logo: {
-			type: String,
-			trim: true,
-			required: true,
-		},
-		tagline: {
-			type: String,
-			trim: true,
+		meta: {
+			logo: {
+				type: String,
+				trim: true,
+				required: true,
+			},
+			tagline: {
+				type: String,
+				trim: true,
+			},
+			colors: {
+				primary: {
+					type: String,
+					trim: true,
+					default: '#ffffff',
+				},
+				secondary: {
+					type: String,
+					trim: true,
+					default: '#000000',
+				},
+			},
 		},
 		phone: {
-			type: String,
-			trim: true,
+			number: {
+				type: String,
+				trim: true,
+			},
+			display: {
+				type: Boolean,
+				default: false,
+			},
 		},
 		email: {
-			type: String,
-			trim: true,
+			address: {
+				type: String,
+				trim: true,
+			},
+			display: {
+				type: Boolean,
+				default: true,
+			},
+		},
+		website: {
+			url: {
+				type: String,
+				trim: true,
+			},
+			display: {
+				type: Boolean,
+				default: true,
+			},
 		},
 	},
 	{
@@ -33,9 +68,8 @@ export const OrganizationSchema = new Schema(
 	}
 );
 
-OrganizationSchema.plugin(findOneOrCreate);
 OrganizationSchema.plugin(timestamps);
-OrganizationSchema.plugin(mongooseStringQuery);
+OrganizationSchema.plugin(query);
 
 OrganizationSchema.index({ createdAt: 1, updatedAt: 1 });
 

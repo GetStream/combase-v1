@@ -3,8 +3,15 @@ import Agent from '../../../models/agent';
 exports.destroy = async (req, res) => {
 	try {
 		const data = { ...req.body, ...req.params };
+		const serialized = req.serialized;
 
-		await Agent.findByIdAndRemove(data.agent);
+		if (serialized.role !== 'admin') {
+			return res.status(403).json({
+				status: 'Invalid permissions to view or modify this resource.'
+			});
+		}
+
+		const agent = await Agent.updateOne({ _id: data.agent }, { $set: { status: 'inactive' } }).lean();
 		res.sendStatus(204);
 	} catch (error) {
 		console.error(error);

@@ -1,12 +1,12 @@
-import User from '../../../models/user';
+import Chat from '../../../models/chat';
 
 exports.update = async (req, res) => {
 	try {
 		const data = req.body;
 		const params = req.params;
 
-		const user = await User.updateOne({ _id: params.user }, { $set: data }).lean();
-		res.status(200).json(user);
+		const chat = await Chat.updateOne({ _id: params.chat }, { $set: data }).lean();
+		res.status(200).json(chat);
 	} catch (error) {
 		console.error(error);
 		res.status(500).json({ error: error.message });

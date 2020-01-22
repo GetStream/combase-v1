@@ -1,8 +1,4 @@
-import { get } from '../controllers/v1/invite/get';
-import { list } from '../controllers/v1/invite/list';
-import { post } from '../controllers/v1/invite/post';
-import { put } from '../controllers/v1/invite/update';
-import { destroy } from '../controllers/v1/invite/destroy';
+import { get, list, post, put, destroy } from '../controllers/v1/invite';
 
 import { wrapAsync } from '../utils/controllers';
 

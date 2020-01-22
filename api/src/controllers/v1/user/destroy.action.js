@@ -1,4 +1,5 @@
-import Invite from '../../../models/invite';
+import User from '../../../models/user';
+import Chat from '../../../models/chat';
 
 exports.destroy = async (req, res) => {
 	try {
@@ -11,7 +12,8 @@ exports.destroy = async (req, res) => {
 			});
 		}
 
-		await Invite.findByIdAndRemove(data.invite).lean();
+		await User.findByIdAndRemove(data.user).lean();
+		await Chat.remove({ 'refs.organization': data.organization }).lean();
 
 		res.sendStatus(204);
 	} catch (error) {

@@ -1,8 +1,9 @@
-import Invite from '../../../models/invite';
+import Agent from '../../../models/agent';
 
-exports.destroy = async (req, res) => {
+exports.update = async (req, res) => {
 	try {
-		const data = { ...req.body, ...req.params };
+		const data = req.body;
+		const params = req.params;
 		const serialized = req.serialized;
 
 		if (serialized.role !== 'admin') {
@@ -11,9 +12,8 @@ exports.destroy = async (req, res) => {
 			});
 		}
 
-		await Invite.findByIdAndRemove(data.invite).lean();
-
-		res.sendStatus(204);
+		const agent = await Agent.updateOne({ _id: params.agent }, { $set: data }).lean();
+		res.status(200).json(agent);
 	} catch (error) {
 		console.error(error);
 		res.status(500).json({ error: error.message });

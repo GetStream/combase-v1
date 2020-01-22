@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 
-import Agent from '../../../models/agent';
+import Chat from '../../../models/chat';
 
 dotenv.config();
 
@@ -15,18 +15,10 @@ exports.list = async (req, res) => {
 			});
 		}
 
-		const agents = await Agent.apiQuery(data);
-
-		const sanitized = agents.map(agent => {
-			agent.password = undefined;
-			agent.recovery = undefined;
-
-			return agent;
-		});
-
-		res.status(200).json(sanitized);
+		const chats = await Chat.apiQuery(data);
+		res.status(200).json(chats);
 	} catch (error) {
-		console.error(error);
+		console.log(error);
 		res.status(500).json({ error: error.message });
 	}
 };

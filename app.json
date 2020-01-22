@@ -1,10 +1,11 @@
 {
-	"name": "Comda",
-	"description": "Open Source White Label Customer Support Chat – Powered by Stream",
+	"name": "Comba",
+	"description": "Open Source & White Label Customer Support Chat – Powered by Stream",
 	"keywords": [ "Customer Support", "Stream", "Open Source" ],
-	"website": "https://comda.io/",
-	"repository": "https://github.com/GetStream/comda",
+	"website": "https://comba.io/",
+	"repository": "https://github.com/GetStream/comba",
 	"logo": "https://i.imgur.com/jwPM769.png",
+	"success_url": "https://github.com/GetStream/comba",
 	"formation": {
 		"web": {
 			"quantity": 1,
@@ -15,23 +16,45 @@
 	"addons": [
 		{
 			"plan": "stream:chat-trial",
-			"as": "STREAM_URI"
+			"as": "STREAM"
 		},
 		{
-			"plan": "mongolab:shared-single-small",
-			"as": "MONGODB_URI"
+			"plan": "mongolab:sandbox",
+			"as": "MONGODB"
+		},
+		{
+			"plan": "heroku-redis:hobby-dev",
+			"as": "REDIS"
+		},
+		{
+			"plan": "algoliasearch:free",
+			"as": "ALGOLIASEARCH"
+		},
+		{
+			"plan": "papertrail:choklad",
+			"as": "PAPERTRAIL"
+		},
+		{
+			"plan": "cloudinary:starter",
+			"as": "CLOUDINARY"
 		}
 	],
 	"buildpacks": [
 		{
 			"url": "https://github.com/lstoll/heroku-buildpack-monorepo"
+		},
+		{
+			"url": "heroku/nodejs"
 		}
 	],
-	"environments": {
-		"test": {
-			"scripts": {
-				"test": "bundle exec rake test"
-			}
+	"env": {
+		"AUTH_SECRET": {
+			"description": "A secret key for verifying the integrity of signed JWTs.",
+			"generator": "secret"
+		},
+		"APP_BASE": {
+			"description": "Absolute path to API in monorepo (default = /api).",
+			"value": "api/"
 		}
 	}
 }

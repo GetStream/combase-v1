@@ -1,8 +1,9 @@
 import mongoose, { Schema } from 'mongoose';
 import findOneOrCreate from 'mongoose-findoneorcreate';
-import mongooseStringQuery from 'mongoose-string-query';
+import query from 'mongoose-string-query';
 import bcrypt from 'mongoose-bcrypt';
 import timestamps from 'mongoose-timestamp';
+import autopopulate from 'mongoose-autopopulate';
 
 export const AgentSchema = new Schema(
 	{
@@ -10,45 +11,54 @@ export const AgentSchema = new Schema(
 			first: {
 				type: String,
 				trim: true,
-				required: true,
+				required: true
 			},
 			last: {
 				type: String,
 				trim: true,
-				required: true,
-			},
+				required: true
+			}
 		},
 		email: {
 			type: String,
 			lowercase: true,
 			trim: true,
 			unique: true,
-			required: true,
+			required: true
 		},
-		organization: {
-			type: Schema.Types.ObjectId,
-			ref: 'Organization',
-			required: true,
+		refs: {
+			organization: {
+				type: Schema.Types.ObjectId,
+				ref: 'Organization',
+				required: true,
+				autopopulate: true
+			}
 		},
 		password: {
 			type: String,
 			required: true,
-			bcrypt: true,
+			bcrypt: true
 		},
 		recovery: {
 			type: String,
-			default: '',
+			default: ''
 		},
+		role: {
+			type: String,
+			enum: [ 'admin', 'moderator', 'viewer' ],
+			default: 'admin'
+		}
 	},
 	{
-		collection: 'agents',
+		collection: 'agents'
 	}
 );
 
 AgentSchema.plugin(findOneOrCreate);
 AgentSchema.plugin(bcrypt);
 AgentSchema.plugin(timestamps);
-AgentSchema.plugin(mongooseStringQuery);
+AgentSchema.plugin(query);
+AgentSchema.plugin(autopopulate);
 
 AgentSchema.index({ createdAt: 1, updatedAt: 1 });
 
