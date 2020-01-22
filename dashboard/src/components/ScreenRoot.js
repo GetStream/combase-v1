@@ -4,6 +4,7 @@ import styled from "styled-components";
 const ScreenRoot = styled.div`
   z-index: ${({ theme }) => theme.z.page};
   overflow: visible;
+
   @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
     position: absolute;
     top: 0;
