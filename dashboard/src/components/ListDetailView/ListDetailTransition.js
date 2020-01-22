@@ -31,7 +31,7 @@ const Overlay = styled(Animated.div)`
 class LeadTransition extends Component {
   state = {
     animating: false,
-    previousLocation: this.props.lcoation,
+    previousLocation: this.props.location,
     previousChild: null
   };
 
@@ -45,7 +45,7 @@ class LeadTransition extends Component {
   }
 
   async componentWillReceiveProps(nextProps, nextState) {
-    const { anim, atParent, setAnimating, theme } = this.props;
+    const { anim, atParent, theme } = this.props;
     // figure out what to do with the children
     const navigatingToParent = nextProps.atParent && !atParent;
     const navigatingToChild = !nextProps.atParent && atParent;
@@ -133,7 +133,7 @@ class LeadTransition extends Component {
   }
 
   renderChildren = () => {
-    const { atParent, children, animating } = this.props;
+    const { children } = this.props;
     return React.Children.map(children, (Page, index) => {
       const style = this.getStyle(index);
       return <PageWrapper style={style}>{cloneElement(Page)}</PageWrapper>;

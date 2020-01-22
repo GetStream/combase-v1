@@ -6286,10 +6286,10 @@ last-call-webpack-plugin@^3.0.0:
     lodash "^4.17.5"
     webpack-sources "^1.1.0"
 
-layout-hooks@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/layout-hooks/-/layout-hooks-1.1.1.tgz#3c75c78da0ebe4dd5378bca7e5e698e3621d9851"
-  integrity sha512-SjlI2pZtq9Sn5cqPa5plyucTnFlwsORBN1XkgT+NtNFXPu7VvbhgXhBngF8H4aEDLNyGPxaG9b+FomHr8EN45Q==
+layout-hooks@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/layout-hooks/-/layout-hooks-1.1.2.tgz#2ad894fe6dad36a1d96e7102972eb352bdbc7951"
+  integrity sha512-vWDNYN796OWruz7yMI0FGQm8CTjkRx88RrEbTd6pxwpYMJDkafewl8v1uHejLI6FKrFhCgKe5iEyes1mF5LoUg==
   dependencies:
     "@juggle/resize-observer" "^3.0.2"
 
