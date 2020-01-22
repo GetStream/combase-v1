@@ -5,6 +5,7 @@ import styled from "styled-components";
 import LayoutUtil from "./LayoutUtil";
 
 // Components //
+import EmptyState from "components/EmptyState";
 import ListHeader from "components/ListHeader";
 import ListView from "components/ListView";
 import ThreadItem from "components/ThreadItem";
@@ -24,6 +25,8 @@ const data = [];
 const initialState = { height: 0, width: 0 };
 const style = { flex: 1 };
 
+const renderListEmpty = () => <EmptyState text="No Threads" />;
+
 const renderRow = () => <ThreadItem />;
 
 export default () => {
@@ -41,6 +44,7 @@ export default () => {
       <ListView
         {...{ data, layoutProvider, onResize, renderRow, style }}
         ListHeaderComponent={ListHeader}
+        ListEmptyComponent={renderListEmpty}
         rowCount={40}
         showEmptyHeader
       />

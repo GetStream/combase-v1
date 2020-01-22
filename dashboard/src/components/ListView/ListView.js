@@ -123,6 +123,7 @@ class ListView extends Component {
       data,
       distanceFromWindow,
       layoutProvider,
+      ListEmptyComponent,
       ListHeaderComponent,
       renderAheadOffset,
       rowCount,
@@ -135,8 +136,8 @@ class ListView extends Component {
     if (rowCount === 0) {
       return (
         <>
-          {showEmptyHeader && <ListHeaderComponent />}
-          <p>Empty</p>
+          {showEmptyHeader ? <ListHeaderComponent /> : null}
+          {ListEmptyComponent ? <ListEmptyComponent /> : null}
         </>
       );
     }
