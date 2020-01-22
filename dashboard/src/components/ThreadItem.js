@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import moment from "moment";
 
 // Components //
@@ -7,7 +8,9 @@ import Avatar from "components/Avatar";
 import Fill from "components/Fill";
 import Text from "components/Text";
 
-const Root = styled.div`
+const Root = styled(Link)`
+  position: relative;
+  display: flex;
   flex-direction: row;
   align-items: center;
   padding: 12px 24px;
@@ -25,7 +28,7 @@ const Row = styled.div`
 `;
 
 const ThreadItem = () => (
-  <Root>
+  <Root to="/inbox/channelId">
     <Avatar size={48} />
     <Content>
       <Row>

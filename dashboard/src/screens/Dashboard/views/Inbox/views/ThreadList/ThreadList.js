@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 // Components //
 import ListHeader from "components/ListHeader";
+import ThreadItem from "components/ThreadItem";
 
 const Root = styled.div`
   flex: 1;
@@ -20,7 +20,15 @@ export default ({ match }) => {
   return (
     <Root>
       <ListHeader />
-      <Link to={`${match.url}/channelId`}>Nick Parsons</Link>
+      <ThreadItem />
+      <ThreadItem />
+      <ThreadItem />
+      <ThreadItem />
+      <ThreadItem />
+      <ThreadItem />
+      <ThreadItem />
+      <ThreadItem />
+      <ThreadItem />
     </Root>
   );
 };
