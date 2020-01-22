@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Animated from "animated/lib/targets/react-dom";
-import Easing from "animated/lib/Easing";
 import {
   DataProvider,
   LayoutProvider,
@@ -10,40 +8,6 @@ import {
 
 // Components //
 import ResizeAwareScrollView from "./ResizeAwareScrollView";
-
-const NOOP = () => null;
-
-// TODO: Fix the below animator
-// const layoutItemAnimator = {
-//   animateWillMount: () => ({ opacity: 0, transform: { translateX: 8 } }),
-//   animateDidMount: (atX, atY, itemRef, itemIndex) => {
-//     itemRef.style.opacity = 0;
-//     itemRef.style.top = "8px";
-//     const anim = new Animated.Value(0);
-//     const top = anim.interpolate({
-//       inputRange: [0, 1],
-//       outputRange: ["8px", "0px"]
-//     });
-
-//     const style = {};
-
-//     anim.addListener(({ value }) => {
-//       itemRef.style.opacity = value;
-//       itemRef.style.top = top.__getValue();
-//     });
-
-//     Animated.timing(anim, {
-//       toValue: 1,
-//       duration: 2000,
-//       delay: itemIndex * 50,
-//       easing: Easing.out(Easing.cubic)
-//     }).start();
-//   },
-//   animateShift: NOOP,
-//   animateWillUnmount: NOOP,
-//   animateWillUpdate: NOOP
-// };
-const layoutItemAnimator = null;
 
 class ListView extends Component {
   static propTypes = {
@@ -157,7 +121,6 @@ class ListView extends Component {
           style
         }}
         extraData={data}
-        itemAnimator={layoutItemAnimator}
         rowRenderer={this.renderRow}
         onResize={this.handleResize}
       />
