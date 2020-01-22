@@ -1,0 +1,28 @@
+{
+	"name": "Comba",
+	"version": "0.1.0",
+	"private": true,
+	"main": "public/electron.js",
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test",
+		"electron-dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:8080 && electron .\""
+	},
+	"eslintConfig": {
+		"extends": "react-app"
+	},
+	"browserslist": [ ">0.2%", "not dead", "not ie <= 11", "not op_mini all" ],
+  "dependencies": {
+		"electron-is-dev": "^1.0.1",
+		"react": "^16.8.3",
+		"react-dom": "^16.8.3",
+		"react-scripts": "2.1.5"
+	},
+  "devDependencies": {
+		"concurrently": "^4.1.0",
+		"electron": "^4.0.6",
+		"electron-builder": "^20.38.5",
+		"wait-on": "^3.2.0"
+	}
+}
