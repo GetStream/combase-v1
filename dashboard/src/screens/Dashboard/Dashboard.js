@@ -14,8 +14,8 @@ const Root = styled.div`
 `;
 
 const renderRoutes = match =>
-  routes.map(({ path, component, isExact }) => (
-    <Route {...{ component, isExact }} path={`${match.url}${path}`} />
+  routes.map(({ slug, component, isExact }) => (
+    <Route {...{ component, isExact }} path={`${match.url}${slug}`} />
   ));
 
 const Dashboard = ({ match }) => {

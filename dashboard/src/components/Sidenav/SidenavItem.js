@@ -18,6 +18,7 @@ const Icon = styled.div`
 `;
 
 export default ({ isExact, path }) => {
+  console.log(path);
   return (
     <Route
       {...{ path, isExact }}
