@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { useState } from "react";
 import styled, { withTheme } from "styled-components";
 import Animated from "animated/lib/targets/react-dom";
 import { Switch } from "react-router-dom";

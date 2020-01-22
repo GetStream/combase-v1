@@ -15,14 +15,14 @@ export default (breakpoint, minmax = "min") => {
     `(${minmax}-width: ${theme.breakpoints[breakpoint]}px)`
   );
 
-  useEffect(() => setMatch(!query.matches), []);
+  useEffect(() => setMatch(!query.matches), [query.matches]);
 
   const handleChange = ({ matches: isMatched }) => setMatch(!isMatched);
 
   useEffect(() => {
     query.onchange = handleChange;
     return query.removeListener(handleChange);
-  }, []);
+  }, [query]);
 
   return matches;
 };
