@@ -17,6 +17,6 @@ const Root = styled.div`
 
 export default () => (
   <Root>
-    <ListHeader title="Settings" />
+    <ListHeader showSearch={false} title="Settings" />
   </Root>
 );

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 // Components //
@@ -13,11 +14,13 @@ const Root = styled.div`
 `;
 
 const TitleWrapper = styled.div`
-  padding: 0px 8px;
-  margin-bottom: 16px;
+  margin-bottom: ${({ showSearch }) => (showSearch ? 16 : 0)}px;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
+    padding: 0px 8px;
+  }
 `;
 
 const Icon = styled.div`
@@ -51,10 +54,10 @@ const Search = styled.div`
   height: 40px;
 `;
 
-export default ({ title }) => {
+const ListHeader = ({ showSearch, title }) => {
   return (
     <Root>
-      <TitleWrapper>
+      <TitleWrapper {...{ showSearch }}>
         <Title>
           <MenuButton />
           <Icon />
@@ -67,9 +70,23 @@ export default ({ title }) => {
           <Icon />
         </Actions>
       </TitleWrapper>
-      <SearchWrapper>
-        <Search />
-      </SearchWrapper>
+      {showSearch ? (
+        <SearchWrapper>
+          <Search />
+        </SearchWrapper>
+      ) : null}
     </Root>
   );
 };
+
+ListHeader.propTypes = {
+  showSearch: PropTypes.bool,
+  title: PropTypes.string
+};
+
+ListHeader.defaultProps = {
+  showSearch: true,
+  title: "Title"
+};
+
+export default ListHeader;
