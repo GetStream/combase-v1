@@ -17,7 +17,7 @@ const Root = styled(Animated.div)`
   z-index: ${({ theme }) => theme.z.modal};
 `;
 
-const renderRoutes = (routes, match) =>
+const renderRoutes = (routes, match, onClose) =>
   routes.map((route, key) => (
     <Route
       {...{ key }}
@@ -27,6 +27,7 @@ const renderRoutes = (routes, match) =>
           {...{ active }}
           to={`${match.url}${route.slug}`}
           label={route.label}
+          onClick={onClose}
         />
       )}
     />
@@ -45,7 +46,7 @@ const Drawer = ({ anim, match, onClose, open, routes }) => {
   };
   return (
     <Modal animatedValue={anim} animated {...{ onClose, open }}>
-      <Root {...{ style }}>{renderRoutes(routes, match)}</Root>
+      <Root {...{ style }}>{renderRoutes(routes, match, onClose)}</Root>
     </Modal>
   );
 };
