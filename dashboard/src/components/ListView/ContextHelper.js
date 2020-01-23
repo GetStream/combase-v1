@@ -11,12 +11,15 @@ export default class ContextHelper extends ContextProvider {
   }
 
   save(key, value) {
-    localStorage.setItem(`scroll_context_${key}`, value);
+    localStorage.setItem(key, value);
   }
 
   get(key) {
-    console.log(parseInt(localStorage.getItem(`scroll_context_${key}`)) || 0);
-    return parseInt(localStorage.getItem(`scroll_context_${key}`)) || 0;
+    const value = parseInt(localStorage.getItem(key));
+    if (isNaN(value)) {
+      return 0;
+    }
+    return value;
   }
 
   remove(key) {

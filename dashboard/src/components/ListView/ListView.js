@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { createRef, Component } from "react";
 import PropTypes from "prop-types";
 import Animated from "animated/lib/targets/react-dom";
 import {
@@ -30,12 +30,19 @@ class ListView extends Component {
     scrollAnim: new Animated.Value(0)
   };
 
+  list = createRef();
+
   constructor(props) {
     super(props);
 
-    const dataProvider = new DataProvider((r1, r2) => {
-      return r1 !== r2;
-    });
+    const dataProvider = new DataProvider(
+      (r1, r2) => {
+        return r1 !== r2;
+      },
+      index => {
+        return index;
+      }
+    );
 
     this.state = {
       width: 0,
@@ -90,6 +97,11 @@ class ListView extends Component {
     return this.props.renderRow(data, row);
   };
 
+  handleRecreate = ({ lastOffset }) => {
+    console.log("last scroll offset", lastOffset);
+    this.setState({ initialOffset: lastOffset });
+  };
+
   render() {
     const {
       contentContainerStyle,
@@ -138,6 +150,7 @@ class ListView extends Component {
         onScroll={this.handleScroll}
         extraData={data}
         rowRenderer={this.renderRow}
+        onRecreate={this.handleRecreate}
         onResize={this.handleResize}
       />
     );
