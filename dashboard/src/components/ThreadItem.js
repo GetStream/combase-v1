@@ -36,10 +36,6 @@ const Wrapper = styled.div`
     background-color: ${({ theme }) =>
       theme.colorUtils.fade(theme.color.primary, 0.08)};
   }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
-    padding: 12px 24px;
-  }
 `;
 
 const Content = styled.div`
