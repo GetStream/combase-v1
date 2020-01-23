@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 // Components //
 import MenuButton from "components/MenuButton";
+import Text from "components/Text";
 
 const Root = styled.div`
   padding: 16px;
@@ -29,9 +30,8 @@ const Icon = styled.div`
 const Title = styled.div`
   flex-direction: row;
   align-items: center;
-  & > p {
+  & > ${Text} {
     margin-left: 8px;
-    font-size: 24px;
   }
 `;
 
@@ -58,7 +58,9 @@ export default () => {
         <Title>
           <MenuButton />
           <Icon />
-          <p>Inbox</p>
+          <Text size={24} weight="600">
+            Inbox
+          </Text>
         </Title>
         <Actions>
           <Icon />
