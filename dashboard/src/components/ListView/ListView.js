@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import Animated from "animated/lib/targets/react-dom";
 import {
   DataProvider,
   LayoutProvider,
@@ -19,8 +20,13 @@ class ListView extends Component {
     layoutProvider: PropTypes.instanceOf(LayoutProvider).isRequired,
     renderRow: PropTypes.func,
     rowCount: PropTypes.number.isRequired,
+    scrollAnim: PropTypes.instanceOf(Animated.Value),
     showEmptyHeader: PropTypes.bool,
     showSidebar: PropTypes.bool
+  };
+
+  static defaultProps = {
+    scrollAnim: new Animated.Value(0)
   };
 
   constructor(props) {
@@ -61,6 +67,10 @@ class ListView extends Component {
     }
   };
 
+  handleScroll = Animated.event([
+    { nativeEvent: { contentOffset: { y: this.props.scrollAnim } } }
+  ]);
+
   generateArray(n) {
     let arr = new Array(n);
     for (let i = 0; i < n; i++) {
@@ -91,6 +101,7 @@ class ListView extends Component {
       ListHeaderComponent,
       renderAheadOffset,
       rowCount,
+      scrollAnim,
       showEmptyHeader,
       style
     } = this.props;
@@ -118,8 +129,10 @@ class ListView extends Component {
           layoutProvider,
           ListHeaderComponent,
           renderAheadOffset,
+          scrollAnim,
           style
         }}
+        onScroll={this.handleScroll}
         extraData={data}
         rowRenderer={this.renderRow}
         onResize={this.handleResize}

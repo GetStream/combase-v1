@@ -1,13 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Animated from "animated/lib/targets/react-dom";
 
 // Components //
 import MenuButton from "shared/MenuButton";
 import Text from "shared/Text";
 
-const Root = styled.div`
+const Root = styled(Animated.div)`
+  position: sticky;
+  top: 0;
   padding: 16px;
+  z-index: 1;
+  background-color: ${({ theme }) => theme.color.background};
   @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
     padding: 24px;
   }
@@ -54,9 +59,31 @@ const Search = styled.div`
   height: 40px;
 `;
 
-const ListHeader = ({ showSearch, title }) => {
+let interpolation;
+
+const getShadowStyle = scrollAnim => {
+  if (!scrollAnim) {
+    return null;
+  }
+
+  if (!interpolation) {
+    interpolation = scrollAnim.interpolate({
+      inputRange: [0, 48],
+      outputRange: [0, 0.12],
+      extrapolate: "clamp"
+    });
+  }
+
+  return {
+    boxShadow: Animated.template`0px 4px 24px rgba(0, 0, 0, ${interpolation})`
+  };
+};
+
+const ListHeader = ({ scrollAnim, showSearch, title }) => {
+  const style = getShadowStyle(scrollAnim);
+
   return (
-    <Root>
+    <Root {...{ style }}>
       <TitleWrapper {...{ showSearch }}>
         <Title>
           <MenuButton />
