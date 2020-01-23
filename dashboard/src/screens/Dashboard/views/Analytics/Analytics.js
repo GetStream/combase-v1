@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 // Components ///
-import ScreenRoot from "components/ScreenRoot";
+import ScreenRoot from "shared/ScreenRoot";
 
 const Root = styled(ScreenRoot)`
   flex: 1;

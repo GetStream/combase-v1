@@ -7,9 +7,9 @@ import moment from "moment";
 import listItemInteractions from "styles/css/listItemInteractions";
 
 // Components //
-import Avatar from "components/Avatar";
-import Fill from "components/Fill";
-import Text from "components/Text";
+import Avatar from "shared/Avatar";
+import Fill from "shared/Fill";
+import Text from "shared/Text";
 
 const Root = styled(Link)`
   padding: 4px 8px;

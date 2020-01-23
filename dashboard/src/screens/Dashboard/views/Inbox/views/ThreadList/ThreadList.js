@@ -5,7 +5,7 @@ import styled from "styled-components";
 import LayoutUtil from "./LayoutUtil";
 
 // Components //
-import EmptyState from "components/EmptyState";
+import EmptyState from "shared/EmptyState";
 import ListHeader from "components/ListHeader";
 import ListView from "components/ListView";
 import ThreadItem from "components/ThreadItem";

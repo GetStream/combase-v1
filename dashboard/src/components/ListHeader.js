@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 // Components //
-import MenuButton from "components/MenuButton";
-import Text from "components/Text";
+import MenuButton from "shared/MenuButton";
+import Text from "shared/Text";
 
 const Root = styled.div`
   padding: 16px;

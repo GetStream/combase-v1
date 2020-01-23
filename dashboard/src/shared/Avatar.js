@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 // Components //
-import StatusBadge from "components/StatusBadge";
+import StatusBadge from "shared/StatusBadge";
 
 const Root = styled.div`
   width: ${({ size }) => size}px;

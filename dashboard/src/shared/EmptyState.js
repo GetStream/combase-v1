@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 // Components //
-import Text from "components/Text";
+import Text from "shared/Text";
 
 const Root = styled.div`
   justify-content: center;

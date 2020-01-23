@@ -5,7 +5,7 @@ import styled from "styled-components";
 import pageCard from "styles/css/pageCard";
 
 // Components //
-import EmptyState from "components/EmptyState";
+import EmptyState from "shared/EmptyState";
 
 const Root = styled.div`
   flex: 1;

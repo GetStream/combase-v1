@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import listItemInteractions from "styles/css/listItemInteractions";
 
 // Components //
-import Text from "components/Text";
+import Text from "shared/Text";
 
 const Root = styled.div`
   padding: 4px 8px;

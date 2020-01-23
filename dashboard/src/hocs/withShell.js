@@ -8,8 +8,8 @@ import useMedia from "hooks/useMedia";
 import ShellContext from "contexts/Shell";
 
 // Components //
-import Drawer from "components/Drawer";
-import Sidenav from "components/Sidenav";
+import Drawer from "components/Shell/Drawer";
+import Sidenav from "components/Shell/Sidenav";
 
 const Root = styled.div`
   flex: 1;

@@ -4,7 +4,7 @@ import { Route } from "react-router-dom";
 import Animated from "animated/lib/targets/react-dom";
 
 // Components //
-import Modal from "components/Modal";
+import Modal from "shared/Modal";
 import DrawerItem from "./DrawerItem";
 
 const Root = styled(Animated.div)`

@@ -7,7 +7,7 @@ import MessageThread from "./views/MessageThread";
 
 // Components ///
 import ListDetailView from "components/ListDetailView";
-import ScreenRoot from "components/ScreenRoot";
+import ScreenRoot from "shared/ScreenRoot";
 
 const renderThreadList = props => <ThreadList {...props} />;
 const renderMessageThread = props => <MessageThread {...props} />;

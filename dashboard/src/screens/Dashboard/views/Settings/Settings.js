@@ -7,7 +7,7 @@ import SettingsList from "./views/SettingsList";
 
 // Components //
 import ListDetailView from "components/ListDetailView";
-import ScreenRoot from "components/ScreenRoot";
+import ScreenRoot from "shared/ScreenRoot";
 
 const renderSettingsDetail = props => <SettingsDetail {...props} />;
 const renderSettingsList = props => <SettingsList {...props} />;
