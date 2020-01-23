@@ -44,11 +44,11 @@ class ExternalScrollView extends Component {
   }
 
   render() {
-    const { children, ListHeaderComponent, ...rest } = this.props;
+    const { children, ListHeaderComponent, scrollAnim, ...rest } = this.props;
     return (
       <Root ref={this.root}>
         <ScrollViewer ref={this.scrollView} {...rest}>
-          {ListHeaderComponent && <ListHeaderComponent />}
+          {ListHeaderComponent && <ListHeaderComponent {...{ scrollAnim }} />}
           {children}
         </ScrollViewer>
       </Root>

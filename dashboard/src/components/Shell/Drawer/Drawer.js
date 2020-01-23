@@ -18,8 +18,9 @@ const Root = styled(Animated.div)`
 `;
 
 const renderRoutes = (routes, match) =>
-  routes.map(route => (
+  routes.map((route, key) => (
     <Route
+      {...{ key }}
       path={`${match.url}${route.slug}`}
       children={({ match: active }) => (
         <DrawerItem

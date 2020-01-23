@@ -15,6 +15,10 @@ const Root = styled.div`
   align-items: center;
   overflow: hidden;
 
+  & > ${Text} {
+    user-select: none;
+  }
+
   & > img {
     width: 100%;
     height: 100%;
@@ -37,7 +41,7 @@ const Avatar = ({ name, size, src, statusBorder }) => {
             {name.charAt(0)}
           </Text>
         ) : (
-          <img {...{ src }} />
+          <img alt={name} {...{ src }} />
         )}
       </Root>
       <Status borderColor={statusBorder} />

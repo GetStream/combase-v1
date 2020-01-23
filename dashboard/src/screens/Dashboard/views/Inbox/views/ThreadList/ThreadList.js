@@ -26,7 +26,7 @@ const initialState = { height: 0, width: 0 };
 const style = { flex: 1 };
 
 const renderListEmpty = () => <EmptyState text="No Threads" />;
-const renderListHeader = () => <ListHeader title="Inbox" />;
+const renderListHeader = props => <ListHeader {...props} title="Inbox" />;
 const renderRow = () => <ThreadItem statusBorder="background" />;
 
 export default () => {
