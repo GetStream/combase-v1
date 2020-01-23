@@ -1,7 +1,7 @@
 {
 	"name": "Comba",
 	"description": "Open Source & White Label Customer Support Chat – Powered by Stream",
-	"keywords": [ "Customer Support", "Stream", "Open Source" ],
+	"keywords": [ "Customer Support", "Stream", "Open Source", "Chat", "White Label" ],
 	"website": "https://comba.io/",
 	"repository": "https://github.com/GetStream/comba",
 	"logo": "https://i.imgur.com/jwPM769.png",
