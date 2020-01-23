@@ -1,7 +1,7 @@
 import { LayoutProvider } from "recyclerlistview/web";
 
 export default class LayoutUtil {
-  static getLayoutProvider(width = 375, height = 72) {
+  static getLayoutProvider(width = 375, height = 80) {
     return new LayoutProvider(
       index => {
         return "ThreadItem";

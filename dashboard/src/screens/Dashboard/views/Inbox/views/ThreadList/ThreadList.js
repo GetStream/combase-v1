@@ -32,11 +32,11 @@ const renderRow = () => <ThreadItem statusBorder="background" />;
 export default () => {
   const [{ width }, onResize] = useState(initialState);
   const [layoutProvider, setLayoutProvider] = useState(
-    LayoutUtil.getLayoutProvider(width, 72)
+    LayoutUtil.getLayoutProvider(width, 80)
   );
 
   useEffect(() => {
-    setLayoutProvider(LayoutUtil.getLayoutProvider(width, 72));
+    setLayoutProvider(LayoutUtil.getLayoutProvider(width, 80));
   }, [width]);
 
   return (
