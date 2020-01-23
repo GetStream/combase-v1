@@ -17,7 +17,8 @@ export default async ({ data }) => {
 		retry(axios, { retries: 5, retryDelay: retry.exponentialDelay });
 
 		// send webhook payload
-		return await axios.post({
+		return await axios({
+			method: 'POST',
 			url,
 			headers: {
 				'X-Signature': sig,
