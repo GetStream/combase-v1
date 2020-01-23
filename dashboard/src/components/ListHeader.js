@@ -34,13 +34,6 @@ const TitleWrapper = styled.div`
   }
 `;
 
-const Icon = styled.div`
-  background-color: ${({ theme }) => theme.color.gray};
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-`;
-
 const Title = styled.div`
   flex-direction: row;
   align-items: center;
@@ -90,7 +83,7 @@ const getShadowStyle = scrollAnim => {
   };
 };
 
-const ListHeader = ({ scrollAnim, showSearch, title }) => {
+const ListHeader = ({ children, icon: Icon, scrollAnim, showSearch, title }) => {
   const style = getShadowStyle(scrollAnim);
   const isMobile = useMedia("sm");
   return (
@@ -98,14 +91,13 @@ const ListHeader = ({ scrollAnim, showSearch, title }) => {
       <TitleWrapper {...{ showSearch }}>
         <Title>
           <MenuButton />
-          <Icon />
+          {Icon ? <Icon color="text" size={24} /> : null}
           <Text size={isMobile ? 20 : 24} weight="600">
             {title}
           </Text>
         </Title>
         <Actions>
-          <Icon />
-          <Icon />
+          {children}
         </Actions>
       </TitleWrapper>
       {showSearch ? (

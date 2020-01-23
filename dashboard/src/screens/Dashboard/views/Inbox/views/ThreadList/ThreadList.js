@@ -5,6 +5,7 @@ import styled from "styled-components";
 import LayoutUtil from "./LayoutUtil";
 
 // Components //
+import { ArchiveIcon, FilterIcon, InboxIcon } from 'shared/Icons';
 import EmptyState from "shared/EmptyState";
 import ListHeader from "components/ListHeader";
 import ListView, { ContextHelper } from "components/ListView";
@@ -26,7 +27,7 @@ const initialState = { height: 0, width: 0 };
 const style = { flex: 1 };
 
 const renderListEmpty = () => <EmptyState text="No Threads" />;
-const renderListHeader = props => <ListHeader {...props} title="Inbox" />;
+const renderListHeader = props => <ListHeader {...props} icon={InboxIcon} title="Inbox"><ArchiveIcon color="alt_text" /><FilterIcon color="alt_text" /></ListHeader>;
 const renderRow = () => <ThreadItem statusBorder="background" />;
 
 export default () => {

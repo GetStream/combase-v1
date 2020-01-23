@@ -13,6 +13,7 @@ export default {
     shadow: colors.black,
     border: colors.light_gray,
     text: colors.black,
+    alt_text: colors.slate,
     undersheet: baseTheme.colorUtils.fade(colors.black, 0.4)
   }
 };

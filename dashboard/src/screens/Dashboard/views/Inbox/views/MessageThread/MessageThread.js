@@ -5,6 +5,7 @@ import styled from "styled-components";
 import pageCard from "styles/css/pageCard";
 
 // Components //
+import { ChatIcon } from 'shared/Icons';
 import EmptyState from "shared/EmptyState";
 
 const Root = styled.div`
@@ -23,7 +24,7 @@ export default ({ match }) => {
   if (!match) {
     return (
       <Root>
-        <EmptyState text="Select a thread." />
+        <EmptyState icon={ChatIcon} text="Select a thread." />
       </Root>
     );
   }

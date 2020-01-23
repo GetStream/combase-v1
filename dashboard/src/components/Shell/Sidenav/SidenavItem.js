@@ -13,22 +13,14 @@ const NavLink = styled(Link)`
   pointer-events: ${({ active }) => (active ? "none" : "auto")};
 `;
 
-const Icon = styled.div`
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background-color: ${({ active, theme }) =>
-    theme.color[active ? "primary" : "gray"]};
-`;
-
-export default ({ isExact, path }) => {
+export default ({ icon: Icon, isExact, path }) => {
   return (
     <Route
       {...{ path, isExact }}
       children={({ match: active }) => (
         <NavLink {...{ active }} to={path}>
           <Root>
-            <Icon {...{ active }} />
+            <Icon color={active ? 'primary' : 'gray'} />
           </Root>
         </NavLink>
       )}

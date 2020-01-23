@@ -5,6 +5,7 @@ import styled from "styled-components";
 import listItemInteractions from "styles/css/listItemInteractions";
 
 // Components //
+import { ChevronRightIcon } from 'shared/Icons';
 import Text from "shared/Text";
 
 const Root = styled.div`
@@ -24,13 +25,6 @@ const IconCol = styled.div`
   align-items: flex-start;
 `;
 
-const Icon = styled.div`
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background-color: ${({ theme }) => theme.color.gray};
-`;
-
 const Content = styled.div`
   flex: 1;
   margin-right: 16px;
@@ -42,25 +36,23 @@ const Content = styled.div`
   }
 `;
 
-const Chevron = styled(Icon)`
+const Chevron = styled(ChevronRightIcon)`
   align-self: center;
-  width: 16px;
-  height: 16px;
 `;
 
-export default ({ active, title, text }) => (
-  <Root {...{ active }} activeColor="light_gray">
-    <Wrapper>
+export default ({ active, icon: Icon, title, text }) => (
+  <Root>
+    <Wrapper {...{ active }} activeColor="alt_text">
       <IconCol>
-        <Icon />
+        {Icon ? <Icon color="alt_text" /> : null}
       </IconCol>
       <Content>
-        <Text weight="500">{title}</Text>
-        <Text weight="400" size={12} faded>
+        <Text weight="500" color="alt_text">{title}</Text>
+        <Text weight="400" color="alt_text" size={12} faded>
           {text}
         </Text>
       </Content>
-      <Chevron />
+      <Chevron color="gray" />
     </Wrapper>
   </Root>
 );

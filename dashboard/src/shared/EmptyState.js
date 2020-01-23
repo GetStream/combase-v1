@@ -12,16 +12,9 @@ const Root = styled.div`
   }
 `;
 
-const Icon = styled.div`
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  background-color: ${({ theme }) => theme.color.light_gray};
-`;
-
-export default ({ text = "Nothing to show." }) => (
+export default ({ icon: Icon, text = "Nothing to show." }) => (
   <Root>
-    <Icon />
+    {Icon ? <Icon size={96} color="light_text" /> : null}
     <Text size={24} color="light_text" weight="500">
       {text}
     </Text>
