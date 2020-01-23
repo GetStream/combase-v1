@@ -1,10 +1,8 @@
+import 'dotenv/config';
 import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
 
 import Agent from '../../models/agent';
-
-dotenv.config();
 
 const auth = async (req, res, next) => {
 	try {

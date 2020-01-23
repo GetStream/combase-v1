@@ -1,1 +1,2 @@
-web: yarn start
+web: yarn start --only api
+worker: yarn start --only worker

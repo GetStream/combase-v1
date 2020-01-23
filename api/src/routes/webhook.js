@@ -1,4 +1,4 @@
-import { get, list, post, put, destroy } from '../controllers/v1/user';
+import { get, list, post, put, destroy } from '../controllers/v1/webhook';
 
 import { wrapAsync } from '../utils/controllers';
 

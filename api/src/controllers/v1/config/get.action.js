@@ -1,6 +1,6 @@
-import dotenv from 'dotenv';
+import 'dotenv/config';
 
-dotenv.config();
+import Plugin from '../../../models/plugin';
 
 exports.get = async (req, res) => {
 	try {
@@ -26,6 +26,10 @@ exports.get = async (req, res) => {
 				key: process.env.ALGOLIASEARCH_API_KEY_SEARCH,
 			},
 		};
+
+		const plugins = await Plugin.find({}).lean();
+
+		// magic
 
 		res.status(200).json(config);
 	} catch (error) {

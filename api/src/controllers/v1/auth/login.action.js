@@ -1,10 +1,8 @@
-import dotenv from 'dotenv';
+import 'dotenv/config';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 import Agent from '../../../models/agent';
-
-dotenv.config();
 
 exports.login = async (req, res) => {
 	try {
@@ -32,7 +30,10 @@ exports.login = async (req, res) => {
 		delete agent.password;
 
 		// token generation
-		const token = jwt.sign({ sub: agent._id, role: agent.role }, process.env.AUTH_SECRET);
+		const token = jwt.sign(
+			{ sub: agent._id, role: agent.role },
+			process.env.AUTH_SECRET
+		);
 
 		// return the response with user data, token, and api key
 		return res.json({ ...agent, token });
