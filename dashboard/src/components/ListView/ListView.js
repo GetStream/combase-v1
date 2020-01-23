@@ -12,6 +12,7 @@ import ResizeAwareScrollView from "./ResizeAwareScrollView";
 
 class ListView extends Component {
   static propTypes = {
+    contextProvider: PropTypes.any,
     data: PropTypes.array.isRequired,
     emptyButtonLabel: PropTypes.string,
     emptyIcon: PropTypes.func,
@@ -92,6 +93,7 @@ class ListView extends Component {
   render() {
     const {
       contentContainerStyle,
+      contextProvider,
       extendedState,
       externalScrollView = ResizeAwareScrollView,
       data,
@@ -122,6 +124,7 @@ class ListView extends Component {
         canChangeSize
         {...{
           contentContainerStyle,
+          contextProvider,
           dataProvider,
           distanceFromWindow,
           extendedState,

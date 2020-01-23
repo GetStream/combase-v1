@@ -3,28 +3,34 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Animated from "animated/lib/targets/react-dom";
 
+// Hooks //
+import useMedia from "hooks/useMedia";
+
 // Components //
 import MenuButton from "shared/MenuButton";
 import Text from "shared/Text";
 
 const Root = styled(Animated.div)`
   position: sticky;
-  top: 0;
-  padding: 16px;
+  top: -56px;
   z-index: 1;
   background-color: ${({ theme }) => theme.color.background};
   @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
-    padding: 24px;
+    top: -64px;
   }
 `;
 
 const TitleWrapper = styled.div`
-  margin-bottom: ${({ showSearch }) => (showSearch ? 16 : 0)}px;
+  position: sticky;
+  top: 0;
+  z-index: 2;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  padding: 16px;
+  background-color: ${({ theme }) => theme.color.background};
   @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
-    padding: 0px 8px;
+    padding: 24px 32px 24px 32px;
   }
 `;
 
@@ -51,7 +57,12 @@ const Actions = styled.div`
   }
 `;
 
-const SearchWrapper = styled.div``;
+const SearchWrapper = styled.div`
+  padding: 0px 16px 16px 16px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
+    padding: 0px 24px 24px 24px;
+  }
+`;
 
 const Search = styled.div`
   background-color: ${({ theme }) => theme.color.light_gray};
@@ -81,14 +92,14 @@ const getShadowStyle = scrollAnim => {
 
 const ListHeader = ({ scrollAnim, showSearch, title }) => {
   const style = getShadowStyle(scrollAnim);
-
+  const isMobile = useMedia("sm");
   return (
     <Root {...{ style }}>
       <TitleWrapper {...{ showSearch }}>
         <Title>
           <MenuButton />
           <Icon />
-          <Text size={24} weight="600">
+          <Text size={isMobile ? 20 : 24} weight="600">
             {title}
           </Text>
         </Title>

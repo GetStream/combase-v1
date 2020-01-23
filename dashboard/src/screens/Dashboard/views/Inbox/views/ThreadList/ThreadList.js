@@ -7,7 +7,7 @@ import LayoutUtil from "./LayoutUtil";
 // Components //
 import EmptyState from "shared/EmptyState";
 import ListHeader from "components/ListHeader";
-import ListView from "components/ListView";
+import ListView, { ContextHelper } from "components/ListView";
 import ThreadItem from "components/ThreadItem";
 
 const Root = styled.div`
@@ -34,6 +34,7 @@ export default () => {
   const [layoutProvider, setLayoutProvider] = useState(
     LayoutUtil.getLayoutProvider(width, 80)
   );
+  const [contextProvider] = useState(new ContextHelper("ThreadList"));
 
   useEffect(() => {
     setLayoutProvider(LayoutUtil.getLayoutProvider(width, 80));
@@ -42,7 +43,14 @@ export default () => {
   return (
     <Root>
       <ListView
-        {...{ data, layoutProvider, onResize, renderRow, style }}
+        {...{
+          contextProvider,
+          data,
+          layoutProvider,
+          onResize,
+          renderRow,
+          style
+        }}
         ListHeaderComponent={renderListHeader}
         ListEmptyComponent={renderListEmpty}
         rowCount={40}
