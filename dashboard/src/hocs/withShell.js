@@ -8,7 +8,6 @@ import useMedia from "hooks/useMedia";
 import ShellContext from "contexts/Shell";
 
 // Components //
-import Header from "components/Header";
 import Drawer from "components/Drawer";
 import Sidenav from "components/Sidenav";
 
