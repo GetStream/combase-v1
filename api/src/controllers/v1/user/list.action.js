@@ -1,8 +1,4 @@
-import dotenv from 'dotenv';
-
 import User from '../../../models/user';
-
-dotenv.config();
 
 exports.list = async (req, res) => {
 	try {
@@ -11,7 +7,7 @@ exports.list = async (req, res) => {
 
 		if (!serialized.admin) {
 			return res.status(403).json({
-				status: 'Invalid permissions to view or modify this resource.'
+				status: 'Invalid permissions to view or modify this resource.',
 			});
 		}
 
