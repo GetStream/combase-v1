@@ -17,7 +17,8 @@
     "react-scripts": "3.3.0",
     "react-scrolllock": "^5.0.0",
     "recyclerlistview": "^2.0.12",
-    "styled-components": "^5.0.0"
+    "styled-components": "^5.0.0",
+    "uuid": "^3.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
