@@ -8,33 +8,29 @@ export const WebhookSchema = new Schema(
 			type: String,
 			trim: true,
 		},
-		events: [
-			{
-				event: {
-					type: String,
-					enum: [
-						'agent:added',
-						'agent:updated',
-						'agent:removed',
-						'chat:added',
-						'chat:updated',
-						'chat:removed',
-						'faq:added',
-						'faq:updated',
-						'faq:removed',
-						'invite:added',
-						'invite:updated',
-						'invite:removed',
-						'organization:added',
-						'organization:updated',
-						'organization:removed',
-						'user:added',
-						'user:updated',
-						'user:removed',
-					],
-				},
-			},
-		],
+		event: {
+			type: String,
+			enum: [
+				'agent:added',
+				'agent:updated',
+				'agent:removed',
+				'chat:added',
+				'chat:updated',
+				'chat:removed',
+				'faq:added',
+				'faq:updated',
+				'faq:removed',
+				'invite:added',
+				'invite:updated',
+				'invite:removed',
+				'organization:added',
+				'organization:updated',
+				'organization:removed',
+				'user:added',
+				'user:updated',
+				'user:removed',
+			],
+		},
 		refs: {
 			organization: {
 				type: Schema.Types.ObjectId,
@@ -52,6 +48,7 @@ export const WebhookSchema = new Schema(
 WebhookSchema.plugin(timestamps);
 WebhookSchema.plugin(query);
 
+WebhookSchema.index({ 'refs.organization': 1, event: 1 }, { unique: true });
 WebhookSchema.index({ createdAt: 1, updatedAt: 1 });
 
 module.exports = exports = mongoose.model('Webhook', WebhookSchema);
