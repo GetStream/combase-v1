@@ -1,5 +1,4 @@
-import User from '../../../models/user';
-import Chat from '../../../models/chat';
+import Webhook from '../../../models/webhook';
 
 exports.destroy = async (req, res) => {
 	try {
@@ -8,12 +7,11 @@ exports.destroy = async (req, res) => {
 
 		if (serialized.role !== 'admin') {
 			return res.status(403).json({
-				status: 'Invalid permissions to view or modify this resource.'
+				status: 'Invalid permissions to view or modify this resource.',
 			});
 		}
 
-		await User.findByIdAndRemove(data.user).lean();
-		await Chat.remove({ 'refs.organization': data.organization }).lean();
+		await Webhook.findByIdAndRemove(data.webhook).lean();
 
 		res.sendStatus(204);
 	} catch (error) {
