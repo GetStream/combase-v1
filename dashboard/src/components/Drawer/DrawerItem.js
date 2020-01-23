@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+// Styles //
+import listItemInteractions from "styles/css/listItemInteractions";
+
 // Components //
 import Text from "components/Text";
 
@@ -23,25 +26,10 @@ const Wrapper = styled.div`
   padding: 12px;
   color: ${({ activeColor, theme }) => theme.color[activeColor]};
   border-radius: ${({ theme }) => theme.borderRadius / 2}px;
-  transition: 0.24s background-color
-    ${({ theme }) => theme.easing.css(theme.easing.standard)};
-  background-color: ${({ active, activeColor, theme }) =>
-    active
-      ? theme.colorUtils.fade(theme.color[activeColor], 0.16)
-      : "transparent"};
+  ${listItemInteractions}
 
   & > svg {
     margin-right: 24px;
-  }
-
-  &:hover {
-    background-color: ${({ activeColor, theme }) =>
-      theme.colorUtils.fade(theme.color[activeColor], 0.08)};
-  }
-
-  &:active {
-    background-color: ${({ activeColor, theme }) =>
-      theme.colorUtils.fade(theme.color[activeColor], 0.16)};
   }
 `;
 
@@ -71,7 +59,7 @@ const DrawerItem = ({
       onClick={onClick}
     >
       <Wrapper
-        active={active}
+        {...{ active }}
         activeColor={disabled ? "disabled" : activeColor}
         {...rest}
       >

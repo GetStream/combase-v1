@@ -3,6 +3,9 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import moment from "moment";
 
+// Styles //
+import listItemInteractions from "styles/css/listItemInteractions";
+
 // Components //
 import Avatar from "components/Avatar";
 import Fill from "components/Fill";
@@ -22,20 +25,7 @@ const Wrapper = styled.div`
   padding: 12px 16px;
   border-radius: ${({ theme }) => theme.borderRadius}px;
   cursor: pointer;
-  background-color: ${({ active, theme }) =>
-    theme.colorUtils.fade(theme.color.primary, active ? 0.08 : 0)};
-  transition: 0.24s background-color
-    ${({ theme }) => theme.easing.css(theme.easing.standard)};
-
-  &:hover {
-    background-color: ${({ theme }) =>
-      theme.colorUtils.fade(theme.color.primary, 0.04)};
-  }
-
-  &:active {
-    background-color: ${({ theme }) =>
-      theme.colorUtils.fade(theme.color.primary, 0.08)};
-  }
+  ${listItemInteractions}
 `;
 
 const Content = styled.div`
@@ -48,9 +38,9 @@ const Row = styled.div`
   align-items: center;
 `;
 
-const ThreadItem = ({ active = true, statusBorder }) => (
-  <Root {...{ active }} to="/inbox/channelId">
-    <Wrapper>
+const ThreadItem = ({ active, statusBorder }) => (
+  <Root to="/inbox/channelId">
+    <Wrapper {...{ active }}>
       <Avatar size={48} {...{ statusBorder }} />
       <Content>
         <Row>
