@@ -41,7 +41,7 @@ const Row = styled.div`
 const ThreadItem = ({ active, statusBorder }) => (
   <Root to="/inbox/channelId">
     <Wrapper {...{ active }}>
-      <Avatar size={48} {...{ statusBorder }} />
+      <Avatar name="Luke S." size={48} {...{ statusBorder }} />
       <Content>
         <Row>
           <Text weight="500">Luke S.</Text>
