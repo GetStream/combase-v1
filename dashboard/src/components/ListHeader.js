@@ -51,7 +51,7 @@ const Search = styled.div`
   height: 40px;
 `;
 
-export default () => {
+export default ({ title }) => {
   return (
     <Root>
       <TitleWrapper>
@@ -59,7 +59,7 @@ export default () => {
           <MenuButton />
           <Icon />
           <Text size={24} weight="600">
-            Inbox
+            {title}
           </Text>
         </Title>
         <Actions>

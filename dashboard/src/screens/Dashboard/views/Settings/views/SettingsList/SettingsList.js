@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 // Components //
+import ListHeader from "components/ListHeader";
+
 const Root = styled.div`
   flex: 1;
   order: -1;
@@ -13,4 +15,8 @@ const Root = styled.div`
   }
 `;
 
-export default () => <Root>Settings List</Root>;
+export default () => (
+  <Root>
+    <ListHeader title="Settings" />
+  </Root>
+);

@@ -30,7 +30,7 @@ const initialState = { height: 0, width: 0 };
 const style = { flex: 1 };
 
 const renderListEmpty = () => <EmptyState text="No Threads" />;
-
+const renderListHeader = () => <ListHeader title="Inbox" />;
 const renderRow = () => <ThreadItem />;
 
 export default () => {
@@ -49,7 +49,7 @@ export default () => {
       {/* {isMobile ? <Header /> : null} */}
       <ListView
         {...{ data, layoutProvider, onResize, renderRow, style }}
-        ListHeaderComponent={ListHeader}
+        ListHeaderComponent={renderListHeader}
         ListEmptyComponent={renderListEmpty}
         rowCount={40}
         showEmptyHeader
