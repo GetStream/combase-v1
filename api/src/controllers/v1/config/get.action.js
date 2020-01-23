@@ -1,8 +1,6 @@
-import dotenv from 'dotenv';
+import 'dotenv/config';
 
 import Plugin from '../../../models/plugin';
-
-dotenv.config();
 
 exports.get = async (req, res) => {
 	try {

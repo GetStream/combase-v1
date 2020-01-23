@@ -1,8 +1,6 @@
-import dotenv from 'dotenv';
+import 'dotenv/config';
 
 import Invite from '../../../models/invite';
-
-dotenv.config();
 
 exports.list = async (req, res) => {
 	try {
@@ -11,7 +9,7 @@ exports.list = async (req, res) => {
 
 		if (!serialized.admin) {
 			return res.status(403).json({
-				status: 'Invalid permissions to view or modify this resource.'
+				status: 'Invalid permissions to view or modify this resource.',
 			});
 		}
 

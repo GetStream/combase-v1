@@ -1,11 +1,9 @@
-import dotenv from 'dotenv';
+import 'dotenv/config';
 import shortid from 'shortid';
 import nodemailer from 'nodemailer';
 import mailgun from 'nodemailer-mailgun-transport';
 
 import Agent from '../../../../models/agent';
-
-dotenv.config();
 
 exports.reset = async (req, res) => {
 	try {

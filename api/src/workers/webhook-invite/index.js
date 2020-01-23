@@ -1,7 +1,7 @@
 import WebhookInviteQueue from './queue';
 import addedProcess from './added-process';
 import removedProcess from './removed-process';
-import updatedProcess from './added-process';
+import updatedProcess from './updated-process';
 
 WebhookInviteQueue.process('added', addedProcess);
 WebhookInviteQueue.process('removed', removedProcess);

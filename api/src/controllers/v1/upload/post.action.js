@@ -1,9 +1,7 @@
-import dotenv from 'dotenv';
+import 'dotenv/config';
 import DataURI from 'datauri';
 import path from 'path';
 import { v2 as cloudinary } from 'cloudinary';
-
-dotenv.config();
 
 exports.post = async (req, res) => {
 	try {

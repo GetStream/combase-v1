@@ -1,7 +1,5 @@
-import dotenv from 'dotenv';
+import 'dotenv/config';
 import { StreamChat } from 'stream-chat';
-
-dotenv.config();
 
 export default async () => {
 	try {

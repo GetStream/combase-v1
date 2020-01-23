@@ -1,8 +1,6 @@
-import dotenv from 'dotenv';
+import 'dotenv/config';
 
 import Agent from '../../../models/agent';
-
-dotenv.config();
 
 exports.list = async (req, res) => {
 	try {
@@ -10,7 +8,7 @@ exports.list = async (req, res) => {
 
 		const agents = await Agent.apiQuery(data);
 
-		const sanitized = agents.map((agent) => {
+		const sanitized = agents.map(agent => {
 			agent.password = undefined;
 			agent.recovery = undefined;
 
