@@ -13,8 +13,12 @@ const Root = styled(Link)`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 12px 24px;
+  padding: 12px 16px;
   cursor: pointer;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
+    padding: 12px 24px;
+  }
 `;
 
 const Content = styled.div`

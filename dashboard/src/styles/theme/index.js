@@ -12,6 +12,7 @@ export default {
     light_text: colors.light_gray,
     shadow: colors.black,
     border: colors.light_gray,
-    text: colors.black
+    text: colors.black,
+    undersheet: baseTheme.colorUtils.fade(colors.black, 0.4)
   }
 };

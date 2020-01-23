@@ -8,11 +8,13 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "animated": "^0.2.2",
+    "keycode": "^2.2.0",
     "moment": "^2.24.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
+    "react-scrolllock": "^5.0.0",
     "recyclerlistview": "^2.0.12",
     "styled-components": "^5.0.0"
   },

@@ -2,9 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 // Components //
+import MenuButton from "components/MenuButton";
 
 const Root = styled.div`
-  padding: 24px;
+  padding: 16px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
+    padding: 24px;
+  }
 `;
 
 const TitleWrapper = styled.div`
@@ -52,6 +56,7 @@ export default () => {
     <Root>
       <TitleWrapper>
         <Title>
+          <MenuButton />
           <Icon />
           <p>Inbox</p>
         </Title>

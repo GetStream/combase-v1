@@ -14,6 +14,7 @@ export default {
   gutter: 16,
   z: {
     page: 0,
-    sidenav: 1
+    sidenav: 1,
+    modal: 5
   }
 };

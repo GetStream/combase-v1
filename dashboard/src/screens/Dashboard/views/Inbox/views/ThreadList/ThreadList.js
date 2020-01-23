@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
+// Hooks //
+import useMedia from "hooks/useMedia";
+
 // Utils //
 import LayoutUtil from "./LayoutUtil";
 
@@ -9,6 +12,7 @@ import EmptyState from "components/EmptyState";
 import ListHeader from "components/ListHeader";
 import ListView from "components/ListView";
 import ThreadItem from "components/ThreadItem";
+import Header from "components/Header";
 
 const Root = styled.div`
   flex: 1;
@@ -30,6 +34,7 @@ const renderListEmpty = () => <EmptyState text="No Threads" />;
 const renderRow = () => <ThreadItem />;
 
 export default () => {
+  const isMobile = useMedia("sm");
   const [{ width }, onResize] = useState(initialState);
   const [layoutProvider, setLayoutProvider] = useState(
     LayoutUtil.getLayoutProvider(width, 72)
@@ -41,6 +46,7 @@ export default () => {
 
   return (
     <Root>
+      {/* {isMobile ? <Header /> : null} */}
       <ListView
         {...{ data, layoutProvider, onResize, renderRow, style }}
         ListHeaderComponent={ListHeader}
