@@ -33,6 +33,22 @@ export const ChatSchema = new Schema(
 				default: ''
 			}
 		},
+		notes: [
+			{
+				note: {
+					type: String,
+					trim: true
+				},
+				agent: {
+					type: Schema.Types.ObjectId,
+					ref: 'Agent',
+					required: true,
+					autopopulate: {
+						select: [ 'name', 'email' ]
+					}
+				}
+			}
+		],
 		refs: {
 			user: {
 				type: Schema.Types.ObjectId,
