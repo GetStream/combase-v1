@@ -5,6 +5,6 @@ import updatedProcess from './added-process';
 
 WebhookUserQueue.process('added', addedProcess);
 WebhookUserQueue.process('removed', removedProcess);
-WebhookUserQueue.process('updatedProcess', updatedProcess);
+WebhookUserQueue.process('updated', updatedProcess);
 
 export default WebhookUserQueue;

@@ -5,6 +5,6 @@ import updatedProcess from './added-process';
 
 WebhookChatQueue.process('added', addedProcess);
 WebhookChatQueue.process('removed', removedProcess);
-WebhookChatQueue.process('updatedProcess', updatedProcess);
+WebhookChatQueue.process('updated', updatedProcess);
 
 export default WebhookChatQueue;
