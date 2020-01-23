@@ -9,6 +9,11 @@ const Root = styled.div`
   height: 24px;
   border-radius: 50%;
   background-color: ${({ theme }) => theme.color.light_gray};
+  margin-right: 16px;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
+    display: none;
+  }
 `;
 
 const MenuButton = props => {
