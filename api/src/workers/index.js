@@ -1,5 +1,4 @@
-import dotenv from 'dotenv';
-dotenv.config();
+import 'dotenv/config';
 
 import WebhookAgentQueue from './webhook-agent';
 import WebhookChatQueue from './webhook-chat';
