@@ -19,10 +19,20 @@ export const UserSchema = new Schema(
 			},
 		},
 		email: {
-			type: String,
-			lowercase: true,
-			trim: true,
-			required: true,
+			address: {
+				type: String,
+				lowercase: true,
+				trim: true,
+				required: true,
+			},
+			verified: {
+				type: Boolean,
+				default: false,
+			},
+		},
+		enriched: {
+			type: Schema.Types.Mixed,
+			default: {},
 		},
 		refs: {
 			organization: {
@@ -31,10 +41,6 @@ export const UserSchema = new Schema(
 				required: true,
 				autopopulate: true,
 			},
-		},
-		enriched: {
-			type: Schema.Types.Mixed,
-			default: {},
 		},
 	},
 	{
