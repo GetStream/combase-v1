@@ -1,8 +1,10 @@
 import { createGlobalStyle } from "styled-components";
+import fonts from "./fonts";
 
 /* eslint no-unused-expressions: 0 */
 export default createGlobalStyle`
-
+  ${fonts}
+  
   * {
     outline: none;
     box-sizing: border-box;

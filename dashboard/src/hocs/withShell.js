@@ -8,6 +8,7 @@ import useMedia from "hooks/useMedia";
 import ShellContext from "contexts/Shell";
 
 // Components //
+import Helmet from "components/Shell/Helmet";
 import Drawer from "components/Shell/Drawer";
 import Sidenav from "components/Shell/Sidenav";
 
@@ -42,6 +43,7 @@ export default (WrappedComponent, routes = []) => props => {
           <Sidenav {...props} {...{ routes }} />
         )}
         <WrappedComponent {...props} />
+        <Helmet />
       </Root>
     </ShellContext.Provider>
   );
