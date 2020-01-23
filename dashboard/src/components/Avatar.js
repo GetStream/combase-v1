@@ -18,19 +18,21 @@ const Status = styled(StatusBadge)`
   right: 0;
 `;
 
-const Avatar = ({ size }) => (
+const Avatar = ({ size, statusBorder }) => (
   <div>
     <Root {...{ size }} />
-    <Status />
+    <Status borderColor={statusBorder} />
   </div>
 );
 
 Avatar.propTypes = {
-  size: PropTypes.number
+  size: PropTypes.number,
+  statusBorder: PropTypes.string
 };
 
 Avatar.defaultProps = {
-  size: 40
+  size: 40,
+  statusBorder: "surface"
 };
 
 export default Avatar;

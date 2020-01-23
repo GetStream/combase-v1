@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import moment from "moment";
@@ -31,9 +32,9 @@ const Row = styled.div`
   align-items: center;
 `;
 
-const ThreadItem = () => (
+const ThreadItem = ({ statusBorder }) => (
   <Root to="/inbox/channelId">
-    <Avatar size={48} />
+    <Avatar size={48} {...{ statusBorder }} />
     <Content>
       <Row>
         <Text weight="500">Luke S.</Text>

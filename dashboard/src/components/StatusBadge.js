@@ -6,7 +6,7 @@ const StatusBadge = styled.div`
   height: 16px;
   border-radius: 50%;
   background-color: ${({ theme }) => theme.color.green};
-  border: 4px solid ${({ bgColor = "surface", theme }) => theme.color[bgColor]};
+  border: 4px solid ${({ borderColor, theme }) => theme.color[borderColor]};
 `;
 
 export default StatusBadge;

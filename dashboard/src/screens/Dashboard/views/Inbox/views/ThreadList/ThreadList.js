@@ -31,7 +31,7 @@ const style = { flex: 1 };
 
 const renderListEmpty = () => <EmptyState text="No Threads" />;
 const renderListHeader = () => <ListHeader title="Inbox" />;
-const renderRow = () => <ThreadItem />;
+const renderRow = () => <ThreadItem statusBorder="background" />;
 
 export default () => {
   const isMobile = useMedia("sm");
