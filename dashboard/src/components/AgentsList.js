@@ -18,7 +18,6 @@ const Root = styled(PageSheet)`
 
 const Content = styled.div`
     flex: 1;
-    padding-bottom: 40px;
 `;
 
 const EmptyWrapper = styled.div`
