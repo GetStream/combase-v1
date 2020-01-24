@@ -6,9 +6,11 @@ import styled from 'styled-components';
 import Tab from './Tab';
 
 const Root = styled.div`
+    flex: 1;
     flex-direction: row;
     align-items: center;
-    padding: 24px 0px;
+    padding: 24px 40px;
+    overflow-x: scroll;
 
     & > * + * {
         margin-left: 24px;

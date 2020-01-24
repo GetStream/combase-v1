@@ -12,13 +12,13 @@ export default (data, searchKey, tabKey) => {
                     return (
                         item[searchKey]
                             .toLowerCase()
-                            .includes(query.toLowerCase()) &&
+                            .includes(query.trim().toLowerCase()) &&
                         item[tabKey] === activeTab
                     );
                 } else {
                     return item[searchKey]
                         .toLowerCase()
-                        .includes(query.toLowerCase());
+                        .includes(query.trim().toLowerCase());
                 }
             })
         );

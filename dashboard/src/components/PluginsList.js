@@ -140,12 +140,8 @@ const PluginsList = ({ className }) => {
 
     return (
         <Root {...{ className }} onQueryChange={setQuery}>
+            <Tabs {...{ tabs }} active={activeTab} onTabClick={setActiveTab} />
             <Content>
-                <Tabs
-                    {...{ tabs }}
-                    active={activeTab}
-                    onTabClick={setActiveTab}
-                />
                 <Grid>
                     <Row>
                         {results.length

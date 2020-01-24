@@ -6,6 +6,7 @@ import usePageSheet from 'hooks/usePageSheet';
 
 // Components //
 import { AgentsIcon } from 'shared/Icons';
+import AgentItem from 'components/AgentItem';
 import EmptyState from 'shared/EmptyState';
 import Tabs from 'components/Tabs';
 import PageSheet from 'components/PageSheet';
@@ -16,11 +17,8 @@ const Root = styled(PageSheet)`
 `;
 
 const Content = styled.div`
-    padding: 0px 40px 40px 40px;
-`;
-
-const List = styled.div`
     flex: 1;
+    padding-bottom: 40px;
 `;
 
 const EmptyWrapper = styled.div`
@@ -38,12 +36,16 @@ const renderEmpty = () => (
 
 const agents = [
     {
-        avatar: 'https://logo.clearbit.com/blazeverify.com',
+        avatar:
+            'https://ca.slack-edge.com/T02RM6X6B-UHLLRBJBU-7c9e3281197f-512',
+        email: 'luke@getstream.io',
         name: 'Luke Smetham',
         role: 'Admin',
     },
     {
-        avatar: 'https://logo.clearbit.com/blazeverify.com',
+        avatar:
+            'https://ca.slack-edge.com/T02RM6X6B-U10BF2R9R-ff801b9cc079-512',
+        email: 'nick@getstream.io',
         name: 'Nick Parsons',
         role: 'Agent',
     },
@@ -61,7 +63,7 @@ const tabs = [
 ];
 
 const renderAgents = results =>
-    results.map((agent, key) => <p {...{ key }}>{agent.name}</p>);
+    results.map((agent, key) => <AgentItem {...agent} {...{ key }} />);
 
 const AgentsList = ({ className }) => {
     const [results, setQuery, activeTab, setActiveTab] = usePageSheet(
@@ -72,15 +74,9 @@ const AgentsList = ({ className }) => {
 
     return (
         <Root {...{ className }} onQueryChange={setQuery}>
+            <Tabs {...{ tabs }} active={activeTab} onTabClick={setActiveTab} />
             <Content>
-                <Tabs
-                    {...{ tabs }}
-                    active={activeTab}
-                    onTabClick={setActiveTab}
-                />
-                <List>
-                    {results.length ? renderAgents(results) : renderEmpty()}
-                </List>
+                {results.length ? renderAgents(results) : renderEmpty()}
             </Content>
         </Root>
     );
