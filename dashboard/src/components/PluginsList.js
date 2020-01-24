@@ -7,7 +7,7 @@ import usePageSheet from 'hooks/usePageSheet';
 // Components //
 import EmptyState from 'shared/EmptyState';
 import { PluginsIcon } from 'shared/Icons';
-import Tabs, { Tab } from 'components/Tabs';
+import Tabs from 'components/Tabs';
 import PageSheet from 'components/PageSheet';
 import PluginCard from 'components/PluginCard';
 
@@ -131,17 +131,21 @@ const renderPlugins = results =>
         </Cell>
     ));
 
-const renderTabs = (activeTab, onClick) =>
-    tabs.map((tab, key) => (
-        <Tab {...{ key, onClick }} active={activeTab === tab} label={tab} />
-    ));
-
 const PluginsList = ({ className }) => {
-    const [results, setQuery, activeTab, setActiveTab] = usePageSheet(plugins);
+    const [results, setQuery, activeTab, setActiveTab] = usePageSheet(
+        plugins,
+        'title',
+        'type'
+    );
+
     return (
         <Root {...{ className }} onQueryChange={setQuery}>
             <Content>
-                <Tabs>{renderTabs(activeTab, setActiveTab)}</Tabs>
+                <Tabs
+                    {...{ tabs }}
+                    active={activeTab}
+                    onTabClick={setActiveTab}
+                />
                 <Grid>
                     <Row>
                         {results.length
