@@ -1,10 +1,14 @@
-import Agent from 'models/agent';
+import Agent from './models/agent';
+import { AddToWebhookAgentQueue } from 'workers/webhook-agent/queue';
 
 exports.post = async (req, res) => {
 	try {
 		const data = { ...req.body, ...req.params };
 
 		const agent = await Agent.create(data).lean();
+
+		await AddToWebhookAgentQueue('added', agent);
+
 		res.status(200).json(agent);
 	} catch (error) {
 		console.error(error);

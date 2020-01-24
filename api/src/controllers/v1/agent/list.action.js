@@ -1,6 +1,6 @@
 import 'dotenv/config';
 
-import Agent from 'models/agent';
+import Agent from './models/agent';
 
 exports.list = async (req, res) => {
 	try {

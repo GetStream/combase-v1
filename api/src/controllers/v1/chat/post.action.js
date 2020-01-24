@@ -1,24 +1,22 @@
 import Chat from 'models/chat';
 import User from 'models/user';
+import { AddToWebhookChatQueue } from 'workers/webhook-chat/queue';
 
 exports.post = async (req, res) => {
 	try {
-		const { user, chat, organization } = req.body;
+		const { user, agent, chat, organization } = req.body;
 
-		// if the user does not exist, create them in the database
-		await User.findOneOrCreate(
-			{ email: user.email },
-			{
-				name: {
-					first: user.name.first,
-					last: user.name.last,
-				},
-				email: user.email,
-				organization: organization,
-			}
-		);
+		const create = await Chat.create({
+			chat,
+			refs: {
+				user,
+				agent,
+				organization,
+			},
+		});
 
-		const create = await Chat.create(chat);
+		await AddToWebhookChatQueue('added', chat);
+
 		res.status(200).json(create);
 	} catch (error) {
 		console.error(error);

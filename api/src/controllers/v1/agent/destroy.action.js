@@ -1,4 +1,4 @@
-import Agent from 'models/agent';
+import Agent from './models/agent';
 import { AddToWebhookAgentQueue } from 'workers/webhook-agent/queue';
 
 exports.destroy = async (req, res) => {
@@ -17,7 +17,7 @@ exports.destroy = async (req, res) => {
 			{ $set: { status: 'inactive' } }
 		).lean();
 
-		await AddToWebhookAgentQueue('remove', agent);
+		await AddToWebhookAgentQueue('removed', agent);
 
 		res.sendStatus(204);
 	} catch (error) {

@@ -1,4 +1,5 @@
-import Agent from 'models/agent';
+import Agent from './models/agent';
+import { AddToWebhookAgentQueue } from 'workers/webhook-agent/queue';
 
 exports.update = async (req, res) => {
 	try {
@@ -16,6 +17,9 @@ exports.update = async (req, res) => {
 			{ _id: params.agent },
 			{ $set: data }
 		).lean();
+
+		await AddToWebhookAgentQueue('updated', agent);
+
 		res.status(200).json(agent);
 	} catch (error) {
 		console.error(error);

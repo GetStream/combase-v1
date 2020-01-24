@@ -1,4 +1,5 @@
 import Invite from 'models/invite';
+import { AddToWebhookInviteQueue } from 'workers/webhook-invite/queue';
 
 exports.update = async (req, res) => {
 	try {
@@ -16,6 +17,9 @@ exports.update = async (req, res) => {
 			{ _id: params.invite },
 			{ $set: data }
 		).lean();
+
+		await AddToWebhookInviteQueue('updated', invite);
+
 		res.status(200).json(invite);
 	} catch (error) {
 		console.error(error);

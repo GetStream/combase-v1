@@ -1,5 +1,7 @@
 import User from 'models/user';
 import Chat from 'models/chat';
+import { AddToWebhookUserQueue } from 'workers/webhook-user/queue';
+import { AddToWebhookChatQueue } from 'workers/webhook-chat/queue';
 
 exports.destroy = async (req, res) => {
 	try {
@@ -12,8 +14,13 @@ exports.destroy = async (req, res) => {
 			});
 		}
 
-		await User.findByIdAndRemove(data.user).lean();
-		await Chat.remove({ 'refs.organization': data.organization }).lean();
+		const user = await User.findByIdAndRemove(data.user).lean();
+		await AddToWebhookUserQueue('removed', user);
+
+		const chat = await Chat.remove({
+			'refs.organization': data.organization,
+		}).lean();
+		await AddToWebhookChatQueue('removed', chat);
 
 		res.sendStatus(204);
 	} catch (error) {

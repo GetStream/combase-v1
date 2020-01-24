@@ -5,6 +5,13 @@ import User from 'models/user';
 import Chat from 'models/chat';
 import Faq from 'models/faq';
 
+import { AddToWebhookOrganizationQueue } from 'workers/webhook-organization/queue';
+import { AddToWebhookInviteQueue } from 'workers/webhook-invite/queue';
+import { AddToWebhookAgentQueue } from 'workers/webhook-agent/queue';
+import { AddToWebhookUserQueue } from 'workers/webhook-user/queue';
+import { AddToWebhookChatQueue } from 'workers/webhook-chat/queue';
+import { AddToWebhookFaqQueue } from 'workers/webhook-faq/queue';
+
 exports.destroy = async (req, res) => {
 	try {
 		const data = { ...req.body, ...req.params };
@@ -16,13 +23,35 @@ exports.destroy = async (req, res) => {
 			});
 		}
 
-		await Organization.findByIdAndRemove(data.organization).lean();
+		const invite = await Invite.remove({
+			'refs.organization': data.organization,
+		}).lean();
+		await AddToWebhookInviteQueue('removed', invite);
 
-		await Invite.remove({ 'refs.organization': data.organization }).lean();
-		await Agent.remove({ 'refs.organization': data.organization }).lean();
-		await User.remove({ 'refs.organization': data.organization }).lean();
-		await Chat.remove({ 'refs.organization': data.organization }).lean();
-		await Faq.remove({ 'refs.organization': data.organization }).lean();
+		const agent = await Agent.remove({
+			'refs.organization': data.organization,
+		}).lean();
+		await AddToWebhookAgentQueue('removed', agent);
+
+		const user = await User.remove({
+			'refs.organization': data.organization,
+		}).lean();
+		await AddToWebhookUserQueue('removed', user);
+
+		const chat = await Chat.remove({
+			'refs.organization': data.organization,
+		}).lean();
+		await AddToWebhookChatQueue('removed', chat);
+
+		const faq = await Faq.remove({
+			'refs.organization': data.organization,
+		}).lean();
+		await AddToWebhookFaqQueue('removed', faq);
+
+		const organization = await Organization.findByIdAndRemove(
+			data.organization
+		).lean();
+		await AddToWebhookOrganizationQueue('removed', organization);
 
 		res.sendStatus(204);
 	} catch (error) {
