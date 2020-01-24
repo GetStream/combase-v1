@@ -1,5 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Route } from 'react-router-dom';
+
+// Views //
+import PluginDetail from './views/PluginDetail';
 
 // Components ///
 import { PluginsIcon } from 'shared/Icons';
@@ -14,7 +18,9 @@ const Root = styled(ScreenRoot)`
     padding-bottom: 40px;
 `;
 
-export default () => (
+const renderPluginModal = props => <PluginDetail {...props} />;
+
+export default ({ match }) => (
     <Root>
         <FullScreenHeader
             icon={PluginsIcon}
@@ -25,5 +31,6 @@ export default () => (
         <Container>
             <PluginsList />
         </Container>
+        <Route path={`${match.url}/:plugin`} children={renderPluginModal} />
     </Root>
 );

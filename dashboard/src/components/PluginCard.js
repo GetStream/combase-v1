@@ -2,6 +2,9 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+// Utils //
+import history from 'utils/history';
+
 // Components //
 import Card from 'shared/Card';
 import Text from 'shared/Text';
@@ -83,7 +86,16 @@ const PluginCard = ({ avatar, description, title, url }) => (
         </Content>
         <Fill />
         <Footer>
-            <IconButton icon={SettingsIcon} size={16} color="alt_text" />
+            <IconButton
+                onClick={() =>
+                    history.push(
+                        `/plugins/${title.toLowerCase().replace(/ /g, '_')}`
+                    )
+                }
+                icon={SettingsIcon}
+                size={16}
+                color="alt_text"
+            />
         </Footer>
     </Root>
 );
