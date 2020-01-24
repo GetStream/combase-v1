@@ -31,7 +31,7 @@ const renderListEmpty = () => <EmptyState text="No Threads" />;
 const renderListHeader = props => (
   <ListHeader {...props} icon={InboxIcon} title="Inbox">
     <IconButton icon={ArchiveIcon} color="alt_text" />
-    <FilterIcon color="alt_text" />
+    <IconButton icon={FilterIcon} color="primary" />
   </ListHeader>
 );
 const renderRow = () => <ThreadItem statusBorder="background" />;

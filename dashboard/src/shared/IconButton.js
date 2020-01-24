@@ -18,8 +18,15 @@ const HoverBubble = styled(animated.div)`
   border-radius: 50%;
   background-color: ${({ color, theme }) =>
     theme.colorUtils.fade(theme.color[color], 0.16)};
+  transition: 0.24s background-color
+    ${({ theme }) => theme.easing.css(theme.easing.standard)};
   transform: scale(0);
   transform-origin: center center;
+
+  *:active > & {
+    background-color: ${({ color, theme }) =>
+      theme.colorUtils.fade(theme.color[color], 0.32)};
+  }
 `;
 
 const IconButton = ({ color, icon: Icon, onClick, size }) => {
@@ -27,8 +34,8 @@ const IconButton = ({ color, icon: Icon, onClick, size }) => {
   const anim = useSpring({
     value: hovered ? 1 : 0,
     config: {
-      tension: 140,
-      friction: 12
+      tension: 120,
+      friction: 10
     }
   });
 
