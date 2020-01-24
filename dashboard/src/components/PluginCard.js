@@ -65,7 +65,7 @@ const PluginCard = ({ avatar, description, title, url }) => (
   <Root border flat>
     <Header>
       <Logo>
-        <img src={avatar} />
+        <img alt={title} src={avatar} />
       </Logo>
     </Header>
     <Content>
@@ -73,7 +73,7 @@ const PluginCard = ({ avatar, description, title, url }) => (
         <Text color="alt_text" weight="500">
           {title}
         </Text>
-        <a href={url} target="_blank"><IconButton size={16} icon={LinkIcon} color="primary" /></a>
+        <a href={url} target="_blank" rel="noopener noreferrer"><IconButton size={16} icon={LinkIcon} color="primary" /></a>
       </Title>
       <Description faded size={12} color="alt_text">
         {description}
