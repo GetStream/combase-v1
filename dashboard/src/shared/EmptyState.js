@@ -1,22 +1,22 @@
-import React from "react";
-import styled from "styled-components";
+import React, { memo } from 'react';
+import styled from 'styled-components';
 
 // Components //
-import Text from "shared/Text";
+import Text from 'shared/Text';
 
 const Root = styled.div`
-  justify-content: center;
-  align-items: center;
-  & > ${Text} {
-    margin-top: 24px;
-  }
+    justify-content: center;
+    align-items: center;
+    & > ${Text} {
+        margin-top: 24px;
+    }
 `;
 
-export default ({ icon: Icon, text = "Nothing to show." }) => (
-  <Root>
-    {Icon ? <Icon size={96} color="light_text" /> : null}
-    <Text size={24} color="light_text" weight="500">
-      {text}
-    </Text>
-  </Root>
-);
+export default memo(({ icon: Icon, text = 'Nothing to show.' }) => (
+    <Root>
+        {Icon ? <Icon size={96} color="light_text" /> : null}
+        <Text size={24} color="light_text" weight="500">
+            {text}
+        </Text>
+    </Root>
+));

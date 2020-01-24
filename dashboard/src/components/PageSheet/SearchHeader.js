@@ -28,9 +28,12 @@ const Input = styled.input`
 `;
 
 const SearchHeader = ({ onChange }) => {
-    const handleChange = useCallback(({ target: { value } }) => {
-        onChange(value);
-    }, []);
+    const handleChange = useCallback(
+        ({ target: { value } }) => {
+            onChange(value);
+        },
+        [onChange]
+    );
     return (
         <Root>
             <IconWrapper>

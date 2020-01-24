@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { memo, useCallback } from 'react';
 import styled from 'styled-components';
 
 // Components //
@@ -28,14 +28,14 @@ const Root = styled.div`
     }
 `;
 
-export default ({ active, label, onClick }) => {
+export default memo(({ active, label, onClick }) => {
     const handleClick = useCallback(() => {
         onClick(label);
-    }, [label]);
+    }, [label, onClick]);
 
     return (
         <Root {...{ active }} onClick={handleClick}>
             <Text color={active ? 'surface' : 'gray'}>{label}</Text>
         </Root>
     );
-};
+});
