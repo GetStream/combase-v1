@@ -1,9 +1,9 @@
-import Organization from '../../../models/organization';
-import Invite from '../../../models/invite';
-import Agent from '../../../models/agent';
-import User from '../../../models/user';
-import Chat from '../../../models/chat';
-import Faq from '../../../models/faq';
+import Organization from 'models/organization';
+import Invite from 'models/invite';
+import Agent from 'models/agent';
+import User from 'models/user';
+import Chat from 'models/chat';
+import Faq from 'models/faq';
 
 exports.destroy = async (req, res) => {
 	try {
@@ -12,7 +12,7 @@ exports.destroy = async (req, res) => {
 
 		if (serialized.role !== 'admin') {
 			return res.status(403).json({
-				status: 'Invalid permissions to view or modify this resource.'
+				status: 'Invalid permissions to view or modify this resource.',
 			});
 		}
 

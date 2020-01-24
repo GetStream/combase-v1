@@ -1,6 +1,6 @@
 import 'dotenv/config';
 
-import Invite from '../../../models/invite';
+import Invite from 'models/invite';
 
 exports.list = async (req, res) => {
 	try {

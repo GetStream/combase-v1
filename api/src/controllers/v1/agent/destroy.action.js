@@ -1,4 +1,5 @@
-import Agent from '../../../models/agent';
+import Agent from 'models/agent';
+import { AddToWebhookAgentQueue } from 'workers/webhook-agent/queue';
 
 exports.destroy = async (req, res) => {
 	try {
@@ -7,11 +8,17 @@ exports.destroy = async (req, res) => {
 
 		if (serialized.role !== 'admin') {
 			return res.status(403).json({
-				status: 'Invalid permissions to view or modify this resource.'
+				status: 'Invalid permissions to view or modify this resource.',
 			});
 		}
 
-		const agent = await Agent.updateOne({ _id: data.agent }, { $set: { status: 'inactive' } }).lean();
+		const { password, ...agent } = await Agent.updateOne(
+			{ _id: data.agent },
+			{ $set: { status: 'inactive' } }
+		).lean();
+
+		await AddToWebhookAgentQueue('remove', agent);
+
 		res.sendStatus(204);
 	} catch (error) {
 		console.error(error);

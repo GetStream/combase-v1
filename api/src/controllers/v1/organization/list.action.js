@@ -1,6 +1,6 @@
 import 'dotenv/config';
 
-import Organization from '../../../models/organization';
+import Organization from 'models/organization';
 
 exports.list = async (req, res) => {
 	try {

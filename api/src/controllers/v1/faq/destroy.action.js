@@ -1,4 +1,4 @@
-import Faq from '../../../models/faq';
+import Faq from 'models/faq';
 
 exports.destroy = async (req, res) => {
 	try {
@@ -7,11 +7,14 @@ exports.destroy = async (req, res) => {
 
 		if (serialized.role !== 'admin') {
 			return res.status(403).json({
-				status: 'Invalid permissions to view or modify this resource.'
+				status: 'Invalid permissions to view or modify this resource.',
 			});
 		}
 
-		const chat = await Faq.updateOne({ _id: data.faq }, { $set: data }).lean();
+		const chat = await Faq.updateOne(
+			{ _id: data.faq },
+			{ $set: data }
+		).lean();
 		res.status(200).json(faq);
 	} catch (error) {
 		console.error(error);

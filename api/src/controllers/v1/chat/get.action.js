@@ -1,4 +1,4 @@
-import Chat from '../../../models/chat';
+import Chat from 'models/chat';
 
 exports.get = async (req, res) => {
 	try {

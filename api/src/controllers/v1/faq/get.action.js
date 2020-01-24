@@ -1,4 +1,4 @@
-import Faq from '../../../models/faq';
+import Faq from 'models/faq';
 
 exports.get = async (req, res) => {
 	try {

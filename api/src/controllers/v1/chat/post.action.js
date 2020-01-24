@@ -1,5 +1,5 @@
-import Chat from '../../../models/chat';
-import User from '../../../models/user';
+import Chat from 'models/chat';
+import User from 'models/user';
 
 exports.post = async (req, res) => {
 	try {
@@ -11,10 +11,10 @@ exports.post = async (req, res) => {
 			{
 				name: {
 					first: user.name.first,
-					last: user.name.last
+					last: user.name.last,
 				},
 				email: user.email,
-				organization: organization
+				organization: organization,
 			}
 		);
 

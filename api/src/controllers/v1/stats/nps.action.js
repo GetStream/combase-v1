@@ -1,4 +1,4 @@
-import Chat from '../../../models/chat';
+import Chat from 'models/chat';
 
 exports.nps = async (req, res) => {
 	try {
@@ -10,10 +10,10 @@ exports.nps = async (req, res) => {
 					$group: {
 						'refs.organization': '$organization',
 						upvotes: {
-							$sum: { $cond: [ '$score.rating', 1, 0 ] }
-						}
-					}
-				}
+							$sum: { $cond: ['$score.rating', 1, 0] },
+						},
+					},
+				},
 			]).exec();
 		}
 

@@ -1,6 +1,6 @@
 import 'dotenv/config';
 
-import Chat from '../../../models/chat';
+import Chat from 'models/chat';
 
 exports.list = async (req, res) => {
 	try {

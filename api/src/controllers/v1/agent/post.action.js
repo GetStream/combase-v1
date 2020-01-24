@@ -1,4 +1,4 @@
-import Agent from '../../../models/agent';
+import Agent from 'models/agent';
 
 exports.post = async (req, res) => {
 	try {
