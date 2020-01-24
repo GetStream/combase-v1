@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
+// Styles //
+import listItemInteractions from 'styles/css/listItemInteractions';
+
 // Components //
 import Avatar from 'shared/Avatar';
 import Text from 'shared/Text';
@@ -10,6 +13,11 @@ const Root = styled.div`
     flex-direction: row;
     align-items: center;
     height: 80px;
+    cursor: pointer;
+    ${listItemInteractions}
+    & ${Text} {
+        user-select: none;
+    }
 `;
 
 const Meta = styled.div`
