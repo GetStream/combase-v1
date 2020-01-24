@@ -10,41 +10,46 @@ export const UserSchema = new Schema(
 			first: {
 				type: String,
 				trim: true,
-				required: true,
+				required: true
 			},
 			last: {
 				type: String,
 				trim: true,
-				required: true,
-			},
+				required: true
+			}
 		},
 		email: {
 			address: {
 				type: String,
 				lowercase: true,
 				trim: true,
-				required: true,
+				required: true
 			},
 			verified: {
 				type: Boolean,
-				default: false,
-			},
+				default: false
+			}
+		},
+		phone: {
+			type: String,
+			trim: true,
+			default: ''
 		},
 		enriched: {
 			type: Schema.Types.Mixed,
-			default: {},
+			default: {}
 		},
 		refs: {
 			organization: {
 				type: Schema.Types.ObjectId,
 				ref: 'Organization',
 				required: true,
-				autopopulate: true,
-			},
-		},
+				autopopulate: true
+			}
+		}
 	},
 	{
-		collection: 'users',
+		collection: 'users'
 	}
 );
 

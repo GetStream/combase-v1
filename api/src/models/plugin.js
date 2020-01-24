@@ -8,31 +8,31 @@ export const PluginSchema = new Schema(
 		name: {
 			type: String,
 			trim: true,
-			required: true,
+			required: true
 		},
 		keys: [
 			{
 				name: {
 					type: String,
-					trim: true,
+					trim: true
 				},
 				value: {
 					type: String,
-					trim: true,
-				},
-			},
+					trim: true
+				}
+			}
 		],
 		refs: {
 			organization: {
 				type: Schema.Types.ObjectId,
 				ref: 'Organization',
 				required: true,
-				autopopulate: true,
-			},
-		},
+				autopopulate: true
+			}
+		}
 	},
 	{
-		collection: 'plugins',
+		collection: 'plugins'
 	}
 );
 
