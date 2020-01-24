@@ -10,7 +10,6 @@ import AgentItem from 'components/AgentItem';
 import EmptyState from 'shared/EmptyState';
 import Tabs from 'components/Tabs';
 import PageSheet from 'components/PageSheet';
-import PluginCard from 'components/PluginCard';
 
 const Root = styled(PageSheet)`
     margin-top: -112px;

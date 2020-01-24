@@ -22,7 +22,7 @@ export default (data, searchKey, tabKey) => {
                 }
             })
         );
-    }, [data, query, activeTab]);
+    }, [data, query, activeTab, searchKey, tabKey]);
 
     return [results, setQuery, activeTab, setActiveTab];
 };

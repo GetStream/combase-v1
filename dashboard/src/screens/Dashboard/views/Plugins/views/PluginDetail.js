@@ -1,9 +1,6 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Animated from 'animated/lib/targets/react-dom';
-
-// Data //
-import plugins from 'data/plugins';
 
 // Components //
 import Modal from 'shared/Modal';
