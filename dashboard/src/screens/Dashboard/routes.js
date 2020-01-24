@@ -1,9 +1,10 @@
-import { AgentsIcon, AnalyticsIcon, InboxIcon, SettingsIcon } from 'shared/Icons';
+import { AgentsIcon, AnalyticsIcon, InboxIcon, PluginsIcon, SettingsIcon } from 'shared/Icons';
 
 import Agents from "./views/Agents";
 import Analytics from "./views/Analytics";
 import Inbox from "./views/Inbox";
 import Settings from "./views/Settings";
+import Plugins from './views/Plugins';
 
 export default [
   {
@@ -33,5 +34,12 @@ export default [
     component: Settings,
     isExact: false,
     icon: SettingsIcon
+  },
+  {
+    label: "Plugins",
+    slug: "plugins",
+    component: Plugins,
+    isExact: false,
+    icon: PluginsIcon
   }
 ];
