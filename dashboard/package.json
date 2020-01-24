@@ -16,6 +16,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
     "react-scrolllock": "^5.0.0",
+    "react-spring": "^8.0.27",
     "recyclerlistview": "^2.0.12",
     "styled-components": "^5.0.0",
     "uuid": "^3.4.0"
