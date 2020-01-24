@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 // Components ///
+import { PluginsIcon } from "shared/Icons";
 import ScreenRoot from "shared/ScreenRoot";
-import Card from "shared/Card";
 import Container from "shared/Container";
 import FullScreenHeader from "components/FullScreenHeader";
 import PluginsList from "components/PluginsList";
@@ -16,7 +16,7 @@ const Root = styled(ScreenRoot)`
 
 export default () => (
   <Root>
-    <FullScreenHeader />
+    <FullScreenHeader icon={PluginsIcon} />
     <Container>
       <PluginsList />
     </Container>

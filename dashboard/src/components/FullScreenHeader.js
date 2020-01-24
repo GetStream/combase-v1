@@ -23,6 +23,8 @@ const PageIcon = styled.div`
   height: 40px;
   border-radius: 50%;
   background-color: ${({ theme }) => theme.color.surface};
+  justify-content: center;
+  align-items: center;
 `;
 
 const Description = styled(Text)`
