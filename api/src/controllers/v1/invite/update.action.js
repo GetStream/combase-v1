@@ -1,4 +1,4 @@
-import Invite from '../../../models/invite';
+import Invite from 'models/invite';
 
 exports.update = async (req, res) => {
 	try {
@@ -8,11 +8,14 @@ exports.update = async (req, res) => {
 
 		if (serialized.role !== 'admin') {
 			return res.status(403).json({
-				status: 'Invalid permissions to view or modify this resource.'
+				status: 'Invalid permissions to view or modify this resource.',
 			});
 		}
 
-		const invite = await Invite.updateOne({ _id: params.invite }, { $set: data }).lean();
+		const invite = await Invite.updateOne(
+			{ _id: params.invite },
+			{ $set: data }
+		).lean();
 		res.status(200).json(invite);
 	} catch (error) {
 		console.error(error);

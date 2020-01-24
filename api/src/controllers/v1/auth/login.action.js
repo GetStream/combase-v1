@@ -2,7 +2,7 @@ import 'dotenv/config';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-import Agent from '../../../models/agent';
+import Agent from 'models/agent';
 
 exports.login = async (req, res) => {
 	try {

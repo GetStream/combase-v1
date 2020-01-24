@@ -1,4 +1,4 @@
-import Webhook from '../../../models/webhook';
+import Webhook from 'models/webhook';
 
 exports.update = async (req, res) => {
 	try {

@@ -1,6 +1,6 @@
 import 'dotenv/config';
 
-import Faq from '../../../models/faq';
+import Faq from 'models/faq';
 
 exports.list = async (req, res) => {
 	try {

@@ -1,4 +1,4 @@
-import Webhook from '../../../models/webhook';
+import Webhook from 'models/webhook';
 
 exports.destroy = async (req, res) => {
 	try {

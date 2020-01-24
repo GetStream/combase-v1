@@ -1,4 +1,4 @@
-import Invite from '../../../models/invite';
+import Invite from 'models/invite';
 
 exports.get = async (req, res) => {
 	try {

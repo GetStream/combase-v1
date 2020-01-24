@@ -1,4 +1,4 @@
-import Plugin from '../../../models/plugin';
+import Plugin from 'models/plugin';
 
 exports.post = async (req, res) => {
 	try {

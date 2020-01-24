@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import bcrypt from 'bcrypt';
 
-import Agent from '../../../models/agent';
+import Agent from 'models/agent';
 
 exports.post = async (req, res) => {
 	try {

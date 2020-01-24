@@ -1,4 +1,4 @@
-import Organization from '../../../models/organization';
+import Organization from 'models/organization';
 
 exports.post = async (req, res) => {
 	try {

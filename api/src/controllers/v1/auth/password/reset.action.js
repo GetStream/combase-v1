@@ -3,7 +3,7 @@ import shortid from 'shortid';
 import nodemailer from 'nodemailer';
 import mailgun from 'nodemailer-mailgun-transport';
 
-import Agent from '../../../../models/agent';
+import Agent from 'models/agent';
 
 exports.reset = async (req, res) => {
 	try {
