@@ -1,0 +1,18 @@
+{
+	"meta": {
+		"name": "Comba",
+		"url": "https://comba.io",
+		"description": "The most powerful open-source customer support – Powered by Stream"
+	},
+	"plugins": [
+		{
+			"name": "Clearbit",
+			"url": "https://clearbit.com",
+			"keys": [
+				{
+					"apiKey": "foo"
+				}
+			]
+		}
+	]
+}
