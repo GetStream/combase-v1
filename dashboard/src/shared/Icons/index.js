@@ -12,6 +12,7 @@ export { default as FilterIcon } from "./icons/filter";
 export { default as InboxIcon } from "./icons/inbox";
 export { default as InfoIcon } from "./icons/info";
 export { default as KnowledgeBaseIcon } from './icons/knowledge_base';
+export { default as LinkIcon } from './icons/link';
 export { default as MailIcon } from './icons/mail';
 export { default as OrganizationSettingsIcon } from './icons/organization_settings';
 export { default as PasswordIcon } from './icons/password';
