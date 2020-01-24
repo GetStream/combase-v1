@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, memo } from 'react';
 import styled from 'styled-components';
 
 // Components //
@@ -44,4 +44,4 @@ const SearchHeader = ({ onChange }) => {
     );
 };
 
-export default SearchHeader;
+export default memo(SearchHeader);

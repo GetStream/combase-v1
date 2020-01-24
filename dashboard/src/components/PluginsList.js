@@ -108,13 +108,14 @@ const plugins = [
 ];
 
 const tabs = [
-    'All',
-    'Analytics',
-    'CRM',
-    'Enrichment',
-    'I/O',
-    'Payments',
-    'Custom',
+    ...new Set([
+        'All',
+        ...plugins
+            .reduce((acc, { type }) => {
+                return [...acc, type];
+            }, [])
+            .sort(),
+    ]),
 ];
 
 const renderEmpty = () => (
