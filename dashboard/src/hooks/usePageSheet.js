@@ -1,24 +1,28 @@
 import { useEffect, useState } from 'react';
 
-export default data => {
+export default (data, searchKey, tabKey) => {
     const [query, setQuery] = useState('');
     const [activeTab, setActiveTab] = useState('All');
     const [results, setResults] = useState(data);
 
     useEffect(() => {
         setResults(
-            data.filter(({ title, type }) => {
+            data.filter(item => {
                 if (activeTab !== 'All') {
                     return (
-                        title.toLowerCase().includes(query.toLowerCase()) &&
-                        type === activeTab
+                        item[searchKey]
+                            .toLowerCase()
+                            .includes(query.trim().toLowerCase()) &&
+                        item[tabKey] === activeTab
                     );
                 } else {
-                    return title.toLowerCase().includes(query.toLowerCase());
+                    return item[searchKey]
+                        .toLowerCase()
+                        .includes(query.trim().toLowerCase());
                 }
             })
         );
-    }, [data, query, activeTab]);
+    }, [data, query, activeTab, searchKey, tabKey]);
 
     return [results, setQuery, activeTab, setActiveTab];
 };

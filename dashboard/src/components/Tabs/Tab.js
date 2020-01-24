@@ -30,7 +30,7 @@ const Root = styled.div`
 
 export default memo(({ active, label, onClick }) => {
     const handleClick = useCallback(() => {
-        onClick(label);
+        return onClick ? onClick(label) : null;
     }, [label, onClick]);
 
     return (
