@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
+// Hooks //
+import usePageSheet from 'hooks/usePageSheet';
+
 // Components //
+import EmptyState from 'shared/EmptyState';
+import { PluginsIcon } from 'shared/Icons';
 import Tabs, { Tab } from 'components/Tabs';
 import PageSheet from 'components/PageSheet';
 import PluginCard from 'components/PluginCard';
@@ -29,6 +34,13 @@ const Cell = styled.div`
     padding: 8px;
 `;
 
+const EmptyWrapper = styled.div`
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0px;
+`;
+
 const plugins = [
     {
         avatar: 'https://logo.clearbit.com/blazeverify.com',
@@ -36,12 +48,14 @@ const plugins = [
             'Email address verification that improves quality and deliverability.',
         title: 'Blaze Verify',
         url: 'https://blazeverify.com/',
+        type: 'Enrichment',
     },
     {
         avatar: 'https://logo.clearbit.com/clearbit.com',
         description: 'Provide enriched data on the user you are talking with.',
         title: 'Clearbit',
         url: 'https://clearbit.com',
+        type: 'Enrichment',
     },
     {
         avatar:
@@ -50,6 +64,7 @@ const plugins = [
             'HubSpot is a developer and marketer of software products for inbound marketing and sales',
         title: 'HubSpot',
         url: 'https://hubspot.com',
+        type: 'CRM',
     },
     {
         avatar: 'https://logo.clearbit.com/zapier.com',
@@ -57,6 +72,7 @@ const plugins = [
             'Connect the apps you use everyday to automate your work and be more productive.',
         title: 'Zapier',
         url: 'https://zapier.com',
+        type: 'I/O',
     },
     {
         avatar: 'https://logo.clearbit.com/gaiq-center.com',
@@ -64,12 +80,14 @@ const plugins = [
             'Google Analytics is a web analytics service offered by Google that tracks and reports website traffic.',
         title: 'Google Analytics',
         url: 'https://analytics.google.com',
+        type: 'Analytics',
     },
     {
         avatar: 'https://logo.clearbit.com/slack.com',
         description: 'Convert your hottest leads right from Slack.',
         title: 'Slack',
         url: 'https://slack.com',
+        type: 'CRM',
     },
     {
         avatar: 'https://logo.clearbit.com/mailchimp.com',
@@ -77,6 +95,7 @@ const plugins = [
             'Mailchimp is an American marketing automation platform and an email marketing service.',
         title: 'Mailchimp',
         url: 'https://mailchimp.com',
+        type: 'CRM',
     },
     {
         avatar: 'https://logo.clearbit.com/stripe.dev',
@@ -84,33 +103,50 @@ const plugins = [
             'Stripe allows individuals and businesses to make and receive payments over the Internet.',
         title: 'Stripe',
         url: 'https://stripe.com',
+        type: 'Payments',
     },
 ];
 
-const renderPlugins = query =>
-    plugins
-        .filter(({ title }) =>
-            title.toLowerCase().includes(query.toLowerCase())
-        )
-        .map((plugin, key) => (
-            <Cell {...{ key }}>
-                <PluginCard {...plugin} />
-            </Cell>
-        ));
+const tabs = [
+    'All',
+    'Analytics',
+    'CRM',
+    'Enrichment',
+    'I/O',
+    'Payments',
+    'Custom',
+];
+
+const renderEmpty = () => (
+    <EmptyWrapper>
+        <EmptyState icon={PluginsIcon} text="No plugins match your search." />
+    </EmptyWrapper>
+);
+
+const renderPlugins = results =>
+    results.map((plugin, key) => (
+        <Cell {...{ key }}>
+            <PluginCard {...plugin} />
+        </Cell>
+    ));
+
+const renderTabs = (activeTab, onClick) =>
+    tabs.map((tab, key) => (
+        <Tab {...{ key, onClick }} active={activeTab === tab} label={tab} />
+    ));
 
 const PluginsList = ({ className }) => {
-    const [query, setQuery] = useState('');
+    const [results, setQuery, activeTab, setActiveTab] = usePageSheet(plugins);
     return (
         <Root {...{ className }} onQueryChange={setQuery}>
             <Content>
-                <Tabs>
-                    <Tab active label="All" />
-                    <Tab label="Enrichment" />
-                    <Tab label="CRM" />
-                    <Tab label="Custom" />
-                </Tabs>
+                <Tabs>{renderTabs(activeTab, setActiveTab)}</Tabs>
                 <Grid>
-                    <Row>{renderPlugins(query)}</Row>
+                    <Row>
+                        {results.length
+                            ? renderPlugins(results)
+                            : renderEmpty()}
+                    </Row>
                 </Grid>
             </Content>
         </Root>
