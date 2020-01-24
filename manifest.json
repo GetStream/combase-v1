@@ -8,7 +8,6 @@
 		{
 			"name": "Clearbit",
 			"url": "https://clearbit.com",
-			"description": "Turn any email or domain into a full person or company profile.",
 			"keys": [
 				{
 					"apiKey": "foo"
