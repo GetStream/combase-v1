@@ -34,8 +34,8 @@ const IconButton = ({ color, icon: Icon, onClick, size }) => {
   const anim = useSpring({
     value: hovered ? 1 : 0,
     config: {
-      tension: 120,
-      friction: 10
+      tension: 200,
+      friction: 18
     }
   });
 
