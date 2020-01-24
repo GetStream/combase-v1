@@ -70,4 +70,9 @@ export default createGlobalStyle`
     text-decoration: none;
     color: inherit;
   }
+
+  input {
+    border: 0;
+    font-family: "Circular Std", sans-serif;
+  }
 `;
