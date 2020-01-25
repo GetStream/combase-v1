@@ -7,8 +7,8 @@ import cors from 'cors';
 import helmet from 'helmet';
 import compression from 'compression';
 
-import './utils/db';
-import auth from './utils/auth';
+import auth from 'utils/auth';
+import 'utils/db';
 
 const api = express();
 
