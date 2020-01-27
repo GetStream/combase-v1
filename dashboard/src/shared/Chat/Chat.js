@@ -2,6 +2,7 @@ import React from 'react';
 import { GiftedChat } from 'react-web-gifted-chat';
 
 // Components //
+import Actions from './Actions';
 import Composer from './Composer';
 import InputToolbar from './InputToolbar';
 import SendButton from './SendButton';
@@ -13,14 +14,14 @@ const renderInputToolbar = props => {
 };
 
 const renderActions = props => {
-    return <p>actions</p>;
+    return <Actions {...props} />;
 };
 
 const renderComposer = props => <Composer {...props} />;
 
-const renderSend = props => <SendButton />;
+const renderSend = props => <SendButton {...props} />;
 
-const Chat = () => {
+const Chat = ({ theme }) => {
     return (
         <GiftedChat
             messages={[]}

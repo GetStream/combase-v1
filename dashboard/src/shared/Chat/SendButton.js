@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 
 // Components //
@@ -10,6 +10,11 @@ const Button = styled(FAB)`
     top: -50%;
 `;
 
-const SendButton = () => <Button disablePortal icon={SendIcon} size={64} />;
+const SendButton = ({ onSend, text }) => {
+    const onClick = useCallback(() => {
+        onSend({ text: text.trim() }, true);
+    }, [text]);
+    return <Button disablePortal icon={SendIcon} size={64} {...{ onClick }} />;
+};
 
 export default SendButton;

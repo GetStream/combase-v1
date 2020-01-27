@@ -9,6 +9,12 @@ const Input = styled.textarea`
     line-height: 20px;
     outline: none;
     height: ${({ height }) => height}px;
+    color: ${({ theme }) => theme.color.alt_text};
+    font-weight: 500;
+
+    &::-webkit-input-placeholder {
+        color: ${({ theme }) => theme.colorUtils.fade(theme.color.alt_text, .56)};
+    }
 `;
 
 const Composer = ({

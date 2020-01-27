@@ -7,6 +7,9 @@ const Root = styled.div`
     flex-direction: row;
     padding: 16px;
     border-top: 1px solid ${({ theme }) => theme.color.border};
+    @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
+        padding-right: 88px;
+    }
 `;
 
 const InputToolbar = ({
@@ -17,9 +20,9 @@ const InputToolbar = ({
 }) => {
     return (
         <Root>
-            {/* {renderActions()} */}
+            {renderActions(props)}
             {renderComposer(props)}
-            {renderSend(props)}
+            {props.text ? renderSend(props) : null}
         </Root>
     );
 };
