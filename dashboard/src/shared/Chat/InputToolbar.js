@@ -5,7 +5,8 @@ import styled from 'styled-components';
 const Root = styled.div`
     flex: 1;
     flex-direction: row;
-    padding: 16px;
+    align-items: center;
+    padding: 16px 0px;
     border-top: 1px solid ${({ theme }) => theme.color.border};
     @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
         padding-right: 88px;
@@ -22,7 +23,7 @@ const InputToolbar = ({
         <Root>
             {renderActions(props)}
             {renderComposer(props)}
-            {props.text ? renderSend(props) : null}
+            {renderSend(props)}
         </Root>
     );
 };

@@ -22,7 +22,7 @@ const Root = styled.div`
 const Actions = () => {
     return (
         <Root>
-            <IconButton color="alt_text" icon={AttachmentIcon} />
+            <IconButton disabled color="alt_text" icon={AttachmentIcon} />
             <IconButton color="alt_text" icon={AddImageIcon} />
         </Root>
     );

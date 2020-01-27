@@ -6,7 +6,7 @@ import { useSpring, animated } from 'react-spring';
 // Components //
 const Root = styled.div`
     padding: 4px;
-    cursor: pointer;
+    cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
 `;
 
 const HoverBubble = styled(animated.div)`
@@ -16,8 +16,8 @@ const HoverBubble = styled(animated.div)`
     right: 0;
     bottom: 0;
     border-radius: 50%;
-    background-color: ${({ color, theme }) =>
-        theme.colorUtils.fade(theme.color[color], 0.16)};
+    background-color: ${({ color, disabled, theme }) =>
+        theme.colorUtils.fade(theme.color[disabled ? 'disabled' : color], 0.16)};
     transition: 0.24s background-color
         ${({ theme }) => theme.easing.css(theme.easing.standard)};
     transform: scale(0);
@@ -29,7 +29,7 @@ const HoverBubble = styled(animated.div)`
     }
 `;
 
-const IconButton = ({ color, icon: Icon, onClick, size }) => {
+const IconButton = ({ color, disabled, icon: Icon, onClick, size }) => {
     const [hovered, setHovered] = useState(false);
     const anim = useSpring({
         value: hovered ? 1 : 0,
@@ -51,17 +51,18 @@ const IconButton = ({ color, icon: Icon, onClick, size }) => {
 
     return (
         <Root
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-            {...{ onClick }}
+            onMouseEnter={() => !disabled ? setHovered(true) : null}
+            onMouseLeave={() => !disabled ? setHovered(false) : null}
+            {...{ disabled, onClick }}
         >
-            <HoverBubble {...{ color, style }} />
-            <Icon {...{ color, size }} />
+            <HoverBubble color={disabled ? 'disabled' : color} {...{ disabled, style }} />
+            <Icon color={disabled ? 'disabled' : color} {...{ size }} />
         </Root>
     );
 };
 
 IconButton.propTypes = {
+    disabled: PropTypes.bool,
     icon: PropTypes.func,
 };
 

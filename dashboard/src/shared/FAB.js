@@ -16,15 +16,16 @@ const Root = styled(animated.button)`
     border-radius: 50%;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
-    background-color: ${({ color, theme }) => theme.color[color]};
+    cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
+    background-color: ${({ color, disabled, theme }) => theme.color[disabled ? "disabled" : color]};
     box-shadow: 0px 8px 16px
-        ${({ color, theme }) => theme.colorUtils.fade(theme.color[color], 0.56)};
+        ${({ color, disabled, theme }) => theme.colorUtils.fade(theme.color[disabled ? "disabled" : color], 0.56)};
 `;
 
 const FAB = ({
     className,
     color,
+    disabled,
     disablePortal,
     icon: Icon,
     onClick,
@@ -48,11 +49,11 @@ const FAB = ({
     return (
         <Portal onRendered={() => setMounted(true)} disable={disablePortal}>
             <Root
-                {...{ className, color, onClick, size, style }}
-                onMouseEnter={() => setHovered(true)}
-                onMouseLeave={() => setHovered(false)}
-                onMouseDown={() => setActive(true)}
-                onMouseUp={() => setActive(false)}
+                {...{ className, color, disabled, onClick, size, style }}
+                onMouseEnter={() => !disabled ? setHovered(true): null}
+                onMouseLeave={() => !disabled ? setHovered(false): null}
+                onMouseDown={() => !disabled ? setActive(true): null}
+                onMouseUp={() => !disabled ? setActive(false): null}
             >
                 <Icon color="white" size={size / 2} />
             </Root>
@@ -62,6 +63,7 @@ const FAB = ({
 
 FAB.propTypes = {
     color: PropTypes.string,
+    disabled: PropTypes.bool,
     icon: PropTypes.func,
     type: PropTypes.oneOf(['button', 'submit']),
     size: PropTypes.number,

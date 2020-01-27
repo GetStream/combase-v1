@@ -8,6 +8,7 @@ import InputToolbar from './InputToolbar';
 import SendButton from './SendButton';
 
 const user = { _id: 1 };
+const style = { flex: 1 };
 
 const renderInputToolbar = props => {
     return <InputToolbar {...props} />;
@@ -35,8 +36,7 @@ const Chat = ({ theme }) => {
             placeholder="Write something..."
             minComposerHeight={50}
             maxComposerHeight={200}
-            style={{ flex: 1 }}
-            {...{ user }}
+            {...{ user, style }}
         />
     );
 };

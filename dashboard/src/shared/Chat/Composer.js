@@ -5,15 +5,19 @@ import styled from 'styled-components';
 const Input = styled.textarea`
     flex: 1;
     resize: none;
+    margin-right: 16px;
     font-size: 16px;
     line-height: 20px;
     outline: none;
-    height: ${({ height }) => height}px;
     color: ${({ theme }) => theme.color.alt_text};
     font-weight: 500;
 
     &::-webkit-input-placeholder {
         color: ${({ theme }) => theme.colorUtils.fade(theme.color.alt_text, .56)};
+    }
+
+    @media (min-width: ${({ theme }) => theme.breakpoints.sm }px) {
+        margin-right: 0;
     }
 `;
 
