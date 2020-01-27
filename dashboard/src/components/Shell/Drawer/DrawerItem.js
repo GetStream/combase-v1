@@ -42,7 +42,7 @@ const DrawerItem = ({
   activeColor,
   color,
   disabled,
-  icon,
+  icon: Icon,
   label,
   onClick,
   to,
@@ -63,7 +63,7 @@ const DrawerItem = ({
         activeColor={disabled ? "disabled" : activeColor}
         {...rest}
       >
-        {icon && createElement(icon, { color: colorValue })}
+        {Icon ? <Icon color={colorValue} /> : null}
         <Label size={16} weight="500" color={colorValue}>
           {label}
         </Label>
