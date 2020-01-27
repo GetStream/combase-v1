@@ -17,6 +17,7 @@ export { default as InfoIcon } from './icons/info';
 export { default as KnowledgeBaseIcon } from './icons/knowledge_base';
 export { default as LinkIcon } from './icons/link';
 export { default as MailIcon } from './icons/mail';
+export { default as MenuIcon } from './icons/menu';
 export { default as OrganizationSettingsIcon } from './icons/organization_settings';
 export { default as PasswordIcon } from './icons/password';
 export { default as PluginsIcon } from './icons/plugins';

@@ -29,7 +29,7 @@ const HoverBubble = styled(animated.div)`
     }
 `;
 
-const IconButton = ({ color, disabled, icon: Icon, onClick, size }) => {
+const IconButton = ({ className, color, disabled, icon: Icon, onClick, size }) => {
     const [hovered, setHovered] = useState(false);
 
     const anim = useSpring({
@@ -55,7 +55,7 @@ const IconButton = ({ color, disabled, icon: Icon, onClick, size }) => {
             onClick={!disabled ? onClick : null}
             onMouseEnter={() => !disabled ? setHovered(true) : null}
             onMouseLeave={() => !disabled ? setHovered(false) : null}
-            {...{ disabled }}
+            {...{ className, disabled }}
         >
             <HoverBubble color={disabled ? 'disabled' : color} {...{ disabled, style }} />
             <Icon color={disabled ? 'disabled' : color} {...{ size }} />
@@ -64,6 +64,7 @@ const IconButton = ({ color, disabled, icon: Icon, onClick, size }) => {
 };
 
 IconButton.propTypes = {
+    color: PropTypes.string,
     disabled: PropTypes.bool,
     icon: PropTypes.func,
     type: PropTypes.oneOf([
@@ -73,6 +74,7 @@ IconButton.propTypes = {
 };
 
 IconButton.defaultProps = {
+    color: "text",
     type: 'button',
 };
 

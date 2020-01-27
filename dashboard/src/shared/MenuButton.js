@@ -4,11 +4,11 @@ import styled from "styled-components";
 // Contexts //
 import ShellContext from "contexts/Shell";
 
-const Root = styled.div`
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background-color: ${({ theme }) => theme.color.light_gray};
+// Components //
+import { MenuIcon } from 'shared/Icons';
+import IconButton from 'shared/IconButton';
+
+const Root = styled(IconButton)`
   margin-right: 16px;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
@@ -18,7 +18,7 @@ const Root = styled.div`
 
 const MenuButton = props => {
   const { drawer } = useContext(ShellContext);
-  return <Root {...props} onClick={drawer.toggle} />;
+  return <Root {...props} onClick={drawer.toggle} icon={MenuIcon} color="text" size={24} />;
 };
 
 export default MenuButton;
