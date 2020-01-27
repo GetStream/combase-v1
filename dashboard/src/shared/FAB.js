@@ -7,7 +7,7 @@ import { animated, useSpring } from 'react-spring';
 import Portal from 'shared/Portal';
 import { AddIcon } from 'shared/Icons';
 
-const Root = styled(animated.div)`
+const Root = styled(animated.button)`
     position: absolute;
     bottom: 32px;
     right: 32px;
@@ -18,10 +18,18 @@ const Root = styled(animated.div)`
     align-items: center;
     cursor: pointer;
     background-color: ${({ color, theme }) => theme.color[color]};
-    box-shadow: 0px 8px 16px ${({ color, theme }) => theme.colorUtils.fade(theme.color[color], .56)};
+    box-shadow: 0px 8px 16px
+        ${({ color, theme }) => theme.colorUtils.fade(theme.color[color], 0.56)};
 `;
 
-const FAB = ({ color, disablePortal, icon: Icon, onClick, size }) => {
+const FAB = ({
+    className,
+    color,
+    disablePortal,
+    icon: Icon,
+    onClick,
+    size,
+}) => {
     const [hovered, setHovered] = useState(false);
     const [mounted, setMounted] = useState(false);
     const [active, setActive] = useState(false);
@@ -34,30 +42,36 @@ const FAB = ({ color, disablePortal, icon: Icon, onClick, size }) => {
     });
 
     const style = {
-        transform: anim.value
-            .interpolate(value => `scale(${value})`),
+        transform: anim.value.interpolate(value => `scale(${value})`),
     };
 
     return (
         <Portal onRendered={() => setMounted(true)} disable={disablePortal}>
-            <Root {...{ color, onClick, size, style }} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} onMouseDown={() => setActive(true)} onMouseUp={() => setActive(false)}>
+            <Root
+                {...{ className, color, onClick, size, style }}
+                onMouseEnter={() => setHovered(true)}
+                onMouseLeave={() => setHovered(false)}
+                onMouseDown={() => setActive(true)}
+                onMouseUp={() => setActive(false)}
+            >
                 <Icon color="white" size={size / 2} />
             </Root>
         </Portal>
-    );  
-}
+    );
+};
 
 FAB.propTypes = {
     color: PropTypes.string,
     icon: PropTypes.func,
+    type: PropTypes.oneOf(['button', 'submit']),
     size: PropTypes.number,
 };
 
 FAB.defaultProps = {
-    color: "primary",
+    color: 'primary',
     icon: AddIcon,
+    type: 'button',
     size: 56,
 };
-
 
 export default FAB;

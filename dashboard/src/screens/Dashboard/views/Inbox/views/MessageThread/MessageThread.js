@@ -5,28 +5,44 @@ import styled from "styled-components";
 import pageCard from "styles/css/pageCard";
 
 // Components //
+import Container from 'shared/Container';
 import { ChatIcon } from 'shared/Icons';
+import Chat from 'shared/Chat';
 import EmptyState from "shared/EmptyState";
 
 const Root = styled.div`
   flex: 1;
   z-index: 2;
   background-color: ${({ theme }) => theme.color.surface};
-  justify-content: center;
-  align-items: center;
+
+  & > ${Container} {
+    flex: 1;
+  }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
     ${pageCard}
   }
 `;
 
+const EmptyRoot = styled(Root)`
+  justify-content: center;
+  align-items: center;
+`;
+
 export default ({ match }) => {
   if (!match) {
     return (
-      <Root>
+      <EmptyRoot>
         <EmptyState icon={ChatIcon} text="Select a thread." />
-      </Root>
+      </EmptyRoot>
     );
   }
-  return <Root>Conversation</Root>;
+
+  return (
+    <Root>
+      <Container maxWidth={840}>
+        <Chat />
+      </Container>
+    </Root>
+  );
 };
