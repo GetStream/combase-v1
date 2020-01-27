@@ -3,16 +3,22 @@ import { GiftedChat } from 'react-web-gifted-chat';
 
 // Components //
 import Actions from './Actions';
+import Bubble from './Bubble';
 import Composer from './Composer';
+import Day from './Day';
 import InputToolbar from './InputToolbar';
+import Message from './Message';
 import SendButton from './SendButton';
 
 const user = { _id: 1 };
 const style = { flex: 1 };
 
-const renderInputToolbar = props => <InputToolbar {...props} />;
 const renderActions = props => <Actions {...props} />;
+const renderBubble = props => <Bubble {...props} />;
 const renderComposer = props => <Composer {...props} />;
+const renderDay = props => <Day {...props} />
+const renderInputToolbar = props => <InputToolbar {...props} />;
+const renderMessage = props => <Message {...props} />;
 const renderSend = props => <SendButton {...props} />;
 
 const Chat = ({ theme }) => {
@@ -25,8 +31,11 @@ const Chat = ({ theme }) => {
             {...{
                 messages,
                 renderActions,
+                renderBubble,
                 renderComposer,
+                renderDay,
                 renderInputToolbar,
+                renderMessage,
                 renderSend,
             }}
             placeholder="Write something..."
