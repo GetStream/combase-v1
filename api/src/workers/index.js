@@ -58,12 +58,12 @@ async function start() {
 start();
 
 async function shutdown(signal) {
-	logger.info(`Worker Received ${signal}. Shutting down.`);
+	console.info(`Worker Received ${signal}. Shutting down.`);
 
 	Promise.all(queueArray.map(queue => queue.close()))
 		.then(() => process.exit(0))
 		.catch(err => {
-			logger.error(`Failure during worker shutdown: ${err.message}`);
+			console.error(`Failure during worker shutdown: ${err.message}`);
 			process.exit(1);
 		});
 }
