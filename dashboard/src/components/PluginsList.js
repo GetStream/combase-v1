@@ -18,7 +18,10 @@ const Root = styled(PageSheet)`
 `;
 
 const Content = styled.div`
-    padding: 0px 40px 40px 40px;
+    padding: 0px 24px 24px 24px;
+    @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
+        padding: 0px 40px 40px 40px;
+    }
 `;
 
 const Grid = styled.div`
@@ -32,8 +35,18 @@ const Row = styled.div`
 `;
 
 const Cell = styled.div`
-    flex: 0 1 25%;
-    padding: 8px;
+    flex: 1 1 100%;
+    
+    @media (max-width: ${({ theme }) => theme.breakpoints.sm - 1}px) {
+        & + & {
+            margin-top: 16px;
+        }
+    }
+
+    @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
+        flex: 0 1 25%;
+        padding: 8px;
+    }
 `;
 
 const EmptyWrapper = styled.div`
