@@ -14,16 +14,17 @@ const Root = styled.div`
 
 const Bubble = styled.div`
     border-top-left-radius: ${({ hasPrev, pos, theme }) =>
-        hasPrev && pos === 'left' ? theme.borderRadius / 2 : theme.borderRadius}px;
+        hasPrev && pos === 'left' ? theme.borderRadius : theme.borderRadius * 2}px;
     border-top-right-radius: ${({ hasPrev, pos, theme }) =>
-        hasPrev && pos !== 'left' ? theme.borderRadius / 2 : theme.borderRadius}px;
+        hasPrev && pos !== 'left' ? theme.borderRadius : theme.borderRadius * 2}px;
     border-bottom-left-radius: ${({ hasNext, pos, theme }) =>
-        hasNext && pos === 'left' ? theme.borderRadius / 2 : theme.borderRadius}px;
+        hasNext && pos === 'left' ? theme.borderRadius : theme.borderRadius * 2}px;
     border-bottom-right-radius: ${({ hasNext, pos, theme }) =>
-        hasNext && pos !== 'left' ? theme.borderRadius / 2 : theme.borderRadius}px;
-    padding: 12px;
+        hasNext && pos !== 'left' ? theme.borderRadius : theme.borderRadius * 2}px;
+    padding: 20px;
     background-color: ${({ pos, theme }) =>
-        pos === 'left' ? theme.colorUtils.fade(theme.color.text, 0.04) : theme.color.primary};
+        pos === 'left' ? theme.color.primary : theme.color.surface};
+    border: 1px solid ${({ pos, theme }) => pos === 'left' ? theme.color.primary : theme.color.border};
     margin-right: ${({ isMobile, pos, theme }) => (pos === 'left' ? isMobile ? 64 : 160 : 0)}px;
     margin-left: ${({ hasAvatar, isMobile, pos, theme }) =>
         pos === 'left' ? (hasAvatar ? 0 : 40) : isMobile ? 64 : 160}px;
@@ -31,7 +32,7 @@ const Bubble = styled.div`
 
 const renderText = (currentMessage, position) => {
     if (currentMessage && currentMessage.text) {
-        const color = position === 'left' ? 'text' : 'surface';
+        const color = position === 'left' ? 'surface' : 'alt_text';
         return (
             <Text weight='400' size={14} lineHeight={20} color={color}>
                 {currentMessage.text}
