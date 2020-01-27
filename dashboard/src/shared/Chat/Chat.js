@@ -24,6 +24,7 @@ const renderSend = props => <SendButton {...props} />;
 const renderSystemMessage = props => <SystemMessage {...props} />;
 
 const Chat = ({ theme }) => {
+    const [actionsOpen, setActionsOpen] = useState(false);
     const [actionsWidth, setActionsWidth] = useState(0);
     const [messages, setMessages] = useState([
         { system: true, text: 'Start of your conversation with Luke S.' },
@@ -37,6 +38,7 @@ const Chat = ({ theme }) => {
     return (
         <GiftedChat
             {...{
+                actionsOpen,
                 messages,
                 renderActions,
                 renderBubble,
@@ -46,9 +48,10 @@ const Chat = ({ theme }) => {
                 renderMessage,
                 renderSend,
                 renderSystemMessage,
+                setActionsOpen,
                 setActionsWidth,
             }}
-            actionsWidth={actionsWidth + 24} // 24px margin on actions
+            actionsWidth={actionsWidth}
             placeholder="Write something..."
             minComposerHeight={50}
             maxComposerHeight={200}

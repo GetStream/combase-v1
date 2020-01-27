@@ -28,6 +28,7 @@ const Input = styled.textarea`
 `;
 
 const Composer = ({
+    actionsOpen,
     actionsWidth,
     keyboardAppearance,
     multiline,
@@ -36,6 +37,7 @@ const Composer = ({
     onSend,
     placeholder,
     placeholderTextColor,
+    setActionsOpen,
     textInputProps,
     text,
 }) => {
@@ -53,12 +55,15 @@ const Composer = ({
     );
 
     const handleChange = useCallback(
-        ({ target: { value } }) => onTextChanged(value),
+        ({ target: { value } }) => {
+            setActionsOpen(false);
+            onTextChanged(value);
+        },
         [onTextChanged]
     );
 
     const anim = useSpring({
-        value: !text ? 1 : 0,
+        value: !text || actionsOpen ? 1 : 0,
         config: {
             tension: 140,
             friction: 16,
@@ -69,7 +74,7 @@ const Composer = ({
         paddingLeft: anim.value
             .interpolate({
                 range: [0, 1],
-                output: [0, actionsWidth],
+                output: [actionsWidth / 2, actionsWidth + 24], // 24px margin on actions
             })
             .interpolate(value => `${value}px`),
     };
@@ -86,9 +91,9 @@ const Composer = ({
                 {...{
                     keyboardAppearance,
                     multiline,
-                    onKeyDown,
                     placeholder,
                     placeholderTextColor,
+                    onKeyDown,
                 }}
                 value={text}
                 {...textInputProps}
