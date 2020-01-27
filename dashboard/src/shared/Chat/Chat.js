@@ -17,17 +17,23 @@ const style = { flex: 1 };
 const renderActions = props => <Actions {...props} />;
 const renderBubble = props => <Bubble {...props} />;
 const renderComposer = props => <Composer {...props} />;
-const renderDay = props => <Day {...props} />
+const renderDay = props => <Day {...props} />;
 const renderInputToolbar = props => <InputToolbar {...props} />;
 const renderMessage = props => <Message {...props} />;
 const renderSend = props => <SendButton {...props} />;
 const renderSystemMessage = props => <SystemMessage {...props} />;
 
 const Chat = ({ theme }) => {
-    const [messages, setMessages] = useState([{ system: true, text: 'Start of your conversation with Luke S.'}]);
-    const handleSend = useCallback((newMessages) => {
-        setMessages(GiftedChat.append(messages, newMessages))
-    }, [messages]);
+    const [actionsWidth, setActionsWidth] = useState(0);
+    const [messages, setMessages] = useState([
+        { system: true, text: 'Start of your conversation with Luke S.' },
+    ]);
+    const handleSend = useCallback(
+        newMessages => {
+            setMessages(GiftedChat.append(messages, newMessages));
+        },
+        [messages]
+    );
     return (
         <GiftedChat
             {...{
@@ -40,7 +46,9 @@ const Chat = ({ theme }) => {
                 renderMessage,
                 renderSend,
                 renderSystemMessage,
+                setActionsWidth,
             }}
+            actionsWidth={actionsWidth + 24} // 24px margin on actions
             placeholder="Write something..."
             minComposerHeight={50}
             maxComposerHeight={200}

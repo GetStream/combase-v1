@@ -1,7 +1,12 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
+import { animated, useSpring } from 'react-spring';
 
 // Compmonents //
+const Root = styled(animated.div)`
+    flex: 1;
+`;
+
 const Input = styled.textarea`
     flex: 1;
     resize: none;
@@ -13,15 +18,17 @@ const Input = styled.textarea`
     font-weight: 500;
 
     &::-webkit-input-placeholder {
-        color: ${({ theme }) => theme.colorUtils.fade(theme.color.alt_text, .56)};
+        color: ${({ theme }) =>
+            theme.colorUtils.fade(theme.color.alt_text, 0.56)};
     }
 
-    @media (min-width: ${({ theme }) => theme.breakpoints.sm }px) {
+    @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
         margin-right: 0;
     }
 `;
 
 const Composer = ({
+    actionsWidth,
     keyboardAppearance,
     multiline,
     onInputSizeChanged,
@@ -47,27 +54,46 @@ const Composer = ({
 
     const handleChange = useCallback(
         ({ target: { value } }) => onTextChanged(value),
-        [text]
+        [onTextChanged]
     );
 
+    const anim = useSpring({
+        value: !text ? 1 : 0,
+        config: {
+            tension: 140,
+            friction: 16,
+        },
+    });
+
+    const style = {
+        paddingLeft: anim.value
+            .interpolate({
+                range: [0, 1],
+                output: [0, actionsWidth],
+            })
+            .interpolate(value => `${value}px`),
+    };
+
     return (
-        <Input
-            accessible
-            accessibilityLabel={placeholder}
-            enablesReturnKeyAutomatically
-            onChange={handleChange}
-            testID={placeholder}
-            underlineTextColorAndroid="transparent"
-            {...{
-                keyboardAppearance,
-                multiline,
-                onKeyDown,
-                placeholder,
-                placeholderTextColor,
-            }}
-            value={text}
-            {...textInputProps}
-        />
+        <Root {...{ style }}>
+            <Input
+                accessible
+                accessibilityLabel={placeholder}
+                enablesReturnKeyAutomatically
+                onChange={handleChange}
+                testID={placeholder}
+                underlineTextColorAndroid="transparent"
+                {...{
+                    keyboardAppearance,
+                    multiline,
+                    onKeyDown,
+                    placeholder,
+                    placeholderTextColor,
+                }}
+                value={text}
+                {...textInputProps}
+            />
+        </Root>
     );
 };
 
