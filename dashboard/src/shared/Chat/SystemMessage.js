@@ -10,6 +10,7 @@ const Root = styled(View)`
   justify-content: center;
   align-items: center;
   text-align: center;
+  user-select: none;
 `;
 
 const Bubble = styled(View)`
