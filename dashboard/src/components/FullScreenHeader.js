@@ -15,6 +15,10 @@ const Root = styled.div`
     & > ${Container} {
         padding-top: 8px;
         padding-bottom: 152px;
+
+        @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
+            padding-top: 72px;
+        }
     }
 `;
 
@@ -45,10 +49,7 @@ const Header = styled.div`
     height: 64px;
     flex-direction: row;
     align-items: center;
-    padding: 0px 16px;
-    @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
-        padding: 0px 24px;
-    }
+    padding: 0px 24px;
 `;
 
 const FullScreenHeader = ({ icon: Icon, text, title }) => {
