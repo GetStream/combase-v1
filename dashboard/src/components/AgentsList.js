@@ -8,6 +8,7 @@ import usePageSheet from 'hooks/usePageSheet';
 import { AgentsIcon } from 'shared/Icons';
 import AgentItem from 'components/AgentItem';
 import EmptyState from 'shared/EmptyState';
+import FAB from 'shared/FAB';
 import PageSheet from 'components/PageSheet';
 
 const Root = styled(PageSheet)`
@@ -46,6 +47,7 @@ const AgentsList = ({ agents, className, tabs }) => {
             <Content>
                 {results.length ? renderAgents(results) : renderEmpty()}
             </Content>
+            <FAB />
         </Root>
     );
 };
