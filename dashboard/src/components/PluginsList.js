@@ -76,8 +76,7 @@ const PluginsList = ({ className }) => {
     );
 
     return (
-        <Root {...{ className }} onQueryChange={setQuery}>
-            <Tabs {...{ tabs }} active={activeTab} onTabClick={setActiveTab} />
+        <Root {...{ activeTab, className, setActiveTab, tabs }} onQueryChange={setQuery}>
             <Content>
                 <Grid>
                     <Row>

@@ -1,5 +1,6 @@
 export { default } from "./Icon";
 
+export { default as AddIcon } from './icons/add';
 export { default as AgentsIcon } from "./icons/agents";
 export { default as AnalyticsIcon } from "./icons/analytics";
 export { default as AppSettingsIcon } from "./icons/app_settings";
