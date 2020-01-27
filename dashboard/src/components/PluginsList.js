@@ -10,7 +10,6 @@ import plugins from 'data/plugins';
 // Components //
 import EmptyState from 'shared/EmptyState';
 import { PluginsIcon } from 'shared/Icons';
-import Tabs from 'components/Tabs';
 import PageSheet from 'components/PageSheet';
 import PluginCard from 'components/PluginCard';
 
