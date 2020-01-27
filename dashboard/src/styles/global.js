@@ -48,6 +48,11 @@ export default createGlobalStyle`
     outline: 0;
     margin: 0;
     padding: 0;
+    background: none;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
   }
   
   h1, h2, h3,

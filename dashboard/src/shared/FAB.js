@@ -49,7 +49,8 @@ const FAB = ({
     return (
         <Portal onRendered={() => setMounted(true)} disable={disablePortal}>
             <Root
-                {...{ className, color, disabled, onClick, size, style }}
+                {...{ className, color, disabled, size, style }}
+                onClick={!disabled ? onClick : null}
                 onMouseEnter={() => !disabled ? setHovered(true): null}
                 onMouseLeave={() => !disabled ? setHovered(false): null}
                 onMouseDown={() => !disabled ? setActive(true): null}

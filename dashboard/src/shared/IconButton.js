@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useSpring, animated } from 'react-spring';
 
 // Components //
-const Root = styled.div`
+const Root = styled.button`
     padding: 4px;
     cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
 `;
@@ -31,6 +31,7 @@ const HoverBubble = styled(animated.div)`
 
 const IconButton = ({ color, disabled, icon: Icon, onClick, size }) => {
     const [hovered, setHovered] = useState(false);
+
     const anim = useSpring({
         value: hovered ? 1 : 0,
         config: {
@@ -51,9 +52,10 @@ const IconButton = ({ color, disabled, icon: Icon, onClick, size }) => {
 
     return (
         <Root
+            onClick={!disabled ? onClick : null}
             onMouseEnter={() => !disabled ? setHovered(true) : null}
             onMouseLeave={() => !disabled ? setHovered(false) : null}
-            {...{ disabled, onClick }}
+            {...{ disabled }}
         >
             <HoverBubble color={disabled ? 'disabled' : color} {...{ disabled, style }} />
             <Icon color={disabled ? 'disabled' : color} {...{ size }} />
@@ -64,6 +66,14 @@ const IconButton = ({ color, disabled, icon: Icon, onClick, size }) => {
 IconButton.propTypes = {
     disabled: PropTypes.bool,
     icon: PropTypes.func,
+    type: PropTypes.oneOf([
+        'button',
+        'submit',
+    ]),
+};
+
+IconButton.defaultProps = {
+    type: 'button',
 };
 
 export default memo(IconButton);

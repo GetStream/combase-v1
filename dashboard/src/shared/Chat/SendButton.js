@@ -22,7 +22,7 @@ const SendButton = ({ onSend, text }) => {
     }, [text]);
 
     if (isMobile) {
-        return <IconButton icon={SendIcon} color={text ? "primary" : "disabled"} />
+        return <IconButton {...{ onClick }} disabled={!text} icon={SendIcon} color="primary" />
     }
     return text ? <Button disablePortal icon={SendIcon} size={64} unmount={!text} {...{ onClick }} /> : null;
 };
