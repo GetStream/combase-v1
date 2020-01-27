@@ -46,7 +46,7 @@ const Actions = ({
             friction: 16,
         },
         onStart: () => {
-            if (actionsOpen || !props.text) {
+            if (actionsOpen || (!props.text && !mount)) {
                 setMount(true);
             }
         },
