@@ -139,7 +139,7 @@ class Message extends Component {
         if (isSystemMessage) {
             return renderSystemMessage(this.props);
         }
-
+        
         return (
             <Container>
                 {this.renderDay()}

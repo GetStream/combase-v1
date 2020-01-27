@@ -9,6 +9,7 @@ import Day from './Day';
 import InputToolbar from './InputToolbar';
 import Message from './Message';
 import SendButton from './SendButton';
+import SystemMessage from './SystemMessage';
 
 const user = { _id: 1 };
 const style = { flex: 1 };
@@ -20,9 +21,10 @@ const renderDay = props => <Day {...props} />
 const renderInputToolbar = props => <InputToolbar {...props} />;
 const renderMessage = props => <Message {...props} />;
 const renderSend = props => <SendButton {...props} />;
+const renderSystemMessage = props => <SystemMessage {...props} />;
 
 const Chat = ({ theme }) => {
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState([{ system: true, text: 'Start of your conversation with Luke S.'}]);
     const handleSend = useCallback((newMessages) => {
         setMessages(GiftedChat.append(messages, newMessages))
     }, [messages]);
@@ -37,6 +39,7 @@ const Chat = ({ theme }) => {
                 renderInputToolbar,
                 renderMessage,
                 renderSend,
+                renderSystemMessage,
             }}
             placeholder="Write something..."
             minComposerHeight={50}
