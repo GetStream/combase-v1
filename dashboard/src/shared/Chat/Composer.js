@@ -30,24 +30,24 @@ const Composer = ({
     placeholder,
     placeholderTextColor,
     textInputProps,
-    text: value,
+    text,
 }) => {
     const onKeyDown = useCallback(
         e => {
             if (e.keyCode === 13 && !e.shiftKey) {
-                if (!value) {
+                if (!text) {
                     return e.preventDefault();
                 }
-                onSend({ text: value.trim() }, true);
+                onSend({ text: text.trim() }, true);
             }
             return false;
         },
-        [value, onSend]
+        [text, onSend]
     );
 
     const handleChange = useCallback(
         ({ target: { value } }) => onTextChanged(value),
-        [value]
+        [text]
     );
 
     return (
@@ -64,8 +64,8 @@ const Composer = ({
                 onKeyDown,
                 placeholder,
                 placeholderTextColor,
-                value,
             }}
+            value={text}
             {...textInputProps}
         />
     );
