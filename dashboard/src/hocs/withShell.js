@@ -1,4 +1,5 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { StreamChat } from 'stream-chat';
 import styled from 'styled-components';
 
 // Hooks //
@@ -7,6 +8,7 @@ import useConfig from 'hooks/useConfig';
 
 // Context //
 import ShellContext from 'contexts/Shell';
+import ChatContext from 'contexts/Chat';
 
 // Components //
 import Helmet from 'components/Shell/Helmet';
@@ -22,7 +24,16 @@ const Root = styled.div`
 export default (WrappedComponent, routes = []) => props => {
     const [config, { loading, error }] = useConfig();
     const [drawerOpen, toggleDrawer] = useState(false);
+    const [chatClient, setChatClient] = useState(null);
     const isMobile = useMedia('sm');
+
+    useEffect(() => {
+        if (config.stream && !chatClient) {
+            const client = new StreamChat(config.stream.key);
+            setChatClient(client);
+        }        
+    }, [config.stream]);
+
     const value = useMemo(
         () => ({
             config,
@@ -33,14 +44,15 @@ export default (WrappedComponent, routes = []) => props => {
         }),
         [config, drawerOpen, toggleDrawer]
     );
-
-    if (loading) {
+    
+    if (loading || !chatClient) {
         return <LoadingState />;
     }
 
     return (
         <ShellContext.Provider {...{ value }}>
-            <Root>
+            <ChatContext.Provider value={chatClient}>
+                <Root>
                 {isMobile ? (
                     <Drawer
                         {...props}
@@ -54,6 +66,7 @@ export default (WrappedComponent, routes = []) => props => {
                 <WrappedComponent {...props} />
                 <Helmet />
             </Root>
+            </ChatContext.Provider>
         </ShellContext.Provider>
     );
 };

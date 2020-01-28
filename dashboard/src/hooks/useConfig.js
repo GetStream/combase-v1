@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import request from 'utils/request';
 
 export default () => {
-    const [config, setConfig] = useState(null);
+    const [config, setConfig] = useState({});
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -10,7 +10,6 @@ export default () => {
         try {
             setLoading(true);
             const data = await request('v1/configs');
-            console.log(data);
             setConfig(data);
             setLoading(false);
         } catch (error) {
@@ -22,7 +21,7 @@ export default () => {
     useEffect(() => {
         const config = getConfig();
         setConfig(config);
-    }, []);
+    }, [getConfig]);
 
     return [config, { loading, error }];
 };

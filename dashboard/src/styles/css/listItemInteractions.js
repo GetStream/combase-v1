@@ -7,18 +7,18 @@ import { css } from "styled-components";
  */
 
 export default css`
-  background-color: ${({ active, activeColor = "primary", theme }) =>
+  background-color: ${({ active, activeColor = "text", theme }) =>
     theme.colorUtils.fade(theme.color[activeColor], active ? 0.04 : 0)};
   transition: 0.24s background-color
     ${({ theme }) => theme.easing.css(theme.easing.standard)};
 
   &:hover {
-    background-color: ${({ activeColor = "primary", theme }) =>
+    background-color: ${({ activeColor = "text", theme }) =>
       theme.colorUtils.fade(theme.color[activeColor], 0.04)};
   }
 
   &:active {
-    background-color: ${({ activeColor = "primary", theme }) =>
+    background-color: ${({ activeColor = "text", theme }) =>
       theme.colorUtils.fade(theme.color[activeColor], 0.08)};
   }
 `;
