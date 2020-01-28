@@ -15,7 +15,7 @@ const Root = styled.div`
 export default ({ currentMessage }) => (
     <Root>
         <Text faded size={12}>
-            {moment(currentMessage.createdAt).calendar()}
+            {moment(currentMessage.created_at).calendar()}
         </Text>
     </Root>
 );

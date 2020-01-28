@@ -38,7 +38,7 @@ const Bubble = styled.div`
     margin-right: ${({ isMobile, pos, theme }) =>
         pos === 'left' ? (isMobile ? 64 : 160) : 0}px;
     margin-left: ${({ hasAvatar, isMobile, pos, theme }) =>
-        pos === 'left' ? (hasAvatar ? 0 : 40) : isMobile ? 64 : 160}px;
+        pos === 'left' ? (hasAvatar ? 0 : 48) : isMobile ? 64 : 160}px;
 `;
 
 const renderText = (currentMessage, position) => {

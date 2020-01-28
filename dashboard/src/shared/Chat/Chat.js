@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { GiftedChat } from 'react-web-gifted-chat';
+import uuid from 'uuid/v4';
 
 // Components //
 import Actions from './Actions';
@@ -11,7 +12,8 @@ import Message from './Message';
 import SendButton from './SendButton';
 import SystemMessage from './SystemMessage';
 
-const user = { _id: 1 };
+const user = { id: 1, name: 'Luke' };
+const otherUser = { id: 2, name: "Nick" };
 const style = { flex: 1 };
 
 const renderActions = props => <Actions {...props} />;
@@ -26,15 +28,25 @@ const renderSystemMessage = props => <SystemMessage {...props} />;
 const Chat = ({ theme }) => {
     const [actionsOpen, setActionsOpen] = useState(false);
     const [actionsWidth, setActionsWidth] = useState(0);
+
     const [messages, setMessages] = useState([
-        { system: true, text: 'Start of your conversation with Luke S.' },
+        { id: 0, system: true, text: 'Start of your conversation with Luke S.' },
     ]);
+
     const handleSend = useCallback(
         newMessages => {
+            newMessages = newMessages.map(({ text }) => ({
+                id: uuid(),
+                text,
+                created_at: new Date().toISOString(),
+                user: otherUser,
+            }));
+
             setMessages(GiftedChat.append(messages, newMessages));
         },
         [messages]
     );
+
     return (
         <GiftedChat
             {...{

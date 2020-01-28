@@ -10,7 +10,7 @@ import Bubble from './Bubble';
 import Day from './Day';
 
 const Container = styled(View)`
-    max-width: 608px;
+    max-width: 640px;
     width: 100%;
     align-self: center;
 `;
@@ -52,7 +52,7 @@ class Message extends Component {
             next.sent !== current.sent ||
             next.received !== current.received ||
             next.pending !== current.pending ||
-            next.createdAt !== current.createdAt ||
+            next.created_at !== current.created_at ||
             next.text !== current.text ||
             next.image !== current.image ||
             next.video !== current.video ||
@@ -68,11 +68,11 @@ class Message extends Component {
         return (
             currentMessage &&
             nextMessage &&
-            nextMessage._id &&
+            nextMessage.id &&
             position &&
             isSameUser(currentMessage, nextMessage) &&
-            !moment(currentMessage.createdAt).isBefore(
-                moment(nextMessage.createdAt).subtract(20, 'minutes')
+            !moment(currentMessage.created_at).isBefore(
+                moment(nextMessage.created_at).subtract(5, 'seconds')
             )
         );
     }
@@ -82,26 +82,26 @@ class Message extends Component {
         return (
             currentMessage &&
             previousMessage &&
-            previousMessage._id &&
+            previousMessage.id &&
             position &&
             isSameUser(currentMessage, previousMessage) &&
-            !moment(currentMessage.createdAt).isAfter(
-                moment(previousMessage.createdAt).add(20, 'minutes')
+            !moment(currentMessage.created_at).isAfter(
+                moment(previousMessage.created_at).add(5, 'seconds')
             )
         );
     }
 
     isSameSection = (currentMessage, previousMessage) => {
-        if (!previousMessage.createdAt) {
+        if (!previousMessage.created_at) {
             return true;
         }
         return (
             (isSameUser(currentMessage, previousMessage) &&
-                !moment(currentMessage.createdAt).isAfter(
-                    moment(previousMessage.createdAt).add(20, 'minutes')
+                !moment(currentMessage.created_at).isAfter(
+                    moment(previousMessage.created_at).add(5, 'seconds')
                 )) ||
-            !moment(currentMessage.createdAt).isAfter(
-                moment(previousMessage.createdAt).add(20, 'minutes')
+            !moment(currentMessage.created_at).isAfter(
+                moment(previousMessage.created_at).add(5, 'seconds')
             )
         );
     };
@@ -114,13 +114,14 @@ class Message extends Component {
             user,
             previousMessage,
         } = this.props;
-        const isOwn = currentMessage.user._id === user._id;
+        const isOwn = currentMessage.user.id === user.id;
 
         if (isOwn && !showUserAvatar) {
             return null;
         }
 
         if (
+            !this.hasNext ||
             this.isSameSection(currentMessage, previousMessage) &&
             !this.hasNext
         ) {
@@ -140,15 +141,14 @@ class Message extends Component {
     };
 
     renderDay = props => {
-        const { currentMessage, previousMessage } = this.props;
+        const { currentMessage, previousMessage, renderDay } = this.props;
 
         if (
             currentMessage &&
-            currentMessage.createdAt &&
+            currentMessage.created_at &&
             !this.isSameSection(currentMessage, previousMessage)
         ) {
-            const date = currentMessage.createdAt;
-            return <Day {...{ date }} />;
+            return renderDay(this.props);
         }
         return null;
     };
