@@ -28,16 +28,12 @@ const Input = styled.textarea`
 `;
 
 const Composer = ({
-    actionsOpen,
-    actionsWidth,
     onTextChanged,
     onSend,
     placeholder,
-    setActionsOpen,
     textInputProps,
     text,
 }) => {
-    console.log(placeholder);
     const onKeyDown = useCallback(
         e => {
             if (e.keyCode === 13 && !e.shiftKey) {
@@ -53,38 +49,15 @@ const Composer = ({
 
     const handleChange = useCallback(
         ({ target: { value } }) => {
-            setActionsOpen(false);
             onTextChanged(value);
         },
-        [onTextChanged, setActionsOpen]
+        [onTextChanged]
     );
 
-    const anim = useSpring({
-        value: !text || actionsOpen ? 1 : 0,
-        config: {
-            tension: 200,
-            friction: 19,
-        },
-    });
-
-    const style = {
-        paddingLeft: anim.value
-            .interpolate({
-                range: [0, 1],
-                output: [actionsWidth / 2, actionsWidth + 32], // 24px margin on actions
-            })
-            .interpolate(value => `${value}px`),
-    };
-
     return (
-        <Root {...{ style }}>
+        <Root>
             <Input
-                accessible
-                accessibilityLabel={placeholder}
-                enablesReturnKeyAutomatically
                 onChange={handleChange}
-                testID={placeholder}
-                underlineTextColorAndroid="transparent"
                 {...{
                     placeholder,
                     onKeyDown,

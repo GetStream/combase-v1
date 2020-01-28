@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 // Components //
 import InputToolbar from './InputToolbar';
+import uuid from 'uuid';
 
 const Root = styled.div`
     flex: 1;
@@ -17,11 +18,42 @@ class Chat extends Component {
     static propTypes = {
         placeholder: PropTypes.string,
         textInputProps: PropTypes.object,
+        user: PropTypes.object,
+    };
+
+    static defaultProps = {
+        placeholder: 'Write something...',
     };
 
     state = {
-        placeholder: 'Write something...',
         text: '',
+    };
+
+    onInputTextChanged = text =>
+        this.setState({
+            text,
+        });
+
+    onSend = (messages = [], shouldResetInputToolbar = false) => {
+        const { onSend, user } = this.props;
+        if (!Array.isArray(messages)) {
+            messages = [messages];
+        }
+        const newMessages = messages.map(message => {
+            return {
+                ...message,
+                user,
+                created_at: new Date(),
+            };
+        });
+
+        if (shouldResetInputToolbar === true) {
+            this.resetInputToolbar();
+        }
+
+        if (onSend) {
+            onSend(newMessages);
+        }
     };
 
     renderMessagesList = () => {
@@ -31,11 +63,12 @@ class Chat extends Component {
     renderInputToolbar = () => {
         const { text } = this.state;
         const { placeholder, textInputProps } = this.props;
+        const { onInputTextChanged, onSend } = this;
 
-        const inputToolbarProps = {
+        const props = {
             text,
-            onSend: this.onSend,
-            onTextChanged: this.onInputTextChanged,
+            onSend,
+            onTextChanged: onInputTextChanged,
             placeholder,
             textInputProps: {
                 ...textInputProps,
@@ -43,8 +76,22 @@ class Chat extends Component {
             },
         };
 
-        return <InputToolbar {...inputToolbarProps} />;
+        return <InputToolbar {...props} />;
     };
+
+    resetInputToolbar = () => {
+        if (this.textInput) {
+            this.textInput.value = '';
+        }
+        this.setState({
+            text: '',
+        });
+    };
+
+    setActionsOpen = actionsOpen =>
+        this.setState({
+            actionsOpen,
+        });
 
     render() {
         return (
