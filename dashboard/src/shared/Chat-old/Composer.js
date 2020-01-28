@@ -30,14 +30,17 @@ const Input = styled.textarea`
 const Composer = ({
     actionsOpen,
     actionsWidth,
+    keyboardAppearance,
+    multiline,
+    onInputSizeChanged,
     onTextChanged,
     onSend,
     placeholder,
+    placeholderTextColor,
     setActionsOpen,
     textInputProps,
     text,
 }) => {
-    console.log(placeholder);
     const onKeyDown = useCallback(
         e => {
             if (e.keyCode === 13 && !e.shiftKey) {
@@ -86,7 +89,10 @@ const Composer = ({
                 testID={placeholder}
                 underlineTextColorAndroid="transparent"
                 {...{
+                    keyboardAppearance,
+                    multiline,
                     placeholder,
+                    placeholderTextColor,
                     onKeyDown,
                 }}
                 value={text}

@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 // Components //
 import Container from 'shared/Container';
-import Composer from './Composer';
 
 const Root = styled(Container)`
+    flex: 1;
     flex-direction: row;
     align-items: center;
     padding-top: 16px;
@@ -16,13 +16,18 @@ const Root = styled(Container)`
     }
 `;
 
-const InputToolbar = ({ onSend, placeholder }) => {
+const InputToolbar = ({
+    renderActions,
+    renderComposer,
+    renderSend,
+    onInputSizeChanged,
+    ...props
+}) => {
     return (
         <Root maxWidth={840}>
-            {/* {renderActions(props)} */}
-            <Composer {...{ onSend, placeholder }} />
-            {/* {renderComposer(props)} */}
-            {/* {renderSend(props)} */}
+            {renderActions(props)}
+            {renderComposer(props)}
+            {renderSend(props)}
         </Root>
     );
 };

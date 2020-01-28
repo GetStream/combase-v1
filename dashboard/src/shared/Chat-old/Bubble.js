@@ -21,7 +21,7 @@ const Bubble = styled.div`
         hasPrev && pos !== 'left'
             ? theme.borderRadius
             : theme.borderRadius * 2}px;
-    border-bottom-left-radius: ${({ hasNext, pos, theme }) =>
+    border-bottom-left-radius: ${({ hasAvatar, hasNext, pos, theme }) =>
         hasNext && pos === 'left'
             ? theme.borderRadius
             : theme.borderRadius * 2}px;
@@ -38,7 +38,7 @@ const Bubble = styled.div`
     margin-right: ${({ isMobile, pos, theme }) =>
         pos === 'left' ? (isMobile ? 64 : 160) : 0}px;
     margin-left: ${({ hasAvatar, isMobile, pos, theme }) =>
-        pos === 'left' ? (hasAvatar ? 0 : 48) : isMobile ? 64 : 160}px;
+        pos === 'left' ? (hasAvatar ? 8 : 48) : isMobile ? 64 : 160}px;
 `;
 
 const renderText = (currentMessage, position) => {

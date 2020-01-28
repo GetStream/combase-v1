@@ -27,7 +27,7 @@ const Root = styled(animated.div)`
 
 const ExpandWrapper = styled(animated.div)`
     position: absolute;
-    left: -50%;
+    left: 16px;
 `;
 
 const Actions = ({

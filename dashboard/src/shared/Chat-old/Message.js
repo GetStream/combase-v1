@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { View } from 'react-native';
 import moment from 'moment';
 import { utils } from 'react-web-gifted-chat';
 
@@ -9,13 +8,13 @@ import Avatar from 'shared/Avatar';
 import Bubble from './Bubble';
 import Day from './Day';
 
-const Container = styled(View)`
-    max-width: 640px;
+const Container = styled.div`
+    max-width: 840px;
     width: 100%;
     align-self: center;
 `;
 
-const Root = styled(View)`
+const Root = styled.div`
     flex-direction: row;
     align-items: flex-end;
     justify-content: ${({ pos }) =>
@@ -24,11 +23,6 @@ const Root = styled(View)`
     margin-right: ${({ pos, theme }) => (pos === 'left' ? 0 : 8)}px;
     margin-left: ${({ pos, theme }) => (pos === 'left' ? 8 : 0)}px;
     margin-bottom: ${({ hasNext, theme }) => (hasNext ? 2 : 24)}px;
-`;
-
-const AvatarWrapper = styled(View)`
-    margin-left: ${({ pos, theme }) => (pos === 'right' ? 8 : 0)}px;
-    margin-right: ${({ pos, theme }) => (pos === 'left' ? 8 : 0)}px;
 `;
 
 // TODO:
@@ -72,7 +66,7 @@ class Message extends Component {
             position &&
             isSameUser(currentMessage, nextMessage) &&
             !moment(currentMessage.created_at).isBefore(
-                moment(nextMessage.created_at).subtract(5, 'seconds')
+                moment(nextMessage.created_at).subtract(20, 'minutes')
             )
         );
     }
@@ -86,7 +80,7 @@ class Message extends Component {
             position &&
             isSameUser(currentMessage, previousMessage) &&
             !moment(currentMessage.created_at).isAfter(
-                moment(previousMessage.created_at).add(5, 'seconds')
+                moment(previousMessage.created_at).add(20, 'minutes')
             )
         );
     }
@@ -98,10 +92,10 @@ class Message extends Component {
         return (
             (isSameUser(currentMessage, previousMessage) &&
                 !moment(currentMessage.created_at).isAfter(
-                    moment(previousMessage.created_at).add(5, 'seconds')
+                    moment(previousMessage.created_at).add(20, 'minutes')
                 )) ||
             !moment(currentMessage.created_at).isAfter(
-                moment(previousMessage.created_at).add(5, 'seconds')
+                moment(previousMessage.created_at).add(20, 'minutes')
             )
         );
     };
@@ -126,18 +120,16 @@ class Message extends Component {
             !this.hasNext
         ) {
             return (
-                <AvatarWrapper pos={position}>
-                    <Avatar name={currentMessage.user.name} />
-                </AvatarWrapper>
+                <Avatar name={currentMessage.user.name} />
             );
         }
     };
 
     renderBubble = () => {
-        const { containerStyle, ...props } = this.props;
+        const { containerStyle, renderBubble, ...props } = this.props;
         const { hasNext, hasPrev } = this;
         const hasAvatar = !!this.renderAvatar();
-        return <Bubble {...props} {...{ hasAvatar, hasNext, hasPrev }} />;
+        return renderBubble({...props, hasAvatar, hasNext, hasPrev});
     };
 
     renderDay = props => {
