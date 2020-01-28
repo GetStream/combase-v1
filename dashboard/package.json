@@ -20,7 +20,8 @@
     "react-web-gifted-chat": "^0.6.7",
     "recyclerlistview": "^2.0.12",
     "styled-components": "^5.0.0",
-    "uuid": "^3.4.0"
+    "uuid": "^3.4.0",
+    "whatwg-fetch": "^3.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

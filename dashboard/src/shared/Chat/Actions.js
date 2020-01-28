@@ -1,11 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { animated, useSpring } from 'react-spring';
 
 // Components //
 import IconButton from 'shared/IconButton';
 import { AttachmentIcon, AddImageIcon, ChevronRightIcon } from 'shared/Icons';
-import { Composer } from 'react-web-gifted-chat';
 
 const Root = styled(animated.div)`
     flex-direction: row;
@@ -36,6 +35,7 @@ const Actions = ({
     actionsOpen,
     openActions,
     setActionsOpen,
+    setActionsWidth,
     ...props
 }) => {
     const [mount, setMount] = useState(true);
@@ -83,14 +83,17 @@ const Actions = ({
             .interpolate(value => `translateX(${value}%)`),
     };
 
-    const ref = useCallback(el => {
-        if (el) {
-            const { width } = el.getBoundingClientRect();
-            if (!actionsWidth) {
-                props.setActionsWidth(width);
+    const ref = useCallback(
+        el => {
+            if (el) {
+                const { width } = el.getBoundingClientRect();
+                if (!actionsWidth) {
+                    setActionsWidth(width);
+                }
             }
-        }
-    }, []);
+        },
+        [setActionsWidth, actionsWidth]
+    );
 
     const handleActionsOpen = useCallback(() => {
         setActionsOpen(true);

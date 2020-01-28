@@ -59,7 +59,7 @@ const Composer = ({
             setActionsOpen(false);
             onTextChanged(value);
         },
-        [onTextChanged]
+        [onTextChanged, setActionsOpen]
     );
 
     const anim = useSpring({
@@ -74,7 +74,7 @@ const Composer = ({
         paddingLeft: anim.value
             .interpolate({
                 range: [0, 1],
-                output: [actionsWidth / 1.5, actionsWidth + 24], // 24px margin on actions
+                output: [actionsWidth / 2, actionsWidth + 32], // 24px margin on actions
             })
             .interpolate(value => `${value}px`),
     };

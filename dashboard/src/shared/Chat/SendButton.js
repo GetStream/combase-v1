@@ -19,12 +19,27 @@ const SendButton = ({ onSend, text }) => {
     const isMobile = useMedia('sm');
     const onClick = useCallback(() => {
         onSend({ text: text.trim() }, true);
-    }, [text]);
+    }, [text, onSend]);
 
     if (isMobile) {
-        return <IconButton {...{ onClick }} disabled={!text} icon={SendIcon} color="primary" />
+        return (
+            <IconButton
+                {...{ onClick }}
+                disabled={!text}
+                icon={SendIcon}
+                color="primary"
+            />
+        );
     }
-    return text ? <Button disablePortal icon={SendIcon} size={64} unmount={!text} {...{ onClick }} /> : null;
+    return text ? (
+        <Button
+            disablePortal
+            icon={SendIcon}
+            size={64}
+            unmount={!text}
+            {...{ onClick }}
+        />
+    ) : null;
 };
 
 export default SendButton;

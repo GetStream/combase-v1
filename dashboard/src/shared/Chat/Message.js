@@ -18,7 +18,8 @@ const Container = styled(View)`
 const Root = styled(View)`
     flex-direction: row;
     align-items: flex-end;
-    justify-content: ${({ pos }) => (pos === 'left' ? 'flex-end' : 'flex-start')};
+    justify-content: ${({ pos }) =>
+        pos === 'left' ? 'flex-end' : 'flex-start'};
     margin-top: ${({ isFirst }) => (isFirst ? 32 : 0)}px;
     margin-right: ${({ pos, theme }) => (pos === 'left' ? 0 : 8)}px;
     margin-left: ${({ pos, theme }) => (pos === 'left' ? 8 : 0)}px;
@@ -33,7 +34,7 @@ const AvatarWrapper = styled(View)`
 // TODO:
 // Accordion on tap to show delivered status. (See Android Messages app.)
 
-const { isSameUser, isSameDay } = utils;
+const { isSameUser } = utils;
 class Message extends Component {
     shouldComponentUpdate(nextProps) {
         const next = nextProps.currentMessage;
@@ -43,7 +44,9 @@ class Message extends Component {
         const nextPropsPreviousMessage = nextProps.previousMessage;
 
         const shouldUpdate =
-            (this.props.shouldUpdateMessage && this.props.shouldUpdateMessage(this.props, nextProps)) || false;
+            (this.props.shouldUpdateMessage &&
+                this.props.shouldUpdateMessage(this.props, nextProps)) ||
+            false;
 
         return (
             next.sent !== current.sent ||
@@ -68,7 +71,9 @@ class Message extends Component {
             nextMessage._id &&
             position &&
             isSameUser(currentMessage, nextMessage) &&
-            !moment(currentMessage.createdAt).isBefore(moment(nextMessage.createdAt).subtract(20, 'minutes'))
+            !moment(currentMessage.createdAt).isBefore(
+                moment(nextMessage.createdAt).subtract(20, 'minutes')
+            )
         );
     }
 
@@ -80,7 +85,9 @@ class Message extends Component {
             previousMessage._id &&
             position &&
             isSameUser(currentMessage, previousMessage) &&
-            !moment(currentMessage.createdAt).isAfter(moment(previousMessage.createdAt).add(20, 'minutes'))
+            !moment(currentMessage.createdAt).isAfter(
+                moment(previousMessage.createdAt).add(20, 'minutes')
+            )
         );
     }
 
@@ -90,20 +97,33 @@ class Message extends Component {
         }
         return (
             (isSameUser(currentMessage, previousMessage) &&
-                !moment(currentMessage.createdAt).isAfter(moment(previousMessage.createdAt).add(20, 'minutes'))) ||
-            !moment(currentMessage.createdAt).isAfter(moment(previousMessage.createdAt).add(20, 'minutes'))
+                !moment(currentMessage.createdAt).isAfter(
+                    moment(previousMessage.createdAt).add(20, 'minutes')
+                )) ||
+            !moment(currentMessage.createdAt).isAfter(
+                moment(previousMessage.createdAt).add(20, 'minutes')
+            )
         );
     };
 
     renderAvatar = () => {
-        const { currentMessage, position, showUserAvatar, user, previousMessage } = this.props;
+        const {
+            currentMessage,
+            position,
+            showUserAvatar,
+            user,
+            previousMessage,
+        } = this.props;
         const isOwn = currentMessage.user._id === user._id;
 
         if (isOwn && !showUserAvatar) {
             return null;
         }
 
-        if (this.isSameSection(currentMessage, previousMessage) && !this.hasNext) {
+        if (
+            this.isSameSection(currentMessage, previousMessage) &&
+            !this.hasNext
+        ) {
             return (
                 <AvatarWrapper pos={position}>
                     <Avatar name={currentMessage.user.name} />
@@ -119,10 +139,14 @@ class Message extends Component {
         return <Bubble {...props} {...{ hasAvatar, hasNext, hasPrev }} />;
     };
 
-    renderDay = (props) => {
+    renderDay = props => {
         const { currentMessage, previousMessage } = this.props;
 
-        if (currentMessage && currentMessage.createdAt && !this.isSameSection(currentMessage, previousMessage)) {
+        if (
+            currentMessage &&
+            currentMessage.createdAt &&
+            !this.isSameSection(currentMessage, previousMessage)
+        ) {
             const date = currentMessage.createdAt;
             return <Day {...{ date }} />;
         }
@@ -139,7 +163,7 @@ class Message extends Component {
         if (isSystemMessage) {
             return renderSystemMessage(this.props);
         }
-        
+
         return (
             <Container>
                 {this.renderDay()}
