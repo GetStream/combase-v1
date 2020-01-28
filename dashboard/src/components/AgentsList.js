@@ -8,7 +8,7 @@ import usePageSheet from 'hooks/usePageSheet';
 import { AgentsIcon } from 'shared/Icons';
 import AgentItem from 'components/AgentItem';
 import EmptyState from 'shared/EmptyState';
-import Tabs from 'components/Tabs';
+import FAB from 'shared/FAB';
 import PageSheet from 'components/PageSheet';
 
 const Root = styled(PageSheet)`
@@ -32,38 +32,10 @@ const renderEmpty = () => (
     </EmptyWrapper>
 );
 
-const agents = [
-    {
-        avatar:
-            'https://ca.slack-edge.com/T02RM6X6B-UHLLRBJBU-7c9e3281197f-512',
-        email: 'luke@getstream.io',
-        name: 'Luke Smetham',
-        role: 'Admin',
-    },
-    {
-        avatar:
-            'https://ca.slack-edge.com/T02RM6X6B-U10BF2R9R-ff801b9cc079-512',
-        email: 'nick@getstream.io',
-        name: 'Nick Parsons',
-        role: 'Agent',
-    },
-];
-
-const tabs = [
-    ...new Set([
-        'All',
-        ...agents
-            .reduce((acc, { role }) => {
-                return [...acc, role];
-            }, [])
-            .sort(),
-    ]),
-];
-
 const renderAgents = results =>
     results.map((agent, key) => <AgentItem {...agent} {...{ key }} />);
 
-const AgentsList = ({ className }) => {
+const AgentsList = ({ agents, className, tabs }) => {
     const [results, setQuery, activeTab, setActiveTab] = usePageSheet(
         agents,
         'name',
@@ -71,11 +43,11 @@ const AgentsList = ({ className }) => {
     );
 
     return (
-        <Root {...{ className }} onQueryChange={setQuery}>
-            <Tabs {...{ tabs }} active={activeTab} onTabClick={setActiveTab} />
+        <Root {...{ activeTab, className, setActiveTab, tabs }} onQueryChange={setQuery}>
             <Content>
                 {results.length ? renderAgents(results) : renderEmpty()}
             </Content>
+            <FAB />
         </Root>
     );
 };

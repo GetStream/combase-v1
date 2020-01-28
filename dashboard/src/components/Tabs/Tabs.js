@@ -9,11 +9,19 @@ const Root = styled.div`
     flex: 1;
     flex-direction: row;
     align-items: center;
-    padding: 24px 40px;
+    padding: 24px 16px;
     overflow-x: scroll;
 
     & > * + * {
+        margin-left: 16px;
+    }
+
+    @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
+        padding: 24px 40px;
+
+        & > * + * {
         margin-left: 24px;
+    }
     }
 `;
 

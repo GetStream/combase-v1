@@ -25,6 +25,7 @@ const renderRoutes = (routes, match, onClose) =>
       children={({ match: active }) => (
         <DrawerItem
           {...{ active }}
+          icon={route.icon}
           to={`${match.url}${route.slug}`}
           label={route.label}
           onClick={onClose}

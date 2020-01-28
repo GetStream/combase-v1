@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import fonts from "./fonts";
+import { createGlobalStyle } from 'styled-components';
+import fonts from './fonts';
 
 /* eslint no-unused-expressions: 0 */
 export default createGlobalStyle`
@@ -48,6 +48,11 @@ export default createGlobalStyle`
     outline: 0;
     margin: 0;
     padding: 0;
+    background: none;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
   }
   
   h1, h2, h3,
@@ -71,8 +76,9 @@ export default createGlobalStyle`
     color: inherit;
   }
 
-  input {
+  input, textarea {
     border: 0;
+    font-size: 16px;
     font-family: "Circular Std", sans-serif;
   }
 `;

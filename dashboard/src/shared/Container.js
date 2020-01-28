@@ -1,10 +1,11 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-export default styled.div`
+const Container = styled.div`
     margin: 0 auto;
     width: 100%;
-    max-width: 1152px;
+    max-width: ${({ maxWidth }) => maxWidth}px;
     padding-left: 16px;
     padding-right: 16px;
 
@@ -13,3 +14,13 @@ export default styled.div`
         padding-right: 24px
     }
 `;
+
+Container.propTypes = {
+    maxWidth: PropTypes.number,
+}
+
+Container.defaultProps = {
+    maxWidth: 1152,
+}
+
+export default Container;

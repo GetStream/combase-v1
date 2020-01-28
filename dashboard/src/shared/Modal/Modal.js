@@ -8,9 +8,9 @@ import Easing from "animated/lib/Easing";
 
 // Utils //
 import GetRef from "utils/GetRef";
-import Portal from "utils/Portal";
 
 // Components //
+import Portal from "shared/Portal";
 import Undersheet from "./Undersheet";
 
 const ModalRoot = styled(Animated.div)`
