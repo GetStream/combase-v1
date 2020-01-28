@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 // Components //
 import Logo from 'shared/Logo';
+import StreamLogo from 'shared/StreamLogo';
 import SidenavItem from './SidenavItem';
 
 const Root = styled.div`
@@ -31,6 +32,12 @@ const Menu = styled.div`
     margin-top: 24px;
 `;
 
+const Footer = styled.div`
+    padding: 24px 0px;
+    align-items: center;
+    justify-content: center;
+`;
+
 const renderItems = (routes, match) =>
     routes.map(({ component, ...route }, key) => (
         <SidenavItem
@@ -47,6 +54,11 @@ export default ({ match, routes }) => {
                 <Logo size={56} />
             </Brand>
             <Menu>{renderItems(routes, match)}</Menu>
+            <Footer>
+                <a href="https://getstream.io/chat" target="_blank" rel="noopener noreferrer">
+                    <StreamLogo size={40} />
+                </a>
+            </Footer>
         </Root>
     );
 };

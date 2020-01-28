@@ -8,5 +8,6 @@ export default {
   gray: "#C6C6C8",
   off_white: "#FCFCFC",
   black: "#302F32",
-  true_black: "#000000"
+  true_black: "#000000",
+  stream: "#4D7CFE",
 };
