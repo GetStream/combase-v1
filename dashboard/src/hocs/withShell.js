@@ -25,12 +25,13 @@ export default (WrappedComponent, routes = []) => props => {
     const isMobile = useMedia('sm');
     const value = useMemo(
         () => ({
+            config,
             drawer: {
                 open: drawerOpen,
                 toggle: () => toggleDrawer(!drawerOpen),
             },
         }),
-        [drawerOpen, toggleDrawer]
+        [config, drawerOpen, toggleDrawer]
     );
 
     if (loading) {
