@@ -1,4 +1,5 @@
 import Organization from 'models/organization';
+import { AddToWebhookOrganizationQueue } from 'workers/webhook-invite/queue';
 
 exports.update = async (req, res) => {
 	try {
@@ -16,6 +17,9 @@ exports.update = async (req, res) => {
 			{ _id: params.organization },
 			{ $set: data }
 		).lean();
+
+		await AddToWebhookOrganizationQueue('updated', organization);
+
 		res.status(200).json(organization);
 	} catch (error) {
 		console.error(error);

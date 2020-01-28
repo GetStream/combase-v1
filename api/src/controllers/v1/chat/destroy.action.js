@@ -1,4 +1,5 @@
 import Chat from 'models/chat';
+import { AddToWebhookChatQueue } from 'workers/webhook-chat/queue';
 
 exports.destroy = async (req, res) => {
 	try {
@@ -15,6 +16,9 @@ exports.destroy = async (req, res) => {
 			{ _id: data.chat },
 			{ $set: { status: 'Archived' } }
 		).lean();
+
+		await AddToWebhookChatQueue('removed', chat);
+
 		res.status(200).json(chat);
 	} catch (error) {
 		console.error(error);

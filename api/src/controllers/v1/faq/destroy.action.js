@@ -1,4 +1,5 @@
 import Faq from 'models/faq';
+import { AddToWebhookFaqQueue } from 'workers/webhook-faq/queue';
 
 exports.destroy = async (req, res) => {
 	try {
@@ -11,10 +12,13 @@ exports.destroy = async (req, res) => {
 			});
 		}
 
-		const chat = await Faq.updateOne(
+		const faq = await Faq.updateOne(
 			{ _id: data.faq },
 			{ $set: data }
 		).lean();
+
+		await AddToWebhookFaqQueue('removed', faq);
+
 		res.status(200).json(faq);
 	} catch (error) {
 		console.error(error);

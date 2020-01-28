@@ -8,7 +8,7 @@ exports.destroy = async (req, res) => {
 
 		if (serialized.role !== 'admin') {
 			return res.status(403).json({
-				status: 'Invalid permissions to view or modify this resource.',
+				status: 'Invalid permissions to view or modify this resource.'
 			});
 		}
 
@@ -17,7 +17,7 @@ exports.destroy = async (req, res) => {
 			{ $set: { status: 'inactive' } }
 		).lean();
 
-		await AddToWebhookAgentQueue('remove', agent);
+		await AddToWebhookAgentQueue('removed', agent);
 
 		res.sendStatus(204);
 	} catch (error) {

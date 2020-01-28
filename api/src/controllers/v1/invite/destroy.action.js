@@ -1,4 +1,5 @@
 import Invite from 'models/invite';
+import { AddToWebhookInviteQueue } from 'workers/webhook-invite/queue';
 
 exports.destroy = async (req, res) => {
 	try {
@@ -11,7 +12,9 @@ exports.destroy = async (req, res) => {
 			});
 		}
 
-		await Invite.findByIdAndRemove(data.invite).lean();
+		const invite = await Invite.findByIdAndRemove(data.invite).lean();
+
+		await AddToWebhookInviteQueue('removed', invite);
 
 		res.sendStatus(204);
 	} catch (error) {
