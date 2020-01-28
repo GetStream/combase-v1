@@ -8,7 +8,6 @@ const getLottieColor = color => {
 export default (loader, track) => {
     const loaderColor = getLottieColor(loader);
     const trackColor = getLottieColor(track);
-    console.log(trackColor);
     return {
         v: '4.6.9',
         fr: 29.9700012207031,

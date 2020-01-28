@@ -33,7 +33,7 @@ export default (WrappedComponent, routes = []) => props => {
         [drawerOpen, toggleDrawer]
     );
 
-    if (true) {
+    if (loading) {
         return <LoadingState />;
     }
 
