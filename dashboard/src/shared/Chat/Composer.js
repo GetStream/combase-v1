@@ -65,8 +65,8 @@ const Composer = ({
     const anim = useSpring({
         value: !text || actionsOpen ? 1 : 0,
         config: {
-            tension: 140,
-            friction: 16,
+            tension: 200,
+            friction: 19,
         },
     });
 

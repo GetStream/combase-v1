@@ -42,7 +42,7 @@ const Actions = ({
     const anim = useSpring({
         value: actionsOpen || !props.text ? 0 : 1,
         config: {
-            tension: 140,
+            tension: 200,
             friction: 16,
         },
         onStart: () => {
@@ -62,12 +62,12 @@ const Actions = ({
             range: [0, 1],
             output: [1, 0],
         }),
-        transform: anim.value
-            .interpolate({
-                range: [0, 1],
-                output: [0, actionsWidth / 2],
-            })
-            .interpolate(value => `translateX(${value}%)`),
+        // transform: anim.value
+        //     .interpolate({
+        //         range: [0, 1],
+        //         output: [0, actionsWidth / 2],
+        //     })
+        //     .interpolate(value => `translateX(${value}%)`),
     };
 
     const expandIconStyle = {
