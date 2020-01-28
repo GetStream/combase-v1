@@ -26,6 +26,10 @@ export default createGlobalStyle`
     -webkit-font-smoothing: antialiased;
   }
 
+  img {
+    user-select: none;
+  }
+
   #root {
     position: relative;
     display: flex;
