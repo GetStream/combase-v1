@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import moment from "moment";
 
 // Styles //
@@ -38,8 +38,8 @@ const Row = styled.div`
   align-items: center;
 `;
 
-const ThreadItem = ({ active, statusBorder }) => (
-  <Root to="/inbox/channelId">
+const renderItem = ({ index, match: active, statusBorder }) => (
+  <Root to={`/inbox/${index}`}>
     <Wrapper {...{ active }}>
       <Avatar name="Luke S." size={48} {...{ statusBorder }} />
       <Content>
@@ -58,6 +58,10 @@ const ThreadItem = ({ active, statusBorder }) => (
       </Content>
     </Wrapper>
   </Root>
+);
+
+const ThreadItem = (props) => (
+  <Route path={`/inbox/${props.index}`} children={(routeProps) => renderItem({...props, ...routeProps})} />
 );
 
 export default memo(ThreadItem);
