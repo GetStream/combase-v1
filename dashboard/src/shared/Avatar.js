@@ -32,7 +32,7 @@ const Status = styled(StatusBadge)`
   right: 0;
 `;
 
-const Avatar = ({ name, size, src, statusBorder }) => {
+const Avatar = ({ name, showStatus, size, src, statusBorder }) => {
   return (
     <div>
       <Root {...{ size }}>
@@ -44,19 +44,21 @@ const Avatar = ({ name, size, src, statusBorder }) => {
           <img alt={name} {...{ src }} />
         )}
       </Root>
-      <Status borderColor={statusBorder} />
+      {showStatus ? <Status borderColor={statusBorder} /> : null}
     </div>
   );
 };
 
 Avatar.propTypes = {
   name: PropTypes.string.isRequired,
+  showStatus: PropTypes.bool,
   size: PropTypes.number,
   src: PropTypes.string,
   statusBorder: PropTypes.string
 };
 
 Avatar.defaultProps = {
+  showStatus: true,
   size: 40,
   statusBorder: "surface"
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 // Components //
+import Avatar from 'shared/Avatar';
 import Logo from 'shared/Logo';
 import StreamLogo from 'shared/StreamLogo';
 import SidenavItem from './SidenavItem';
@@ -36,6 +37,10 @@ const Footer = styled.div`
     padding: 24px 0px;
     align-items: center;
     justify-content: center;
+
+    & > * + * {
+        margin-top: 16px;
+    }
 `;
 
 const renderItems = (routes, match) =>
@@ -55,6 +60,7 @@ export default ({ match, routes }) => {
             </Brand>
             <Menu>{renderItems(routes, match)}</Menu>
             <Footer>
+                <Avatar size={48} name="Luke" src="" showStatus={false} />
                 <a href="https://getstream.io/chat" target="_blank" rel="noopener noreferrer">
                     <StreamLogo size={40} />
                 </a>
