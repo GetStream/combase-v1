@@ -32,7 +32,7 @@ export default (WrappedComponent, routes = []) => props => {
             const client = new StreamChat(config.stream.key);
             setChatClient(client);
         }        
-    }, [config.stream]);
+    }, [config.stream, chatClient]);
 
     const value = useMemo(
         () => ({
@@ -47,6 +47,11 @@ export default (WrappedComponent, routes = []) => props => {
     
     if (loading || !chatClient) {
         return <LoadingState />;
+    }
+
+    if (error) {
+        // TODO: Show error screen here
+        return 'Something went wrong!'
     }
 
     return (
