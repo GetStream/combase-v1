@@ -61,7 +61,7 @@ export default ({ match, routes }) => {
             <Menu>{renderItems(routes, match)}</Menu>
             <Footer>
                 <Avatar size={48} name="Luke" src="" showStatus={false} />
-                <a href="https://getstream.io/chat" target="_blank" rel="noopener noreferrer">
+                <a href="https://getstream.io/chat/?utm_source=comba&utm_medium=cta&utm_campaign=comba" target="_blank" rel="noopener noreferrer">
                     <StreamLogo size={40} />
                 </a>
             </Footer>

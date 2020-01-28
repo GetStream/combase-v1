@@ -63,7 +63,7 @@ export default () => {
                 }}
                 ListHeaderComponent={renderListHeader}
                 ListEmptyComponent={renderListEmpty}
-                rowCount={40}
+                rowCount={100}
                 showEmptyHeader
             />
         </Root>
