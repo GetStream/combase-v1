@@ -1,4 +1,4 @@
-import Agent from './models/agent';
+import Agent from 'models/agent';
 import { AddToWebhookAgentQueue } from 'workers/webhook-agent/queue';
 
 exports.post = async (req, res) => {
