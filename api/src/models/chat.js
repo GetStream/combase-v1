@@ -56,14 +56,22 @@ export const ChatSchema = new Schema(
 				required: true,
 				autopopulate: true
 			},
-			agent: {
-				type: Schema.Types.ObjectId,
-				ref: 'Agent',
-				required: true,
-				autopopulate: {
-					select: [ 'name', 'email' ]
+			agents: [
+				assignee: {
+					agent: {
+						type: Schema.Types.ObjectId,
+						ref: 'Agent',
+						required: true,
+						autopopulate: {
+							select: [ 'name', 'email' ]
+						}
+					},
+					timestamp: {
+						type: Date,
+						default: new Date,
+					}
 				}
-			},
+			],
 			organization: {
 				type: Schema.Types.ObjectId,
 				ref: 'Organization',
