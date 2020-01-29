@@ -7,64 +7,74 @@ export const OrganizationSchema = new Schema(
 		name: {
 			type: String,
 			trim: true,
-			required: true,
+			required: true
 		},
 		meta: {
 			logo: {
 				type: String,
 				trim: true,
-				required: true,
+				required: true
 			},
 			tagline: {
 				type: String,
-				trim: true,
+				trim: true
 			},
 			colors: {
 				primary: {
 					type: String,
 					trim: true,
-					default: '#4D7CFE',
+					default: '#4D7CFE'
 				},
 				secondary: {
 					type: String,
 					trim: true,
-					default: '#ffffff',
-				},
-			},
+					default: '#ffffff'
+				}
+			}
 		},
 		phone: {
 			number: {
 				type: String,
-				trim: true,
+				trim: true
 			},
 			display: {
 				type: Boolean,
-				default: false,
-			},
+				default: false
+			}
 		},
 		email: {
 			address: {
 				type: String,
-				trim: true,
+				trim: true
 			},
 			display: {
 				type: Boolean,
-				default: true,
-			},
+				default: true
+			}
 		},
 		website: {
 			url: {
 				type: String,
-				trim: true,
+				trim: true
 			},
 			display: {
 				type: Boolean,
-				default: true,
-			},
+				default: true
+			}
 		},
+		response: {
+			type: String,
+			enum: [
+				'Typically replies in a few minutes.',
+				'Typically replies in under 5 minutes.',
+				'Typically replies in a few hours.',
+				'Typically replies in a day.'
+			],
+			default: 'Typically replies in a few minutes.'
+		}
 	},
 	{
-		collection: 'organizatons',
+		collection: 'organizatons'
 	}
 );
 

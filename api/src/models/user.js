@@ -40,6 +40,14 @@ export const UserSchema = new Schema(
 			default: {}
 		},
 		refs: {
+			tags: [
+				{
+					type: Schema.Types.ObjectId,
+					ref: 'Tag',
+					required: true,
+					autopopulate: true
+				}
+			],
 			organization: {
 				type: Schema.Types.ObjectId,
 				ref: 'Organization',
