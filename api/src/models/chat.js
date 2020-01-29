@@ -44,11 +44,6 @@ export const ChatSchema = new Schema(
 				},
 			},
 		],
-		language: {
-			type: String,
-			trim: true,
-			default: 'English',
-		},
 		refs: {
 			user: {
 				type: Schema.Types.ObjectId,
