@@ -1,59 +1,75 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import ScrollViewer from "recyclerlistview/dist/reactnative/platform/web/scrollcomponent/ScrollViewer";
-import { ResizeObserver } from "@juggle/resize-observer";
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import ScrollViewer from 'recyclerlistview/dist/reactnative/platform/web/scrollcomponent/ScrollViewer';
+import ResizeObserver from 'utils/ResizeObserver';
 
 // Components //
 const Root = styled.div`
-  flex: 1;
-  width: 100%;
-  height: 100%;
+    flex: 1;
+    width: 100%;
+    height: 100%;
 `;
 
 class ExternalScrollView extends Component {
-  observer = null;
-  root = React.createRef();
-  scrollView = React.createRef();
+    observer = null;
+    root = React.createRef();
+    scrollView = React.createRef();
 
-  componentDidMount() {
-    this.observer = new ResizeObserver(this.handleResize);
-    this.observer.observe(this.root.current);
-  }
-
-  componentWillUnmount() {
-    this.observer.disconnect();
-  }
-
-  handleResize = entries => {
-    const { onResize } = this.props;
-
-    const [entry] = entries;
-    const { width, height } = entry.contentRect; // use for backwards compatibility
-    this.props.onSizeChanged({
-      width,
-      height
-    });
-
-    if (onResize) {
-      onResize(width, height);
+    componentDidMount() {
+        const { clientWidth, clientHeight } = this.root.current;
+        this.updateDimensions(clientWidth, clientHeight);
+        this.initResizeObservation();
     }
-  };
 
-  scrollTo(arg) {
-    this.scrollView.current.scrollTo(arg);
-  }
+    initResizeObservation = () => {
+        this.observer = new ResizeObserver(this.handleResize);
+        this.observer.observe(this.root.current);
+    };
 
-  render() {
-    const { children, ListHeaderComponent, scrollAnim, ...rest } = this.props;
-    return (
-      <Root ref={this.root}>
-        <ScrollViewer ref={this.scrollView} {...rest}>
-          {ListHeaderComponent && <ListHeaderComponent {...{ scrollAnim }} />}
-          {children}
-        </ScrollViewer>
-      </Root>
-    );
-  }
+    componentWillUnmount() {
+        this.observer.disconnect();
+    }
+
+    handleResize = entries => {
+        const [entry] = entries;
+        const { width, height } = entry.contentRect; // use for backwards compatibility
+        this.updateDimensions(width, height);
+    };
+
+    updateDimensions = (width, height) => {
+        const { onSizeChanged, onResize } = this.props;
+        onSizeChanged({
+            width,
+            height,
+        });
+
+        if (onResize) {
+            onResize(width, height);
+        }
+    };
+
+    scrollTo(arg) {
+        this.scrollView.current.scrollTo(arg);
+    }
+
+    render() {
+        const {
+            children,
+            ListHeaderComponent,
+            scrollAnim,
+            ...rest
+        } = this.props;
+        return (
+            <Root ref={this.root}>
+                <ScrollViewer ref={this.scrollView} {...rest}>
+                    {ListHeaderComponent && (
+                        <ListHeaderComponent {...{ scrollAnim }} />
+                    )}
+                    {children}
+                </ScrollViewer>
+            </Root>
+        );
+    }
 }
 
 export default ExternalScrollView;

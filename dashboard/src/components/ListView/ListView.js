@@ -5,10 +5,13 @@ import {
     DataProvider,
     LayoutProvider,
     RecyclerListView,
+    BaseItemAnimator,
 } from 'recyclerlistview/web';
 
 // Components //
 import ResizeAwareScrollView from './ResizeAwareScrollView';
+
+const itemAnimator = new BaseItemAnimator();
 
 class ListView extends Component {
     static propTypes = {
@@ -99,11 +102,6 @@ class ListView extends Component {
         return this.props.renderRow(data, row);
     };
 
-    handleRecreate = ({ lastOffset }) => {
-        console.log('last scroll offset', lastOffset);
-        this.setState({ initialOffset: lastOffset });
-    };
-
     render() {
         const {
             contentContainerStyle,
@@ -113,12 +111,15 @@ class ListView extends Component {
             data,
             distanceFromWindow,
             forceNonDeterministicRendering,
+            initialRenderIndex,
+            initialOffset,
             layoutProvider,
             ListEmptyComponent,
             ListHeaderComponent,
             renderAheadOffset,
             rowCount,
             scrollAnim,
+            setMessageContainerRef,
             showEmptyHeader,
             style,
         } = this.props;
@@ -137,6 +138,7 @@ class ListView extends Component {
         return (
             <RecyclerListView
                 canChangeSize
+                ref={setMessageContainerRef}
                 {...{
                     contentContainerStyle,
                     contextProvider,
@@ -145,6 +147,9 @@ class ListView extends Component {
                     extendedState,
                     externalScrollView,
                     forceNonDeterministicRendering,
+                    initialRenderIndex,
+                    initialOffset,
+                    itemAnimator,
                     layoutProvider,
                     ListHeaderComponent,
                     renderAheadOffset,
@@ -154,7 +159,6 @@ class ListView extends Component {
                 onScroll={this.handleScroll}
                 extraData={data}
                 rowRenderer={this.renderRow}
-                onRecreate={this.handleRecreate}
                 onResize={this.handleResize}
             />
         );

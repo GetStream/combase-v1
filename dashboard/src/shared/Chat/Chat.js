@@ -10,6 +10,10 @@ const Root = styled.div`
     flex: 1;
 `;
 
+const MessagesWrapper = styled.div`
+    height: calc(100vh - ${({ inputToolbarHeight }) => inputToolbarHeight}px);
+`;
+
 class Chat extends Component {
     static propTypes = {
         placeholder: PropTypes.string,
@@ -19,11 +23,15 @@ class Chat extends Component {
 
     static defaultProps = {
         placeholder: 'Write something...',
+        onSend: () => console.log,
     };
 
     state = {
+        inputToolbarHeight: 0,
         isMounted: false,
-        messages: [],
+        messages: new Array(100).fill(0).map((_, index) => ({
+            _id: index,
+        })),
         text: '',
         typingDisabled: false,
     };
@@ -68,7 +76,7 @@ class Chat extends Component {
         }
 
         onSend(newMessages);
-        this.scrollToBottom();
+        this.messageContainerRef.scrollToEnd();
 
         if (shouldResetInputToolbar === true) {
             setTimeout(() => {
@@ -77,16 +85,6 @@ class Chat extends Component {
                 }
             }, 100);
         }
-    };
-
-    renderMessagesList = () => {
-        const { messages } = this.state;
-        return (
-            <MessagesList
-                data={messages}
-                setMessageContainerRef={this.setMessageContainerRef}
-            />
-        );
     };
 
     renderInputToolbar = () => {
@@ -105,7 +103,9 @@ class Chat extends Component {
             },
         };
 
-        return <InputToolbar {...props} />;
+        return (
+            <InputToolbar onResize={this.setInputToolbarHeight} {...props} />
+        );
     };
 
     resetInputToolbar = () => {
@@ -117,12 +117,9 @@ class Chat extends Component {
         });
     };
 
-    scrollToBottom = (animated = true) => {
+    scrollTo = (index, animated = true) => {
         if (this.messageContainerRef !== null) {
-            this.messageContainerRef.scrollTo({
-                y: 0,
-                animated,
-            });
+            this.messageContainerRef.scrollToIndex(index, animated);
         }
     };
 
@@ -131,14 +128,26 @@ class Chat extends Component {
             actionsOpen,
         });
 
+    setInputToolbarHeight = ({ height }) =>
+        this.setState({
+            inputToolbarHeight: height,
+        });
+
     setMessageContainerRef = el => {
         this.messageContainerRef = el;
     };
 
     render() {
+        const { inputToolbarHeight, messages } = this.state;
         return (
             <Root>
-                {this.renderMessagesList()}
+                <MessagesWrapper {...{ inputToolbarHeight }}>
+                    <MessagesList
+                        {...{ inputToolbarHeight }}
+                        data={messages}
+                        setMessageContainerRef={this.setMessageContainerRef}
+                    />
+                </MessagesWrapper>
                 {this.renderInputToolbar()}
             </Root>
         );

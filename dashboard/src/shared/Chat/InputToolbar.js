@@ -1,5 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
+
+// HOCs //
+import withLayout from 'hocs/withLayout';
 
 // Components //
 import Container from 'shared/Container';
@@ -22,11 +25,12 @@ const InputToolbar = ({
     onSend,
     onTextChanged,
     placeholder,
+    setRef,
     text,
     textInputProps,
 }) => {
     return (
-        <Root maxWidth={840}>
+        <Root ref={setRef} maxWidth={840}>
             <Actions />
             <Composer
                 onSend={onSend}
@@ -40,4 +44,4 @@ const InputToolbar = ({
     );
 };
 
-export default InputToolbar;
+export default withLayout(InputToolbar);
