@@ -1,7 +1,7 @@
 import Queue from 'bull';
 
 const queue = new Queue('webhook-agent', process.env.REDIS_URL, {
-	limiter: { max: 1000, duration: 60000 }, // limit to 1000 job per minute
+	limiter: { max: 2000, duration: 60000 }, // limit to 2000 job per minute
 });
 
 // type: added || removed || updated

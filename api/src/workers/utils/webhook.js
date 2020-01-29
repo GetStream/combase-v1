@@ -13,7 +13,7 @@ export default async ({ data }) => {
 			.update(payload)
 			.digest('hex');
 
-		// retry failed requests up to N times
+		// retry failed requests up to 5 times
 		retry(axios, { retries: 5, retryDelay: retry.exponentialDelay });
 
 		// send webhook payload
