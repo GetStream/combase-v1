@@ -76,12 +76,12 @@ export const OrganizationSchema = new Schema(
 		response: {
 			type: String,
 			enum: [
-				'Typically replies in a few minutes.',
-				'Typically replies in under 5 minutes.',
-				'Typically replies in a few hours.',
-				'Typically replies in a day.'
+				'We typically reply in a few minutes.',
+				'We typically reply in under 5 minutes.',
+				'We typically reply in a few hours.',
+				'We typically reply in a day.'
 			],
-			default: 'Typically replies in a few minutes.'
+			default: 'We typically reply in a few minutes.'
 		}
 	},
 	{
