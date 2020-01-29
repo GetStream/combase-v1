@@ -8,16 +8,23 @@ export const TagSchema = new Schema(
 		name: {
 			type: String,
 			trim: true,
-			required: true
+			required: true,
 		},
-		color: {
-			type: String,
-			trim: true,
-			required: true
-		}
+		colors: {
+			primary: {
+				type: String,
+				trim: true,
+				default: '#4D7CFE',
+			},
+			secondary: {
+				type: String,
+				trim: true,
+				default: '#ffffff',
+			},
+		},
 	},
 	{
-		collection: 'tags'
+		collection: 'tags',
 	}
 );
 
