@@ -6,11 +6,6 @@ import autopopulate from 'mongoose-autopopulate';
 export const ChatSchema = new Schema(
 	{
 		meta: {
-			id: {
-				type: String,
-				trim: true,
-				required: true,
-			},
 			subject: {
 				type: String,
 				trim: true,
@@ -52,7 +47,7 @@ export const ChatSchema = new Schema(
 		language: {
 			type: String,
 			trim: true,
-			default: 'EN',
+			default: 'English',
 		},
 		refs: {
 			user: {
