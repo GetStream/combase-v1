@@ -85,7 +85,7 @@ export const OrganizationSchema = new Schema(
 		}
 	},
 	{
-		collection: 'organizatons'
+		collection: 'organizations'
 	}
 );
 
