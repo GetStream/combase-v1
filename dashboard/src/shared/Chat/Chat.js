@@ -4,13 +4,9 @@ import styled from 'styled-components';
 
 // Components //
 import InputToolbar from './InputToolbar';
-import uuid from 'uuid';
+import MessagesList from './MessagesList';
 
 const Root = styled.div`
-    flex: 1;
-`;
-
-const List = styled.div`
     flex: 1;
 `;
 
@@ -26,16 +22,35 @@ class Chat extends Component {
     };
 
     state = {
+        isMounted: false,
+        messages: [],
         text: '',
+        typingDisabled: false,
     };
 
-    onInputTextChanged = text =>
+    componentDidMount() {
+        this.setState({ isMounted: true });
+    }
+
+    onInputTextChanged = text => {
+        const { typingDisabled } = this.state;
+        const { onInputTextChanged } = this.props;
+        if (typingDisabled) {
+            return;
+        }
+
+        if (onInputTextChanged) {
+            onInputTextChanged(text);
+        }
+
         this.setState({
             text,
         });
+    };
 
     onSend = (messages = [], shouldResetInputToolbar = false) => {
         const { onSend, user } = this.props;
+        const { isMounted } = this.state;
         if (!Array.isArray(messages)) {
             messages = [messages];
         }
@@ -48,16 +63,30 @@ class Chat extends Component {
         });
 
         if (shouldResetInputToolbar === true) {
+            this.setState({ typingDisabled: true });
             this.resetInputToolbar();
         }
 
-        if (onSend) {
-            onSend(newMessages);
+        onSend(newMessages);
+        this.scrollToBottom();
+
+        if (shouldResetInputToolbar === true) {
+            setTimeout(() => {
+                if (isMounted === true) {
+                    this.setState({ typingDisabled: false });
+                }
+            }, 100);
         }
     };
 
     renderMessagesList = () => {
-        return <List />;
+        const { messages } = this.state;
+        return (
+            <MessagesList
+                data={messages}
+                setMessageContainerRef={this.setMessageContainerRef}
+            />
+        );
     };
 
     renderInputToolbar = () => {
@@ -88,10 +117,23 @@ class Chat extends Component {
         });
     };
 
+    scrollToBottom = (animated = true) => {
+        if (this.messageContainerRef !== null) {
+            this.messageContainerRef.scrollTo({
+                y: 0,
+                animated,
+            });
+        }
+    };
+
     setActionsOpen = actionsOpen =>
         this.setState({
             actionsOpen,
         });
+
+    setMessageContainerRef = el => {
+        this.messageContainerRef = el;
+    };
 
     render() {
         return (

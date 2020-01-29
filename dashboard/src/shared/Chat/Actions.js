@@ -1,12 +1,11 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { animated, useSpring } from 'react-spring';
 
 // Components //
 import IconButton from 'shared/IconButton';
 import { AttachmentIcon, AddImageIcon, ChevronRightIcon } from 'shared/Icons';
 
-const Root = styled(animated.div)`
+const Root = styled.div`
     flex-direction: row;
     align-items: center;
     margin-right: 24px;
@@ -21,7 +20,7 @@ const Root = styled(animated.div)`
     }
 `;
 
-const ExpandWrapper = styled(animated.div)`
+const ExpandWrapper = styled.div`
     position: absolute;
     left: 16px;
 `;
