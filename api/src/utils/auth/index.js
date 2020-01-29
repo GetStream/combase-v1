@@ -16,6 +16,11 @@ const auth = async (req, res, next) => {
 
 		const token = req.headers.authorization.replace(/^Bearer\s/, '');
 
+		// whitelist health endpoint without token
+		if (req.path.includes('health')) {
+			return next();
+		}
+
 		// whitelist config endpoint when token is included
 		if (req.path.includes('configs') && token === process.env.AUTH_SECRET) {
 			return next();
