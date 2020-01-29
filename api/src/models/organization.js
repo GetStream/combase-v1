@@ -62,6 +62,17 @@ export const OrganizationSchema = new Schema(
 				default: true
 			}
 		},
+		welcome: {
+			message: {
+				type: String,
+				trim: true,
+				default: 'Welcome! Type a message to get started and we will connect you with an available agent!'
+			},
+			enabled: {
+				type: Boolean,
+				default: false
+			}
+		},
 		response: {
 			type: String,
 			enum: [
