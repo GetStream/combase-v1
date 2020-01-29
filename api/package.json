@@ -28,6 +28,7 @@
 		"bcrypt": "^3.0.7",
 		"body-parser": "^1.19.0",
 		"bull": "^3.12.1",
+		"cld": "^2.5.1",
 		"cloudinary": "^1.19.0",
 		"compression": "^1.7.4",
 		"cors": "^2.8.5",
