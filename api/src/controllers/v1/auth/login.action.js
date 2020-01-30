@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import { StreamChat } from 'stream-chat';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
@@ -29,14 +30,39 @@ exports.login = async (req, res) => {
 		// sanitize / remove password
 		delete agent.password;
 
-		// token generation
-		const token = jwt.sign(
+		// jwt token generation (for stream)
+		let streamKey;
+		let streamSecret;
+
+		// if this env is found, it's assumed that the api is running on heroku
+		if (process.env.STREAM_URL) {
+			// extract the key and secret from the environment variable
+			[streamKey, streamSecret] = process.env.STREAM_URL.substr(8)
+				.split('@')[0]
+				.split(':');
+		} else {
+			// api key and secret were provided from a .env file
+			streamKey = process.env.STREAM_API_KEY;
+			streamSecret = process.env.STREAM_API_KEY;
+		}
+
+		const client = new StreamChat(streamKey, streamSecret);
+		const streamToken = client.createToken(agent._id.toString());
+
+		// jwt token generation (for api)
+		const apiToken = jwt.sign(
 			{ sub: agent._id, role: agent.role },
 			process.env.AUTH_SECRET
 		);
 
 		// return the response with user data, token, and api key
-		return res.json({ ...agent, token });
+		return res.json({
+			...agent,
+			tokens: {
+				api: apiToken,
+				stream: streamToken,
+			},
+		});
 	} catch (error) {
 		console.error(error);
 		res.status(500).json({ error: error.message });
