@@ -21,7 +21,7 @@ const auth = async (req, res, next) => {
 			return next();
 		}
 
-		// whitelist atuh endpoint when token is included
+		// whitelist organizations endpoint when token is included
 		if (
 			req.path.includes('organizations') &&
 			req.method === 'POST' &&
@@ -30,7 +30,7 @@ const auth = async (req, res, next) => {
 			return next();
 		}
 
-		// whitelist atuh endpoint when token is included
+		// whitelist auth endpoint when token is included
 		if (
 			req.path.includes('auth') &&
 			req.method === 'POST' &&
