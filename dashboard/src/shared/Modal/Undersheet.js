@@ -13,6 +13,7 @@ const Undersheet = styled(Animated.div)`
   ${""}
   z-index: ${({ theme }) => theme.z.modal};
   visibility: ${({ open }) => (open ? "visible" : "hidden")};
+  backdrop-filter: blur(5px);
 `;
 
 export default Undersheet;
