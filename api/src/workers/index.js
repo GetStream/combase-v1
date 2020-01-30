@@ -13,13 +13,13 @@ const queueArray = [
 	WebhookFaqQueue,
 	WebhookInviteQueue,
 	WebhookOrganizationQueue,
-	WebhookUserQueue,
+	WebhookUserQueue
 ];
 const TTL = 24 * 60 * 60 * 1000; // 1 day
 
-const queueCompletedCleanup = async queue => queue.clean(TTL, 'completed');
-const queueFailedCleanup = async queue => queue.clean(TTL, 'failed');
-const logQueueStatus = queue => {
+const queueCompletedCleanup = async (queue) => queue.clean(TTL, 'completed');
+const queueFailedCleanup = async (queue) => queue.clean(TTL, 'failed');
+const logQueueStatus = (queue) => {
 	queue.on('global:completed', (jobId, result) => {
 		console.info(`Queue ${queue.name} job completed`, { jobId, result });
 	});
@@ -36,19 +36,19 @@ const logQueueStatus = queue => {
 		console.warn(`Queue ${queue.name} failed`, {
 			ErrMsg: err.message,
 			job,
-			err,
+			err
 		});
 	});
 
 	queue.on('cleaned', function(jobs, status) {
 		console.info(`Queue ${queue.name} cleaned jobs, status: ${status}`, {
-			numbers: jobs.length,
+			numbers: jobs.length
 		});
 	});
 };
 
 async function start() {
-	queueArray.forEach(queue => {
+	queueArray.forEach((queue) => {
 		logQueueStatus(queue);
 		queueCompletedCleanup(queue);
 		queueFailedCleanup(queue);
@@ -60,12 +60,10 @@ start();
 async function shutdown(signal) {
 	console.info(`Worker Received ${signal}. Shutting down.`);
 
-	Promise.all(queueArray.map(queue => queue.close()))
-		.then(() => process.exit(0))
-		.catch(err => {
-			console.error(`Failure during worker shutdown: ${err.message}`);
-			process.exit(1);
-		});
+	Promise.all(queueArray.map((queue) => queue.close())).then(() => process.exit(0)).catch((err) => {
+		console.error(`Failure during worker shutdown: ${err.message}`);
+		process.exit(1);
+	});
 }
 
 process.on('SIGINT', shutdown);

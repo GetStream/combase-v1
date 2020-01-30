@@ -14,66 +14,65 @@ export const AgentSchema = new Schema(
 			first: {
 				type: String,
 				trim: true,
-				required: true,
+				required: true
 			},
 			last: {
 				type: String,
 				trim: true,
-				required: true,
-			},
+				required: true
+			}
 		},
 		email: {
 			type: mongoose.SchemaTypes.Email,
 			lowercase: true,
 			trim: true,
 			unique: true,
-			required: true,
+			required: true
 		},
 		title: {
 			type: String,
 			trim: true,
-			default: 'Support Agent',
+			default: 'Support Agent'
 		},
 		image: {
 			type: String,
 			trim: true,
-			default: '',
+			default: ''
 		},
 		refs: {
 			tags: {
 				type: Schema.Types.ObjectId,
 				ref: 'Tag',
-				required: true,
-				autopopulate: true,
+				autopopulate: true
 			},
 			organization: {
 				type: Schema.Types.ObjectId,
 				ref: 'Organization',
 				required: true,
-				autopopulate: true,
-			},
+				autopopulate: true
+			}
 		},
 		password: {
 			type: String,
 			required: true,
-			bcrypt: true,
+			bcrypt: true
 		},
 		recovery: {
 			type: String,
-			default: '',
+			default: ''
 		},
 		role: {
 			type: String,
-			enum: ['admin', 'moderator', 'viewer'],
-			default: 'admin',
+			enum: [ 'admin', 'moderator', 'viewer' ],
+			default: 'admin'
 		},
 		active: {
 			type: Boolean,
-			default: true,
-		},
+			default: true
+		}
 	},
 	{
-		collection: 'agents',
+		collection: 'agents'
 	}
 );
 
