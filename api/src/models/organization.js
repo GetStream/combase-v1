@@ -73,6 +73,7 @@ export const OrganizationSchema = new Schema(
 			address: {
 				type: String,
 				trim: true,
+				required: true,
 			},
 			display: {
 				type: Boolean,
