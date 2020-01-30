@@ -46,6 +46,7 @@ export const OrganizationSchema = new Schema(
 			tagline: {
 				type: String,
 				trim: true,
+				required: true,
 			},
 			colors: {
 				primary: {
