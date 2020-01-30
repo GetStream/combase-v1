@@ -37,7 +37,13 @@ exports.login = async (req, res) => {
 		const streamToken = client.createToken(agent._id.toString());
 
 		// jwt token generation (for api)
-		const apiToken = jwt.sign({ sub: agent._id, role: agent.role }, process.env.AUTH_SECRET);
+		const apiToken = jwt.sign(
+			{
+				sub: agent._id,
+				role: agent.role
+			},
+			process.env.AUTH_SECRET
+		);
 
 		// return the response with user data, token, and api key
 		return res.json({
