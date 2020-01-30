@@ -84,6 +84,7 @@ export const OrganizationSchema = new Schema(
 			url: {
 				type: String,
 				trim: true,
+				required: true,
 			},
 			display: {
 				type: Boolean,
