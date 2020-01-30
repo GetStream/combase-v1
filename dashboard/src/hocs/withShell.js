@@ -1,12 +1,14 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { StreamChat } from 'stream-chat';
 import styled from 'styled-components';
 
 // Hooks //
-import useMedia from 'hooks/useMedia';
+import useAuth from 'hooks/useAuth';
+import useChatClient from 'hooks/useChatClient';
 import useConfig from 'hooks/useConfig';
+import useMedia from 'hooks/useMedia';
 
 // Context //
+import AuthContext from 'contexts/Auth';
 import ShellContext from 'contexts/Shell';
 import ChatContext from 'contexts/Chat';
 
@@ -22,17 +24,11 @@ const Root = styled.div`
 `;
 
 export default (WrappedComponent, routes = []) => props => {
-    const [config, { loading, error }] = useConfig();
+    const [config, { loading: configLoading, error: configError }] = useConfig();
+    const [user, { loading: authLoading, error: authError }] = useAuth(process.env.REACT_APP_USER_EMAIL, process.env.REACT_APP_USER_PASS);
     const [drawerOpen, toggleDrawer] = useState(false);
-    const [chatClient, setChatClient] = useState(null);
+    const chatClient = useChatClient(user, config);
     const isMobile = useMedia('sm');
-
-    useEffect(() => {
-        if (config.stream && !chatClient) {
-            const client = new StreamChat(config.stream.key);
-            setChatClient(client);
-        }        
-    }, [config.stream, chatClient]);
 
     const value = useMemo(
         () => ({
@@ -44,12 +40,12 @@ export default (WrappedComponent, routes = []) => props => {
         }),
         [config, drawerOpen, toggleDrawer]
     );
-    
-    if (loading || !chatClient) {
+
+    if (configLoading || authLoading || !chatClient) {
         return <LoadingState />;
     }
 
-    if (error) {
+    if (authError || configError) {
         // TODO: Show error screen here
         return 'Something went wrong!'
     }
@@ -57,20 +53,22 @@ export default (WrappedComponent, routes = []) => props => {
     return (
         <ShellContext.Provider {...{ value }}>
             <ChatContext.Provider value={chatClient}>
-                <Root>
-                {isMobile ? (
-                    <Drawer
-                        {...props}
-                        {...{ routes }}
-                        open={drawerOpen}
-                        onClose={value.drawer.toggle}
-                    />
-                ) : (
-                    <Sidenav {...props} {...{ routes }} />
-                )}
-                <WrappedComponent {...props} />
-                <Helmet />
-            </Root>
+                <AuthContext.Provider value={user}>
+                    <Root>
+                        {isMobile ? (
+                            <Drawer
+                                {...props}
+                                {...{ routes }}
+                                open={drawerOpen}
+                                onClose={value.drawer.toggle}
+                            />
+                        ) : (
+                            <Sidenav {...props} {...{ routes }} />
+                        )}
+                        <WrappedComponent {...props} />
+                        <Helmet />
+                    </Root>
+                </AuthContext.Provider>
             </ChatContext.Provider>
         </ShellContext.Provider>
     );

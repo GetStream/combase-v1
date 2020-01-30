@@ -11,7 +11,6 @@ import pageCard from 'styles/css/pageCard';
 import Chat, { append } from 'shared/Chat';
 import { ChatIcon } from 'shared/Icons';
 import EmptyState from 'shared/EmptyState';
-import moment from 'moment';
 
 const Root = styled.div`
     flex: 1;

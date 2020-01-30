@@ -1,9 +1,8 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
-import { animated, useSpring } from 'react-spring';
 
 // Compmonents //
-const Root = styled(animated.div)`
+const Root = styled.div`
     flex: 1;
 `;
 
