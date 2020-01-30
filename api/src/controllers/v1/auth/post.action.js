@@ -10,7 +10,7 @@ exports.post = async (req, res) => {
 
 		// if the agent does not exist, create a new agent
 		let agent = await Agent.findOneOrCreate(
-			{ email: data.email }, // lowercase email to avoid lookup issues
+			{ email: data.email.toLowerCase() }, // lowercase email to avoid lookup issues
 			{
 				name: {
 					first: data.name.first,
