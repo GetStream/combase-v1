@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import uuid from 'uuid/v4';
 
 // Components //
 import InputToolbar from './InputToolbar';
@@ -13,6 +14,20 @@ const Root = styled.div`
 const MessagesWrapper = styled.div`
     height: calc(100vh - ${({ inputToolbarHeight }) => inputToolbarHeight}px);
 `;
+
+const dummyMessages = [
+    { system: true, text: 'Start of your conversation with Luke S.' },
+    {
+        user: { id: 'nickparsons', name: 'Nick P.' },
+        created_at: new Date(),
+        text: 'Hey',
+    },
+    {
+        user: { id: 'lukesmetham', name: 'Luke S.' },
+        created_at: new Date(),
+        text: 'Hi',
+    },
+];
 
 class Chat extends Component {
     static propTypes = {
@@ -29,9 +44,7 @@ class Chat extends Component {
     state = {
         inputToolbarHeight: 0,
         isMounted: false,
-        messages: new Array(100).fill(0).map((_, index) => ({
-            _id: index,
-        })),
+        messages: dummyMessages,
         text: '',
         typingDisabled: false,
     };
@@ -67,6 +80,7 @@ class Chat extends Component {
                 ...message,
                 user,
                 created_at: new Date(),
+                id: uuid(),
             };
         });
 

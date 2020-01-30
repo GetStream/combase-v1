@@ -13,8 +13,9 @@ import SystemMessage from './SystemMessage';
 
 const Wrapper = styled.div`
     max-width: 840px;
-    width: 100%;
+    width: ${({ width }) => `${width}px` || '100%'};
     align-self: center;
+    transform: scaleY(-1);
 `;
 
 const Root = styled.div`
@@ -34,6 +35,7 @@ class Message extends Component {
         UserMessageComponent: PropTypes.any,
         PartnerMessageComponent: PropTypes.any,
         SystemMessageComponent: PropTypes.any,
+        width: PropTypes.number,
     };
 
     static defaultProps = {
@@ -94,7 +96,7 @@ class Message extends Component {
     shouldComponentUpdate(nextProps) {
         const next = nextProps.currentMessage;
         const current = this.props.currentMessage;
-        const { previousMessage, nextMessage } = this.props;
+        const { previousMessage, nextMessage, width } = this.props;
         const nextPropsMessage = nextProps.nextMessage;
         const nextPropsPreviousMessage = nextProps.previousMessage;
 
@@ -104,6 +106,7 @@ class Message extends Component {
             false;
 
         return (
+            width !== nextProps.width ||
             next.sent !== current.sent ||
             next.received !== current.received ||
             next.pending !== current.pending ||
@@ -119,12 +122,7 @@ class Message extends Component {
     }
 
     renderDay = () => {
-        const {
-            currentMessage,
-            DayComponent,
-            previousMessage,
-            renderDay,
-        } = this.props;
+        const { currentMessage, DayComponent, previousMessage } = this.props;
 
         if (
             currentMessage &&
@@ -140,6 +138,7 @@ class Message extends Component {
             UserMessageComponent,
             PartnerMessageComponent,
             SystemMessageComponent,
+            width,
             ...rest
         } = this.props;
 
@@ -148,7 +147,11 @@ class Message extends Component {
         } = this.props;
 
         if (isSystemMessage) {
-            return <SystemMessageComponent {...rest} />;
+            return (
+                <Wrapper {...{ width }}>
+                    <SystemMessageComponent {...rest} />
+                </Wrapper>
+            );
         }
 
         const MessageComponent = !this.isOwn
@@ -156,7 +159,7 @@ class Message extends Component {
             : UserMessageComponent;
 
         return (
-            <Wrapper>
+            <Wrapper {...{ width }}>
                 {this.renderDay()}
                 <Root>
                     <MessageComponent {...rest} />

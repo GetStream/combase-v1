@@ -11,26 +11,38 @@ class MessagesList extends Component {
     scrollAnim = new Animated.Value(0);
 
     state = {
-        layoutProvider: LayoutUtil.getLayoutProvider(0),
+        layoutProvider: LayoutUtil.getLayoutProvider(
+            0,
+            this.props.data,
+            this.props.user
+        ),
         layout: {},
     };
 
     componentDidUpdate(prevProps, prevState) {
         const { layout } = this.state;
+        const { data, user } = this.props;
         if (layout.width !== prevState.layout.width) {
             this.setState({
-                layoutProvider: LayoutUtil.getLayoutProvider(layout.width),
+                layoutProvider: LayoutUtil.getLayoutProvider(
+                    layout.width,
+                    data,
+                    user
+                ),
             });
         }
     }
 
     handleEndReached = () => {
-        console.log('end reached', 'load more');
+        console.log('end reached load more');
     };
 
     onResize = layout => this.setState({ layout });
 
     renderRow = (currentMessage, index) => {
+        const {
+            layout: { width },
+        } = this.state;
         if (!currentMessage.user && !currentMessage.system) {
             if (!currentMessage.system) {
                 console.warn('`user` is missing from message.');
@@ -43,7 +55,8 @@ class MessagesList extends Component {
         if (data && user) {
             const previousMessage = data[index - 1];
             const nextMessage = data[index + 1];
-            const isOwn = currentMessage.user.id === user.id;
+            const isOwn =
+                currentMessage.user && currentMessage.user.id === user.id;
             const messageProps = {
                 ...rest,
                 user,
@@ -53,7 +66,7 @@ class MessagesList extends Component {
                 nextMessage,
                 position: isOwn ? 'right' : 'left',
             };
-            return <Message {...messageProps} />;
+            return <Message {...{ width }} {...messageProps} />;
         }
 
         return null;
@@ -82,6 +95,7 @@ class MessagesList extends Component {
                     setMessageContainerRef,
                     style,
                 }}
+                forceNonDeterministicRendering
                 onEndReached={this.handleEndReached}
                 onEndReachedThreshold={240}
                 rowCount={data.length}

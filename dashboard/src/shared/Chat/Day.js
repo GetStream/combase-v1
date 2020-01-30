@@ -12,10 +12,10 @@ const Root = styled.div`
     text-align: center;
 `;
 
-export default ({ currentMessage }) => (
+export default ({ date }) => (
     <Root>
         <Text faded size={12}>
-            {moment(currentMessage.created_at).calendar()}
+            {moment(date).calendar()}
         </Text>
     </Root>
 );
