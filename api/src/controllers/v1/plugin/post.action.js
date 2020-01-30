@@ -11,7 +11,7 @@ exports.post = async (req, res) => {
 			});
 		}
 
-		const plugin = await Plugin.create(data).lean();
+		const plugin = await Plugin.create(data);
 		res.status(200).json(plugin);
 	} catch (error) {
 		console.error(error);

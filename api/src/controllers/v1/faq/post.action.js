@@ -5,7 +5,7 @@ exports.post = async (req, res) => {
 	try {
 		const data = { ...req.body, ...req.params };
 
-		const faq = await Faq.create(data).lean();
+		const faq = await Faq.create(data);
 
 		await AddToWebhookFaqQueue('added', faq);
 

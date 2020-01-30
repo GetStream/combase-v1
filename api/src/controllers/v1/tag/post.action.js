@@ -4,7 +4,7 @@ exports.post = async (req, res) => {
 	try {
 		const data = { ...req.body, ...req.params };
 
-		const tag = await Tag.create(data).lean();
+		const tag = await Tag.create(data);
 		res.status(200).json(tag);
 	} catch (error) {
 		console.error(error);

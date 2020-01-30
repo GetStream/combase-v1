@@ -4,7 +4,7 @@ exports.post = async (req, res) => {
 	try {
 		const data = { ...req.body, ...req.params };
 
-		const webhook = await Webhook.create(data).lean();
+		const webhook = await Webhook.create(data);
 		res.status(200).json(webhook);
 	} catch (error) {
 		console.error(error);

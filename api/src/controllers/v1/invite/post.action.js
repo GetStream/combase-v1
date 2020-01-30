@@ -5,7 +5,7 @@ exports.post = async (req, res) => {
 	try {
 		const data = { ...req.body, ...req.params };
 
-		const invite = await Invite.create(data).lean();
+		const invite = await Invite.create(data);
 
 		await AddToWebhookInviteQueue('added', invite);
 

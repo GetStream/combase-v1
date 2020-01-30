@@ -5,7 +5,7 @@ exports.post = async (req, res) => {
 	try {
 		const data = { ...req.body, ...req.params };
 
-		const user = await User.create(data).lean();
+		const user = await User.create(data);
 
 		await AddToWebhookUserQueue('created', user);
 

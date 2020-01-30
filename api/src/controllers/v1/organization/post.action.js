@@ -5,7 +5,7 @@ exports.post = async (req, res) => {
 	try {
 		const data = { ...req.body, ...req.params };
 
-		const organization = await Organization.create(data).lean();
+		const organization = await Organization.create(data);
 
 		await AddToWebhookOrganizationQueue('created', organization);
 

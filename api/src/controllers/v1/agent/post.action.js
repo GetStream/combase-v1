@@ -5,7 +5,7 @@ exports.post = async (req, res) => {
 	try {
 		const data = { ...req.body, ...req.params };
 
-		const agent = await Agent.create(data).lean();
+		const agent = await Agent.create(data);
 
 		await AddToWebhookAgentQueue('added', agent);
 
