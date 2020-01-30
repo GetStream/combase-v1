@@ -36,6 +36,10 @@ exports.post = async (req, res) => {
 		const channel = client.channel('messaging', create._id.toString(), {
 			type: 'messaging',
 			members: [agent, user],
+			roles: {
+				agent: 'moderator',
+				user: 'channel_member',
+			},
 			organization,
 		});
 
