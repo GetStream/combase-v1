@@ -24,6 +24,8 @@ const EmptyRoot = styled(Root)`
     align-items: center;
 `;
 
+const user = { id: 'lukesmetham', name: 'Luke' };
+
 export default ({ match }) => {
     if (!match) {
         return (
@@ -35,7 +37,7 @@ export default ({ match }) => {
 
     return (
         <Root>
-            <Chat />
+            <Chat {...{ user }} />
         </Root>
     );
 };

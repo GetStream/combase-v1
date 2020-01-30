@@ -76,7 +76,7 @@ class Chat extends Component {
         }
 
         onSend(newMessages);
-        this.messageContainerRef.scrollToEnd();
+        this.messageContainerRef.scrollToTop();
 
         if (shouldResetInputToolbar === true) {
             setTimeout(() => {
@@ -138,12 +138,13 @@ class Chat extends Component {
     };
 
     render() {
+        const { user } = this.props;
         const { inputToolbarHeight, messages } = this.state;
         return (
             <Root>
                 <MessagesWrapper {...{ inputToolbarHeight }}>
                     <MessagesList
-                        {...{ inputToolbarHeight }}
+                        {...{ inputToolbarHeight, user }}
                         data={messages}
                         setMessageContainerRef={this.setMessageContainerRef}
                     />
