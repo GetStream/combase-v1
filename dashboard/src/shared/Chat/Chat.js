@@ -64,8 +64,8 @@ class Chat extends Component {
         const newMessages = messages.map(message => {
             return {
                 ...message,
-                // user,
-                user: { id: 'nickparsons', name: 'Nick P.' },
+                user,
+                // user: { id: 'nickparsons', name: 'Nick P.' },
                 created_at: new Date(),
                 id: uuid(),
             };

@@ -6,7 +6,7 @@ import moment from 'moment';
 import Text from 'shared/Text';
 
 const Root = styled.div`
-    height: 24px;
+    height: 32px;
     align-items: center;
     justify-content: center;
     text-align: center;

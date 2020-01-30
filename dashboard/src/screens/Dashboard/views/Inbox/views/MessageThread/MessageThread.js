@@ -8,6 +8,7 @@ import pageCard from 'styles/css/pageCard';
 import Chat, { append } from 'shared/Chat';
 import { ChatIcon } from 'shared/Icons';
 import EmptyState from 'shared/EmptyState';
+import moment from 'moment';
 
 const Root = styled.div`
     flex: 1;
@@ -24,12 +25,14 @@ const EmptyRoot = styled(Root)`
     align-items: center;
 `;
 
-const user = { id: 'lukesmetham', name: 'Luke' };
+const user = { id: 'lukesmetham', name: 'Luke S.' };
 
 const dummyMessages = [
     {
         user: { id: 'lukesmetham', name: 'Nick P.' },
-        created_at: new Date(),
+        created_at: moment()
+            .subtract(1, 'hour')
+            .toDate(),
         text: 'Hey',
     },
     { system: true, text: 'Start of your conversation with Luke S.' },
