@@ -22,6 +22,15 @@ const auth = async (req, res, next) => {
 		}
 
 		// whitelist config endpoint when token is included
+		if (
+			req.path.includes('auth') &&
+			req.method.includes('post') &&
+			token === process.env.AUTH_SECRET
+		) {
+			return next();
+		}
+
+		// whitelist config endpoint when token is included
 		if (req.path.includes('configs') && token === process.env.AUTH_SECRET) {
 			return next();
 		}
