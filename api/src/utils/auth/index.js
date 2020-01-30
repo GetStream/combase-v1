@@ -22,7 +22,15 @@ const auth = async (req, res, next) => {
 		}
 
 		// whitelist atuh endpoint when token is included
-		console.log(req.path, req.method, token);
+		if (
+			req.path.includes('organization') &&
+			req.method === 'POST' &&
+			token === process.env.AUTH_SECRET
+		) {
+			return next();
+		}
+
+		// whitelist atuh endpoint when token is included
 		if (
 			req.path.includes('auth') &&
 			req.method === 'POST' &&
