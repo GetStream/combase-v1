@@ -32,7 +32,7 @@ const AvatarBubble = styled.div`
 
 const Bubble = styled.div`
     padding: 20px;
-    padding-left: ${({ showAvatar }) => (showAvatar ? 24 : 20)}px;
+    ${'' /* padding-left: ${({ showAvatar }) => (showAvatar ? 24 : 20)}px; */}
     background-color: ${({ theme }) => theme.color.primary};
     border: 1px solid ${({ theme }) => theme.color.primary};
     border-top-left-radius: ${({ hasPrev, theme }) =>
