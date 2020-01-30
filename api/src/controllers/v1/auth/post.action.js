@@ -18,9 +18,7 @@ exports.post = async (req, res) => {
 				},
 				email: data.email, // email is set to lowercase automatically by mongoose via model
 				password: data.password, // password is hashed using bcrypt automatically by mongoose plugin
-				refs: {
-					organization: data.organization
-				}
+				refs: data.refs
 			}
 		);
 

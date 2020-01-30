@@ -12,7 +12,7 @@ exports.login = async (req, res) => {
 		const data = req.body;
 
 		// if the agent does not exist, create a new agent
-		let agent = await Agent.findOne({ email: data.email }); // lowercase email to avoid lookup issues
+		let agent = await Agent.findOne({ email: data.email }).lean(); // lowercase email to avoid lookup issues
 
 		// if the agent does not exist
 		if (!agent) {
@@ -37,18 +37,15 @@ exports.login = async (req, res) => {
 		const streamToken = client.createToken(agent._id.toString());
 
 		// jwt token generation (for api)
-		const apiToken = jwt.sign(
-			{ sub: agent._id, role: agent.role },
-			process.env.AUTH_SECRET
-		);
+		const apiToken = jwt.sign({ sub: agent._id, role: agent.role }, process.env.AUTH_SECRET);
 
 		// return the response with user data, token, and api key
 		return res.json({
 			...agent,
 			tokens: {
 				api: apiToken,
-				stream: streamToken,
-			},
+				stream: streamToken
+			}
 		});
 	} catch (error) {
 		console.error(error);

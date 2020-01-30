@@ -49,7 +49,9 @@ export const AgentSchema = new Schema(
 				type: Schema.Types.ObjectId,
 				ref: 'Organization',
 				required: true,
-				autopopulate: true
+				autopopulate: {
+					select: [ 'name' ]
+				}
 			}
 		},
 		password: {
