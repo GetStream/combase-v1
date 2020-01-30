@@ -23,7 +23,7 @@ const auth = async (req, res, next) => {
 
 		// whitelist atuh endpoint when token is included
 		if (
-			req.path.includes('organization') &&
+			req.path.includes('organizations') &&
 			req.method === 'POST' &&
 			token === process.env.AUTH_SECRET
 		) {
