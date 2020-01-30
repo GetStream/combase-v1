@@ -23,7 +23,7 @@
 			"as": "MONGODB"
 		},
 		{
-			"plan": "heroku-redis:hobby-dev",
+			"plan": "rediscloud:30MB",
 			"as": "REDIS"
 		},
 		{
