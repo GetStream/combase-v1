@@ -10,6 +10,12 @@ import Text from 'shared/Text';
 
 const Root = styled.div`
     flex-direction: row;
+    z-index: 0;
+`;
+
+const AvatarWrapper = styled.div`
+    justify-content: flex-end;
+    align-items: flex-end;
 `;
 
 const AvatarBubble = styled.div`
@@ -26,6 +32,7 @@ const AvatarBubble = styled.div`
 
 const Bubble = styled.div`
     padding: 20px;
+    padding-left: ${({ showAvatar }) => (showAvatar ? 24 : 20)}px;
     background-color: ${({ theme }) => theme.color.primary};
     border: 1px solid ${({ theme }) => theme.color.primary};
     border-top-left-radius: ${({ hasPrev, theme }) =>
@@ -44,7 +51,7 @@ const Bubble = styled.div`
         margin-right: 160px;
     }
 
-    ${({ showAvatar }) =>
+    ${({ showAvatar, theme }) =>
         showAvatar
             ? `
 
@@ -52,13 +59,13 @@ const Bubble = styled.div`
             position: absolute;
             bottom: -1px;
             left: -20px;
-            z-index: -1;
+            z-index: 0;
             content: '';
             width: 0;
             height: 0;
             border-top: 32px solid transparent;
             border-bottom: 0px solid transparent;
-            border-right: 20px solid ${({ theme }) => theme.color.primary};
+            border-right: 20px solid ${theme.color.primary};
         }
 
     `
@@ -71,7 +78,7 @@ const PartnerMessage = memo(
         return (
             <Root>
                 {showAvatar ? (
-                    <AvatarBubble>
+                    <AvatarWrapper>
                         <AvatarBubble size={48}>
                             <Avatar
                                 showStatus={false}
@@ -80,7 +87,7 @@ const PartnerMessage = memo(
                                 size={48}
                             />
                         </AvatarBubble>
-                    </AvatarBubble>
+                    </AvatarWrapper>
                 ) : null}
                 <Bubble {...{ hasNext, hasPrev, showAvatar }}>
                     <Text color="white">{text}</Text>
