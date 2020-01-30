@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
-// Utils //
-import history from 'utils/history';
+import { Link } from 'react-router-dom';
 
 // Components //
 import Avatar from 'shared/Avatar';
@@ -22,6 +20,7 @@ const Root = styled.div`
     flex-direction: row;
     align-items: center;
     background-color: ${({ theme }) => theme.color.surface};
+    border-bottom: 1px solid ${({ theme }) => theme.color.border};
     @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
         padding: 0px 24px;
         justify-content: space-between;
@@ -34,12 +33,21 @@ const Main = styled.div`
 `;
 
 const UserWrapper = styled.div`
-    margin-left: 16px;
+    margin-left: 8px;
     flex-direction: row;
+    @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
+        margin-left: 16px;
+    }
 `;
 
 const Content = styled.div`
     margin-left: 12px;
+`;
+
+const BackLink = styled(Link)`
+    @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
+        display: none;
+    }
 `;
 
 const Actions = styled(ActionsGroup)`
@@ -54,11 +62,12 @@ const ChatHeader = ({ partner }) => {
     return (
         <Root>
             <Main>
-                <IconButton
+                <BackLink to="/inbox">
+                    <IconButton
                     icon={ArrowBackIcon}
                     color="text"
-                    onClick={history.goBack}
                 />
+                </BackLink>
                 <UserWrapper>
                     <Avatar
                         src={partner.avatar}
