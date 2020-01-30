@@ -6,6 +6,6 @@ module.exports = api => {
 	api.route('/v1/plugins').get(wrapAsync(list));
 	api.route('/v1/plugins/:plugin').get(wrapAsync(get));
 	api.route('/v1/plugins/:plugin').put(wrapAsync(put));
-	api.route('/v1/plugins/:plugin').post(wrapAsync(post));
+	api.route('/v1/plugins').post(wrapAsync(post));
 	api.route('/v1/plugins/:plugin').delete(wrapAsync(destroy));
 };
