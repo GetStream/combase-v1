@@ -6,6 +6,7 @@ export { default as AgentsIcon } from './icons/agents';
 export { default as AnalyticsIcon } from './icons/analytics';
 export { default as AppSettingsIcon } from './icons/app_settings';
 export { default as ArchiveIcon } from './icons/archive';
+export { default as ArrowBackIcon } from './icons/arrow_back';
 export { default as AttachmentIcon } from './icons/attachment';
 export { default as ChatIcon } from './icons/chat';
 export { default as ChevronRightIcon } from './icons/chevron_right';

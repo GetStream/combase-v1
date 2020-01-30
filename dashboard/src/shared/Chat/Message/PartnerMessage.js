@@ -44,7 +44,7 @@ const Bubble = styled.div`
             ? theme.borderRadius
             : theme.borderRadius * 2}px;
     border-bottom-right-radius: ${({ theme }) => theme.borderRadius * 2}px;
-    margin-right: 64px;
+    margin-right: 24px;
     margin-left: ${({ showAvatar }) => (showAvatar ? 0 : 56)}px;
     @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
         margin-right: 160px;

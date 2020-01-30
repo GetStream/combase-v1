@@ -30,7 +30,7 @@ const Bubble = styled.div`
     border-bottom-left-radius: ${({ theme }) => theme.borderRadius * 2}px;
     border-bottom-right-radius: ${({ hasNext, theme }) =>
         hasNext ? theme.borderRadius : theme.borderRadius * 2}px;
-    margin-left: 64px;
+    margin-left: 24px;
     @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
         margin-left: 160px;
     }

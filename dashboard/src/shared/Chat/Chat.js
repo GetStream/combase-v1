@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import uuid from 'uuid/v4';
 
 // Components //
+import ChatHeader from './ChatHeader';
 import InputToolbar from './InputToolbar';
 import MessagesList from './MessagesList';
 
@@ -12,7 +13,7 @@ const Root = styled.div`
 `;
 
 const MessagesWrapper = styled.div`
-    height: calc(100vh - ${({ inputToolbarHeight }) => inputToolbarHeight}px);
+    height: calc(100vh - ${({ inputToolbarHeight }) => inputToolbarHeight + 64}px);
 `;
 
 class Chat extends Component {
@@ -66,7 +67,7 @@ class Chat extends Component {
             return {
                 ...message,
                 user,
-                // user: { id: 'nickparsons', name: 'Nick P.' },
+                // user: this.props.partner,
                 created_at: new Date(),
                 id: uuid(),
             };
@@ -144,6 +145,7 @@ class Chat extends Component {
         const { inputToolbarHeight } = this.state;
         return (
             <Root>
+                <ChatHeader {...{partner}} />
                 <MessagesWrapper {...{ inputToolbarHeight }}>
                     <MessagesList
                         {...{ inputToolbarHeight, user, partner }}

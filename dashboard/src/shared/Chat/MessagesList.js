@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Animated from 'animated/lib/targets/react-dom';
 import isEqual from 'lodash.isequal';
 
@@ -9,7 +10,17 @@ import ListView from 'components/ListView';
 import Message from './Message';
 
 class MessagesList extends Component {
-    scrollAnim = new Animated.Value(0);
+    static propTypes ={
+        data: PropTypes.array,
+        partner: PropTypes.object,
+        setMessageContainerRef: PropTypes.func,
+        scrollAnim: PropTypes.instanceOf(Animated.Value),
+        user: PropTypes.object,
+    }
+
+    static defaultProps = {
+        scrollAnim: new Animated.Value(0),
+    };
 
     state = {
         layoutProvider: LayoutUtil.getLayoutProvider(
@@ -85,14 +96,13 @@ class MessagesList extends Component {
     }
 
     render() {
-        const { data, inputToolbarHeight, setMessageContainerRef } = this.props;
+        const { data, scrollAnim, setMessageContainerRef } = this.props;
         const { layoutProvider } = this.state;
-        const { onResize, renderRow, scrollAnim, style } = this;
+        const { onResize, renderRow, style } = this;
         return (
             <ListView
                 {...{
                     data,
-                    inputToolbarHeight,
                     layoutProvider,
                     renderRow,
                     onResize,

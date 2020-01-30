@@ -44,7 +44,7 @@ const Avatar = ({ className, name, showStatus, size, src, statusBorder }) => {
           <img alt={name} {...{ src }} />
         )}
       </Root>
-      {showStatus ? <Status borderColor={statusBorder} /> : null}
+      {showStatus ? <Status size={size / 3} borderColor={statusBorder} /> : null}
     </div>
   );
 };
