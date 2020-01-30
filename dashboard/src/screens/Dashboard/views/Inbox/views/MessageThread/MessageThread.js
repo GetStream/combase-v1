@@ -28,12 +28,7 @@ const user = { id: 'lukesmetham', name: 'Luke' };
 
 const dummyMessages = [
     {
-        user: { id: 'lukesmetham', name: 'Luke S.' },
-        created_at: new Date(),
-        text: 'Hi',
-    },
-    {
-        user: { id: 'nickparsons', name: 'Nick P.' },
+        user: { id: 'lukesmetham', name: 'Nick P.' },
         created_at: new Date(),
         text: 'Hey',
     },
@@ -45,7 +40,6 @@ export default ({ match }) => {
 
     const onSend = useCallback(
         newMessages => {
-            console.log(messages, newMessages);
             setMessages(append(messages, newMessages));
         },
         [messages]

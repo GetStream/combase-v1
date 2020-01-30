@@ -14,7 +14,7 @@ const Container = styled.div`
         pos === 'left' ? 'flex-end' : 'flex-start'};
     margin-right: ${({ pos }) => (pos === 'left' ? 0 : 8)}px;
     margin-left: ${({ pos }) => (pos === 'left' ? 8 : 0)}px;
-    margin-bottom: ${({ hasNext }) => (hasNext ? 2 : 24)}px;
+    margin-bottom: ${({ hasNext }) => (hasNext ? 4 : 24)}px;
 `;
 
 const MessageWrapper = styled.div`
@@ -23,11 +23,11 @@ const MessageWrapper = styled.div`
 `;
 
 export default WrappedComponent => props => {
-    const { hasNext, position } = props;
+    const { hasNext, position: pos } = props;
     return (
         <Root>
-            <Container pos={position} {...{ hasNext }}>
-                <MessageWrapper pos={position}>
+            <Container {...{ hasNext, pos }}>
+                <MessageWrapper {...{ pos }}>
                     <WrappedComponent {...props} />
                 </MessageWrapper>
             </Container>
