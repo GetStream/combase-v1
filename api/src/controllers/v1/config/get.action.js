@@ -27,7 +27,7 @@ exports.get = async (req, res) => {
 			},
 		};
 
-		const plugins = await Plugin.find({}).lean();
+		const plugins = await Plugin.find({});
 
 		// magic
 

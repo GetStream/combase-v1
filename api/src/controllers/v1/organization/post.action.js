@@ -1,5 +1,5 @@
 import Organization from 'models/organization';
-import { AddToWebhookOrganizationQueue } from 'workers/webhook-invite/queue';
+import { AddToWebhookOrganizationQueue } from 'workers/webhook-organization/queue';
 
 exports.post = async (req, res) => {
 	try {

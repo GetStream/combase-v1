@@ -8,7 +8,7 @@ exports.update = async (req, res) => {
 		const response = await Response.updateOne(
 			{ _id: params.response },
 			{ $set: data }
-		).lean();
+		);
 
 		res.status(200).json(response);
 	} catch (error) {

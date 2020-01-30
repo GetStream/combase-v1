@@ -18,7 +18,7 @@ exports.nps = async (req, res) => {
 		}
 
 		// if (params.segment === 'organization') {
-		// 	const chats = await Chat.find({ 'refs.organization': params.organization }).select('score.rating').lean();
+		// 	const chats = await Chat.find({ 'refs.organization': params.organization }).select('score.rating');
 		// }
 
 		res.sendStatus(200);

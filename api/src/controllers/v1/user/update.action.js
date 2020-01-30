@@ -6,10 +6,7 @@ exports.update = async (req, res) => {
 		const data = req.body;
 		const params = req.params;
 
-		const user = await User.updateOne(
-			{ _id: params.user },
-			{ $set: data }
-		).lean();
+		const user = await User.updateOne({ _id: params.user }, { $set: data });
 
 		await AddToWebhookUserQueue('updated', user);
 

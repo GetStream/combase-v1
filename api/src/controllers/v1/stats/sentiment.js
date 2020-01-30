@@ -6,7 +6,7 @@ exports.nps = async (req, res) => {
 
 		const chats = await Chat.find({
 			'refs.organization': params.organization,
-		}).lean();
+		});
 
 		res.sendStatus(200);
 	} catch (error) {

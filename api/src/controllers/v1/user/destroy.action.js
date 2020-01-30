@@ -14,12 +14,12 @@ exports.destroy = async (req, res) => {
 			});
 		}
 
-		const user = await User.findByIdAndRemove(data.user).lean();
+		const user = await User.findByIdAndRemove(data.user);
 		await AddToWebhookUserQueue('removed', user);
 
 		const chat = await Chat.remove({
 			'refs.organization': data.organization,
-		}).lean();
+		});
 		await AddToWebhookChatQueue('removed', chat);
 
 		res.sendStatus(204);

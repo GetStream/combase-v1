@@ -4,9 +4,7 @@ exports.get = async (req, res) => {
 	try {
 		const data = { ...req.body, ...req.params };
 
-		const organization = await Organization.findById(
-			data.organization
-		).lean();
+		const organization = await Organization.findById(data.organization);
 		res.status(200).json(organization);
 	} catch (error) {
 		console.error(error);

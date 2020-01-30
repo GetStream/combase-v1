@@ -6,10 +6,7 @@ exports.update = async (req, res) => {
 		const data = req.body;
 		const params = req.params;
 
-		const faq = await Faq.updateOne(
-			{ _id: params.faq },
-			{ $set: data }
-		).lean();
+		const faq = await Faq.updateOne({ _id: params.faq }, { $set: data });
 
 		await AddToWebhookFaqQueue('updated', faq);
 

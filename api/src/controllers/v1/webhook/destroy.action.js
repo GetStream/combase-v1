@@ -11,7 +11,7 @@ exports.destroy = async (req, res) => {
 			});
 		}
 
-		await Webhook.findByIdAndRemove(data.webhook).lean();
+		await Webhook.findByIdAndRemove(data.webhook);
 
 		res.sendStatus(204);
 	} catch (error) {

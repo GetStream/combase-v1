@@ -7,8 +7,7 @@ exports.destroy = async (req, res) => {
 		const response = await Response.updateOne(
 			{ _id: data.faq },
 			{ $set: data }
-		).lean();
-
+		);
 		res.status(200).json(response);
 	} catch (error) {
 		console.error(error);

@@ -6,10 +6,7 @@ exports.update = async (req, res) => {
 		const data = req.body;
 		const params = req.params;
 
-		const chat = await Chat.updateOne(
-			{ _id: params.chat },
-			{ $set: data }
-		).lean();
+		const chat = await Chat.updateOne({ _id: params.chat }, { $set: data });
 
 		await AddToWebhookChatQueue('updated', chat);
 

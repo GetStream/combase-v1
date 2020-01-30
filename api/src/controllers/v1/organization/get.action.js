@@ -8,9 +8,7 @@ exports.get = async (req, res) => {
 
 		const { key } = await StreamClient();
 
-		const organization = await Organization.findById(
-			data.organization
-		).lean();
+		const organization = await Organization.findById(data.organization);
 		res.status(200).json({ stream: { key }, ...organization });
 	} catch (error) {
 		console.error(error);

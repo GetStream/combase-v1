@@ -15,7 +15,7 @@ exports.update = async (req, res) => {
 		const plugin = await Plugin.updateOne(
 			{ _id: params.plugin },
 			{ $set: data }
-		).lean();
+		);
 		res.status(200).json(plugin);
 	} catch (error) {
 		console.error(error);

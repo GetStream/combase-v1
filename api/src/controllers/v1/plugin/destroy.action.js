@@ -11,7 +11,7 @@ exports.destroy = async (req, res) => {
 			});
 		}
 
-		await Plugin.findByIdAndRemove(data.plugin).lean();
+		await Plugin.findByIdAndRemove(data.plugin);
 
 		res.sendStatus(204);
 	} catch (error) {

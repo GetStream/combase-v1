@@ -15,7 +15,7 @@ exports.destroy = async (req, res) => {
 		const { password, ...agent } = await Agent.updateOne(
 			{ _id: data.agent },
 			{ $set: { status: 'inactive' } }
-		).lean();
+		);
 
 		await AddToWebhookAgentQueue('removed', agent);
 

@@ -8,7 +8,7 @@ exports.update = async (req, res) => {
 		const webhook = await Webhook.updateOne(
 			{ _id: params.webhook },
 			{ $set: data }
-		).lean();
+		);
 		res.status(200).json(webhook);
 	} catch (error) {
 		console.error(error);

@@ -12,10 +12,7 @@ exports.destroy = async (req, res) => {
 			});
 		}
 
-		const faq = await Faq.updateOne(
-			{ _id: data.faq },
-			{ $set: data }
-		).lean();
+		const faq = await Faq.updateOne({ _id: data.faq }, { $set: data });
 
 		await AddToWebhookFaqQueue('removed', faq);
 

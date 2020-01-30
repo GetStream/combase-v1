@@ -25,32 +25,32 @@ exports.destroy = async (req, res) => {
 
 		const invite = await Invite.remove({
 			'refs.organization': data.organization,
-		}).lean();
+		});
 		await AddToWebhookInviteQueue('removed', invite);
 
 		const agent = await Agent.remove({
 			'refs.organization': data.organization,
-		}).lean();
+		});
 		await AddToWebhookAgentQueue('removed', agent);
 
 		const user = await User.remove({
 			'refs.organization': data.organization,
-		}).lean();
+		});
 		await AddToWebhookUserQueue('removed', user);
 
 		const chat = await Chat.remove({
 			'refs.organization': data.organization,
-		}).lean();
+		});
 		await AddToWebhookChatQueue('removed', chat);
 
 		const faq = await Faq.remove({
 			'refs.organization': data.organization,
-		}).lean();
+		});
 		await AddToWebhookFaqQueue('removed', faq);
 
 		const organization = await Organization.findByIdAndRemove(
 			data.organization
-		).lean();
+		);
 		await AddToWebhookOrganizationQueue('removed', organization);
 
 		res.sendStatus(204);

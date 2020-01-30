@@ -12,7 +12,7 @@ exports.destroy = async (req, res) => {
 			});
 		}
 
-		const invite = await Invite.findByIdAndRemove(data.invite).lean();
+		const invite = await Invite.findByIdAndRemove(data.invite);
 
 		await AddToWebhookInviteQueue('removed', invite);
 

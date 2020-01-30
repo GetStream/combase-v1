@@ -9,11 +9,14 @@ exports.update = async (req, res) => {
 
 		if (serialized.role !== 'admin') {
 			return res.status(403).json({
-				status: 'Invalid permissions to view or modify this resource.'
+				status: 'Invalid permissions to view or modify this resource.',
 			});
 		}
 
-		const agent = await Agent.updateOne({ _id: params.agent }, { $set: data }).lean();
+		const agent = await Agent.updateOne(
+			{ _id: params.agent },
+			{ $set: data }
+		);
 
 		await AddToWebhookAgentQueue('updated', agent);
 

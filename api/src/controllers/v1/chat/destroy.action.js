@@ -15,7 +15,7 @@ exports.destroy = async (req, res) => {
 		const chat = await Chat.updateOne(
 			{ _id: data.chat },
 			{ $set: { status: 'Archived' } }
-		).lean();
+		);
 
 		await AddToWebhookChatQueue('removed', chat);
 

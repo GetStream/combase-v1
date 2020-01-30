@@ -16,7 +16,7 @@ exports.update = async (req, res) => {
 		const invite = await Invite.updateOne(
 			{ _id: params.invite },
 			{ $set: data }
-		).lean();
+		);
 
 		await AddToWebhookInviteQueue('updated', invite);
 

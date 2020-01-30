@@ -4,7 +4,7 @@ exports.destroy = async (req, res) => {
 	try {
 		const data = { ...req.body, ...req.params };
 
-		await Tag.findByIdAndRemove(data.tag).lean();
+		await Tag.findByIdAndRemove(data.tag);
 
 		res.sendStatus(204);
 	} catch (error) {
