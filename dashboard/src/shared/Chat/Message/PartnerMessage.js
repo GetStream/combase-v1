@@ -89,7 +89,7 @@ const PartnerMessage = memo(
                     </AvatarWrapper>
                 ) : null}
                 <Bubble {...{ hasNext, hasPrev, showAvatar }}>
-                    <Text color="white">{text}</Text>
+                    <Text line={24} color="white">{text}</Text>
                 </Bubble>
             </Root>
         );

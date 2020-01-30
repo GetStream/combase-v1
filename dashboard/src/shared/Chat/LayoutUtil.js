@@ -28,7 +28,7 @@ export default class LayoutUtil {
                         break;
                     case 'UserMessageWithDate':
                     case 'PartnerMessageWithDate':
-                        dim.height = 232;
+                        dim.height = 248;
                         dim.width = width || 375;
                         break;
                     case 'UserMessage':

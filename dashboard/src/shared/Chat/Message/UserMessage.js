@@ -40,10 +40,10 @@ const UserMessage = memo(({ currentMessage: { text }, hasNext, hasPrev, partner,
     return (
         <Root>
             <Bubble {...{ hasNext, hasPrev }}>
-                <Text color="alt_text">{text}</Text>
+                <Text line={24} color="alt_text">{text}</Text>
             </Bubble>
             <StatusCol>
-                <StatusIcon {...{partner}} status="read" />
+                <StatusIcon {...{partner}} status="delivered" />
             </StatusCol>
         </Root>
     );
