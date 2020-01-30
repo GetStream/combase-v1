@@ -1,25 +1,15 @@
 import 'dotenv/config';
 
 import Plugin from 'models/plugin';
+import StreamClient from 'utils/stream';
 
 exports.get = async (req, res) => {
 	try {
-		let streamKey;
-
-		// if this env is found, it's assumed that the api is running on heroku
-		if (process.env.STREAM_URL) {
-			// extract the key and secret from the environment variable
-			[streamKey] = process.env.STREAM_URL.substr(8)
-				.split('@')[0]
-				.split(':');
-		} else {
-			// api key and secret were provided from a .env file
-			streamKey = process.env.STREAM_API_KEY;
-		}
+		const { key } = await StreamClient();
 
 		const config = {
 			stream: {
-				key: streamKey,
+				key,
 			},
 			algolia: {
 				id: process.env.ALGOLIASEARCH_APPLICATION_ID,
