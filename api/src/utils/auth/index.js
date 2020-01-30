@@ -21,7 +21,8 @@ const auth = async (req, res, next) => {
 			return next();
 		}
 
-		// whitelist config endpoint when token is included
+		// whitelist atuh endpoint when token is included
+		console.log(req.path, req.method, token);
 		if (
 			req.path.includes('auth') &&
 			req.method === 'POST' &&
