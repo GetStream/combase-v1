@@ -40,7 +40,7 @@ export const checkHasNext = (currentMessage, nextMessage, position) => {
         position &&
         isSameUser(currentMessage, nextMessage) &&
         !moment(currentMessage.created_at).isBefore(
-            moment(nextMessage.created_at).subtract(5, 'seconds')
+            moment(nextMessage.created_at).subtract(20, 'minutes')
         )
     );
 };
@@ -53,7 +53,7 @@ export const checkHasPrev = (currentMessage, previousMessage, position) => {
         position &&
         isSameUser(currentMessage, previousMessage) &&
         !moment(currentMessage.created_at).isAfter(
-            moment(previousMessage.created_at).add(5, 'seconds')
+            moment(previousMessage.created_at).add(20, 'minutes')
         )
     );
 };
@@ -65,10 +65,10 @@ export const isSameSection = (currentMessage, previousMessage) => {
     return (
         (isSameUser(currentMessage, previousMessage) &&
             !moment(currentMessage.created_at).isAfter(
-                moment(previousMessage.created_at).add(5, 'seconds')
+                moment(previousMessage.created_at).add(20, 'minutes')
             )) ||
         !moment(currentMessage.created_at).isAfter(
-            moment(previousMessage.created_at).add(5, 'seconds')
+            moment(previousMessage.created_at).add(20, 'minutes')
         )
     );
 };

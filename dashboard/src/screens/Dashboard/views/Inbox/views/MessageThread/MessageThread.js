@@ -32,13 +32,6 @@ const user = { id: 'lukesmetham', name: 'Luke S.' };
 const partner = { id: 'nickparsons', name: 'Nick P.' };
 
 const dummyMessages = [
-    {
-        user: { id: 'lukesmetham', name: 'Nick P.' },
-        created_at: moment()
-            .subtract(1, 'hour')
-            .toDate(),
-        text: 'Hey',
-    },
     { system: true, text: 'Start of your conversation with Luke S.' },
 ];
 

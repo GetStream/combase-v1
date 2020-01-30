@@ -23,7 +23,7 @@ const Root = styled.div`
     }
 `;
 
-const data = [];
+const data = [{ id: 0, members: [{name: 'Nick P.', id: 'nickparsons'}]}];
 const initialState = { height: 0, width: 0 };
 const style = { flex: 1 };
 
@@ -62,7 +62,7 @@ export default () => {
                 }}
                 ListHeaderComponent={renderListHeader}
                 ListEmptyComponent={renderListEmpty}
-                rowCount={100}
+                rowCount={data.length}
                 showEmptyHeader
             />
         </Root>
