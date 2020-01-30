@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-export function isSameDay(currentMessage, diffMessage) {
+export const isSameDay = (currentMessage, diffMessage) => {
     if (!diffMessage || !diffMessage.createdAt) {
         return false;
     }
@@ -15,7 +15,7 @@ export function isSameDay(currentMessage, diffMessage) {
     return currentCreatedAt.isSame(diffCreatedAt, 'day');
 }
 
-export function isSameUser(currentMessage, diffMessage) {
+export const isSameUser = (currentMessage, diffMessage) => {
     return !!(
         diffMessage &&
         diffMessage.user &&
@@ -29,4 +29,46 @@ export const append = (currentMessages, messages) => {
         messages = [messages];
     }
     return messages.concat(currentMessages);
+};
+
+
+export const checkHasNext = (currentMessage, nextMessage, position) => {
+    return (
+        currentMessage &&
+        nextMessage &&
+        nextMessage.id &&
+        position &&
+        isSameUser(currentMessage, nextMessage) &&
+        !moment(currentMessage.created_at).isBefore(
+            moment(nextMessage.created_at).subtract(5, 'seconds')
+        )
+    );
+};
+
+export const checkHasPrev = (currentMessage, previousMessage, position) => {
+    return (
+        currentMessage &&
+        previousMessage &&
+        previousMessage.id &&
+        position &&
+        isSameUser(currentMessage, previousMessage) &&
+        !moment(currentMessage.created_at).isAfter(
+            moment(previousMessage.created_at).add(5, 'seconds')
+        )
+    );
+};
+
+export const isSameSection = (currentMessage, previousMessage) => {
+    if (!previousMessage || !previousMessage.created_at) {
+        return true;
+    }
+    return (
+        (isSameUser(currentMessage, previousMessage) &&
+            !moment(currentMessage.created_at).isAfter(
+                moment(previousMessage.created_at).add(5, 'seconds')
+            )) ||
+        !moment(currentMessage.created_at).isAfter(
+            moment(previousMessage.created_at).add(5, 'seconds')
+        )
+    );
 };

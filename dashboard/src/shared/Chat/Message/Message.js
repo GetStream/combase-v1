@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import moment from 'moment';
 
-import { isSameUser } from '../utils';
+import { isSameSection, isSameUser, checkHasNext, checkHasPrev } from '../utils';
 
 // Messages //
 import Day from '../Day';
@@ -34,30 +34,12 @@ class Message extends Component {
 
     get hasNext() {
         const { currentMessage, nextMessage, position } = this.props;
-        return (
-            currentMessage &&
-            nextMessage &&
-            nextMessage.id &&
-            position &&
-            isSameUser(currentMessage, nextMessage) &&
-            !moment(currentMessage.created_at).isBefore(
-                moment(nextMessage.created_at).subtract(5, 'seconds')
-            )
-        );
+        return checkHasNext(currentMessage, nextMessage, position);
     }
 
     get hasPrev() {
         const { currentMessage, previousMessage, position } = this.props;
-        return (
-            currentMessage &&
-            previousMessage &&
-            previousMessage.id &&
-            position &&
-            isSameUser(currentMessage, previousMessage) &&
-            !moment(currentMessage.created_at).isAfter(
-                moment(previousMessage.created_at).add(5, 'seconds')
-            )
-        );
+        return checkHasPrev(currentMessage, previousMessage, position);
     }
 
     get isOwn() {
@@ -65,20 +47,7 @@ class Message extends Component {
         return currentMessage.user.id === user.id;
     }
 
-    isSameSection = (currentMessage, previousMessage) => {
-        if (!previousMessage || !previousMessage.created_at) {
-            return true;
-        }
-        return (
-            (isSameUser(currentMessage, previousMessage) &&
-                !moment(currentMessage.created_at).isAfter(
-                    moment(previousMessage.created_at).add(5, 'seconds')
-                )) ||
-            !moment(currentMessage.created_at).isAfter(
-                moment(previousMessage.created_at).add(5, 'seconds')
-            )
-        );
-    };
+    
 
     shouldComponentUpdate(nextProps) {
         const next = nextProps.currentMessage;
@@ -114,7 +83,7 @@ class Message extends Component {
         if (
             currentMessage &&
             currentMessage.created_at &&
-            !this.isSameSection(currentMessage, previousMessage)
+            !isSameSection(currentMessage, previousMessage)
         ) {
             return <DayComponent date={currentMessage.created_at} />;
         }
