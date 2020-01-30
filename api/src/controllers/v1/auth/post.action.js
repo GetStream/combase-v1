@@ -14,10 +14,13 @@ exports.post = async (req, res) => {
 			{
 				name: {
 					first: data.name.first,
-					last: data.name.last,
+					last: data.name.last
 				},
 				email: data.email, // email is set to lowercase automatically by mongoose via model
 				password: data.password, // password is hashed using bcrypt automatically by mongoose plugin
+				refs: {
+					organization: data.organization
+				}
 			}
 		);
 

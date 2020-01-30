@@ -3,7 +3,7 @@ import { AddToWebhookAgentQueue } from 'workers/webhook-agent/queue';
 
 exports.post = async (req, res) => {
 	try {
-		const data = { ...req.body, ...req.params };
+		const data = req.body;
 
 		const agent = await Agent.create(data);
 
