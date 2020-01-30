@@ -1,5 +1,8 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import styled from 'styled-components';
+
+// Contexts //
+import ChatContext from 'contexts/Chat';
 
 // CSS //
 import pageCard from 'styles/css/pageCard';
@@ -41,7 +44,7 @@ const dummyMessages = [
 
 export default ({ match }) => {
     const [messages, setMessages] = useState(dummyMessages);
-
+    const chatClient = useContext(ChatContext);
     const onSend = useCallback(
         newMessages => {
             setMessages(append(messages, newMessages));
@@ -56,7 +59,7 @@ export default ({ match }) => {
             </EmptyRoot>
         );
     }
-
+    console.log(chatClient);
     return (
         <Root>
             <Chat {...{ messages, onSend, user, partner }} />
