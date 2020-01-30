@@ -15,11 +15,14 @@ const Root = styled.div`
     flex-direction: row;
     align-items: center;
     padding: 0px 16px;
-    background-color: ${({ theme }) => theme.color.surface };
+    background-color: ${({ theme }) => theme.color.surface};
+    @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
+        padding: 0px 24px;
+    }
 `;
 
 const UserWrapper = styled.div`
-    margin-left: 8px;
+    margin-left: 16px;
     flex-direction: row;
 `;
 
@@ -30,12 +33,18 @@ const Content = styled.div`
 const ChatHeader = ({ partner }) => {
     return (
         <Root>
-            <IconButton icon={ArrowBackIcon} color="text" onClick={history.goBack} />
+            <IconButton
+                icon={ArrowBackIcon}
+                color="text"
+                onClick={history.goBack}
+            />
             <UserWrapper>
                 <Avatar src={partner.avatar} name={partner.name} size={32} />
                 <Content>
                     <Text weight="500">{partner.name}</Text>
-                    <Text size={12} faded>Active now</Text>
+                    <Text size={12} faded>
+                        Active now
+                    </Text>
                 </Content>
             </UserWrapper>
         </Root>

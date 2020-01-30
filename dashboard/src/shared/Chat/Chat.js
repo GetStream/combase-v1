@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import uuid from 'uuid/v4';
+import Animated from 'animated/lib/targets/react-dom';
 
 // Components //
 import ChatHeader from './ChatHeader';
@@ -13,7 +14,9 @@ const Root = styled.div`
 `;
 
 const MessagesWrapper = styled.div`
-    height: calc(100vh - ${({ inputToolbarHeight }) => inputToolbarHeight + 64}px);
+    height: calc(
+        100vh - ${({ inputToolbarHeight }) => inputToolbarHeight + 64}px
+    );
 `;
 
 class Chat extends Component {
@@ -145,7 +148,7 @@ class Chat extends Component {
         const { inputToolbarHeight } = this.state;
         return (
             <Root>
-                <ChatHeader {...{partner}} />
+                <ChatHeader {...{ partner }} />
                 <MessagesWrapper {...{ inputToolbarHeight }}>
                     <MessagesList
                         {...{ inputToolbarHeight, user, partner }}
