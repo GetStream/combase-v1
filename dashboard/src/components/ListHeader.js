@@ -9,6 +9,7 @@ import useMedia from "hooks/useMedia";
 // Components //
 import MenuButton from "shared/MenuButton";
 import Text from "shared/Text";
+import ActionsGroup from 'shared/ActionsGroup';
 
 const Root = styled(Animated.div)`
   position: sticky;
@@ -39,14 +40,6 @@ const Title = styled.div`
   align-items: center;
   & > ${Text} {
     margin-left: 8px;
-  }
-`;
-
-const Actions = styled.div`
-  flex-direction: row;
-  align-items: center;
-  & > * + * {
-    margin-left: 16px;
   }
 `;
 
@@ -96,9 +89,9 @@ const ListHeader = ({ children, icon: Icon, scrollAnim, showSearch, title }) => 
             {title}
           </Text>
         </Title>
-        <Actions>
+        <ActionsGroup>
           {children}
-        </Actions>
+        </ActionsGroup>
       </TitleWrapper>
       {showSearch ? (
         <SearchWrapper>

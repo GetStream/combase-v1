@@ -12,6 +12,7 @@ import {
     InfoIcon,
     TransferIcon,
 } from 'shared/Icons';
+import ActionsGroup from 'shared/ActionsGroup';
 import IconButton from 'shared/IconButton';
 import Text from 'shared/Text';
 
@@ -41,17 +42,11 @@ const Content = styled.div`
     margin-left: 12px;
 `;
 
-const Actions = styled.div`
+const Actions = styled(ActionsGroup)`
     display: none;
-    flex-direction: row;
-    align-items: center;
 
     @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
         display: flex;
-    }
-
-    & > * + * {
-        margin-left: 16px;
     }
 `;
 
