@@ -26,6 +26,7 @@ const EmptyRoot = styled(Root)`
 `;
 
 const user = { id: 'lukesmetham', name: 'Luke S.' };
+const partner = { id: 'nickparsons', name: 'Nick P.' };
 
 const dummyMessages = [
     {
@@ -58,7 +59,7 @@ export default ({ match }) => {
 
     return (
         <Root>
-            <Chat {...{ messages, onSend, user }} />
+            <Chat {...{ messages, onSend, user, partner }} />
         </Root>
     );
 };

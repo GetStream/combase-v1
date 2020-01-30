@@ -54,7 +54,7 @@ class MessagesList extends Component {
             currentMessage.user = { id: 0 };
         }
 
-        const { data, user, ...rest } = this.props;
+        const { data, user, partner, ...rest } = this.props;
 
         if (data && user) {
             const previousMessage = data[index + 1];
@@ -64,6 +64,7 @@ class MessagesList extends Component {
             const messageProps = {
                 ...rest,
                 user,
+                partner,
                 key: currentMessage.id,
                 currentMessage,
                 previousMessage,

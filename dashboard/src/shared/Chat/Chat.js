@@ -18,6 +18,7 @@ const MessagesWrapper = styled.div`
 class Chat extends Component {
     static propTypes = {
         messages: PropTypes.array,
+        partner: PropTypes.object,
         placeholder: PropTypes.string,
         textInputProps: PropTypes.object,
         user: PropTypes.object,
@@ -139,13 +140,13 @@ class Chat extends Component {
     };
 
     render() {
-        const { messages, user } = this.props;
+        const { messages, partner, user } = this.props;
         const { inputToolbarHeight } = this.state;
         return (
             <Root>
                 <MessagesWrapper {...{ inputToolbarHeight }}>
                     <MessagesList
-                        {...{ inputToolbarHeight, user }}
+                        {...{ inputToolbarHeight, user, partner }}
                         data={messages}
                         setMessageContainerRef={this.setMessageContainerRef}
                     />

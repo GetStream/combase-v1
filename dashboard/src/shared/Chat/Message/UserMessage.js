@@ -6,8 +6,21 @@ import asMessage from '../hocs/asMessage';
 
 // Components //
 import Text from 'shared/Text';
+import StatusIcon from '../StatusIcon';
 
 const Root = styled.div`
+    flex-direction: row;
+    z-index: 0;
+`;
+
+const StatusCol = styled.div`
+    width: 16px;
+    margin-left: 8px;
+    justify-content: flex-end;
+    margin-bottom: 4px;
+`;
+
+const Bubble = styled.div`
     padding: 20px;
     background-color: ${({ theme }) => theme.color.surface};
     border: 1px solid ${({ theme }) => theme.color.border};
@@ -23,10 +36,15 @@ const Root = styled.div`
     }
 `;
 
-const UserMessage = memo(({ currentMessage: { text }, hasNext, hasPrev }) => {
+const UserMessage = memo(({ currentMessage: { text }, hasNext, hasPrev, partner, ...rest }) => {
     return (
-        <Root {...{ hasNext, hasPrev }}>
-            <Text color="alt_text">{text}</Text>
+        <Root>
+            <Bubble {...{ hasNext, hasPrev }}>
+                <Text color="alt_text">{text}</Text>
+            </Bubble>
+            <StatusCol>
+                <StatusIcon {...{partner}} status="read" />
+            </StatusCol>
         </Root>
     );
 });
