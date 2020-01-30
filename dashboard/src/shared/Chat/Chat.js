@@ -15,22 +15,9 @@ const MessagesWrapper = styled.div`
     height: calc(100vh - ${({ inputToolbarHeight }) => inputToolbarHeight}px);
 `;
 
-const dummyMessages = [
-    { system: true, text: 'Start of your conversation with Luke S.' },
-    {
-        user: { id: 'nickparsons', name: 'Nick P.' },
-        created_at: new Date(),
-        text: 'Hey',
-    },
-    {
-        user: { id: 'lukesmetham', name: 'Luke S.' },
-        created_at: new Date(),
-        text: 'Hi',
-    },
-];
-
 class Chat extends Component {
     static propTypes = {
+        messages: PropTypes.array,
         placeholder: PropTypes.string,
         textInputProps: PropTypes.object,
         user: PropTypes.object,
@@ -44,7 +31,6 @@ class Chat extends Component {
     state = {
         inputToolbarHeight: 0,
         isMounted: false,
-        messages: dummyMessages,
         text: '',
         typingDisabled: false,
     };
@@ -152,8 +138,8 @@ class Chat extends Component {
     };
 
     render() {
-        const { user } = this.props;
-        const { inputToolbarHeight, messages } = this.state;
+        const { messages, user } = this.props;
+        const { inputToolbarHeight } = this.state;
         return (
             <Root>
                 <MessagesWrapper {...{ inputToolbarHeight }}>

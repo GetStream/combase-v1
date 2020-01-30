@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Animated from 'animated/lib/targets/react-dom';
+import isEqual from 'lodash.isequal';
 
 import LayoutUtil from './LayoutUtil';
 
@@ -22,7 +23,10 @@ class MessagesList extends Component {
     componentDidUpdate(prevProps, prevState) {
         const { layout } = this.state;
         const { data, user } = this.props;
-        if (layout.width !== prevState.layout.width) {
+        if (
+            layout.width !== prevState.layout.width ||
+            data.length !== prevProps.data.length
+        ) {
             this.setState({
                 layoutProvider: LayoutUtil.getLayoutProvider(
                     layout.width,
@@ -53,8 +57,8 @@ class MessagesList extends Component {
         const { data, user, ...rest } = this.props;
 
         if (data && user) {
-            const previousMessage = data[index - 1];
-            const nextMessage = data[index + 1];
+            const previousMessage = data[index + 1];
+            const nextMessage = data[index - 1];
             const isOwn =
                 currentMessage.user && currentMessage.user.id === user.id;
             const messageProps = {

@@ -23,3 +23,10 @@ export function isSameUser(currentMessage, diffMessage) {
         diffMessage.user.id === currentMessage.user.id
     );
 }
+
+export const append = (currentMessages, messages) => {
+    if (!Array.isArray(messages)) {
+        messages = [messages];
+    }
+    return messages.concat(currentMessages);
+};

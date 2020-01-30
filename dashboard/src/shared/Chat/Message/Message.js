@@ -12,21 +12,8 @@ import PartnerMessage from './PartnerMessage';
 import SystemMessage from './SystemMessage';
 
 const Wrapper = styled.div`
-    max-width: 840px;
     width: ${({ width }) => `${width}px` || '100%'};
-    align-self: center;
     transform: scaleY(-1);
-`;
-
-const Root = styled.div`
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: ${({ pos }) =>
-        pos === 'left' ? 'flex-end' : 'flex-start'};
-    margin-top: ${({ isFirst }) => (isFirst ? 32 : 0)}px;
-    margin-right: ${({ pos, theme }) => (pos === 'left' ? 0 : 8)}px;
-    margin-left: ${({ pos, theme }) => (pos === 'left' ? 8 : 0)}px;
-    margin-bottom: ${({ hasNext, theme }) => (hasNext ? 2 : 24)}px;
 `;
 
 class Message extends Component {
@@ -54,7 +41,7 @@ class Message extends Component {
             position &&
             isSameUser(currentMessage, nextMessage) &&
             !moment(currentMessage.created_at).isBefore(
-                moment(nextMessage.created_at).subtract(20, 'minutes')
+                moment(nextMessage.created_at).subtract(5, 'seconds')
             )
         );
     }
@@ -68,7 +55,7 @@ class Message extends Component {
             position &&
             isSameUser(currentMessage, previousMessage) &&
             !moment(currentMessage.created_at).isAfter(
-                moment(previousMessage.created_at).add(20, 'minutes')
+                moment(previousMessage.created_at).add(5, 'seconds')
             )
         );
     }
@@ -79,16 +66,16 @@ class Message extends Component {
     }
 
     isSameSection = (currentMessage, previousMessage) => {
-        if (!previousMessage.created_at) {
+        if (!previousMessage || !previousMessage.created_at) {
             return true;
         }
         return (
             (isSameUser(currentMessage, previousMessage) &&
                 !moment(currentMessage.created_at).isAfter(
-                    moment(previousMessage.created_at).add(20, 'minutes')
+                    moment(previousMessage.created_at).add(5, 'seconds')
                 )) ||
             !moment(currentMessage.created_at).isAfter(
-                moment(previousMessage.created_at).add(20, 'minutes')
+                moment(previousMessage.created_at).add(5, 'seconds')
             )
         );
     };
@@ -142,6 +129,8 @@ class Message extends Component {
             ...rest
         } = this.props;
 
+        const { hasNext, hasPrev } = this;
+
         const {
             currentMessage: { system: isSystemMessage },
         } = this.props;
@@ -161,9 +150,7 @@ class Message extends Component {
         return (
             <Wrapper {...{ width }}>
                 {this.renderDay()}
-                <Root>
-                    <MessageComponent {...rest} />
-                </Root>
+                <MessageComponent {...{ hasNext, hasPrev }} {...rest} />
             </Wrapper>
         );
     }
