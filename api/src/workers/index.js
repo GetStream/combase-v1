@@ -6,6 +6,7 @@ import WebhookFaqQueue from './webhook-faq';
 import WebhookInviteQueue from './webhook-invite';
 import WebhookOrganizationQueue from './webhook-organization';
 import WebhookUserQueue from './webhook-user';
+import { closeRedisConnections } from './bull-redis';
 
 const queueArray = [
 	WebhookAgentQueue,
@@ -60,10 +61,13 @@ start();
 async function shutdown(signal) {
 	console.info(`Worker Received ${signal}. Shutting down.`);
 
-	Promise.all(queueArray.map((queue) => queue.close())).then(() => process.exit(0)).catch((err) => {
-		console.error(`Failure during worker shutdown: ${err.message}`);
-		process.exit(1);
-	});
+	Promise.all(queueArray.map(queue => queue.close()))
+		.then(closeRedisConnections)
+		.then(() => process.exit(0))
+		.catch(err => {
+			console.error(`Failure during worker shutdown: ${err.message}`);
+			process.exit(1);
+		});
 }
 
 process.on('SIGINT', shutdown);
