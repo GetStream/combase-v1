@@ -7,9 +7,10 @@ import Animated from 'animated/lib/targets/react-dom';
 import Modal from 'shared/Modal';
 
 const Root = styled(Animated.div)`
+    margin-left: 96px;
     align-self: center;
     width: 100%;
-    max-width: 504px;
+    max-width: 1200px;
     min-height: 400px;
     border-radius: ${({ theme }) => theme.borderRadius}px;
     background-color: ${({ theme }) => theme.color.surface};
