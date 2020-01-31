@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 // Styles //
 import listItemInteractions from 'styles/css/listItemInteractions';
@@ -28,16 +29,18 @@ const Meta = styled.div`
     margin-left: 24px;
 `;
 
-const AgentItem = ({ avatar, email, name }) => (
-    <Root>
-        <Avatar size={48} name={name} src={avatar} />
-        <Meta>
-            <Text color="alt_text">{name}</Text>
-            <Text color="alt_text" faded size={12}>
-                {email}
-            </Text>
-        </Meta>
-    </Root>
+const AgentItem = ({ _id, avatar, email, name }) => (
+    <Link to={`/agents/${_id}`}>
+        <Root>
+            <Avatar size={48} name={name} src={avatar} />
+            <Meta>
+                <Text color="alt_text">{name}</Text>
+                <Text color="alt_text" faded size={12}>
+                    {email}
+                </Text>
+            </Meta>
+        </Root>
+    </Link>
 );
 
 export default AgentItem;

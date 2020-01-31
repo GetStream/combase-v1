@@ -1,5 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Route } from 'react-router-dom';
+
+// Views //
+import AgentDetail from './views/AgentDetail';
 
 // Components ///
 import { AgentsIcon } from 'shared/Icons';
@@ -21,6 +25,7 @@ const agents = [
         email: 'luke@getstream.io',
         name: 'Luke Smetham',
         role: 'Admin',
+        _id: 0,
     },
     {
         avatar:
@@ -28,6 +33,7 @@ const agents = [
         email: 'nick@getstream.io',
         name: 'Nick Parsons',
         role: 'Admin',
+        _id: 1,
     },
     {
         avatar:
@@ -35,6 +41,7 @@ const agents = [
         email: 'tommaso@getstream.io',
         name: 'Tommaso Barbugli',
         role: 'Agent',
+        _id: 2,
     },
     {
         avatar:
@@ -42,6 +49,7 @@ const agents = [
         email: 'merel@getstream.io',
         name: 'Merel Van Helbergen',
         role: 'Agent',
+        _id: 3,
     },
     {
         avatar:
@@ -49,6 +57,7 @@ const agents = [
         email: 'seni@getstream.io',
         name: 'Séni Gueye',
         role: 'Agent',
+        _id: 4,
     },
     {
         avatar:
@@ -56,6 +65,7 @@ const agents = [
         email: 'jaap@getsream.io',
         name: 'Jaap Bakker',
         role: 'Agent',
+        _id: 5,
     },
     {
         avatar:
@@ -63,6 +73,7 @@ const agents = [
         email: 'scott@getstream.io',
         name: 'Young Shatner',
         role: 'Admin',
+        _id: 6,
     },
     {
         avatar:
@@ -70,6 +81,7 @@ const agents = [
         email: 'vish@getstream.io',
         name: 'Vishal Narkhede',
         role: 'Agent',
+        _id: 7,
     },
     {
         avatar:
@@ -77,6 +89,7 @@ const agents = [
         email: 'thierry@getstream.io',
         name: 'Thierry Schellenbach',
         role: 'Admin',
+        _id: 8,
     },
     {
         avatar:
@@ -84,6 +97,7 @@ const agents = [
         email: 'alexey@getstream.io',
         name: 'Alexey Bukhtin',
         role: 'Agent',
+        _id: 9,
     },
     {
         avatar:
@@ -91,6 +105,7 @@ const agents = [
         email: 'josh@getstream.io',
         name: 'Joshua Tilton',
         role: 'Admin',
+        _id: 10,
     },
 ];
 
@@ -105,7 +120,9 @@ const tabs = [
     ]),
 ];
 
-export default () => (
+const renderAgentDetail = props => <AgentDetail {...props} />;
+
+export default ({ match }) => (
     <Root>
         <FullScreenHeader
             icon={AgentsIcon}
@@ -115,5 +132,6 @@ export default () => (
         <Container>
             <AgentsList {...{ agents, tabs }} />
         </Container>
+        <Route path={`${match.url}/:agentId`} children={renderAgentDetail} />
     </Root>
 );
