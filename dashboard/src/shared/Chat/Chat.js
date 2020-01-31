@@ -34,7 +34,6 @@ class Chat extends Component {
     };
 
     state = {
-        actionsWidth: 0,
         inputToolbarHeight: 0,
         isMounted: false,
         text: '',
@@ -95,7 +94,7 @@ class Chat extends Component {
     };
 
     renderInputToolbar = () => {
-        const { actionsWidth, text } = this.state;
+        const { text } = this.state;
         const { placeholder, textInputProps } = this.props;
         const { onInputTextChanged, onSend } = this;
 
@@ -111,7 +110,7 @@ class Chat extends Component {
         };
 
         return (
-            <InputToolbar onResize={this.setInputToolbarHeight} setActionsWidth={this.setActionsWidth} {...{actionsWidth}} {...props} />
+            <InputToolbar onResize={this.setInputToolbarHeight} {...props} />
         );
     };
 
@@ -129,16 +128,6 @@ class Chat extends Component {
             this.messageContainerRef.scrollToIndex(index, animated);
         }
     };
-
-    setActionsOpen = actionsOpen =>
-        this.setState({
-            actionsOpen,
-        });
-
-    setActionsWidth = actionsWidth =>
-        this.setState({
-            actionsWidth,
-        });
 
     setInputToolbarHeight = ({ height }) =>
         this.setState({

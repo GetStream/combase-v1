@@ -28,21 +28,12 @@ const Input = styled(animated.textarea)`
 `;
 
 const Composer = ({
-    actionsWidth,
     onTextChanged,
     onSend,
     placeholder,
     textInputProps,
     text,
 }) => {
-    const anim = useSpring({
-        value: !!text ? 0 : 1,
-        config: {
-            tension: 200,
-            friction: 18,
-        },
-    });
-
     const onKeyDown = useCallback(
         e => {
             if (e.keyCode === 13 && !e.shiftKey) {
@@ -63,13 +54,6 @@ const Composer = ({
         [onTextChanged]
     );
 
-    const style = {
-        paddingLeft: anim.value.interpolate({
-            range: [0, 1],
-            output: [actionsWidth / 2 + 32, actionsWidth + 32]
-        }).interpolate(v => `${v}px`)
-    };
-
     return (
         <Root>
             <Input
@@ -77,7 +61,6 @@ const Composer = ({
                 {...{
                     placeholder,
                     onKeyDown,
-                    style,
                 }}
                 value={text}
                 {...textInputProps}

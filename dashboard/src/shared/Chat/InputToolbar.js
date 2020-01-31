@@ -22,20 +22,18 @@ const Root = styled(Container)`
 `;
 
 const InputToolbar = ({
-    actionsWidth,
     onSend,
     onTextChanged,
     placeholder,
     setRef,
-    setActionsWidth,
     text,
     textInputProps,
 }) => {
     return (
         <Root ref={setRef} maxWidth={840}>
-            <Actions {...{actionsWidth, setActionsWidth, text}} />
+            <Actions />
             <Composer
-                {...{actionsWidth, onSend, onTextChanged, placeholder, text, textInputProps}}
+                {...{onSend, onTextChanged, placeholder, text, textInputProps}}
             />
             <SendButton {...{onSend, text}} />
         </Root>
