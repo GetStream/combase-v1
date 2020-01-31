@@ -47,9 +47,9 @@ export default (WrappedComponent, routes = []) => props => {
         [config, drawerOpen, toggleDrawer]
     );
 
-    // if (configLoading || authLoading || !chatClient) {
-    //     return <LoadingState />;
-    // }
+    if (configLoading || authLoading || !chatClient) {
+        return <LoadingState />;
+    }
 
     if (authError || configError) {
         // TODO: Show error screen here

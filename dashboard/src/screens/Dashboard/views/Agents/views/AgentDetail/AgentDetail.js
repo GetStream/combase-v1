@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Animated from 'animated/lib/targets/react-dom';
 
 // Components //
 import Modal from 'shared/Modal';
+import AgentDetailTransition from './AgentDetailTransition';
 
 const Root = styled(Animated.div)`
     margin-left: 96px;
@@ -21,31 +22,21 @@ const Root = styled(Animated.div)`
 const AgentDetail = ({ anim, history, match }) => {
     const style = {
         opacity: anim,
-        transform: [
-            {
-                scale: anim.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [0.95, 1],
-                }),
-            },
-            {
-                translateY: anim.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [32, 0],
-                }),
-            },
-        ],
     };
+
     return (
-        <Modal
-            open={!!match}
-            animatedValue={anim}
-            animated
-            showUndersheet={false}
-            onClose={history.goBack}
-        >
-            <Root {...{ style }}></Root>
-        </Modal>
+        <>
+            <Modal
+                animated
+                animatedValue={anim}
+                open={!!match}
+                showUndersheet={false}
+                onClose={history.goBack}
+            >
+                <Root {...{ style }}></Root>
+            </Modal>
+            <AgentDetailTransition {...{ anim }} />
+        </>
     );
 };
 
