@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Animated from 'animated/lib/targets/react-dom';
 
 // Components //
+import { PasswordIcon, RoleIcon } from 'shared/Icons';
 import Modal from 'shared/Modal';
 import UserBlock from 'shared/UserBlock';
+import SectionTitle from 'shared/SectionTitle';
+import Text from 'shared/Text';
+import AgentSettingsItem from 'components/AgentSettingsItem';
 import AgentDetailTransition from './AgentDetailTransition';
 import TotalThreadsWidget from './widgets/TotalThreadsWidget';
 import ChatActivityWidget from './widgets/ChatActivityWidget';
@@ -35,6 +39,16 @@ const Widgets = styled.div`
     & > * + * {
         margin-left: 32px;
     }
+`;
+
+const Content = styled.div`
+    padding: 24px 88px;
+`;
+
+const Footer = styled.div`
+    justify-content: center;
+    align-items: center;
+    padding: 56px 0px;
 `;
 
 const AgentDetail = ({ anim, history, match }) => {
@@ -67,6 +81,27 @@ const AgentDetail = ({ anim, history, match }) => {
                             <ChatActivityWidget />
                         </Widgets>
                     </Header>
+                    <Content>
+                        <SectionTitle title="Agent Settings" />
+                        <AgentSettingsItem
+                            icon={RoleIcon}
+                            title="Role"
+                            text="Change Lukes permission level"
+                        >
+                            Admin
+                        </AgentSettingsItem>
+                        <AgentSettingsItem
+                            color="slate"
+                            icon={PasswordIcon}
+                            title="Password"
+                            text="Reset Lukes Password"
+                        >
+                            Send password reset email
+                        </AgentSettingsItem>
+                    </Content>
+                    <Footer>
+                        <Text color="red">Deactivate Account</Text>
+                    </Footer>
                 </Root>
             </Modal>
             <AgentDetailTransition {...{ anim }} />

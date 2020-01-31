@@ -25,10 +25,6 @@ const Root = styled.div`
     }
 `;
 
-const Meta = styled.div`
-    margin-left: 24px;
-`;
-
 const AgentItem = ({ _id, avatar, email, name }) => (
     <Link to={`/agents/${_id}`}>
         <Root>
