@@ -4,7 +4,9 @@ exports.get = async (req, res) => {
 	try {
 		const data = req.params;
 
-		const response = await Response.findById(data.response).lean();
+		const response = await Response.findById(data.response).lean({
+			autopopulate: true,
+		});
 		res.status(200).json(response);
 	} catch (error) {
 		console.error(error);

@@ -17,7 +17,7 @@ exports.get = async (req, res) => {
 			},
 		};
 
-		const plugins = await Plugin.find({}).lean();
+		const plugins = await Plugin.find({}).lean({ autopopulate: true });
 		const data = { ...config, plugins };
 
 		res.status(200).json(data);

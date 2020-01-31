@@ -10,7 +10,7 @@ exports.get = async (req, res) => {
 
 		const organization = await Organization.findById(
 			data.organization
-		).lean();
+		).lean({ autopopulate: true });
 
 		res.status(200).json({ stream: { key }, ...organization });
 	} catch (error) {

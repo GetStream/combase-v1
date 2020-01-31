@@ -4,7 +4,7 @@ exports.get = async (req, res) => {
 	try {
 		const data = req.params;
 
-		const tag = await Tag.findById(data.tag).lean();
+		const tag = await Tag.findById(data.tag).lean({ autopopulate: true });
 		res.status(200).json(tag);
 	} catch (error) {
 		console.error(error);

@@ -12,7 +12,9 @@ exports.login = async (req, res) => {
 		const data = req.body;
 
 		// if the agent does not exist, create a new agent
-		let agent = await Agent.findOne({ email: data.email }).lean(); // lowercase email to avoid lookup issues
+		let agent = await Agent.findOne({ email: data.email }).lean({
+			autopopulate: true,
+		});
 
 		// if the agent does not exist
 		if (!agent) {
