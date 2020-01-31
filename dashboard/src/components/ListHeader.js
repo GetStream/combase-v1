@@ -10,6 +10,7 @@ import useMedia from "hooks/useMedia";
 import MenuButton from "shared/MenuButton";
 import Text from "shared/Text";
 import ActionsGroup from 'shared/ActionsGroup';
+import SearchInput from 'shared/SearchInput';
 
 const Root = styled(Animated.div)`
   position: sticky;
@@ -95,7 +96,7 @@ const ListHeader = ({ children, icon: Icon, scrollAnim, showSearch, title }) => 
       </TitleWrapper>
       {showSearch ? (
         <SearchWrapper>
-          <Search />
+          <SearchInput />
         </SearchWrapper>
       ) : null}
     </Root>

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import uuid from 'uuid/v4';
-import Animated from 'animated/lib/targets/react-dom';
 
 // Components //
 import ChatHeader from './ChatHeader';

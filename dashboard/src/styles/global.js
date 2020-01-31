@@ -82,7 +82,13 @@ export default createGlobalStyle`
 
   input, textarea {
     border: 0;
+    background: none;
     font-size: 16px;
     font-family: "Circular Std", sans-serif;
+
+    &::-webkit-input-placeholder {
+        color: ${({ theme }) => theme.color.gray};
+        font-weight: 500;
+    }
   }
 `;
