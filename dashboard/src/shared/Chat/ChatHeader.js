@@ -36,7 +36,7 @@ const UserWrapper = styled.div`
     margin-left: 8px;
     flex-direction: row;
     @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
-        margin-left: 16px;
+        margin-left: 0px;
     }
 `;
 

@@ -1,8 +1,5 @@
-import React, { useCallback, useContext, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
-
-// Contexts //
-import AuthContext from 'contexts/Auth';
 
 // CSS //
 import pageCard from 'styles/css/pageCard';

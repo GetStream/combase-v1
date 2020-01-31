@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import moment from 'moment';
 
-import { isSameSection, isSameUser, checkHasNext, checkHasPrev } from '../utils';
+import { isSameSection, checkHasNext, checkHasPrev } from '../utils';
 
 // Messages //
 import Day from '../Day';

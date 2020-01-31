@@ -13,7 +13,7 @@ export default (user, config) => {
         }, user.tokens.stream);
         
         setChatClient(client);
-    }, [user, config]);
+    }, []);
 
     useEffect(() => {
         if (user) {
@@ -21,7 +21,7 @@ export default (user, config) => {
                 getClient(config.stream.key, user);
             }  
         }      
-    }, [config.stream, chatClient, user]);
+    }, [config.stream, getClient, chatClient, user]);
     
     return chatClient;
 };

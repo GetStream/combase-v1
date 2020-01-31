@@ -1,13 +1,12 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
-import { animated, useSpring } from 'react-spring';
 
 // Compmonents //
 const Root = styled.div`
     flex: 1;
 `;
 
-const Input = styled(animated.textarea)`
+const Input = styled.textarea`
     flex: 1;
     resize: none;
     margin-right: 16px;

@@ -51,12 +51,6 @@ const SearchWrapper = styled.div`
   }
 `;
 
-const Search = styled.div`
-  background-color: ${({ theme }) => theme.color.light_gray};
-  border-radius: 8px;
-  height: 40px;
-`;
-
 let interpolation;
 
 const getShadowStyle = scrollAnim => {
