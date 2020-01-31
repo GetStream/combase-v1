@@ -13,15 +13,13 @@ exports.reset = async (req, res) => {
 			mailgun({
 				auth: {
 					api_key: process.env.MAILGUN_API_KEY,
-					domain: process.env.MAILGUN_DOMAIN,
-				},
+					domain: process.env.MAILGUN_DOMAIN
+				}
 			})
 		);
 
-		const agent = await Agent.findById(data.agent);
-		const organization = await Organization.findById(
-			agent.refs.organization
-		);
+		const agent = await Agent.findById(data.agent).lean();
+		const organization = await Organization.findById(agent.refs.organization);
 
 		const password = shortid.generate();
 
@@ -40,7 +38,7 @@ exports.reset = async (req, res) => {
                         ${organization.email}
                     </a>
                 </p>
-            `,
+            `
 		});
 
 		res.sendStatus(200);
