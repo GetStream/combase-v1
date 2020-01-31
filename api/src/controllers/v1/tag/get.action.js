@@ -2,9 +2,9 @@ import Tag from 'models/tag';
 
 exports.get = async (req, res) => {
 	try {
-		const data = { ...req.body, ...req.params };
+		const data = req.params;
 
-		const tag = await Tag.findById(data.tag);
+		const tag = await Tag.findById(data.tag).lean();
 		res.status(200).json(tag);
 	} catch (error) {
 		console.error(error);
