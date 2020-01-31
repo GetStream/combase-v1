@@ -49,6 +49,15 @@ const auth = async (req, res, next) => {
 			return next();
 		}
 
+		// whitelist agent creation endpoint when token is included
+		if (
+			req.path.includes('agents') &&
+			req.method === 'POST' &&
+			token === process.env.AUTH_SECRET
+		) {
+			return next();
+		}
+
 		// whitelist user creation endpoint when token is included
 		if (
 			req.path.includes('users') &&
