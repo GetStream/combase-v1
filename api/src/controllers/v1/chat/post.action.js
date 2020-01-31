@@ -27,6 +27,7 @@ exports.post = async (req, res) => {
 				agent: 'moderator',
 				user: 'channel_member',
 			},
+			created_by_id: user,
 			organization,
 		});
 
