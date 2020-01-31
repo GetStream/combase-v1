@@ -7,21 +7,21 @@ import { AddToWebhookChatQueue } from 'workers/webhook-chat/queue';
 
 exports.post = async (req, res) => {
 	try {
-		const { user, agent, chat, organization } = req.body;
+		const data = req.body;
 
-		const create = await Chat.create({
-			chat,
-			refs: {
-				user,
-				agent,
-				organization,
+		const {
+			agents: {
+				assignee: { agent },
 			},
-		});
+			organization,
+			user,
+		} = data.refs;
+
+		const create = await Chat.create(data);
 
 		const { key, secret } = await StreamClient();
 		const client = new StreamChat(key, secret);
 		const channel = client.channel('messaging', create._id.toString(), {
-			type: 'messaging',
 			members: [agent, user],
 			roles: {
 				agent: 'moderator',
@@ -35,7 +35,7 @@ exports.post = async (req, res) => {
 		const agentToken = client.createToken(agent);
 		const userToken = client.createToken(user);
 
-		await AddToWebhookChatQueue('added', chat);
+		await AddToWebhookChatQueue('added', create);
 
 		res.status(200).json({
 			...create,

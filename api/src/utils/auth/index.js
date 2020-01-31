@@ -58,6 +58,15 @@ const auth = async (req, res, next) => {
 			return next();
 		}
 
+		// whitelist chat creation endpoint when token is included
+		if (
+			req.path.includes('chats') &&
+			req.method === 'POST' &&
+			token === process.env.AUTH_SECRET
+		) {
+			return next();
+		}
+
 		// whitelist config endpoint when token is included
 		if (req.path.includes('configs') && token === process.env.AUTH_SECRET) {
 			return next();

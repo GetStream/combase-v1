@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 // Utils //
 import LayoutUtil from './LayoutUtil';
+
+// Hooks //
+import useThreads from 'hooks/useThreads';
 
 // Components //
 import { ArchiveIcon, FilterIcon, InboxIcon } from 'shared/Icons';
@@ -23,7 +26,7 @@ const Root = styled.div`
     }
 `;
 
-const data = [{ id: 0, members: [{name: 'Nick P.', id: 'nickparsons'}]}];
+const data = [{ id: 0, members: [{ name: 'Nick P.', id: 'nickparsons' }] }];
 const initialState = { height: 0, width: 0 };
 const style = { flex: 1 };
 
@@ -45,6 +48,8 @@ export default () => {
     );
     const [contextProvider] = useState(new ContextHelper('ThreadList'));
 
+    const threads = useThreads();
+    console.log('threads', threads);
     useEffect(() => {
         setLayoutProvider(LayoutUtil.getLayoutProvider(width, 80));
     }, [width]);
