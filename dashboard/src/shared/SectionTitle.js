@@ -12,7 +12,7 @@ const Root = styled.div`
 
 const SectionTitle = ({ title }) => (
     <Root>
-        <Text color="border" weight="500">
+        <Text color="alt_text" faded weight="500">
             {title}
         </Text>
     </Root>
