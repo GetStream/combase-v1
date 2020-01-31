@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import listItemInteractions from 'styles/css/listItemInteractions';
 
 // Components //
-import Avatar from 'shared/Avatar';
+import UserBlock from 'shared/UserBlock';
 import Text from 'shared/Text';
 
 const Root = styled.div`
@@ -32,13 +32,7 @@ const Meta = styled.div`
 const AgentItem = ({ _id, avatar, email, name }) => (
     <Link to={`/agents/${_id}`}>
         <Root>
-            <Avatar size={48} name={name} src={avatar} />
-            <Meta>
-                <Text color="alt_text">{name}</Text>
-                <Text color="alt_text" faded size={12}>
-                    {email}
-                </Text>
-            </Meta>
+            <UserBlock {...{ avatar, name }} meta={email} />
         </Root>
     </Link>
 );
