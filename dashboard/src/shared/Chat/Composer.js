@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import { animated, useSpring } from 'react-spring';
 
 // Compmonents //
-const Root = styled(animated.div)`
+const Root = styled.div`
     flex: 1;
 `;
 
-const Input = styled.textarea`
+const Input = styled(animated.textarea)`
     flex: 1;
     resize: none;
     margin-right: 16px;
@@ -28,19 +28,21 @@ const Input = styled.textarea`
 `;
 
 const Composer = ({
-    actionsOpen,
     actionsWidth,
-    keyboardAppearance,
-    multiline,
-    onInputSizeChanged,
     onTextChanged,
     onSend,
     placeholder,
-    placeholderTextColor,
-    setActionsOpen,
     textInputProps,
     text,
 }) => {
+    const anim = useSpring({
+        value: !!text ? 0 : 1,
+        config: {
+            tension: 200,
+            friction: 18,
+        },
+    });
+
     const onKeyDown = useCallback(
         e => {
             if (e.keyCode === 13 && !e.shiftKey) {
@@ -56,44 +58,26 @@ const Composer = ({
 
     const handleChange = useCallback(
         ({ target: { value } }) => {
-            setActionsOpen(false);
             onTextChanged(value);
         },
-        [onTextChanged, setActionsOpen]
+        [onTextChanged]
     );
 
-    const anim = useSpring({
-        value: !text || actionsOpen ? 1 : 0,
-        config: {
-            tension: 200,
-            friction: 19,
-        },
-    });
-
     const style = {
-        paddingLeft: anim.value
-            .interpolate({
-                range: [0, 1],
-                output: [actionsWidth / 2, actionsWidth + 32], // 24px margin on actions
-            })
-            .interpolate(value => `${value}px`),
+        paddingLeft: anim.value.interpolate({
+            range: [0, 1],
+            output: [actionsWidth / 2 + 32, actionsWidth + 32]
+        }).interpolate(v => `${v}px`)
     };
 
     return (
-        <Root {...{ style }}>
+        <Root>
             <Input
-                accessible
-                accessibilityLabel={placeholder}
-                enablesReturnKeyAutomatically
                 onChange={handleChange}
-                testID={placeholder}
-                underlineTextColorAndroid="transparent"
                 {...{
-                    keyboardAppearance,
-                    multiline,
                     placeholder,
-                    placeholderTextColor,
                     onKeyDown,
+                    style,
                 }}
                 value={text}
                 {...textInputProps}

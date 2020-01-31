@@ -6,6 +6,7 @@ const Text = styled.p`
   color: ${({ color, theme }) => theme.color[color]};
   font-weight: ${({ weight }) => weight};
   opacity: ${({ faded }) => (faded ? 0.72 : 1)};
+  ${({ line }) => !!line ? `line-height: ${line}px` : null};
 `;
 
 Text.defaultProps = {

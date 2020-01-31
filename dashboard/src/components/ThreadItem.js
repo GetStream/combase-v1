@@ -41,10 +41,10 @@ const Row = styled.div`
 const renderItem = ({ index, match: active, statusBorder }) => (
   <Root to={`/inbox/${index}`}>
     <Wrapper {...{ active }}>
-      <Avatar name="Luke S." size={48} {...{ statusBorder }} />
+      <Avatar name="Nick P." size={48} {...{ statusBorder }} />
       <Content>
         <Row>
-          <Text weight="500">Luke S.</Text>
+          <Text weight="500">Nick P.</Text>
           <Fill />
           <Text color="gray" size={12}>
             {moment().format("hh:mma")}
@@ -52,7 +52,7 @@ const renderItem = ({ index, match: active, statusBorder }) => (
         </Row>
         <Row>
           <Text faded color="slate" size={12} weight="500">
-            Latest message
+            No messages
           </Text>
         </Row>
       </Content>

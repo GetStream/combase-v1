@@ -20,7 +20,7 @@ export default createGlobalStyle`
     display: flex;
     background-color: ${({ theme }) => theme.color.surface};
     margin: 0;
-    height: 100%;
+    height: 100vh;
     overflow: hidden;
     font-family: "Circular Std", sans-serif;
     -webkit-font-smoothing: antialiased;

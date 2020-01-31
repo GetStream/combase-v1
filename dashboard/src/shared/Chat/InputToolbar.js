@@ -1,12 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 
+// HOCs //
+import withLayout from 'hocs/withLayout';
+
 // Components //
-const Root = styled.div`
-    flex: 1;
+import Container from 'shared/Container';
+import Actions from './Actions';
+import Composer from './Composer';
+import SendButton from './SendButton';
+
+const Root = styled(Container)`
     flex-direction: row;
     align-items: center;
-    padding: 16px 0px;
+    padding-top: 16px;
+    padding-bottom: 16px;
     border-top: 1px solid ${({ theme }) => theme.color.border};
     @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
         padding-right: 88px;
@@ -14,18 +22,24 @@ const Root = styled.div`
 `;
 
 const InputToolbar = ({
-    renderActions,
-    renderComposer,
-    renderSend,
-    ...props
+    actionsWidth,
+    onSend,
+    onTextChanged,
+    placeholder,
+    setRef,
+    setActionsWidth,
+    text,
+    textInputProps,
 }) => {
     return (
-        <Root>
-            {renderActions(props)}
-            {renderComposer(props)}
-            {renderSend(props)}
+        <Root ref={setRef} maxWidth={840}>
+            <Actions {...{actionsWidth, setActionsWidth, text}} />
+            <Composer
+                {...{actionsWidth, onSend, onTextChanged, placeholder, text, textInputProps}}
+            />
+            <SendButton {...{onSend, text}} />
         </Root>
     );
 };
 
-export default InputToolbar;
+export default withLayout(InputToolbar);

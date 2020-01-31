@@ -12,6 +12,7 @@ const Root = styled(Animated.div)`
     min-height: 400px;
     border-radius: ${({ theme }) => theme.borderRadius}px;
     background-color: ${({ theme }) => theme.color.surface};
+    box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.16)}
     z-index: ${({ theme }) => theme.z.modal};
 `;
 

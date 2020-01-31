@@ -7,14 +7,15 @@ import IconButton from 'shared/IconButton';
 import { AttachmentIcon, AddImageIcon, ChevronRightIcon } from 'shared/Icons';
 
 const Root = styled(animated.div)`
+    position: absolute;
     flex-direction: row;
     align-items: center;
     margin-right: 24px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
     z-index: 2;
+
+    & > & {
+        margin-right: 0px;
+    }
 
     & > * + * {
         margin-left: 8px;
@@ -27,90 +28,70 @@ const Root = styled(animated.div)`
 
 const ExpandWrapper = styled(animated.div)`
     position: absolute;
-    left: -50%;
+    left: 16px;
 `;
 
-const Actions = ({
-    actionsWidth,
-    actionsOpen,
-    openActions,
-    setActionsOpen,
-    setActionsWidth,
-    ...props
-}) => {
+const Actions = props => {
     const [mount, setMount] = useState(true);
+    
     const anim = useSpring({
-        value: actionsOpen || !props.text ? 0 : 1,
+        value: !!props.text ? 0 : 1,
         config: {
             tension: 200,
-            friction: 16,
+            friction: 18,
         },
-        onStart: () => {
-            if (actionsOpen || (!props.text && !mount)) {
+        onStart: (value) => {
+            if (!mount) {
                 setMount(true);
             }
         },
         onRest: ({ value }) => {
-            if (value) {
+            if (mount && value === 0) {
                 setMount(false);
             }
-        },
+
+            if (!mount && value === 1) {
+                setMount(true);
+            }
+        }
     });
 
-    const style = {
-        opacity: anim.value.interpolate({
-            range: [0, 1],
-            output: [1, 0],
-        }),
-        // transform: anim.value
-        //     .interpolate({
-        //         range: [0, 1],
-        //         output: [0, actionsWidth / 2],
-        //     })
-        //     .interpolate(value => `translateX(${value}%)`),
-    };
-
-    const expandIconStyle = {
-        opacity: anim.value.interpolate({
-            range: [0, 1],
-            output: [0, 1],
-        }),
-        transform: anim.value
-            .interpolate({
-                range: [0, 1],
-                output: [-actionsWidth / 2, 0],
-            })
-            .interpolate(value => `translateX(${value}%)`),
-    };
-
-    const ref = useCallback(
-        el => {
-            if (el) {
-                const { width } = el.getBoundingClientRect();
-                if (!actionsWidth) {
-                    setActionsWidth(width);
-                }
+    const ref = useCallback((el) => {
+        if (el) {
+            const { clientWidth } = el;
+            if (clientWidth && clientWidth !== props.actionsWidth) {
+                props.setActionsWidth(clientWidth);
             }
-        },
-        [setActionsWidth, actionsWidth]
-    );
+        }
+    }, [props.actionsWidth]);
 
-    const handleActionsOpen = useCallback(() => {
-        setActionsOpen(true);
-    }, [setActionsOpen]);
+    const style = {
+        opacity: anim.value,
+    };
+
+    const expandStyle = {
+        opacity: anim.value.interpolate({
+            range: [0, 1],
+            output: [1, 0]
+        }),
+        transform: anim.value.interpolate({
+            range: [0, 1],
+            output: [0, -100]
+        }).interpolate(v => `translateX(${v}%)`)
+    }
 
     return (
         <Root>
-            <ExpandWrapper style={expandIconStyle}>
+            <ExpandWrapper style={expandStyle}>
                 <IconButton
-                    // disabled={!props.text}
+                    disabled={!props.text}
                     color="alt_text"
                     icon={ChevronRightIcon}
-                    onClick={handleActionsOpen}
+                    // onClick={handleActionsOpen}
                 />
             </ExpandWrapper>
             {mount ? (
-                <Root {...{ ref, style }}>
+                <Root {...{ref, style}}>
                     <IconButton color="alt_text" icon={AttachmentIcon} />
                     <IconButton color="alt_text" icon={AddImageIcon} />
                 </Root>

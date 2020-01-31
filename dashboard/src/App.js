@@ -15,9 +15,9 @@ import Dashboard from 'screens/Dashboard';
 
 moment.updateLocale('en', {
     calendar: {
-        lastDay: '[Yesterday at] hh:mma',
-        sameDay: 'hh:mma',
-        nextDay: '[Tomorrow at] hh:mma',
+        lastDay: '[Yesterday at] h:mma',
+        sameDay: 'h:mma',
+        nextDay: '[Tomorrow at] h:mma',
         lastWeek: 'MMMM Do YYYY',
         nextWeek: 'MMMM Do YYYY',
         sameElse: 'L',
