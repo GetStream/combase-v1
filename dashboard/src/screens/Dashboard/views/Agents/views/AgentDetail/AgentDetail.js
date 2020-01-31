@@ -9,6 +9,7 @@ import Modal from 'shared/Modal';
 import UserBlock from 'shared/UserBlock';
 import SectionTitle from 'shared/SectionTitle';
 import Text from 'shared/Text';
+import Button from 'shared/Button';
 import AgentSettingsItem from 'components/AgentSettingsItem';
 import AgentDetailTransition from './AgentDetailTransition';
 import TotalThreadsWidget from './widgets/TotalThreadsWidget';
@@ -43,6 +44,10 @@ const Widgets = styled.div`
 
 const Content = styled.div`
     padding: 24px 88px;
+`;
+
+const List = styled.div`
+    margin-top: 24px;
 `;
 
 const Footer = styled.div`
@@ -83,24 +88,29 @@ const AgentDetail = ({ anim, history, match }) => {
                     </Header>
                     <Content>
                         <SectionTitle title="Agent Settings" />
-                        <AgentSettingsItem
-                            icon={RoleIcon}
-                            title="Role"
-                            text="Change Lukes permission level"
-                        >
-                            Admin
-                        </AgentSettingsItem>
-                        <AgentSettingsItem
-                            color="slate"
-                            icon={PasswordIcon}
-                            title="Password"
-                            text="Reset Lukes Password"
-                        >
-                            Send password reset email
-                        </AgentSettingsItem>
+                        <List>
+                            <AgentSettingsItem
+                                icon={RoleIcon}
+                                title="Role"
+                                text="Change Lukes permission level"
+                            >
+                                Admin
+                            </AgentSettingsItem>
+                            <AgentSettingsItem
+                                color="slate"
+                                icon={PasswordIcon}
+                                title="Password"
+                                text="Reset Lukes Password"
+                            >
+                                <Button
+                                    color="red"
+                                    label="Send Password Reset Email"
+                                />
+                            </AgentSettingsItem>
+                        </List>
                     </Content>
                     <Footer>
-                        <Text color="red">Deactivate Account</Text>
+                        <Button color="red" flat label="Deactivate Account" />
                     </Footer>
                 </Root>
             </Modal>
