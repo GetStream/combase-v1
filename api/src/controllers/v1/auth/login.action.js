@@ -40,7 +40,7 @@ exports.login = async (req, res) => {
 		const apiToken = jwt.sign(
 			{
 				sub: agent._id,
-				role: agent.role
+				role: agent.role,
 			},
 			process.env.AUTH_SECRET
 		);
@@ -50,8 +50,8 @@ exports.login = async (req, res) => {
 			...agent,
 			tokens: {
 				api: apiToken,
-				stream: streamToken
-			}
+				stream: streamToken,
+			},
 		});
 	} catch (error) {
 		console.error(error);
