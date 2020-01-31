@@ -40,7 +40,7 @@ const agents = [
         avatar:
             'https://ca.slack-edge.com/T02RM6X6B-ULM9UDW58-4c56462d52a4-512',
         email: 'merel@getstream.io',
-        name: 'Merel Van Helkbergen',
+        name: 'Merel Van Helbergen',
         role: 'Agent',
     },
     {

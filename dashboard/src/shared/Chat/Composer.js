@@ -1,9 +1,8 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
-import { animated, useSpring } from 'react-spring';
 
 // Compmonents //
-const Root = styled(animated.div)`
+const Root = styled.div`
     flex: 1;
 `;
 
@@ -28,16 +27,9 @@ const Input = styled.textarea`
 `;
 
 const Composer = ({
-    actionsOpen,
-    actionsWidth,
-    keyboardAppearance,
-    multiline,
-    onInputSizeChanged,
     onTextChanged,
     onSend,
     placeholder,
-    placeholderTextColor,
-    setActionsOpen,
     textInputProps,
     text,
 }) => {
@@ -56,43 +48,17 @@ const Composer = ({
 
     const handleChange = useCallback(
         ({ target: { value } }) => {
-            setActionsOpen(false);
             onTextChanged(value);
         },
-        [onTextChanged, setActionsOpen]
+        [onTextChanged]
     );
 
-    const anim = useSpring({
-        value: !text || actionsOpen ? 1 : 0,
-        config: {
-            tension: 200,
-            friction: 19,
-        },
-    });
-
-    const style = {
-        paddingLeft: anim.value
-            .interpolate({
-                range: [0, 1],
-                output: [actionsWidth / 2, actionsWidth + 32], // 24px margin on actions
-            })
-            .interpolate(value => `${value}px`),
-    };
-
     return (
-        <Root {...{ style }}>
+        <Root>
             <Input
-                accessible
-                accessibilityLabel={placeholder}
-                enablesReturnKeyAutomatically
                 onChange={handleChange}
-                testID={placeholder}
-                underlineTextColorAndroid="transparent"
                 {...{
-                    keyboardAppearance,
-                    multiline,
                     placeholder,
-                    placeholderTextColor,
                     onKeyDown,
                 }}
                 value={text}

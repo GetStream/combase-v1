@@ -1,48 +1,57 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useCallback, useState } from 'react';
+import styled from 'styled-components';
 
 // CSS //
-import pageCard from "styles/css/pageCard";
+import pageCard from 'styles/css/pageCard';
 
 // Components //
-import Container from 'shared/Container';
+import Chat, { append } from 'shared/Chat';
 import { ChatIcon } from 'shared/Icons';
-import Chat from 'shared/Chat';
-import EmptyState from "shared/EmptyState";
+import EmptyState from 'shared/EmptyState';
 
 const Root = styled.div`
-  flex: 1;
-  z-index: 2;
-  background-color: ${({ theme }) => theme.color.surface};
-
-  & > ${Container} {
     flex: 1;
-  }
+    z-index: 2;
+    background-color: ${({ theme }) => theme.color.surface};
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
-    ${pageCard}
-  }
+    @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
+        ${pageCard}
+    }
 `;
 
 const EmptyRoot = styled(Root)`
-  justify-content: center;
-  align-items: center;
+    justify-content: center;
+    align-items: center;
 `;
 
-export default ({ match }) => {
-  if (!match) {
-    return (
-      <EmptyRoot>
-        <EmptyState icon={ChatIcon} text="Select a thread." />
-      </EmptyRoot>
-    );
-  }
+const user = { id: 'lukesmetham', name: 'Luke S.' };
+const partner = { id: 'nickparsons', name: 'Nick P.' };
 
-  return (
-    <Root>
-      <Container maxWidth={840}>
-        <Chat />
-      </Container>
-    </Root>
-  );
+const dummyMessages = [
+    { system: true, text: 'Start of your conversation with Luke S.' },
+];
+
+export default ({ match }) => {
+    const [messages, setMessages] = useState(dummyMessages);
+    
+    const onSend = useCallback(
+        newMessages => {
+            setMessages(append(messages, newMessages));
+        },
+        [messages]
+    );
+
+    if (!match) {
+        return (
+            <EmptyRoot>
+                <EmptyState icon={ChatIcon} text="Select a thread." />
+            </EmptyRoot>
+        );
+    }
+
+    return (
+        <Root>
+            <Chat {...{ messages, onSend, user, partner }} />
+        </Root>
+    );
 };

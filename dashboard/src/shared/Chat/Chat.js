@@ -1,76 +1,159 @@
-import React, { useCallback, useState } from 'react';
-import { GiftedChat } from 'react-web-gifted-chat';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import uuid from 'uuid/v4';
 
 // Components //
-import Actions from './Actions';
-import Bubble from './Bubble';
-import Composer from './Composer';
-import Day from './Day';
+import ChatHeader from './ChatHeader';
 import InputToolbar from './InputToolbar';
-import Message from './Message';
-import SendButton from './SendButton';
-import SystemMessage from './SystemMessage';
+import MessagesList from './MessagesList';
 
-const user = { id: 1, name: 'Luke' };
-const otherUser = { id: 2, name: "Nick" };
-const style = { flex: 1 };
+const Root = styled.div`
+    flex: 1;
+`;
 
-const renderActions = props => <Actions {...props} />;
-const renderBubble = props => <Bubble {...props} />;
-const renderComposer = props => <Composer {...props} />;
-const renderDay = props => <Day {...props} />;
-const renderInputToolbar = props => <InputToolbar {...props} />;
-const renderMessage = props => <Message {...props} />;
-const renderSend = props => <SendButton {...props} />;
-const renderSystemMessage = props => <SystemMessage {...props} />;
+const MessagesWrapper = styled.div`
+    height: calc(
+        100vh - ${({ inputToolbarHeight }) => inputToolbarHeight + 64}px
+    );
+`;
 
-const Chat = ({ theme }) => {
-    const [actionsOpen, setActionsOpen] = useState(false);
-    const [actionsWidth, setActionsWidth] = useState(0);
+class Chat extends Component {
+    static propTypes = {
+        messages: PropTypes.array,
+        partner: PropTypes.object,
+        placeholder: PropTypes.string,
+        textInputProps: PropTypes.object,
+        user: PropTypes.object,
+    };
 
-    const [messages, setMessages] = useState([
-        { id: 0, system: true, text: 'Start of your conversation with Luke S.' },
-    ]);
+    static defaultProps = {
+        placeholder: 'Write something...',
+        onSend: () => console.log,
+    };
 
-    const handleSend = useCallback(
-        newMessages => {
-            newMessages = newMessages.map(({ text }) => ({
+    state = {
+        inputToolbarHeight: 0,
+        isMounted: false,
+        text: '',
+        typingDisabled: false,
+    };
+
+    componentDidMount() {
+        this.setState({ isMounted: true });
+    }
+
+    onInputTextChanged = text => {
+        const { typingDisabled } = this.state;
+        const { onInputTextChanged } = this.props;
+        if (typingDisabled) {
+            return;
+        }
+
+        if (onInputTextChanged) {
+            onInputTextChanged(text);
+        }
+
+        this.setState({
+            text,
+        });
+    };
+
+    onSend = (messages = [], shouldResetInputToolbar = false) => {
+        const { onSend, user } = this.props;
+        const { isMounted } = this.state;
+        if (!Array.isArray(messages)) {
+            messages = [messages];
+        }
+        const newMessages = messages.map(message => {
+            return {
+                ...message,
+                user,
+                // user: this.props.partner,
+                created_at: new Date(),
                 id: uuid(),
-                text,
-                created_at: new Date().toISOString(),
-                user: otherUser,
-            }));
+            };
+        });
 
-            setMessages(GiftedChat.append(messages, newMessages));
-        },
-        [messages]
-    );
+        if (shouldResetInputToolbar === true) {
+            this.setState({ typingDisabled: true });
+            this.resetInputToolbar();
+        }
 
-    return (
-        <GiftedChat
-            {...{
-                actionsOpen,
-                messages,
-                renderActions,
-                renderBubble,
-                renderComposer,
-                renderDay,
-                renderInputToolbar,
-                renderMessage,
-                renderSend,
-                renderSystemMessage,
-                setActionsOpen,
-                setActionsWidth,
-            }}
-            actionsWidth={actionsWidth}
-            placeholder="Write something..."
-            minComposerHeight={50}
-            maxComposerHeight={200}
-            onSend={handleSend}
-            {...{ user, style }}
-        />
-    );
-};
+        onSend(newMessages);
+        this.messageContainerRef.scrollToTop();
+
+        if (shouldResetInputToolbar === true) {
+            setTimeout(() => {
+                if (isMounted === true) {
+                    this.setState({ typingDisabled: false });
+                }
+            }, 100);
+        }
+    };
+
+    renderInputToolbar = () => {
+        const { text } = this.state;
+        const { placeholder, textInputProps } = this.props;
+        const { onInputTextChanged, onSend } = this;
+
+        const props = {
+            text,
+            onSend,
+            onTextChanged: onInputTextChanged,
+            placeholder,
+            textInputProps: {
+                ...textInputProps,
+                ref: input => (this.textInput = input),
+            },
+        };
+
+        return (
+            <InputToolbar onResize={this.setInputToolbarHeight} {...props} />
+        );
+    };
+
+    resetInputToolbar = () => {
+        if (this.textInput) {
+            this.textInput.value = '';
+        }
+        this.setState({
+            text: '',
+        });
+    };
+
+    scrollTo = (index, animated = true) => {
+        if (this.messageContainerRef !== null) {
+            this.messageContainerRef.scrollToIndex(index, animated);
+        }
+    };
+
+    setInputToolbarHeight = ({ height }) =>
+        this.setState({
+            inputToolbarHeight: height,
+        });
+
+    setMessageContainerRef = el => {
+        this.messageContainerRef = el;
+    };
+
+    render() {
+        const { messages, partner, user } = this.props;
+        const { inputToolbarHeight } = this.state;
+        return (
+            <Root>
+                <ChatHeader {...{ partner }} />
+                <MessagesWrapper {...{ inputToolbarHeight }}>
+                    <MessagesList
+                        {...{ inputToolbarHeight, user, partner }}
+                        data={messages}
+                        setMessageContainerRef={this.setMessageContainerRef}
+                    />
+                </MessagesWrapper>
+                {this.renderInputToolbar()}
+            </Root>
+        );
+    }
+}
 
 export default Chat;

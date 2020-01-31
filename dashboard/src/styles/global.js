@@ -20,7 +20,7 @@ export default createGlobalStyle`
     display: flex;
     background-color: ${({ theme }) => theme.color.surface};
     margin: 0;
-    height: 100%;
+    height: 100vh;
     overflow: hidden;
     font-family: "Circular Std", sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -82,7 +82,13 @@ export default createGlobalStyle`
 
   input, textarea {
     border: 0;
+    background: none;
     font-size: 16px;
     font-family: "Circular Std", sans-serif;
+
+    &::-webkit-input-placeholder {
+        color: ${({ theme }) => theme.color.gray};
+        font-weight: 500;
+    }
   }
 `;

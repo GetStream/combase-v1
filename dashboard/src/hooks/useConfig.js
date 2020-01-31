@@ -19,8 +19,7 @@ export default () => {
     }, []);
 
     useEffect(() => {
-        const config = getConfig();
-        setConfig(config);
+        getConfig();
     }, [getConfig]);
 
     return [config, { loading, error }];

@@ -9,6 +9,8 @@ import useMedia from "hooks/useMedia";
 // Components //
 import MenuButton from "shared/MenuButton";
 import Text from "shared/Text";
+import ActionsGroup from 'shared/ActionsGroup';
+import SearchInput from 'shared/SearchInput';
 
 const Root = styled(Animated.div)`
   position: sticky;
@@ -42,25 +44,11 @@ const Title = styled.div`
   }
 `;
 
-const Actions = styled.div`
-  flex-direction: row;
-  align-items: center;
-  & > * + * {
-    margin-left: 16px;
-  }
-`;
-
 const SearchWrapper = styled.div`
   padding: 0px 16px 16px 16px;
   @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
     padding: 0px 24px 24px 24px;
   }
-`;
-
-const Search = styled.div`
-  background-color: ${({ theme }) => theme.color.light_gray};
-  border-radius: 8px;
-  height: 40px;
 `;
 
 let interpolation;
@@ -96,13 +84,13 @@ const ListHeader = ({ children, icon: Icon, scrollAnim, showSearch, title }) => 
             {title}
           </Text>
         </Title>
-        <Actions>
+        <ActionsGroup>
           {children}
-        </Actions>
+        </ActionsGroup>
       </TitleWrapper>
       {showSearch ? (
         <SearchWrapper>
-          <Search />
+          <SearchInput />
         </SearchWrapper>
       ) : null}
     </Root>

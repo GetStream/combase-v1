@@ -32,10 +32,10 @@ const Status = styled(StatusBadge)`
   right: 0;
 `;
 
-const Avatar = ({ name, showStatus, size, src, statusBorder }) => {
+const Avatar = ({ className, name, showStatus, size, src, statusBorder }) => {
   return (
     <div>
-      <Root {...{ size }}>
+      <Root {...{ className, size }}>
         {!src ? (
           <Text color="surface" size={size / 2} weight="600">
             {name.charAt(0)}
@@ -44,7 +44,7 @@ const Avatar = ({ name, showStatus, size, src, statusBorder }) => {
           <img alt={name} {...{ src }} />
         )}
       </Root>
-      {showStatus ? <Status borderColor={statusBorder} /> : null}
+      {showStatus ? <Status size={size / 3} borderColor={statusBorder} /> : null}
     </div>
   );
 };
