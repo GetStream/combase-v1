@@ -11,7 +11,9 @@ exports.get = async (req, res) => {
 			});
 		}
 
-		const plugin = await Plugin.findById(data.plugin).lean();
+		const plugin = await Plugin.findById(data.plugin).lean({
+			autopopulate: true,
+		});
 		res.status(200).json(plugin);
 	} catch (error) {
 		console.error(error);

@@ -4,7 +4,9 @@ exports.get = async (req, res) => {
 	try {
 		const data = req.params;
 
-		const invite = await Invite.findById(data.invite).lean();
+		const invite = await Invite.findById(data.invite).lean({
+			autopopulate: true,
+		});
 		res.status(200).json(invite);
 	} catch (error) {
 		console.error(error);

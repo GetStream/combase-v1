@@ -4,7 +4,9 @@ exports.get = async (req, res) => {
 	try {
 		const data = req.params;
 
-		const webhook = await Webhook.findById(data.webhook).lean();
+		const webhook = await Webhook.findById(data.webhook).lean({
+			autopopulate: true,
+		});
 		res.status(200).json(webhook);
 	} catch (error) {
 		console.error(error);
