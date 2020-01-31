@@ -1,27 +1,27 @@
-[
+export default [
 	{
 		path: 'health',
-		method: 'GET',
+		method: 'get',
 		auth: false,
 	},
 	{
 		path: 'auth',
-		method: 'POST',
+		method: 'post',
 		auth: true,
 	},
 	{
 		path: 'configs',
-		method: 'GET',
+		method: 'get',
 		auth: true,
 	},
 	{
 		path: 'password-reset',
-		method: 'POST',
+		method: 'post',
 		auth: true,
 	},
 	{
 		path: 'organizations',
-		method: 'POST',
+		method: 'post',
 		auth: true,
 	},
 ];
