@@ -17,11 +17,10 @@ exports.get = async (req, res) => {
 			},
 		};
 
-		const plugins = await Plugin.find({});
+		const plugins = await Plugin.find({}).lean();
+		const data = { ...config, plugins };
 
-		// magic
-
-		res.status(200).json(config);
+		res.status(200).json(data);
 	} catch (error) {
 		console.error(error);
 		res.status(500).json({ error: error.message });

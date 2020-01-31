@@ -2,7 +2,7 @@ import Plugin from 'models/plugin';
 
 exports.get = async (req, res) => {
 	try {
-		const data = { ...req.body, ...req.params };
+		const data = req.params;
 		const serialized = req.serialized;
 
 		if (serialized.role !== 'admin') {
@@ -11,7 +11,7 @@ exports.get = async (req, res) => {
 			});
 		}
 
-		const plugin = await Plugin.findById(data.plugin);
+		const plugin = await Plugin.findById(data.plugin).lean();
 		res.status(200).json(plugin);
 	} catch (error) {
 		console.error(error);
