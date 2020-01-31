@@ -1,6 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 import query from 'mongoose-string-query';
 import timestamps from 'mongoose-timestamp';
+import autopopulate from 'mongoose-autopopulate';
 
 export const InviteSchema = new Schema(
 	{
@@ -27,6 +28,9 @@ export const InviteSchema = new Schema(
 				type: Schema.Types.ObjectId,
 				ref: 'Organization',
 				required: true,
+				autopopulate: {
+					select: ['name', 'email.address'],
+				},
 			},
 		},
 		accepted: {
@@ -41,6 +45,7 @@ export const InviteSchema = new Schema(
 
 InviteSchema.plugin(timestamps);
 InviteSchema.plugin(query);
+InviteSchema.plugin(autopopulate);
 
 InviteSchema.index({ createdAt: 1, updatedAt: 1 });
 
