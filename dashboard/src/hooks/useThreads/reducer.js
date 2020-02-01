@@ -1,9 +1,13 @@
-import Immutable from 'seamless-immutable';
-
 export default (state, action) => {
     switch (action.type) {
         case 'SET':
-            return state.setIn(['channels'], Immutable(action.channels));
+            const channels = [...state.channels, ...action.channels];
+            return {
+                ...state,
+                loading: false,
+                channels,
+                offset: channels.length,
+            };
         default:
             return state;
     }

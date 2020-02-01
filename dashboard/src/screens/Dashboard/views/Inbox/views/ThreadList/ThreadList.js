@@ -40,7 +40,7 @@ const renderListHeader = props => (
 
 const renderRow = (data, index) => {
     console.log(data);
-    return <ThreadItem {...{ data }} />;
+    return <ThreadItem id={data.id} {...{ data }} />;
 };
 
 export default () => {
@@ -66,7 +66,6 @@ export default () => {
                     style,
                 }}
                 data={channels}
-                immutable
                 ListHeaderComponent={renderListHeader}
                 ListEmptyComponent={renderListEmpty}
                 rowCount={channels.length}

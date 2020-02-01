@@ -41,9 +41,9 @@ const Row = styled.div`
     align-items: center;
 `;
 
-const renderItem = ({ data, index, match: active, statusBorder, user }) => {
+const renderItem = ({ data, id, match: active, statusBorder, user }) => {
     return (
-        <Root to={`/inbox/${index}`}>
+        <Root to={`/inbox/${id}`}>
             <Wrapper {...{ active }}>
                 <Avatar name="Nick P." size={48} {...{ statusBorder }} />
                 <Content>
@@ -69,7 +69,7 @@ const ThreadItem = props => {
     const user = useContext(AuthContext);
     return (
         <Route
-            path={`/inbox/${props.index}`}
+            path={`/inbox/${props.id}`}
             children={routeProps =>
                 renderItem({ user, ...props, ...routeProps })
             }

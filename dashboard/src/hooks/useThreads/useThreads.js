@@ -1,44 +1,39 @@
-import {
-    useCallback,
-    useContext,
-    useEffect,
-    useReducer,
-    useState,
-} from 'react';
-import Immutable from 'seamless-immutable';
+import { useCallback, useContext, useEffect, useReducer } from 'react';
 import ChatContext from 'contexts/Chat';
 import AuthContext from 'contexts/Auth';
 
 import reducer from './reducer';
 
-const initialState = Immutable({
-    channels: Immutable([]),
+const initialState = {
+    channels: [],
     loading: false,
-});
+    offset: 0,
+};
 
 export default () => {
     const client = useContext(ChatContext);
     const user = useContext(AuthContext);
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    // useEffect(() => {
-    //     client.
-    // }, []);
-
     const getChannels = useCallback(async () => {
         try {
             const channels = await client.queryChannels();
             dispatch({
                 type: 'SET',
-                channels: channels.map(({ data }) => data),
+                channels,
             });
         } catch (error) {
             console.log(error);
         }
     }, []);
 
+    const handleEvents = useCallback(e => {
+        console.log('event', e);
+    });
+
     useEffect(() => {
         getChannels();
+        client.on(handleEvents);
     }, []);
-    return [state.getIn(['channels'])];
+    return [state.channels];
 };
