@@ -39,6 +39,7 @@ const renderListHeader = props => (
 );
 
 const renderRow = (data, index) => {
+    console.log(data);
     return <ThreadItem {...{ data }} />;
 };
 

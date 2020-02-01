@@ -96,7 +96,7 @@ class ListView extends Component {
     getItemData = index => {
         const { data, immutable } = this.props;
         if (immutable) {
-            return data.getIn(index);
+            return data.getIn([index]);
         }
         return data[index];
     };
