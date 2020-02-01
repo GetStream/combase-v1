@@ -37,8 +37,9 @@ const renderListHeader = props => (
         <IconButton icon={FilterIcon} color="alt_text" />
     </ListHeader>
 );
-const renderRow = (_, index) => {
-    return <ThreadItem {...{ index }} statusBorder="background" />;
+
+const renderRow = (data, index) => {
+    return <ThreadItem {...{ data }} />;
 };
 
 export default () => {
@@ -48,26 +49,26 @@ export default () => {
     );
     const [contextProvider] = useState(new ContextHelper('ThreadList'));
 
-    const threads = useThreads();
-    console.log('threads', threads);
+    const [channels] = useThreads();
+
     useEffect(() => {
         setLayoutProvider(LayoutUtil.getLayoutProvider(width, 80));
-    }, [width]);
-
+    }, [width, data]);
     return (
         <Root>
             <ListView
                 {...{
                     contextProvider,
-                    data,
                     layoutProvider,
                     onResize,
                     renderRow,
                     style,
                 }}
+                data={channels}
+                immutable
                 ListHeaderComponent={renderListHeader}
                 ListEmptyComponent={renderListEmpty}
-                rowCount={data.length}
+                rowCount={channels.length}
                 showEmptyHeader
             />
         </Root>

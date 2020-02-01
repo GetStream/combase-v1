@@ -21,6 +21,7 @@ class ListView extends Component {
         emptyIcon: PropTypes.func,
         emptyIconSize: PropTypes.number,
         emptyText: PropTypes.string,
+        immutable: PropTypes.bool,
         layoutProvider: PropTypes.instanceOf(LayoutProvider).isRequired,
         renderRow: PropTypes.func,
         rowCount: PropTypes.number.isRequired,
@@ -93,7 +94,10 @@ class ListView extends Component {
     }
 
     getItemData = index => {
-        const { data } = this.props;
+        const { data, immutable } = this.props;
+        if (immutable) {
+            return data.getIn(index);
+        }
         return data[index];
     };
 
