@@ -6,6 +6,7 @@ import reducer from './reducer';
 
 const initialState = {
     channels: [],
+    error: false,
     loading: false,
     offset: 0,
 };
@@ -25,19 +26,39 @@ export default () => {
 
     const getChannels = useCallback(async () => {
         try {
+            await dispatch({
+                type: 'REQUEST',
+            });
             const channels = await client.queryChannels();
-            dispatch({
+            await dispatch({
                 type: 'SET',
-                channels,
+                channels: channels.map(data => {
+                    const partner = Object.values(
+                        data.state.members
+                            .without(({ user: { id } }) => id === user._id)
+                            .asMutable()
+                    )[0].user;
+                    return {
+                        ...data,
+                        partner,
+                    };
+                }),
             });
         } catch (error) {
             console.log(error);
+            await dispatch({
+                type: 'ERROR',
+                error,
+            });
         }
     }, []);
 
     const handleEvents = useCallback(e => {
-        console.log('event', e);
+        switch (e.type) {
+            default:
+                console.log(e);
+        }
     }, []);
 
-    return [state.channels];
+    return [state.channels, { loading: state.loading }];
 };

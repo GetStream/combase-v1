@@ -38,7 +38,6 @@ const renderListHeader = props => (
 );
 
 const renderRow = (data, index) => {
-    console.log(data);
     return <ThreadItem id={data.id} {...{ data }} />;
 };
 
@@ -49,8 +48,8 @@ export default () => {
     );
     const [contextProvider] = useState(new ContextHelper('ThreadList'));
 
-    const [channels] = useChannels();
-
+    const [channels, { loading }] = useChannels();
+    console.log(loading);
     useEffect(() => {
         setLayoutProvider(LayoutUtil.getLayoutProvider(width, 80));
     }, [width]);

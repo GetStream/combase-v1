@@ -41,22 +41,35 @@ const Row = styled.div`
     align-items: center;
 `;
 
-const renderItem = ({ data, id, match: active, statusBorder, user }) => {
+const renderItem = ({ data, id, match: active, statusBorder }) => {
+    const { partner } = data;
+    const { messages } = data.state;
+    console.log(partner);
     return (
         <Root to={`/inbox/${id}`}>
             <Wrapper {...{ active }}>
-                <Avatar name="Nick P." size={48} {...{ statusBorder }} />
+                <Avatar
+                    name={partner.name}
+                    src={partner.image}
+                    size={48}
+                    {...{ statusBorder }}
+                />
                 <Content>
                     <Row>
-                        <Text weight="500">Nick P.</Text>
+                        <Text weight="500">{partner.name}</Text>
                         <Fill />
                         <Text color="gray" size={12}>
-                            {moment().format('hh:mma')}
+                            {moment(data.data.updated_at).calendar()}
                         </Text>
                     </Row>
                     <Row>
-                        <Text faded color="slate" size={12} weight="500">
-                            No messages
+                        <Text
+                            faded={!messages.length}
+                            color="slate"
+                            size={12}
+                            weight="500"
+                        >
+                            {messages.length ? messages[0] : 'No Messags'}
                         </Text>
                     </Row>
                 </Content>
@@ -70,9 +83,7 @@ const ThreadItem = props => {
     return (
         <Route
             path={`/inbox/${props.id}`}
-            children={routeProps =>
-                renderItem({ user, ...props, ...routeProps })
-            }
+            children={routeProps => renderItem({ ...props, ...routeProps })}
         />
     );
 };
