@@ -23,7 +23,7 @@
 			"as": "MONGODB"
 		},
 		{
-			"plan": "rediscloud:30MB",
+			"plan": "rediscloud:30",
 			"as": "REDIS"
 		},
 		{
