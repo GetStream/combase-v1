@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import LayoutUtil from './LayoutUtil';
 
 // Hooks //
-import useThreads from 'hooks/useThreads';
+import useChannels from 'hooks/useChannels';
 
 // Components //
 import { ArchiveIcon, FilterIcon, InboxIcon } from 'shared/Icons';
@@ -26,7 +26,6 @@ const Root = styled.div`
     }
 `;
 
-const data = [{ id: 0, members: [{ name: 'Nick P.', id: 'nickparsons' }] }];
 const initialState = { height: 0, width: 0 };
 const style = { flex: 1 };
 
@@ -50,11 +49,11 @@ export default () => {
     );
     const [contextProvider] = useState(new ContextHelper('ThreadList'));
 
-    const [channels] = useThreads();
+    const [channels] = useChannels();
 
     useEffect(() => {
         setLayoutProvider(LayoutUtil.getLayoutProvider(width, 80));
-    }, [width, data]);
+    }, [width]);
     return (
         <Root>
             <ListView
