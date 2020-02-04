@@ -1,5 +1,5 @@
 import { useCallback, useContext, useEffect, useMemo, useReducer } from 'react';
-import ChannelsContext from 'shared/Chat/contexts/Channels';
+import useCurrentChannel from 'hooks/useCurrentChannel';
 import reducer from './reducer';
 
 const initialState = {
@@ -15,10 +15,7 @@ const initialState = {
 
 export default channelId => {
     const [state, dispatch] = useReducer(reducer, initialState);
-    const [channels] = useContext(ChannelsContext);
-    const channel = useMemo(() => {
-        return channels.find(({ id }) => id === channelId);
-    }, [channels, channelId]);
+    const channel = useCurrentChannel(channelId);
 
     const handleEvents = useCallback(event => {
         return dispatch(event);

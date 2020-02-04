@@ -37,8 +37,8 @@ const renderListHeader = props => (
     </ListHeader>
 );
 
-const renderRow = (data, index) => {
-    return <ThreadItem id={data.id} {...{ data }} />;
+const renderRow = ({ id, data, partner }, index) => {
+    return <ThreadItem {...{ id, data, partner }} />;
 };
 
 export default props => {

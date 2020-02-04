@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 
 // CSS //
@@ -37,6 +37,17 @@ const dummyMessages = [
 
 const MessageThread = ({ channel, match, loading, messages, partner }) => {
     const user = useContext(AuthContext);
+    useEffect(() => {
+        if (match && match.params.channel) {
+            markRead();
+        }
+    }, [channel, match]);
+
+    const markRead = useCallback(async () => {
+        if (channel) {
+            await channel.markRead();
+        }
+    }, [channel]);
 
     const onSend = useCallback(
         newMessages => {

@@ -6,9 +6,11 @@ import moment from 'moment';
 // Styles //
 import listItemInteractions from 'styles/css/listItemInteractions';
 
+//  Hooks //
+import useChannelListener from 'hooks/useChannelListener';
+
 // Components //
 import Avatar from 'shared/Avatar';
-import Chip from 'shared/Chip';
 import Fill from 'shared/Fill';
 import Text from 'shared/Text';
 
@@ -41,10 +43,14 @@ const Row = styled.div`
 
 const LatestMessage = styled(Text)``;
 
-const renderItem = ({ data, id, match: active, statusBorder }) => {
-    const { partner } = data;
-    const { messages } = data.state;
-    const unreadCount = data.countUnread();
+const ThreadItemInner = ({
+    data,
+    id,
+    match: active,
+    partner,
+    statusBorder,
+}) => {
+    const [unread, latestMessage] = useChannelListener(id, active);
     return (
         <Root to={`/inbox/${id}`}>
             <Wrapper {...{ active }}>
@@ -59,19 +65,17 @@ const renderItem = ({ data, id, match: active, statusBorder }) => {
                         <Text weight="500">{partner.name}</Text>
                         <Fill />
                         <Text color="gray" size={12}>
-                            {moment(data.data.updated_at).calendar()}
+                            {moment(latestMessage.created_at).calendar()}
                         </Text>
                     </Row>
                     <Row>
                         <LatestMessage
-                            faded={unreadCount === 0}
+                            faded={unread === 0}
                             color="slate"
                             size={12}
                             weight="500"
                         >
-                            {messages.length
-                                ? messages[messages.length - 1].text
-                                : 'No Messages'}
+                            {latestMessage.text || 'No Messages'}
                         </LatestMessage>
                     </Row>
                 </Content>
@@ -79,6 +83,8 @@ const renderItem = ({ data, id, match: active, statusBorder }) => {
         </Root>
     );
 };
+
+const renderItem = props => <ThreadItemInner {...props} />;
 
 const ThreadItem = props => {
     return (
