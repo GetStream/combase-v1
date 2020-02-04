@@ -36,17 +36,30 @@ const Bubble = styled.div`
     }
 `;
 
-const UserMessage = memo(({ currentMessage: { text }, hasNext, hasPrev, partner, ...rest }) => {
-    return (
-        <Root>
-            <Bubble {...{ hasNext, hasPrev }}>
-                <Text line={24} color="alt_text">{text}</Text>
-            </Bubble>
-            <StatusCol>
-                <StatusIcon {...{partner}} status="delivered" />
-            </StatusCol>
-        </Root>
-    );
-});
+const UserMessage = memo(
+    ({
+        currentMessage: { text },
+        hasNext,
+        hasPrev,
+        partner,
+        showStatus,
+        ...rest
+    }) => {
+        return (
+            <Root>
+                <Bubble {...{ hasNext, hasPrev }}>
+                    <Text line={24} color="alt_text">
+                        {text}
+                    </Text>
+                </Bubble>
+                <StatusCol>
+                    {!hasNext ? (
+                        <StatusIcon {...{ partner }} status="delivered" />
+                    ) : null}
+                </StatusCol>
+            </Root>
+        );
+    }
+);
 
 export default asMessage(UserMessage);
