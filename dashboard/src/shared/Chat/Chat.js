@@ -60,27 +60,18 @@ class Chat extends Component {
     };
 
     onSend = (messages = [], shouldResetInputToolbar = false) => {
-        const { onSend, user } = this.props;
+        const { onSend } = this.props;
         const { isMounted } = this.state;
         if (!Array.isArray(messages)) {
             messages = [messages];
         }
-        const newMessages = messages.map(message => {
-            return {
-                ...message,
-                user,
-                // user: this.props.partner,
-                created_at: new Date(),
-                id: uuid(),
-            };
-        });
 
         if (shouldResetInputToolbar === true) {
             this.setState({ typingDisabled: true });
             this.resetInputToolbar();
         }
 
-        onSend(newMessages);
+        onSend(messages);
         this.messageContainerRef.scrollToTop();
 
         if (shouldResetInputToolbar === true) {

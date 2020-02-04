@@ -4,8 +4,8 @@ import styled from 'styled-components';
 // Utils //
 import LayoutUtil from './LayoutUtil';
 
-// Hooks //
-import useChannels from 'hooks/useChannels';
+// Context //
+import ChannelsContext from 'shared/Chat/contexts/Channels';
 
 // Components //
 import { ArchiveIcon, FilterIcon, InboxIcon } from 'shared/Icons';
@@ -41,34 +41,38 @@ const renderRow = (data, index) => {
     return <ThreadItem id={data.id} {...{ data }} />;
 };
 
-export default () => {
+export default props => {
+    const [channels, { error, loading }] = useContext(ChannelsContext);
     const [{ width }, onResize] = useState(initialState);
     const [layoutProvider, setLayoutProvider] = useState(
         LayoutUtil.getLayoutProvider(width, 80)
     );
     const [contextProvider] = useState(new ContextHelper('ThreadList'));
 
-    const [channels, { loading }] = useChannels();
-    console.log(loading);
     useEffect(() => {
         setLayoutProvider(LayoutUtil.getLayoutProvider(width, 80));
     }, [width]);
+
     return (
         <Root>
-            <ListView
-                {...{
-                    contextProvider,
-                    layoutProvider,
-                    onResize,
-                    renderRow,
-                    style,
-                }}
-                data={channels}
-                ListHeaderComponent={renderListHeader}
-                ListEmptyComponent={renderListEmpty}
-                rowCount={channels.length}
-                showEmptyHeader
-            />
+            {!channels.length && error ? (
+                <EmptyState text="Error loading threads" />
+            ) : (
+                <ListView
+                    {...{
+                        contextProvider,
+                        layoutProvider,
+                        onResize,
+                        renderRow,
+                        style,
+                    }}
+                    data={channels}
+                    ListHeaderComponent={renderListHeader}
+                    ListEmptyComponent={renderListEmpty}
+                    rowCount={channels.length}
+                    showEmptyHeader
+                />
+            )}
         </Root>
     );
 };

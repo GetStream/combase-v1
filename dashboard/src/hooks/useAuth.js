@@ -12,9 +12,10 @@ export default (email, password) => {
             const data = await request('v1/auth/login', 'post', {
                 body: JSON.stringify({
                     email,
-                    password
-                })
+                    password,
+                }),
             });
+            data.id = data._id;
             setUser(data);
             setLoading(false);
         } catch (error) {
@@ -27,5 +28,5 @@ export default (email, password) => {
     useEffect(() => {
         login();
     }, [login]);
-    return [user, { loading, error }]
-}
+    return [user, { loading, error }];
+};

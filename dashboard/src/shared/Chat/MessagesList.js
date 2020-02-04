@@ -9,13 +9,13 @@ import ListView from 'components/ListView';
 import Message from './Message';
 
 class MessagesList extends Component {
-    static propTypes ={
+    static propTypes = {
         data: PropTypes.array,
         partner: PropTypes.object,
         setMessageContainerRef: PropTypes.func,
         scrollAnim: PropTypes.instanceOf(Animated.Value),
         user: PropTypes.object,
-    }
+    };
 
     static defaultProps = {
         scrollAnim: new Animated.Value(0),

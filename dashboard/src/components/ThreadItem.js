@@ -44,7 +44,6 @@ const Row = styled.div`
 const renderItem = ({ data, id, match: active, statusBorder }) => {
     const { partner } = data;
     const { messages } = data.state;
-    console.log(partner);
     return (
         <Root to={`/inbox/${id}`}>
             <Wrapper {...{ active }}>
@@ -69,7 +68,7 @@ const renderItem = ({ data, id, match: active, statusBorder }) => {
                             size={12}
                             weight="500"
                         >
-                            {messages.length ? messages[0] : 'No Messags'}
+                            {messages.length ? messages[0].text : 'No Messags'}
                         </Text>
                     </Row>
                 </Content>
@@ -79,7 +78,6 @@ const renderItem = ({ data, id, match: active, statusBorder }) => {
 };
 
 const ThreadItem = props => {
-    const user = useContext(AuthContext);
     return (
         <Route
             path={`/inbox/${props.id}`}

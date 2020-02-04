@@ -32,14 +32,14 @@ const ExpandWrapper = styled.div`
 const Actions = props => {
     return (
         <Root>
-            <ExpandWrapper>
+            {/* <ExpandWrapper>
                 <IconButton
                     disabled={!props.text}
                     color="alt_text"
                     icon={ChevronRightIcon}
                     // onClick={handleActionsOpen}
                 />
-            </ExpandWrapper>
+            </ExpandWrapper> */}
             <Root>
                 <IconButton color="alt_text" icon={AttachmentIcon} />
                 <IconButton color="alt_text" icon={AddImageIcon} />

@@ -38,14 +38,11 @@ export default () => {
                             .without(({ user: { id } }) => id === user._id)
                             .asMutable()
                     )[0].user;
-                    return {
-                        ...data,
-                        partner,
-                    };
+                    data.partner = partner;
+                    return data;
                 }),
             });
         } catch (error) {
-            console.log(error);
             await dispatch({
                 type: 'ERROR',
                 error,
@@ -60,5 +57,5 @@ export default () => {
         }
     }, []);
 
-    return [state.channels, { loading: state.loading }];
+    return [state.channels, { loading: state.loading, error: state.error }];
 };

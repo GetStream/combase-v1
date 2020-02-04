@@ -1,23 +1,31 @@
-import React from "react";
-import { Route } from "react-router-dom";
+import React from 'react';
+import { Route } from 'react-router-dom';
 
 // Views //
-import ThreadList from "./views/ThreadList";
-import MessageThread from "./views/MessageThread";
+import ThreadList from './views/ThreadList';
+import MessageThread from './views/MessageThread';
+
+// HOCs //
+import withChannels from 'shared/Chat/hocs/withChannels';
 
 // Components ///
-import ListDetailView from "components/ListDetailView";
-import ScreenRoot from "shared/ScreenRoot";
+import ListDetailView from 'components/ListDetailView';
+import ScreenRoot from 'shared/ScreenRoot';
 
 const renderThreadList = props => <ThreadList {...props} />;
-const renderMessageThread = props => <MessageThread {...props} />;
-
-export default props => (
-  <ListDetailView {...props} rootAs={ScreenRoot}>
-    <Route
-      path={`${props.match.url}/:channel`}
-      children={renderMessageThread}
+const renderMessageThread = props => (
+    <MessageThread
+        channelId={props.match ? props.match.params.channel : null}
+        {...props}
     />
-    <Route path={props.match.url} children={renderThreadList} />
-  </ListDetailView>
 );
+
+export default withChannels(props => (
+    <ListDetailView {...props} rootAs={ScreenRoot}>
+        <Route
+            path={`${props.match.url}/:channel`}
+            children={renderMessageThread}
+        />
+        <Route path={props.match.url} children={renderThreadList} />
+    </ListDetailView>
+));
