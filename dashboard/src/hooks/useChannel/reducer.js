@@ -5,7 +5,6 @@ export default (state, { type, ...action }) => {
     console.log(type, action);
     switch (type) {
         case 'INIT_STATE':
-            console.log(action);
             return {
                 ...state,
                 ...action,
