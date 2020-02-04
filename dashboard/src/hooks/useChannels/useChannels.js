@@ -51,10 +51,7 @@ export default () => {
     }, []);
 
     const handleEvents = useCallback(e => {
-        switch (e.type) {
-            default:
-                console.log(e);
-        }
+        dispatch(e);
     }, []);
 
     return [state.channels, { loading: state.loading, error: state.error }];

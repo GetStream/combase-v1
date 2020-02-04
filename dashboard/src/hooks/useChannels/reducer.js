@@ -1,4 +1,5 @@
 export default (state, action) => {
+    console.log('client event', action);
     switch (action.type) {
         case 'ERROR':
             return {

@@ -11,6 +11,7 @@ import PartnerMessage from './PartnerMessage';
 import SystemMessage from './SystemMessage';
 
 const Wrapper = styled.div`
+    margin-bottom: ${({ hasPrev }) => (!hasPrev ? 24 : 0)}px;
     width: ${({ width }) => `${width}px` || '100%'};
     transform: scaleY(-1);
 `;
@@ -45,8 +46,6 @@ class Message extends Component {
         const { currentMessage, user } = this.props;
         return currentMessage.user.id === user.id;
     }
-
-    
 
     shouldComponentUpdate(nextProps) {
         const next = nextProps.currentMessage;
@@ -116,7 +115,7 @@ class Message extends Component {
             : UserMessageComponent;
 
         return (
-            <Wrapper {...{ width }}>
+            <Wrapper {...{ hasPrev, width }}>
                 {this.renderDay()}
                 <MessageComponent {...{ hasNext, hasPrev }} {...rest} />
             </Wrapper>

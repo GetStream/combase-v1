@@ -20,11 +20,8 @@ export default channelId => {
         return channels.find(({ id }) => id === channelId);
     }, [channels, channelId]);
 
-    const handleEvents = useCallback(e => {
-        return dispatch({
-            type: e.type,
-            data: e,
-        });
+    const handleEvents = useCallback(event => {
+        return dispatch(event);
     }, []);
 
     const initializeChannel = useCallback(async () => {

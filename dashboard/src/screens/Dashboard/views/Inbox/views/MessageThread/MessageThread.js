@@ -11,6 +11,7 @@ import AuthContext from 'contexts/Auth';
 import withChat from 'shared/Chat/hocs/withChat';
 
 // Components //
+import LoadingState from 'shared/LoadingState';
 import Chat from 'shared/Chat';
 import { ChatIcon } from 'shared/Icons';
 import EmptyState from 'shared/EmptyState';
@@ -34,7 +35,7 @@ const dummyMessages = [
     { system: true, text: 'Start of your conversation with Luke S.' },
 ];
 
-const MessageThread = ({ channel, match, messages, partner }) => {
+const MessageThread = ({ channel, match, loading, messages, partner }) => {
     const user = useContext(AuthContext);
 
     const onSend = useCallback(
@@ -55,7 +56,11 @@ const MessageThread = ({ channel, match, messages, partner }) => {
 
     return (
         <Root>
-            <Chat {...{ onSend, messages, partner, user }} />
+            {loading ? (
+                <LoadingState />
+            ) : (
+                <Chat {...{ onSend, messages, partner, user }} />
+            )}
         </Root>
     );
 };

@@ -16,7 +16,7 @@ import ChatContext from 'contexts/Chat';
 import Helmet from 'components/Shell/Helmet';
 import Drawer from 'components/Shell/Drawer';
 import Sidenav from 'components/Shell/Sidenav';
-import LoadingState from 'components/Shell/LoadingState';
+import LoadingState from 'shared/LoadingState';
 
 const Root = styled.div`
     flex: 1;
