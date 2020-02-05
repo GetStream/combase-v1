@@ -37,7 +37,6 @@ const dummyMessages = [
 
 const MessageThread = ({ channel, match, loading, messages, partner }) => {
     const user = useContext(AuthContext);
-    console.log(channel, partner);
     const markRead = useCallback(async () => {
         if (channel) {
             await channel.markRead();

@@ -54,6 +54,7 @@ const ThreadItemInner = ({ data, id, match, partner, statusBorder }) => {
                     name={partner.name}
                     src={partner.image}
                     size={48}
+                    showStatus={unread > 0 || partner.online}
                     statusComponent={unread > 0 ? Badge : null}
                     statusProps={{ count: unread }}
                     {...{ statusBorder }}
