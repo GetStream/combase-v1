@@ -44,13 +44,8 @@ const Row = styled.div`
 
 const LatestMessage = styled(Text)``;
 
-const ThreadItemInner = ({
-    data,
-    id,
-    match: active,
-    partner,
-    statusBorder,
-}) => {
+const ThreadItemInner = ({ data, id, match, partner, statusBorder }) => {
+    const active = !!match;
     const [unread, latestMessage] = useChannelListener(id, active);
     return (
         <Root to={`/inbox/${id}`}>

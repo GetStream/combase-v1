@@ -11,17 +11,21 @@ export default (channelId, active) => {
 
     const getUnreadCount = useCallback(async () => {
         const unread = await channel.countUnread();
+        console.log('unread', active ? 0 : unread);
         setUnreadCount(active ? 0 : unread);
     }, [active, channel]);
 
-    const handleEvent = useCallback(data => {
-        getUnreadCount();
-        setLatestMessage(data.message);
-    });
+    const handleEvent = useCallback(
+        data => {
+            getUnreadCount();
+            setLatestMessage(data.message);
+        },
+        [getUnreadCount]
+    );
 
     useEffect(() => {
         getUnreadCount();
-    }, []);
+    }, [getUnreadCount]);
 
     const wasActive = usePrevious(active);
 
@@ -34,7 +38,7 @@ export default (channelId, active) => {
     useEffect(() => {
         channel.on('message.new', handleEvent);
         return () => channel.off('message.new', handleEvent);
-    }, [channelId, channel]);
+    }, [channelId, channel, handleEvent]);
 
     return [unreadCount, latestMessage];
 };
