@@ -18,6 +18,7 @@ const Wrapper = styled.div`
 
 class Message extends Component {
     static propTypes = {
+        isRead: PropTypes.bool,
         DayComponent: PropTypes.any,
         UserMessageComponent: PropTypes.any,
         PartnerMessageComponent: PropTypes.any,
@@ -50,7 +51,7 @@ class Message extends Component {
     shouldComponentUpdate(nextProps) {
         const next = nextProps.currentMessage;
         const current = this.props.currentMessage;
-        const { previousMessage, nextMessage, width } = this.props;
+        const { isRead, previousMessage, nextMessage, width } = this.props;
         const nextPropsMessage = nextProps.nextMessage;
         const nextPropsPreviousMessage = nextProps.previousMessage;
 
@@ -60,6 +61,7 @@ class Message extends Component {
             false;
 
         return (
+            (!isRead && nextProps.isRead) ||
             width !== nextProps.width ||
             next.sent !== current.sent ||
             next.received !== current.received ||
@@ -89,6 +91,7 @@ class Message extends Component {
 
     render() {
         const {
+            isRead,
             UserMessageComponent,
             PartnerMessageComponent,
             SystemMessageComponent,
@@ -117,7 +120,7 @@ class Message extends Component {
         return (
             <Wrapper {...{ hasPrev, width }}>
                 {this.renderDay()}
-                <MessageComponent {...{ hasNext, hasPrev }} {...rest} />
+                <MessageComponent {...{ isRead, hasNext, hasPrev }} {...rest} />
             </Wrapper>
         );
     }

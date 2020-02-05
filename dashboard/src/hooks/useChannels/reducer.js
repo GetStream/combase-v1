@@ -1,7 +1,7 @@
 import { moveChannelToTop, updateUserPresence } from './utils';
 
 export default (state, action) => {
-    console.log('client event', action.type, action);
+    // console.log('client event', action.type, action);
     switch (action.type) {
         case 'ERROR':
             return {

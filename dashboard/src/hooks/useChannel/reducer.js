@@ -2,6 +2,7 @@ import { append } from 'shared/Chat';
 import sortBy from 'lodash.sortby';
 
 export default (state, { type, ...action }) => {
+    // console.log('channel event', type, action);
     switch (type) {
         case 'INIT_STATE':
             return {
@@ -28,21 +29,29 @@ export default (state, { type, ...action }) => {
                 ),
             };
         case 'user.watching.start':
-            return {
-                ...state,
-                partner: {
-                    ...state.partner,
-                    online: true,
-                },
-            };
+            if (action.user.id === state.partner.id) {
+                return {
+                    ...state,
+                    partner: {
+                        ...state.partner,
+                        last_active: action.user.last_active,
+                        online: true,
+                    },
+                };
+            }
+            return state;
         case 'user.watching.stop':
-            return {
-                ...state,
-                partner: {
-                    ...state.partner,
-                    online: false,
-                },
-            };
+            if (action.user.id === state.partner.id) {
+                return {
+                    ...state,
+                    partner: {
+                        ...state.partner,
+                        last_active: action.user.last_active,
+                        online: false,
+                    },
+                };
+            }
+            return state;
         case 'typing.start':
             return {
                 ...state,
@@ -53,6 +62,17 @@ export default (state, { type, ...action }) => {
                 ...state,
                 typing: { ...state.typing, [action.user.id]: false },
             };
+        case 'message.read':
+            if (action.user.id === state.partner.id) {
+                return {
+                    ...state,
+                    read: {
+                        ...state.read,
+                        last_read: action.received_at,
+                    },
+                };
+            }
+            return state;
         default:
             return state;
     }

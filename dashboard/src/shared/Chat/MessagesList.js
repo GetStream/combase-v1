@@ -67,7 +67,7 @@ class MessagesList extends Component {
             currentMessage.user = { id: 0 };
         }
 
-        const { data, user, partner, ...rest } = this.props;
+        const { data, user, partner, read, ...rest } = this.props;
 
         if (data && user) {
             const previousMessage = data[index + 1];
@@ -82,6 +82,7 @@ class MessagesList extends Component {
                 currentMessage,
                 previousMessage,
                 nextMessage,
+                isRead: read.last_read >= currentMessage.created_at,
                 position: isOwn ? 'right' : 'left',
             };
             return <Message {...{ width }} {...messageProps} />;
@@ -98,7 +99,7 @@ class MessagesList extends Component {
     }
 
     render() {
-        const { data, scrollAnim, setMessageContainerRef } = this.props;
+        const { data, scrollAnim, setMessageContainerRef, read } = this.props;
         const { layoutProvider } = this.state;
         const { onResize, renderRow, style } = this;
         return (
@@ -112,6 +113,7 @@ class MessagesList extends Component {
                     setMessageContainerRef,
                     style,
                 }}
+                extendedState={{ data, read }}
                 forceNonDeterministicRendering
                 onEndReached={this.handleEndReached}
                 onEndReachedThreshold={240}

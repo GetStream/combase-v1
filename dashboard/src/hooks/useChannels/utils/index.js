@@ -27,7 +27,7 @@ export const updateUserPresence = (
     if (channelIndex === -1) return channels;
 
     let channel = channels[channelIndex];
-    console.log('updating presence for channel', channel);
+
     if (userId !== channel.partner.id) return channels;
 
     channel.partner = {

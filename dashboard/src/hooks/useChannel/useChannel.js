@@ -24,7 +24,7 @@ export default channelId => {
     const initializeChannel = useCallback(async () => {
         if (!channel.initialized) {
             try {
-                await channel.watch();
+                await channel.watch({ presence: true });
             } catch (error) {
                 dispatch({
                     type: 'ERROR',
@@ -37,7 +37,7 @@ export default channelId => {
             dispatch({
                 type: 'INIT_STATE',
                 messages: channel.state.messages,
-                read: channel.state.read,
+                read: channel.state.read[channel.partner.id],
                 watchers: channel.state.watchers,
                 members: channel.state.members,
                 watcher_count: channel.state.watcher_count,
@@ -62,6 +62,5 @@ export default channelId => {
         }
         return () => destroyChannel();
     }, [channelId, channel, destroyChannel, initializeChannel]);
-
     return [state, channel];
 };

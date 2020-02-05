@@ -131,7 +131,6 @@ class Chat extends Component {
 
     get messages() {
         const { messages, showTypingIndicator, partner } = this.props;
-        console.log(messages);
         if (showTypingIndicator) {
             return [
                 {
@@ -148,14 +147,14 @@ class Chat extends Component {
     }
 
     render() {
-        const { partner, user } = this.props;
+        const { read, partner, user } = this.props;
         const { inputToolbarHeight } = this.state;
         return (
             <Root>
                 <ChatHeader {...{ partner }} />
                 <MessagesWrapper {...{ inputToolbarHeight }}>
                     <MessagesList
-                        {...{ inputToolbarHeight, user, partner }}
+                        {...{ inputToolbarHeight, user, partner, read }}
                         data={this.messages}
                         setMessageContainerRef={this.setMessageContainerRef}
                     />

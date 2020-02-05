@@ -42,6 +42,7 @@ const MessageThread = ({
     loading,
     messages,
     partner,
+    read,
 }) => {
     const user = useContext(AuthContext);
 
@@ -79,7 +80,7 @@ const MessageThread = ({
             ) : (
                 <Chat
                     showTypingIndicator={isPartnerTyping}
-                    {...{ onSend, messages, partner, user }}
+                    {...{ onSend, messages, partner, read, user }}
                 />
             )}
         </Root>

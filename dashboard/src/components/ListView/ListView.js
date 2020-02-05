@@ -108,6 +108,7 @@ class ListView extends Component {
             externalScrollView = ResizeAwareScrollView,
             data,
             distanceFromWindow,
+            extendedState,
             forceNonDeterministicRendering,
             initialRenderIndex,
             initialOffset,
@@ -158,7 +159,7 @@ class ListView extends Component {
                     style,
                 }}
                 onScroll={this.handleScroll}
-                extendedState={data}
+                extendedState={extendedState || data}
                 rowRenderer={this.renderRow}
                 onResize={this.handleResize}
             />

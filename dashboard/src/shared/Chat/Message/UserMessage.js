@@ -41,6 +41,7 @@ const UserMessage = memo(
         currentMessage: { text },
         hasNext,
         hasPrev,
+        isRead,
         partner,
         showStatus,
         ...rest
@@ -54,7 +55,10 @@ const UserMessage = memo(
                 </Bubble>
                 <StatusCol>
                     {!hasNext ? (
-                        <StatusIcon {...{ partner }} status="delivered" />
+                        <StatusIcon
+                            {...{ partner }}
+                            status={isRead ? 'read' : 'delivered'}
+                        />
                     ) : null}
                 </StatusCol>
             </Root>
