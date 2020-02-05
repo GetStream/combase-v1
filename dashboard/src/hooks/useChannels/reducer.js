@@ -1,7 +1,7 @@
-import { moveChannelToTop } from './utils';
+import { moveChannelToTop, updateUserPresence } from './utils';
 
 export default (state, action) => {
-    // console.log('client event', action);
+    console.log('client event', action.type, action);
     switch (action.type) {
         case 'ERROR':
             return {
@@ -35,6 +35,26 @@ export default (state, action) => {
                 ...state,
                 channels: newChannels,
                 offset: newChannels.length,
+            };
+        case 'user.watching.start':
+            return {
+                ...state,
+                channels: updateUserPresence(
+                    state.channels,
+                    action.cid,
+                    action.user.id,
+                    true
+                ),
+            };
+        case 'user.watching.stop':
+            return {
+                ...state,
+                channels: updateUserPresence(
+                    state.channels,
+                    action.cid,
+                    action.user.id,
+                    false
+                ),
             };
         default:
             return state;
