@@ -1,7 +1,7 @@
 [build]
   base    = "dashboard"
   command = "yarn build"
-  publish = "dashboard/build"
+  publish = "build"
   ignore  = "git diff --quiet HEAD^ HEAD api/"
 
 [template.environment]
