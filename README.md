@@ -1,6 +1,5 @@
 # Combase
-Open Source White Label Customer Support Chat – Powered by Stream Chat. Coming soon!
-
+Open Source White Label Customer Support Chat – Powered by Stream Chat
 ## Deploy
 
 Step 1: Deploy to Heroku
