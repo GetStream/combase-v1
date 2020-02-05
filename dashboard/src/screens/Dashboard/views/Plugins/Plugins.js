@@ -18,19 +18,19 @@ const Root = styled(ScreenRoot)`
     padding-bottom: 40px;
 `;
 
-const renderPluginModal = props => <PluginDetail {...props} />;
+const renderPluginModal = (props) => <PluginDetail {...props} />;
 
 export default ({ match }) => (
-    <Root>
-        <FullScreenHeader
-            icon={PluginsIcon}
-            text="Powerful apps and integrations to acquire, engage and retain more
-            customers with Comba."
-            title="Plugins"
-        />
-        <Container>
-            <PluginsList />
-        </Container>
-        <Route path={`${match.url}/:plugin`} children={renderPluginModal} />
-    </Root>
+	<Root>
+		<FullScreenHeader
+			icon={PluginsIcon}
+			text="Powerful apps and integrations to acquire, engage and retain more
+            customers with Combase."
+			title="Plugins"
+		/>
+		<Container>
+			<PluginsList />
+		</Container>
+		<Route path={`${match.url}/:plugin`} children={renderPluginModal} />
+	</Root>
 );
