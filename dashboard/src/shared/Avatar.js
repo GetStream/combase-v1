@@ -38,6 +38,7 @@ const Avatar = ({
     showStatus,
     size,
     src,
+    status,
     statusComponent,
     statusBorder,
     statusProps,
@@ -58,6 +59,7 @@ const Avatar = ({
                     as={statusComponent || StatusBadge}
                     size={size / 3}
                     borderColor={statusBorder}
+                    {...{ status }}
                     {...statusProps}
                 />
             ) : null}

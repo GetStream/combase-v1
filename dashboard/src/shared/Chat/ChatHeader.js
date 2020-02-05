@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 // Components //
 import Avatar from 'shared/Avatar';
@@ -63,21 +64,26 @@ const ChatHeader = ({ partner }) => {
         <Root>
             <Main>
                 <BackLink to="/inbox">
-                    <IconButton
-                    icon={ArrowBackIcon}
-                    color="text"
-                />
+                    <IconButton icon={ArrowBackIcon} color="text" />
                 </BackLink>
                 <UserWrapper>
                     <Avatar
                         src={partner.avatar}
                         name={partner.name}
                         size={32}
+                        showStatus={partner.online}
+                        status={partner.online ? 'online' : 'offline'}
                     />
                     <Content>
                         <Text weight="500">{partner.name}</Text>
                         <Text size={12} faded>
-                            Active now
+                            {partner.online
+                                ? 'Active Now'
+                                : partner.last_active
+                                ? `Last Active: ${moment(
+                                      partner.last_active
+                                  ).fromNow()}`
+                                : 'Offline'}
                         </Text>
                     </Content>
                 </UserWrapper>

@@ -37,24 +37,24 @@ const dummyMessages = [
 
 const MessageThread = ({ channel, match, loading, messages, partner }) => {
     const user = useContext(AuthContext);
-    useEffect(() => {
-        if (match && match.params.channel) {
-            markRead();
-        }
-    }, [channel, match]);
-
+    console.log(channel, partner);
     const markRead = useCallback(async () => {
         if (channel) {
             await channel.markRead();
         }
     }, [channel]);
 
+    useEffect(() => {
+        if (match && match.params.channel) {
+            markRead();
+        }
+    }, [channel, match, markRead]);
+
     const onSend = useCallback(
-        newMessages => {
-            // setMessages(append(messages, newMessages));
-            channel.sendMessage(newMessages[0]);
+        messages => {
+            channel.sendMessage(messages[0]);
         },
-        [messages]
+        [channel]
     );
 
     if (!match) {
