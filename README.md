@@ -1,4 +1,4 @@
-# Comba
+# Combase
 Open Source White Label Customer Support Chat – Powered by Stream Chat. Coming soon!
 
 ## Deploy
