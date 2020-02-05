@@ -80,7 +80,7 @@ const ChatHeader = ({ partner }) => {
                             {partner.online
                                 ? 'Active Now'
                                 : partner.last_active
-                                ? `Last Active: ${moment(
+                                ? `Last active: ${moment(
                                       partner.last_active
                                   ).fromNow()}`
                                 : 'Offline'}

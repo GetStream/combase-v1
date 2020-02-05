@@ -19,21 +19,18 @@ const Bubble = styled.div`
         theme.colorUtils.fade(theme.color[color], 0.16)};
 `;
 
-const SystemMessage = ({ currentMessage: { color, text, error } }) => {
-    console.log(color);
-    return (
-        <Root>
-            <Bubble color={color ? color : error ? 'error' : 'primary'}>
-                <Text
-                    size={12}
-                    weight="600"
-                    color={color ? color : error ? 'error' : 'primary'}
-                >
-                    {text}
-                </Text>
-            </Bubble>
-        </Root>
-    );
-};
+const SystemMessage = ({ currentMessage: { color, text, error } }) => (
+    <Root>
+        <Bubble color={color ? color : error ? 'error' : 'primary'}>
+            <Text
+                size={12}
+                weight="600"
+                color={color ? color : error ? 'error' : 'primary'}
+            >
+                {text}
+            </Text>
+        </Bubble>
+    </Root>
+);
 
 export default SystemMessage;
