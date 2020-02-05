@@ -1,6 +1,8 @@
 [build]
-  command = "cd dashboard && yarn build"
+  base    = "dashboard"
+  command = "yarn build"
   publish = "dashboard/build"
+  ignore  = "git diff --quiet HEAD^ HEAD api/"
 
 [template.environment]
   SASS_PATH = "./node_modules"
