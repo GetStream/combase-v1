@@ -2,7 +2,7 @@ import { append } from 'shared/Chat';
 import sortBy from 'lodash.sortby';
 
 export default (state, { type, ...action }) => {
-    // console.log('channel event', action);
+    // console.log('channel event', action, state);
     switch (type) {
         case 'INIT_STATE':
             return {
@@ -27,6 +27,17 @@ export default (state, { type, ...action }) => {
                     append(state.messages, [action.message]),
                     ({ created_at }) => -created_at
                 ),
+            };
+
+        case 'typing.start':
+            return {
+                ...state,
+                typing: { ...state.typing, [action.user.id]: true },
+            };
+        case 'typing.stop':
+            return {
+                ...state,
+                typing: { ...state.typing, [action.user.id]: false },
             };
         default:
             return state;

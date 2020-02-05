@@ -19,14 +19,15 @@ const Bubble = styled.div`
         theme.colorUtils.fade(theme.color[color], 0.16)};
 `;
 
-const SystemMessage = ({ currentMessage: { text, error } }) => {
+const SystemMessage = ({ currentMessage: { color, text, error } }) => {
+    console.log(color);
     return (
         <Root>
-            <Bubble color={error ? 'error' : 'primary'}>
+            <Bubble color={color ? color : error ? 'error' : 'primary'}>
                 <Text
                     size={12}
                     weight="600"
-                    color={error ? 'error' : 'primary'}
+                    color={color ? color : error ? 'error' : 'primary'}
                 >
                     {text}
                 </Text>

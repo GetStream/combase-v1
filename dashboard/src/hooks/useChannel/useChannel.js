@@ -62,5 +62,6 @@ export default channelId => {
         }
         return () => destroyChannel();
     }, [channelId, channel, destroyChannel, initializeChannel]);
+
     return [state, channel];
 };

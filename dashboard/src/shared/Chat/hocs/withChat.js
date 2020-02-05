@@ -3,5 +3,12 @@ import useChannel from 'hooks/useChannel/useChannel';
 
 export default WrappedComponent => props => {
     const [state, channel] = useChannel(props.channelId);
-    return <WrappedComponent {...props} {...state} {...{ channel }} />;
+    const isPartnerTyping = state.typing[state.partner.id];
+    return (
+        <WrappedComponent
+            {...props}
+            {...state}
+            {...{ channel, isPartnerTyping }}
+        />
+    );
 };

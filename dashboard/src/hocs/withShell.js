@@ -35,7 +35,6 @@ export default (WrappedComponent, routes = []) => props => {
     const [drawerOpen, toggleDrawer] = useState(false);
     const chatClient = useChatClient(user, config);
     const isMobile = useMedia('sm');
-
     const value = useMemo(
         () => ({
             config,

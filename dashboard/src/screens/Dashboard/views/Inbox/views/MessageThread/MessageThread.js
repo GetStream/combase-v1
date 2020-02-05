@@ -35,8 +35,16 @@ const dummyMessages = [
     { system: true, text: 'Start of your conversation with Luke S.' },
 ];
 
-const MessageThread = ({ channel, match, loading, messages, partner }) => {
+const MessageThread = ({
+    channel,
+    isPartnerTyping,
+    match,
+    loading,
+    messages,
+    partner,
+}) => {
     const user = useContext(AuthContext);
+
     const markRead = useCallback(async () => {
         if (channel) {
             await channel.markRead();
@@ -69,7 +77,10 @@ const MessageThread = ({ channel, match, loading, messages, partner }) => {
             {loading ? (
                 <LoadingState />
             ) : (
-                <Chat {...{ onSend, messages, partner, user }} />
+                <Chat
+                    showTypingIndicator={isPartnerTyping}
+                    {...{ onSend, messages, partner, user }}
+                />
             )}
         </Root>
     );

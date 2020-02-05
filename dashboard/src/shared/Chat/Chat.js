@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import uuid from 'uuid/v4';
 
 // Components //
 import ChatHeader from './ChatHeader';
@@ -22,6 +23,7 @@ class Chat extends Component {
         messages: PropTypes.array,
         partner: PropTypes.object,
         placeholder: PropTypes.string,
+        showTypingIndicator: PropTypes.bool,
         textInputProps: PropTypes.object,
         user: PropTypes.object,
     };
@@ -127,8 +129,26 @@ class Chat extends Component {
         this.messageContainerRef = el;
     };
 
+    get messages() {
+        const { messages, showTypingIndicator, partner } = this.props;
+        console.log(messages);
+        if (showTypingIndicator) {
+            return [
+                {
+                    id: uuid(),
+                    created_at: new Date(),
+                    system: true,
+                    color: 'alt_text',
+                    text: `${partner.name} is typing...`,
+                },
+                ...messages,
+            ];
+        }
+        return messages;
+    }
+
     render() {
-        const { messages, partner, user } = this.props;
+        const { partner, user } = this.props;
         const { inputToolbarHeight } = this.state;
         return (
             <Root>
@@ -136,7 +156,7 @@ class Chat extends Component {
                 <MessagesWrapper {...{ inputToolbarHeight }}>
                     <MessagesList
                         {...{ inputToolbarHeight, user, partner }}
-                        data={messages}
+                        data={this.messages}
                         setMessageContainerRef={this.setMessageContainerRef}
                     />
                 </MessagesWrapper>
