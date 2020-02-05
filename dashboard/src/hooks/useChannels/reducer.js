@@ -1,5 +1,7 @@
+import { moveChannelToTop } from './utils';
+
 export default (state, action) => {
-    console.log('client event', action);
+    // console.log('client event', action);
     switch (action.type) {
         case 'ERROR':
             return {
@@ -21,6 +23,11 @@ export default (state, action) => {
                 channels,
                 offset: channels.length,
                 error: false,
+            };
+        case 'message.new':
+            return {
+                ...state,
+                channels: moveChannelToTop(state.channels, action.cid),
             };
         case 'notification.added_to_channel':
             const newChannels = [...state.channels, action.channel];

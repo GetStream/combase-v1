@@ -39,14 +39,9 @@ class ListView extends Component {
     constructor(props) {
         super(props);
 
-        const dataProvider = new DataProvider(
-            (r1, r2) => {
-                return r1 !== r2;
-            },
-            index => {
-                return index;
-            }
-        );
+        const dataProvider = new DataProvider((r1, r2) => {
+            return r1 !== r2;
+        });
 
         this.state = {
             width: 0,
@@ -110,7 +105,6 @@ class ListView extends Component {
         const {
             contentContainerStyle,
             contextProvider,
-            extendedState,
             externalScrollView = ResizeAwareScrollView,
             data,
             distanceFromWindow,
@@ -150,7 +144,6 @@ class ListView extends Component {
                     contextProvider,
                     dataProvider,
                     distanceFromWindow,
-                    extendedState,
                     externalScrollView,
                     forceNonDeterministicRendering,
                     initialRenderIndex,
@@ -165,7 +158,7 @@ class ListView extends Component {
                     style,
                 }}
                 onScroll={this.handleScroll}
-                extraData={data}
+                extendedState={data}
                 rowRenderer={this.renderRow}
                 onResize={this.handleResize}
             />

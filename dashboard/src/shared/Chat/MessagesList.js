@@ -57,6 +57,9 @@ class MessagesList extends Component {
         const {
             layout: { width },
         } = this.state;
+        if (!currentMessage) {
+            return null;
+        }
         if (!currentMessage.user && !currentMessage.system) {
             if (!currentMessage.system) {
                 console.warn('`user` is missing from message.');

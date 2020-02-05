@@ -2,7 +2,7 @@ import { append } from 'shared/Chat';
 import sortBy from 'lodash.sortby';
 
 export default (state, { type, ...action }) => {
-    console.log('channel event', action);
+    // console.log('channel event', action);
     switch (type) {
         case 'INIT_STATE':
             return {

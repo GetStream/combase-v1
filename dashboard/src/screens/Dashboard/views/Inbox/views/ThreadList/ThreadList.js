@@ -48,7 +48,6 @@ export default props => {
         LayoutUtil.getLayoutProvider(width, 80)
     );
     const [contextProvider] = useState(new ContextHelper('ThreadList'));
-
     useEffect(() => {
         setLayoutProvider(LayoutUtil.getLayoutProvider(width, 80));
     }, [width]);

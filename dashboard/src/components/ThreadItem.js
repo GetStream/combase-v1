@@ -51,7 +51,6 @@ const ThreadItemInner = ({
     partner,
     statusBorder,
 }) => {
-    console.log(partner);
     const [unread, latestMessage] = useChannelListener(id, active);
     return (
         <Root to={`/inbox/${id}`}>
