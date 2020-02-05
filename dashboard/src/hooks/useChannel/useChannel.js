@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useMemo, useReducer } from 'react';
+import { useCallback, useEffect, useReducer } from 'react';
 import useCurrentChannel from 'hooks/useCurrentChannel';
 import reducer from './reducer';
 
@@ -44,7 +44,7 @@ export default channelId => {
                 partner: channel.partner,
             });
         }
-    }, [channel]);
+    }, [channel, state.error, handleEvents]);
 
     const destroyChannel = useCallback(() => {
         if (channel) {
@@ -54,13 +54,13 @@ export default channelId => {
                 ...initialState,
             });
         }
-    }, [channel]);
+    }, [channel, handleEvents]);
 
     useEffect(() => {
         if (channel) {
             initializeChannel();
         }
         return () => destroyChannel();
-    }, [channelId, channel]);
+    }, [channelId, channel, destroyChannel, initializeChannel]);
     return [state, channel];
 };

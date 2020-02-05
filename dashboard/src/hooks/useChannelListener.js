@@ -11,7 +11,6 @@ export default (channelId, active) => {
 
     const getUnreadCount = useCallback(async () => {
         const unread = await channel.countUnread();
-        console.log('unread', active ? 0 : unread);
         setUnreadCount(active ? 0 : unread);
     }, [active, channel]);
 

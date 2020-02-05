@@ -16,14 +16,6 @@ export default () => {
     const user = useContext(AuthContext);
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    useEffect(() => {
-        getChannels();
-        client.on(handleEvents);
-        return () => {
-            client.off(handleEvents);
-        };
-    }, []);
-
     const getChannels = useCallback(async () => {
         try {
             await dispatch({
@@ -48,11 +40,19 @@ export default () => {
                 error,
             });
         }
-    }, []);
+    }, [client, user._id]);
 
     const handleEvents = useCallback(e => {
         dispatch(e);
     }, []);
+
+    useEffect(() => {
+        getChannels();
+        client.on(handleEvents);
+        return () => {
+            client.off(handleEvents);
+        };
+    }, [client, getChannels, handleEvents]);
 
     return [state.channels, { loading: state.loading, error: state.error }];
 };

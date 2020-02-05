@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import uuid from 'uuid/v4';
 
 // Components //
 import ChatHeader from './ChatHeader';
