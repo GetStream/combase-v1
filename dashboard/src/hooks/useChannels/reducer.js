@@ -22,6 +22,13 @@ export default (state, action) => {
                 offset: channels.length,
                 error: false,
             };
+        case 'notification.added_to_channel':
+            const newChannels = [...state.channels, action.channel];
+            return {
+                ...state,
+                channels: newChannels,
+                offset: newChannels.length,
+            };
         default:
             return state;
     }

@@ -11,6 +11,7 @@ import useChannelListener from 'hooks/useChannelListener';
 
 // Components //
 import Avatar from 'shared/Avatar';
+import Badge from 'shared/Badge';
 import Fill from 'shared/Fill';
 import Text from 'shared/Text';
 
@@ -50,6 +51,7 @@ const ThreadItemInner = ({
     partner,
     statusBorder,
 }) => {
+    console.log(partner);
     const [unread, latestMessage] = useChannelListener(id, active);
     return (
         <Root to={`/inbox/${id}`}>
@@ -58,6 +60,8 @@ const ThreadItemInner = ({
                     name={partner.name}
                     src={partner.image}
                     size={48}
+                    statusComponent={unread > 0 ? Badge : null}
+                    statusProps={{ count: unread }}
                     {...{ statusBorder }}
                 />
                 <Content>
@@ -65,7 +69,11 @@ const ThreadItemInner = ({
                         <Text weight="500">{partner.name}</Text>
                         <Fill />
                         <Text color="gray" size={12}>
-                            {moment(latestMessage.created_at).calendar()}
+                            {moment(
+                                latestMessage
+                                    ? latestMessage.created_at
+                                    : data.created_at
+                            ).calendar()}
                         </Text>
                     </Row>
                     <Row>
@@ -75,7 +83,7 @@ const ThreadItemInner = ({
                             size={12}
                             weight="500"
                         >
-                            {latestMessage.text || 'No Messages'}
+                            {latestMessage ? latestMessage.text : 'No Messages'}
                         </LatestMessage>
                     </Row>
                 </Content>
