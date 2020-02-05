@@ -14,23 +14,26 @@ import PluginsList from 'components/PluginsList';
 
 const Root = styled(ScreenRoot)`
     flex: 1;
-    overflow-y: scroll;
     padding-bottom: 40px;
+
+    @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
+        overflow-y: scroll;
+    }
 `;
 
-const renderPluginModal = (props) => <PluginDetail {...props} />;
+const renderPluginModal = props => <PluginDetail {...props} />;
 
 export default ({ match }) => (
-	<Root>
-		<FullScreenHeader
-			icon={PluginsIcon}
-			text="Powerful apps and integrations to acquire, engage and retain more
+    <Root>
+        <FullScreenHeader
+            icon={PluginsIcon}
+            text="Powerful apps and integrations to acquire, engage and retain more
             customers with Combase."
-			title="Plugins"
-		/>
-		<Container>
-			<PluginsList />
-		</Container>
-		<Route path={`${match.url}/:plugin`} children={renderPluginModal} />
-	</Root>
+            title="Plugins"
+        />
+        <Container>
+            <PluginsList />
+        </Container>
+        <Route path={`${match.url}/:plugin`} children={renderPluginModal} />
+    </Root>
 );
