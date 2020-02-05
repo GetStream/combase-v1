@@ -83,7 +83,7 @@ UserSchema.plugin(autopopulate);
 // 			{
 // 				id: user._id,
 // 				image: user.avatar || '',
-// 				name: `${user.name.first} ${user.name.last.charAt(0)}.`,
+// 				name: `${user.name.first} ${user.name.last}`,
 // 				role: 'user',
 // 			},
 // 		]);

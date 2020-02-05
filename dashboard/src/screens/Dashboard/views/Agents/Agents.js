@@ -14,8 +14,10 @@ import AgentsList from 'components/AgentsList';
 
 const Root = styled(ScreenRoot)`
     flex: 1;
-    overflow-y: scroll;
     padding-bottom: 40px;
+    @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
+        overflow-y: scroll;
+    }
 `;
 
 const agents = [
