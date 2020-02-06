@@ -3,23 +3,44 @@ import styled from 'styled-components';
 import { Formik, Field } from 'formik';
 
 // Components //
+import InputField from 'shared/InputField';
 import Button from 'shared/Button';
+import { MailIcon, PasswordIcon } from 'shared/Icons';
 import validationSchema from './validationSchema';
 
-const Root = styled.form``;
+const Root = styled.form`
+    & > * + * {
+        margin-top: 16px;
+    }
+`;
+
+const ButtonsWrapper = styled.div`
+    margin-top: 24px;
+
+    & > * + * {
+        margin-top: 16px;
+    }
+`;
 
 const initialValues = {
     email: '',
     password: '',
 };
 
-const renderForm = ({ errors, handleSubmit }) => {
+const renderForm = ({ handleSubmit }) => {
     return (
         <Root onSubmit={handleSubmit}>
-            <Field name="email" placeholder="Email" />
-            <Field name="password" placeholder="Password" type="password" />
-            <Button type="submit" label="Login" />
-            <Button flat color="red" label="Forgot Password" />
+            <InputField icon={MailIcon} name="email" placeholder="Email" />
+            <InputField
+                icon={PasswordIcon}
+                name="password"
+                placeholder="Password"
+                type="password"
+            />
+            <ButtonsWrapper>
+                <Button type="submit" label="Login" />
+                <Button flat color="red" label="Forgot Password" />
+            </ButtonsWrapper>
         </Root>
     );
 };

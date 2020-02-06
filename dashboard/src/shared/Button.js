@@ -14,6 +14,8 @@ const Root = styled.button`
     border-radius: ${({ theme }) => theme.borderRadius}px;
     align-items: center;
     justify-content: center;
+    box-shadow: ${({ flat }) =>
+        !flat ? '0px 1px 4px rgba(0, 0, 0, 0.12)' : null};
     background-color: ${({ flat, color, theme }) =>
         flat ? 'transparent' : theme.color[color]};
     ${({ color, flat, theme }) =>
@@ -38,9 +40,12 @@ const Root = styled.button`
     `};
 `;
 
-const Button = ({ color, flat, label, onClick }) => {
+const Button = ({ className, color, flat, label, onClick, type }) => {
     return (
-        <Root activeColor={color} {...{ color, flat, onClick }}>
+        <Root
+            activeColor={color}
+            {...{ className, color, flat, onClick, type }}
+        >
             <Text color={flat ? color : 'surface'}>{label}</Text>
         </Root>
     );
@@ -55,6 +60,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
     color: 'primary',
+    type: 'button',
 };
 
 export default Button;
