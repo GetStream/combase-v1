@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
+import { useHistory, useLocation } from 'react-router-dom';
 import { Formik } from 'formik';
 
 // Hooks //
@@ -50,11 +51,16 @@ const renderForm = ({ handleSubmit }) => {
 
 export default () => {
     const [user, { login }] = useAuth(); // eslint-disable-line no-unused-vars
+    const location = useLocation();
+    const history = useHistory();
     const handleSubmit = useCallback(
         values => {
             login(values.email, values.password);
+            if (location.state.next) {
+                history.push(location.state.next);
+            }
         },
-        [login]
+        [history, location, login]
     );
     return (
         <Formik

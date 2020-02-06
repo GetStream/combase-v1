@@ -16,6 +16,7 @@ export default ({ component: Component, ...rest }) => {
                 }
                 return (
                     <Redirect
+                        replace
                         to={{
                             pathname: '/auth/login',
                             state: { next: props.location },
