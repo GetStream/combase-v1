@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
+// Forms //
+import LoginForm from '../forms/LoginForm';
+
 // Components //
-import Button from 'shared/Button';
 import Container from 'shared/Container';
 
 const Root = styled.div`
@@ -12,8 +14,7 @@ const Root = styled.div`
 const Login = () => (
     <Root>
         <Container maxWidth={400}>
-            <Button label="Login" />
-            <Button flat color="red" label="Forgot Password" />
+            <LoginForm />
         </Container>
     </Root>
 );

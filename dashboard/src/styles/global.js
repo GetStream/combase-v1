@@ -39,7 +39,7 @@ export default createGlobalStyle`
     height: 100%;
   }
 
-  div {
+  div, form {
     position: relative;
     display: flex;
     align-items: stretch;
