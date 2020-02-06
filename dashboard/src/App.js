@@ -11,6 +11,7 @@ import theme from 'styles/theme';
 import GlobalStyles from 'styles/global';
 
 // Screens //
+import Onboarding from 'screens/Onboarding';
 import Dashboard from 'screens/Dashboard';
 
 moment.updateLocale('en', {
@@ -30,6 +31,7 @@ function App() {
             <>
                 <Router {...{ history }}>
                     <Switch>
+                        <Route path="/auth" component={Onboarding} />
                         <Route path="/" component={Dashboard} />
                     </Switch>
                 </Router>

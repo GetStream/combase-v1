@@ -12,6 +12,8 @@ const Root = styled.button`
     padding: 12px 24px;
     cursor: pointer;
     border-radius: ${({ theme }) => theme.borderRadius}px;
+    align-items: center;
+    justify-content: center;
     background-color: ${({ flat, color, theme }) =>
         flat ? 'transparent' : theme.color[color]};
     ${({ color, flat, theme }) =>
