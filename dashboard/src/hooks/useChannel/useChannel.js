@@ -4,6 +4,7 @@ import reducer from './reducer';
 
 const initialState = {
     error: false,
+    limit: 25,
     loading: true,
     loadingMore: false,
     messages: [],
@@ -33,11 +34,10 @@ export default channelId => {
         try {
             const { messages } = await channel.query({
                 messages: {
-                    limit: 25,
+                    limit: state.limit,
                     id_lt: state.messages[state.messages.length - 1].id,
                 },
             });
-            console.log(messages);
             dispatch({
                 type: 'loadMore.success',
                 messages,
@@ -48,7 +48,13 @@ export default channelId => {
                 error,
             });
         }
-    }, [channel, state.loadingMore, state.messages, state.noMoreMessages]);
+    }, [
+        channel,
+        state.limit,
+        state.loadingMore,
+        state.messages,
+        state.noMoreMessages,
+    ]);
 
     const initializeChannel = useCallback(async () => {
         if (!channel.initialized) {

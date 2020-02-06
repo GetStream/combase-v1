@@ -52,6 +52,7 @@ export default (state, { type, ...action }) => {
                 };
             }
             return state;
+
         case 'typing.start':
             return {
                 ...state,
@@ -62,6 +63,7 @@ export default (state, { type, ...action }) => {
                 ...state,
                 typing: { ...state.typing, [action.user.id]: false },
             };
+
         case 'message.read':
             if (action.user.id === state.partner.id) {
                 return {
@@ -84,7 +86,7 @@ export default (state, { type, ...action }) => {
             return {
                 ...state,
                 loadingMore: false,
-                noMoreMessages: action.messages < 25,
+                noMoreMessages: action.messages < state.limit,
                 messages: sortBy(
                     append(state.messages, action.messages),
                     ({ created_at }) => -created_at
