@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 // Components //
-import { PasswordIcon } from 'shared/Icons';
-
 const Root = styled.div`
     flex-direction: row;
     height: 48px;
