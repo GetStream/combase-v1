@@ -73,6 +73,30 @@ export default (state, { type, ...action }) => {
                 };
             }
             return state;
+
+        case 'loadMore.request':
+            return {
+                ...state,
+                loadingMore: true,
+            };
+
+        case 'loadMore.success':
+            return {
+                ...state,
+                loadingMore: false,
+                noMoreMessages: action.messages < 25,
+                messages: sortBy(
+                    append(state.messages, action.messages),
+                    ({ created_at }) => -created_at
+                ),
+            };
+
+        case 'loadMore.error':
+            return {
+                ...state,
+                error: action.error,
+                loadingMore: false,
+            };
         default:
             return state;
     }

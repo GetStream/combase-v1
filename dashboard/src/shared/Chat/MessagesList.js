@@ -12,6 +12,7 @@ class MessagesList extends Component {
     static propTypes = {
         data: PropTypes.array,
         partner: PropTypes.object,
+        onEndReached: PropTypes.func,
         setMessageContainerRef: PropTypes.func,
         scrollAnim: PropTypes.instanceOf(Animated.Value),
         user: PropTypes.object,
@@ -46,10 +47,6 @@ class MessagesList extends Component {
             });
         }
     }
-
-    handleEndReached = () => {
-        console.log('end reached load more');
-    };
 
     onResize = layout => this.setState({ layout });
 
@@ -99,7 +96,13 @@ class MessagesList extends Component {
     }
 
     render() {
-        const { data, scrollAnim, setMessageContainerRef, read } = this.props;
+        const {
+            data,
+            onEndReached,
+            scrollAnim,
+            setMessageContainerRef,
+            read,
+        } = this.props;
         const { layoutProvider } = this.state;
         const { onResize, renderRow, style } = this;
         return (
@@ -115,7 +118,7 @@ class MessagesList extends Component {
                 }}
                 extendedState={{ data, read }}
                 forceNonDeterministicRendering
-                onEndReached={this.handleEndReached}
+                onEndReached={onEndReached}
                 onEndReachedThreshold={240}
                 rowCount={data.length}
             />

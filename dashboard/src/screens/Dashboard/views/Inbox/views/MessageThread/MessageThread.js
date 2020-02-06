@@ -40,6 +40,7 @@ const MessageThread = ({
     isPartnerTyping,
     match,
     loading,
+    loadMoreMessages,
     messages,
     partner,
     read,
@@ -80,6 +81,7 @@ const MessageThread = ({
             ) : (
                 <Chat
                     showTypingIndicator={isPartnerTyping}
+                    onLoadMore={loadMoreMessages}
                     {...{ onSend, messages, partner, read, user }}
                 />
             )}

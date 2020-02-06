@@ -5,7 +5,9 @@ import reducer from './reducer';
 const initialState = {
     error: false,
     loading: true,
+    loadingMore: false,
     messages: [],
+    noMoreMessages: false,
     online: true,
     read: {},
     typing: {},
@@ -20,6 +22,33 @@ export default channelId => {
     const handleEvents = useCallback(event => {
         return dispatch(event);
     }, []);
+
+    const loadMoreMessages = useCallback(async () => {
+        if (state.noMoreMessages || state.loadingMore) {
+            return;
+        }
+        dispatch({
+            type: 'loadMore.request',
+        });
+        try {
+            const { messages } = await channel.query({
+                messages: {
+                    limit: 25,
+                    id_lt: state.messages[state.messages.length - 1].id,
+                },
+            });
+            console.log(messages);
+            dispatch({
+                type: 'loadMore.success',
+                messages,
+            });
+        } catch (error) {
+            dispatch({
+                type: 'loadMore.error',
+                error,
+            });
+        }
+    }, [channel, state.loadingMore, state.messages, state.noMoreMessages]);
 
     const initializeChannel = useCallback(async () => {
         if (!channel.initialized) {
@@ -62,5 +91,6 @@ export default channelId => {
         }
         return () => destroyChannel();
     }, [channelId, channel, destroyChannel, initializeChannel]);
-    return [state, channel];
+
+    return [state, channel, loadMoreMessages];
 };
