@@ -24,14 +24,8 @@ const Root = styled.div`
 `;
 
 export default (WrappedComponent, routes = []) => props => {
-    const [
-        config,
-        { loading: configLoading, error: configError },
-    ] = useConfig();
-    const [user, { loading: authLoading, error: authError }] = useAuth(
-        process.env.REACT_APP_USER_EMAIL,
-        process.env.REACT_APP_USER_PASS
-    );
+    const [config, { loading, error }] = useConfig();
+    const [user] = useAuth();
     const [drawerOpen, toggleDrawer] = useState(false);
     const chatClient = useChatClient(user, config);
     const isMobile = useMedia('sm');
@@ -46,11 +40,11 @@ export default (WrappedComponent, routes = []) => props => {
         [config, drawerOpen, toggleDrawer]
     );
 
-    if (configLoading || authLoading || !chatClient) {
+    if (loading || !chatClient) {
         return <LoadingState />;
     }
 
-    if (authError || configError) {
+    if (error) {
         // TODO: Show error screen here
         return 'Something went wrong!';
     }

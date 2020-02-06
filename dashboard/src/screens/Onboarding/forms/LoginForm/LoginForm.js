@@ -1,6 +1,9 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
-import { Formik, Field } from 'formik';
+import { Formik } from 'formik';
+
+// Hooks //
+import useAuth from 'hooks/useAuth';
 
 // Components //
 import InputField from 'shared/InputField';
@@ -46,9 +49,13 @@ const renderForm = ({ handleSubmit }) => {
 };
 
 export default () => {
-    const handleSubmit = useCallback(values => {
-        console.log(values);
-    }, []);
+    const [user, { login }] = useAuth(); // eslint-disable-line no-unused-vars
+    const handleSubmit = useCallback(
+        values => {
+            login(values.email, values.password);
+        },
+        [login]
+    );
     return (
         <Formik
             {...{ initialValues, validationSchema }}
