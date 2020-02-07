@@ -159,7 +159,7 @@ class ListView extends Component {
                     style,
                 }}
                 onScroll={this.handleScroll}
-                extendedState={extendedState || data}
+                extendedState={extendedState || { data }}
                 rowRenderer={this.renderRow}
                 onResize={this.handleResize}
             />

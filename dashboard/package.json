@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@juggle/resize-observer": "^3.0.2",
+    "@material/react-switch": "^0.15.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -14,6 +15,7 @@
     "lodash.isequal": "^4.5.0",
     "lodash.uniqby": "^4.7.0",
     "moment": "^2.24.0",
+    "node-sass": "^4.13.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^5.2.1",

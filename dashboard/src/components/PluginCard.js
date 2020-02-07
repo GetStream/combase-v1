@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import history from 'utils/history';
 
 // Components //
+import Switch from 'components/Switch';
 import Card from 'shared/Card';
 import Text from 'shared/Text';
 import Fill from 'shared/Fill';
@@ -70,6 +71,7 @@ const PluginCard = ({ avatar, description, title, url }) => (
             <Logo>
                 <img alt={title} src={avatar} />
             </Logo>
+            <Switch />
         </Header>
         <Content>
             <Title>
