@@ -31,7 +31,7 @@ const initialValues = {
     password: '',
 };
 
-const renderForm = ({ handleSubmit }) => {
+const renderForm = ({ dirty, handleSubmit, isValid }) => {
     return (
         <Root onSubmit={handleSubmit}>
             <InputField icon={MailIcon} name="email" placeholder="Email" />
@@ -42,7 +42,7 @@ const renderForm = ({ handleSubmit }) => {
                 type="password"
             />
             <ButtonsWrapper>
-                <Button type="submit" label="Login" />
+                <Button disabled={!isValid} type="submit" label="Login" />
                 <Button flat color="red" label="Forgot Password" />
             </ButtonsWrapper>
         </Root>

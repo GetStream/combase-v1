@@ -32,7 +32,7 @@ const initialValues = {
     confirm: '',
 };
 
-const renderForm = ({ handleSubmit }) => {
+const renderForm = ({ dirty, handleSubmit, isValid }) => {
     return (
         <Root onSubmit={handleSubmit}>
             <InputField
@@ -59,7 +59,7 @@ const renderForm = ({ handleSubmit }) => {
                 type="password"
             />
             <ButtonsWrapper>
-                <Button type="submit" label="Create Account" />
+                <Button disabled={!dirty || !isValid} type="submit" label="Create Account" />
             </ButtonsWrapper>
         </Root>
     );
