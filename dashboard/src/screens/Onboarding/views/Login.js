@@ -13,10 +13,10 @@ const Root = styled.div`
 `;
 
 const Header = styled.div`
+    padding: 32px 0px;
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-bottom: 32px;
 `;
 
 const Login = () => (

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 // Forms //
-import SignUpForm from '../forms/SignUpForm';
+import InvitationForm from '../forms/InvitationForm';
 
 // Components //
 import Text from 'shared/Text';
@@ -19,17 +19,17 @@ const Header = styled.div`
     text-align: center;
 `;
 
-const SignUp = () => {
+const Invite = () => {
     return (
         <Root>
             <Header>
                 <Text size={40} weight="700">
-                    Create an Account
+                    Invite your Team
                 </Text>
             </Header>
-            <SignUpForm />
+            <InvitationForm />
         </Root>
     );
 };
 
-export default SignUp;
+export default Invite;

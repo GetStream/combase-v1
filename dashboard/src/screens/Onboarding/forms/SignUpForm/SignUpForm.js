@@ -32,8 +32,7 @@ const initialValues = {
     confirm: '',
 };
 
-const renderForm = ({ errors, handleSubmit }) => {
-    console.log(errors);
+const renderForm = ({ handleSubmit }) => {
     return (
         <Root onSubmit={handleSubmit}>
             <InputField
