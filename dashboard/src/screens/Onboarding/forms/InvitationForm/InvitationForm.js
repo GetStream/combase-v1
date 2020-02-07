@@ -10,7 +10,7 @@ import useAuth from 'hooks/useAuth';
 import IconButton from 'shared/IconButton';
 import InputField from 'shared/InputField';
 import Button from 'shared/Button';
-import { AddCircleIcon, CancelIcon, MailIcon, PasswordIcon } from 'shared/Icons';
+import { AddCircleIcon, CancelIcon, MailIcon, UserIcon } from 'shared/Icons';
 import validationSchema from './validationSchema';
 
 const Root = styled.form`
@@ -73,14 +73,17 @@ const InvitationsField = ({ canDelete, invitation, index, remove }) => {
     return (
         <Invite>
             <InputField
+                icon={MailIcon}
                 name={`invitations.${index}.email`}
                 placeholder="Email"
             />
             <InputField
+                icon={UserIcon}
                 name={`invitations.${index}.name.first`}
                 placeholder="First Name"
             />
             <InputField
+                icon={UserIcon}
                 name={`invitations.${index}.name.last`}
                 placeholder="Last Name"
             />
@@ -93,6 +96,7 @@ const renderInviteInputs = ({ form, push, remove }, data) => {
     const {
         values: { invitations },
     } = form;
+    console.log(form.errors);
     return (
         <Invites>
             {invitations.map((invitation, index) => (
