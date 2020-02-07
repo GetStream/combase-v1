@@ -1,15 +1,11 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
-import { useHistory, useLocation } from 'react-router-dom';
 import { Formik } from 'formik';
-
-// Hooks //
-import useAuth from 'hooks/useAuth';
 
 // Components //
 import InputField from 'shared/InputField';
 import Button from 'shared/Button';
-import { MailIcon, PasswordIcon } from 'shared/Icons';
+import { MailIcon, PasswordIcon, UserIcon } from 'shared/Icons';
 import validationSchema from './validationSchema';
 
 const Root = styled.form`
@@ -27,20 +23,26 @@ const ButtonsWrapper = styled.div`
 `;
 
 const initialValues = {
+    name: {
+        first: '',
+        last: '',
+    },
     email: '',
     password: '',
+    confirm: '',
 };
 
-const renderForm = ({ handleSubmit }) => {
+const renderForm = ({ errors, handleSubmit }) => {
+    console.log(errors);
     return (
         <Root onSubmit={handleSubmit}>
             <InputField
-                icon={MailIcon}
+                icon={UserIcon}
                 name="name.first"
                 placeholder="First Name"
             />
             <InputField
-                icon={MailIcon}
+                icon={UserIcon}
                 name="name.last"
                 placeholder="Last Name"
             />

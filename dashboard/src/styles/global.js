@@ -90,5 +90,9 @@ export default createGlobalStyle`
         color: ${({ theme }) => theme.color.gray};
         font-weight: 500;
     }
+
+    &:focus {
+      outline-offset: 0;
+    }
   }
 `;
