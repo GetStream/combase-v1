@@ -10,18 +10,28 @@ import Text from 'shared/Text';
 
 const Root = styled.button`
     padding: 12px 24px;
-    cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
+    cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
     border-radius: ${({ theme }) => theme.borderRadius}px;
     align-items: center;
     justify-content: center;
-    box-shadow: ${({ disabled, flat }) =>
-        !disabled && !flat ? '0px 1px 4px rgba(0, 0, 0, 0.12)' : null};
+    box-shadow: ${({ color, disabled, flat, theme }) =>
+        !disabled && !flat
+            ? `0px 1px 4px ${theme.colorUtils.fade(
+                  theme.colorUtils.darken(theme.color[color], 0.1),
+                  0.4
+              )}`
+            : null};
     background-color: ${({ disabled, flat, color, theme }) =>
-        flat ? 'transparent' : disabled ? theme.color.disabled :  theme.color[color]};
+        flat
+            ? 'transparent'
+            : disabled
+            ? theme.color.disabled
+            : theme.color[color]};
     ${({ color, disabled, flat, theme }) =>
-        !disabled ? flat
-            ? listItemInteractions
-            : `
+        !disabled
+            ? flat
+                ? listItemInteractions
+                : `
             transition: 0.24s background-color ${theme.easing.css(
                 theme.easing.standard
             )};
@@ -37,14 +47,24 @@ const Root = styled.button`
                 0.15
             )}
         }
-    ` : null};
+    `
+            : null};
 
     & > ${Text} {
-        margin-left: ${({ hasIcon }) => hasIcon ? 8 : 0 }px;
+        margin-left: ${({ hasIcon }) => (hasIcon ? 8 : 0)}px;
     }
 `;
 
-const Button = ({ className, color, disabled, icon: Icon, flat, label, onClick, type }) => {
+const Button = ({
+    className,
+    color,
+    disabled,
+    icon: Icon,
+    flat,
+    label,
+    onClick,
+    type,
+}) => {
     return (
         <Root
             activeColor={color}
