@@ -1,11 +1,23 @@
+import { StreamChat } from 'stream-chat';
+
 import User from 'models/user';
 import { AddToWebhookUserQueue } from 'workers/webhook-user/queue';
+import StreamClient from 'utils/stream';
 
 exports.post = async (req, res) => {
 	try {
-		const data = { ...req.body, ...req.params };
+		const data = req.body;
 
-		const user = await User.create(data);
+		const user = await User.findOneOrCreate({ email: data.email }, data);
+
+		const { key, secret } = await StreamClient();
+		const client = new StreamChat(key, secret);
+
+		await client.updateUser({
+			id: user._id.toString(),
+			name: `${user.name.first} ${user.name.last}`,
+			role: 'channel_member',
+		});
 
 		await AddToWebhookUserQueue('created', user);
 
