@@ -5,8 +5,6 @@ import timestamps from 'mongoose-timestamp';
 import autopopulate from 'mongoose-autopopulate';
 import 'mongoose-type-email';
 
-import StreamClient from 'utils/stream';
-
 mongoose.SchemaTypes.Email.defaults.message = 'Invalid email address.';
 
 export const UserSchema = new Schema(
@@ -73,24 +71,6 @@ UserSchema.plugin(findOneOrCreate);
 UserSchema.plugin(timestamps);
 UserSchema.plugin(query);
 UserSchema.plugin(autopopulate);
-
-// TODO: Update users stream user data
-// on save.
-// UserSchema.post('save', async user => {
-// 	try {
-// 		const { client } = await StreamClient();
-// 		await client.updateUsers([
-// 			{
-// 				id: user._id,
-// 				image: user.avatar || '',
-// 				name: `${user.name.first} ${user.name.last}`,
-// 				role: 'user',
-// 			},
-// 		]);
-// 	} catch (error) {
-// 		console.log(error);
-// 	}
-// });
 
 UserSchema.index({ createdAt: 1, updatedAt: 1 });
 

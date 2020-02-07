@@ -9,20 +9,26 @@ exports.post = async (req, res) => {
 	try {
 		const data = req.body;
 
-		const { agents: { assignee: { agent } }, organization, user } = data.refs;
+		const {
+			agents: {
+				assignee: { agent },
+			},
+			organization,
+			user,
+		} = data.refs;
 
 		const create = await Chat.create(data);
 
 		const { key, secret } = await StreamClient();
 		const client = new StreamChat(key, secret);
 		const channel = client.channel('messaging', create._id.toString(), {
-			members: [ agent, user ],
+			members: [agent, user],
 			roles: {
 				agent: 'moderator',
-				user: 'channel_member'
+				user: 'channel_member',
 			},
 			created_by_id: user,
-			organization
+			organization,
 		});
 
 		await channel.create();
@@ -36,8 +42,8 @@ exports.post = async (req, res) => {
 			...create,
 			tokens: {
 				agent: agentToken,
-				user: userToken
-			}
+				user: userToken,
+			},
 		});
 	} catch (error) {
 		console.error(error);
