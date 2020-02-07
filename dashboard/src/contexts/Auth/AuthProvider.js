@@ -1,13 +1,35 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import request from 'utils/request';
 
 import AuthContext from './index';
 
 export default ({ children }) => {
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
     const [user, setUser] = useState(
         JSON.parse(localStorage.getItem('user')) || null
     );
+
+    const [organizations, setOrgs] = useState([]);
+
+    const [organization, setOrg] = useState(
+        JSON.parse(localStorage.getItem('organization')) || null
+    );
+
+    const getOrgs = useCallback(async () => {
+        try {
+            setLoading(true);
+            const data = await request('v1/organizations', 'get');
+            setOrgs(data);
+            setLoading(false);
+        } catch (error) {
+            console.log(error);
+            setLoading(false);
+            setError(error);
+        }
+    }, []);
 
     const login = useCallback(async (email, password) => {
         try {
@@ -34,18 +56,40 @@ export default ({ children }) => {
         localStorage.removeItem('user');
     }, []);
 
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const setCurrentOrganization = useCallback(
+        id => {
+            const org = organizations.filter(({ _id }) => _id === id)[0];
+            localStorage.setItem('organization', JSON.stringify(org));
+            setOrg(org);
+        },
+        [organizations, setOrg]
+    );
+
+    useEffect(() => {
+        getOrgs();
+    }, []);
 
     const value = useMemo(
         () => ({
+            organization,
+            organizations,
+            setCurrentOrganization,
             user,
             loading,
             error,
             login,
             logout,
         }),
-        [user, loading, error, login, logout]
+        [
+            organization,
+            organizations,
+            setCurrentOrganization,
+            user,
+            loading,
+            error,
+            login,
+            logout,
+        ]
     );
     return (
         <AuthContext.Provider {...{ value }}>{children}</AuthContext.Provider>

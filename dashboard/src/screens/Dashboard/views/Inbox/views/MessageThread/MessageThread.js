@@ -77,7 +77,7 @@ const MessageThread = ({
     return (
         <Root>
             {loading ? (
-                <LoadingState />
+                <LoadingState key="loading" />
             ) : (
                 <Chat
                     showTypingIndicator={isPartnerTyping}

@@ -50,7 +50,7 @@ const renderForm = ({ dirty, handleSubmit, isValid }) => {
 };
 
 export default () => {
-    const [user, { login }] = useAuth(); // eslint-disable-line no-unused-vars
+    const [{ user }, { login }] = useAuth(); // eslint-disable-line no-unused-vars
     const location = useLocation();
     const history = useHistory();
     const handleSubmit = useCallback(

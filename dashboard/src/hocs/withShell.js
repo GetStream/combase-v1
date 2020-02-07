@@ -25,7 +25,7 @@ const Root = styled.div`
 
 export default (WrappedComponent, routes = []) => props => {
     const [config, { loading, error }] = useConfig();
-    const [user] = useAuth();
+    const [{ user }] = useAuth();
     const [drawerOpen, toggleDrawer] = useState(false);
     const chatClient = useChatClient(user, config);
     const isMobile = useMedia('sm');
@@ -41,7 +41,7 @@ export default (WrappedComponent, routes = []) => props => {
     );
 
     if (loading || !chatClient) {
-        return <LoadingState />;
+        return <LoadingState key="loading" />;
     }
 
     if (error) {

@@ -14,11 +14,13 @@ import GlobalStyles from 'styles/global';
 import AuthProvider from 'contexts/Auth/AuthProvider';
 
 // Screens //
-import Onboarding from 'screens/Onboarding';
+import Auth from 'screens/Auth';
 import Dashboard from 'screens/Dashboard';
+import Welcome from 'screens/Welcome';
 
 // Components //
 import AuthedRoute from 'components/AuthedRoute';
+import OrgProtectedRoute from 'components/OrgProtectedRoute';
 import UnauthedRoute from 'components/UnauthedRoute';
 
 moment.updateLocale('en', {
@@ -39,10 +41,11 @@ function App() {
                 <>
                     <Router {...{ history }}>
                         <Switch>
-                            <UnauthedRoute
-                                path="/auth"
-                                component={Onboarding}
+                            <OrgProtectedRoute
+                                path="/welcome"
+                                component={Welcome}
                             />
+                            <UnauthedRoute path="/auth" component={Auth} />
                             <AuthedRoute path="/" component={Dashboard} />
                         </Switch>
                     </Router>

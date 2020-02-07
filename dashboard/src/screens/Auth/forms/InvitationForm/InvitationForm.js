@@ -87,7 +87,13 @@ const InvitationsField = ({ canDelete, invitation, index, remove }) => {
                 name={`invitations.${index}.name.last`}
                 placeholder="Last Name"
             />
-            <IconButton disabled={!canDelete} size={16} color="red" icon={CancelIcon} onClick={() => remove(index)} />
+            <IconButton
+                disabled={!canDelete}
+                size={16}
+                color="red"
+                icon={CancelIcon}
+                onClick={() => remove(index)}
+            />
         </Invite>
     );
 };
@@ -100,10 +106,18 @@ const renderInviteInputs = ({ form, push, remove }, data) => {
     return (
         <Invites>
             {invitations.map((invitation, index) => (
-                <InvitationsField {...{ invitation, index, remove }} canDelete={invitations.length > 1} />
+                <InvitationsField
+                    {...{ invitation, index, remove }}
+                    canDelete={invitations.length > 1}
+                />
             ))}
             <ButtonsWrapper>
-                <Button flat icon={AddCircleIcon} label="Add User" onClick={push} />
+                <Button
+                    flat
+                    icon={AddCircleIcon}
+                    label="Add User"
+                    onClick={push}
+                />
             </ButtonsWrapper>
         </Invites>
     );
@@ -114,14 +128,18 @@ const renderForm = ({ dirty, isValid, handleSubmit }) => {
         <Root onSubmit={handleSubmit}>
             <FieldArray name="invitations" render={renderInviteInputs} />
             <ButtonsWrapper>
-                <Button disabled={!dirty || !isValid} type="submit" label="Invite" />
+                <Button
+                    disabled={!dirty || !isValid}
+                    type="submit"
+                    label="Invite"
+                />
             </ButtonsWrapper>
         </Root>
     );
 };
 
 export default () => {
-    const [user, { login }] = useAuth(); // eslint-disable-line no-unused-vars
+    const [{ user }, { login }] = useAuth(); // eslint-disable-line no-unused-vars
     const location = useLocation();
     const history = useHistory();
     const handleSubmit = useCallback(

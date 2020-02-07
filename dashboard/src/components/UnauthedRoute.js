@@ -4,13 +4,15 @@ import LoadingState from 'shared/LoadingState';
 import useAuth from 'hooks/useAuth';
 
 export default ({ component: Component, ...rest }) => {
-    const [user, { loading }] = useAuth();
+    const [{ organization, user }, { loading }] = useAuth();
     return (
         <Route
             {...rest}
             children={props => {
                 if (loading) {
-                    return <LoadingState />;
+                    return <LoadingState key="loading" />;
+                } else if (!organization) {
+                    return <Redirect replace to="/welcome" />;
                 } else if (!!user) {
                     return <Redirect replace to="/inbox" />;
                 }
