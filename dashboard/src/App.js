@@ -6,7 +6,7 @@ import { Route, Router, Switch } from 'react-router-dom';
 import history from 'utils/history';
 
 // Styles //
-import { ThemeProvider } from 'styled-components';
+import ThemeProvider from 'contexts/Theme/ThemeProvider';
 import theme from 'styles/theme';
 import GlobalStyles from 'styles/global';
 
@@ -36,7 +36,7 @@ moment.updateLocale('en', {
 
 function App() {
     return (
-        <ThemeProvider {...{ theme }}>
+        <ThemeProvider>
             <AuthProvider>
                 <>
                     <Router {...{ history }}>
