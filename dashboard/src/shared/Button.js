@@ -38,14 +38,20 @@ const Root = styled.button`
             )}
         }
     `};
+
+    & > ${Text} {
+        margin-left: ${({ hasIcon }) => hasIcon ? 8 : 0 }px;
+    }
 `;
 
-const Button = ({ className, color, flat, label, onClick, type }) => {
+const Button = ({ className, color, icon: Icon, flat, label, onClick, type }) => {
     return (
         <Root
             activeColor={color}
+            hasIcon={!!Icon}
             {...{ className, color, flat, onClick, type }}
         >
+            {Icon ? <Icon color={flat ? color : 'surface'} /> : null}
             <Text color={flat ? color : 'surface'}>{label}</Text>
         </Root>
     );
@@ -53,6 +59,7 @@ const Button = ({ className, color, flat, label, onClick, type }) => {
 
 Button.propTypes = {
     color: PropTypes.string,
+    icon: PropTypes.func,
     flat: PropTypes.bool,
     label: PropTypes.string,
     onClick: PropTypes.func,

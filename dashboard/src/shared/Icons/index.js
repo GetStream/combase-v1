@@ -1,6 +1,7 @@
 export { default } from './Icon';
 
 export { default as AddIcon } from './icons/add';
+export { default as AddCircleIcon } from './icons/add_circle';
 export { default as AddImageIcon } from './icons/add_image';
 export { default as AgentsIcon } from './icons/agents';
 export { default as AnalyticsIcon } from './icons/analytics';

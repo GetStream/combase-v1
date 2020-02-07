@@ -5,9 +5,10 @@ import styled from 'styled-components';
 import InvitationForm from '../forms/InvitationForm';
 
 // Components //
+import Container from 'shared/Container';
 import Text from 'shared/Text';
 
-const Root = styled.div`
+const Root = styled(Container)`
     flex: 1;
     justify-content: center;
 `;
@@ -21,7 +22,7 @@ const Header = styled.div`
 
 const Invite = () => {
     return (
-        <Root>
+        <Root maxWidth={800}>
             <Header>
                 <Text size={40} weight="700">
                     Invite your Team

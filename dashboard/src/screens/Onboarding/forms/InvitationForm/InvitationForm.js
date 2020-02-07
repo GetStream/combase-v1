@@ -10,7 +10,7 @@ import useAuth from 'hooks/useAuth';
 import IconButton from 'shared/IconButton';
 import InputField from 'shared/InputField';
 import Button from 'shared/Button';
-import { CancelIcon, MailIcon, PasswordIcon } from 'shared/Icons';
+import { AddCircleIcon, CancelIcon, MailIcon, PasswordIcon } from 'shared/Icons';
 import validationSchema from './validationSchema';
 
 const Root = styled.form`
@@ -21,6 +21,7 @@ const Root = styled.form`
 
 const Invites = styled.div`
     flex: 1;
+    align-items: center;
 `;
 
 const Invite = styled.div`
@@ -98,7 +99,7 @@ const renderInviteInputs = ({ form, push, remove }, data) => {
                 <InvitationsField {...{ invitation, index, remove }} canDelete={invitations.length > 1} />
             ))}
             <ButtonsWrapper>
-                <Button flat label="Add User" onClick={push} />
+                <Button flat icon={AddCircleIcon} label="Add User" onClick={push} />
             </ButtonsWrapper>
         </Invites>
     );

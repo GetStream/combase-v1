@@ -5,9 +5,10 @@ import styled from 'styled-components';
 import LoginForm from '../forms/LoginForm';
 
 // Components //
+import Container from 'shared/Container';
 import Text from 'shared/Text';
 
-const Root = styled.div`
+const Root = styled(Container)`
     flex: 1;
     justify-content: center;
 `;
@@ -20,7 +21,7 @@ const Header = styled.div`
 `;
 
 const Login = () => (
-    <Root>
+    <Root maxWidth={400}>
         <Header>
             <Text size={40} weight="700">
                 Combase
