@@ -10,16 +10,16 @@ import Text from 'shared/Text';
 
 const Root = styled.button`
     padding: 12px 24px;
-    cursor: pointer;
+    cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
     border-radius: ${({ theme }) => theme.borderRadius}px;
     align-items: center;
     justify-content: center;
-    box-shadow: ${({ flat }) =>
-        !flat ? '0px 1px 4px rgba(0, 0, 0, 0.12)' : null};
-    background-color: ${({ flat, color, theme }) =>
-        flat ? 'transparent' : theme.color[color]};
-    ${({ color, flat, theme }) =>
-        flat
+    box-shadow: ${({ disabled, flat }) =>
+        !disabled && !flat ? '0px 1px 4px rgba(0, 0, 0, 0.12)' : null};
+    background-color: ${({ disabled, flat, color, theme }) =>
+        flat ? 'transparent' : disabled ? theme.color.disabled :  theme.color[color]};
+    ${({ color, disabled, flat, theme }) =>
+        !disabled ? flat
             ? listItemInteractions
             : `
             transition: 0.24s background-color ${theme.easing.css(
@@ -37,19 +37,20 @@ const Root = styled.button`
                 0.15
             )}
         }
-    `};
+    ` : null};
 
     & > ${Text} {
         margin-left: ${({ hasIcon }) => hasIcon ? 8 : 0 }px;
     }
 `;
 
-const Button = ({ className, color, icon: Icon, flat, label, onClick, type }) => {
+const Button = ({ className, color, disabled, icon: Icon, flat, label, onClick, type }) => {
     return (
         <Root
             activeColor={color}
             hasIcon={!!Icon}
-            {...{ className, color, flat, onClick, type }}
+            onClick={!disabled ? onClick : null}
+            {...{ className, color, disabled, flat, type }}
         >
             {Icon ? <Icon color={flat ? color : 'surface'} /> : null}
             <Text color={flat ? color : 'surface'}>{label}</Text>
@@ -59,6 +60,7 @@ const Button = ({ className, color, icon: Icon, flat, label, onClick, type }) =>
 
 Button.propTypes = {
     color: PropTypes.string,
+    disabled: PropTypes.bool,
     icon: PropTypes.func,
     flat: PropTypes.bool,
     label: PropTypes.string,

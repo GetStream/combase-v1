@@ -109,12 +109,12 @@ const renderInviteInputs = ({ form, push, remove }, data) => {
     );
 };
 
-const renderForm = ({ handleSubmit }) => {
+const renderForm = ({ dirty, isValid, handleSubmit }) => {
     return (
         <Root onSubmit={handleSubmit}>
             <FieldArray name="invitations" render={renderInviteInputs} />
             <ButtonsWrapper>
-                <Button type="submit" label="Invite" />
+                <Button disabled={!dirty || !isValid} type="submit" label="Invite" />
             </ButtonsWrapper>
         </Root>
     );
