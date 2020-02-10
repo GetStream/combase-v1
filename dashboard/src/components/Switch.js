@@ -35,8 +35,8 @@ const Root = styled(MDSwitch)`
     }
 `;
 
-const Switch = ({ checked, onChange }) => (
-    <Root checked={checked} onChange={onChange} />
+const Switch = ({ checked, disabled, id, onChange }) => (
+    <Root checked={checked} disabled={disabled} id={id} onChange={onChange} />
 );
 
 export default Switch;

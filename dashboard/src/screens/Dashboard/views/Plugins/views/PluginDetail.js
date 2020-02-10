@@ -74,7 +74,7 @@ const PluginDetail = ({ anim, history, match }) => {
                 ? match.params.plugin
                 : previousMatch.params.plugin
             : null;
-    const [data, refetchPlugins] = usePlugin(slug);
+    const [data, refetchPlugins, togglePlugin] = usePlugin(slug);
     const plugin = slug ? plugins[slug] : null;
 
     const style = {
@@ -108,7 +108,9 @@ const PluginDetail = ({ anim, history, match }) => {
                             avatar={plugin.avatar}
                             available={plugin.available}
                             description={plugin.description}
+                            enableToggle={!!data}
                             enabled={data ? data.enabled : false}
+                            onToggle={togglePlugin}
                             title={plugin.title}
                             titleSize={24}
                             url={plugin.url}

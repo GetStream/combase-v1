@@ -8,6 +8,7 @@ export default () => {
     const [loading, setLoading] = useState(false);
     const [plugins, setPlugins] = useState(null);
     const user = useContext(AuthContext);
+
     const fetchPlugins = useCallback(async () => {
         try {
             setLoading(true);

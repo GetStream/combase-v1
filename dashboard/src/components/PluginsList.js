@@ -78,12 +78,11 @@ const renderEmpty = () => (
     </EmptyWrapper>
 );
 
-const renderPlugins = (results, activePlugins) =>
+const renderPlugins = results =>
     results.map((plugin, key) => {
-        const data = activePlugins ? activePlugins[plugin.slug] || {} : {};
         return (
             <Cell {...{ key }}>
-                <PluginCard {...plugin} enabled={data.enabled} />
+                <PluginCard {...plugin} />
             </Cell>
         );
     });

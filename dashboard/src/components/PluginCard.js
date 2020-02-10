@@ -2,6 +2,9 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+// Hooks //
+import usePlugin from 'hooks/usePlugin';
+
 // Utils //
 import history from 'utils/history';
 
@@ -27,36 +30,34 @@ const Footer = styled.div`
     justify-content: flex-end;
 `;
 
-const PluginCard = ({
-    avatar,
-    available,
-    description,
-    enabled,
-    slug,
-    title,
-    url,
-}) => (
-    <Root border flat>
-        <PluginDisplay
-            {...{ avatar, available, description, enabled, title, url }}
-        />
-        <Fill />
-        <Footer>
-            <IconButton
-                disabled={!available}
-                onClick={() => history.push(`/plugins/${slug}`)}
-                icon={SettingsIcon}
-                size={16}
-                color="alt_text"
+const PluginCard = ({ avatar, available, description, slug, title, url }) => {
+    const [data, refetch, togglePlugin] = usePlugin(slug); // eslint-disable-line no-unused-vars
+    return (
+        <Root border flat>
+            <PluginDisplay
+                enableToggle={!!data}
+                enabled={data ? data.enabled : false}
+                id={data ? data._id : null}
+                {...{ avatar, available, description, title, url }}
+                onToggle={togglePlugin}
             />
-        </Footer>
-    </Root>
-);
+            <Fill />
+            <Footer>
+                <IconButton
+                    disabled={!available}
+                    onClick={() => history.push(`/plugins/${slug}`)}
+                    icon={SettingsIcon}
+                    size={16}
+                    color="alt_text"
+                />
+            </Footer>
+        </Root>
+    );
+};
 
 PluginCard.propTypes = {
     avatar: PropTypes.string,
     description: PropTypes.string,
-    enabled: PropTypes.bool,
     slug: PropTypes.string,
     title: PropTypes.string,
     url: PropTypes.string,
