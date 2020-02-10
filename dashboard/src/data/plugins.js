@@ -3,6 +3,7 @@ import { PasswordIcon } from 'shared/Icons';
 export default [
     {
         avatar: 'https://logo.clearbit.com/blazeverify.com',
+        available: true,
         description:
             'Email address verification that improves quality and deliverability.',
         title: 'Blaze Verify',
@@ -31,6 +32,7 @@ export default [
     },
     {
         avatar: 'https://logo.clearbit.com/clearbit.com',
+        available: false,
         description: 'Provide enriched data on the user you are talking with.',
         title: 'Clearbit',
         slug: 'clearbit',
@@ -42,6 +44,7 @@ export default [
     {
         avatar:
             'https://www.hubspot.com/hubfs/assets/hubspot.com/style-guide/brand-guidelines/guidelines_approved-sprocket-2.svg',
+        available: false,
         description:
             'HubSpot is a developer and marketer of software products for inbound marketing and sales',
         title: 'HubSpot',
@@ -55,6 +58,7 @@ export default [
         avatar: 'https://logo.clearbit.com/zapier.com',
         description:
             'Connect the apps you use everyday to automate your work and be more productive.',
+        available: false,
         title: 'Zapier',
         slug: 'zapier',
         url: 'https://zapier.com',
@@ -66,6 +70,7 @@ export default [
         avatar: 'https://logo.clearbit.com/gaiq-center.com',
         description:
             'Google Analytics is a web analytics service offered by Google that tracks and reports website traffic.',
+        available: false,
         title: 'Google Analytics',
         slug: 'google_analytics',
         url: 'https://analytics.google.com',
@@ -76,6 +81,7 @@ export default [
     {
         avatar: 'https://logo.clearbit.com/slack.com',
         description: 'Convert your hottest leads right from Slack.',
+        available: false,
         title: 'Slack',
         slug: 'slack',
         url: 'https://slack.com',
@@ -87,6 +93,7 @@ export default [
         avatar: 'https://logo.clearbit.com/mailchimp.com',
         description:
             'Mailchimp is an American marketing automation platform and an email marketing service.',
+        available: false,
         title: 'Mailchimp',
         slug: 'mailchimp',
         url: 'https://mailchimp.com',
@@ -98,6 +105,7 @@ export default [
         avatar: 'https://logo.clearbit.com/stripe.dev',
         description:
             'Stripe allows individuals and businesses to make and receive payments over the Internet.',
+        available: false,
         title: 'Stripe',
         slug: 'stripe',
         url: 'https://stripe.com',

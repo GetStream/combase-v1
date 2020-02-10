@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 // Components //
 import Switch from 'components/Switch';
+import Chip from 'shared/Chip';
 import Text from 'shared/Text';
 import { LinkIcon } from 'shared/Icons';
 import IconButton from 'shared/IconButton';
@@ -51,6 +52,7 @@ const Description = styled(Text)`
 `;
 
 const PluginDisplay = ({
+    available,
     avatar,
     avatarSize,
     description,
@@ -65,7 +67,11 @@ const PluginDisplay = ({
                 <Logo size={avatarSize}>
                     <img alt={title} src={avatar} />
                 </Logo>
-                <Switch />
+                {available ? (
+                    <Switch />
+                ) : (
+                    <Chip color="alt_text" size={10} label="Coming Soon" />
+                )}
             </Header>
             <Content>
                 <Title size={titleSize}>
@@ -89,6 +95,7 @@ const PluginDisplay = ({
 };
 
 PluginDisplay.propTypes = {
+    available: PropTypes.bool,
     avatar: PropTypes.string.isRequired,
     avatarSize: PropTypes.number,
     description: PropTypes.string.isRequired,

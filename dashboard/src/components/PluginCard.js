@@ -27,12 +27,13 @@ const Footer = styled.div`
     justify-content: flex-end;
 `;
 
-const PluginCard = ({ avatar, description, slug, title, url }) => (
+const PluginCard = ({ avatar, available, description, slug, title, url }) => (
     <Root border flat>
-        <PluginDisplay {...{ avatar, description, title }} />
+        <PluginDisplay {...{ avatar, available, description, title }} />
         <Fill />
         <Footer>
             <IconButton
+                disabled={!available}
                 onClick={() => history.push(`/plugins/${slug}`)}
                 icon={SettingsIcon}
                 size={16}
