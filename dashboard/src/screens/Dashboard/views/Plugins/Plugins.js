@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { Route } from 'react-router-dom';
 
+// Hooks //
+import useAuth from 'hooks/useAuth';
+
 // Views //
 import PluginDetail from './views/PluginDetail';
 
@@ -23,17 +26,19 @@ const Root = styled(ScreenRoot)`
 
 const renderPluginModal = props => <PluginDetail {...props} />;
 
-export default ({ match }) => (
-    <Root>
-        <FullScreenHeader
-            icon={PluginsIcon}
-            text="Powerful apps and integrations to acquire, engage and retain more
+export default ({ match }) => {
+    return (
+        <Root>
+            <FullScreenHeader
+                icon={PluginsIcon}
+                text="Powerful apps and integrations to acquire, engage and retain more
             customers with Combase."
-            title="Plugins"
-        />
-        <Container>
-            <PluginsList />
-        </Container>
-        <Route path={`${match.url}/:plugin`} children={renderPluginModal} />
-    </Root>
-);
+                title="Plugins"
+            />
+            <Container>
+                <PluginsList />
+            </Container>
+            <Route path={`${match.url}/:plugin`} children={renderPluginModal} />
+        </Root>
+    );
+};
