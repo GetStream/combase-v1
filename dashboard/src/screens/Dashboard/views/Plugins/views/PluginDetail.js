@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Animated from 'animated/lib/targets/react-dom';
 
@@ -114,7 +114,10 @@ const PluginDetail = ({ anim, history, match }) => {
                         ) : null}
                         {plugin.inputs.length ? (
                             <FormWrapper>
-                                <PluginForm fields={plugin.inputs} />
+                                <PluginForm
+                                    slug={plugin.slug}
+                                    fields={plugin.inputs}
+                                />
                             </FormWrapper>
                         ) : null}
                     </Content>

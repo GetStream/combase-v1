@@ -29,7 +29,7 @@ const Footer = styled.div`
 
 const PluginCard = ({ avatar, available, description, slug, title, url }) => (
     <Root border flat>
-        <PluginDisplay {...{ avatar, available, description, title }} />
+        <PluginDisplay {...{ avatar, available, description, title, url }} />
         <Fill />
         <Footer>
             <IconButton

@@ -1,7 +1,13 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useContext, useMemo } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { Formik } from 'formik';
+
+// utils //
+import request from 'utils/request';
+
+// Contexts //
+import AuthContext from 'contexts/Auth';
 
 // Components //
 import InputField from 'shared/InputField';
@@ -27,8 +33,7 @@ const ButtonsWrapper = styled.div`
 
 const renderFields = (input, key) => <InputField {...input} {...{ key }} />;
 
-const renderForm = ({ dirty, handleSubmit, values }, fields, history) => {
-    console.log(values);
+const renderForm = ({ dirty, handleSubmit }, fields, history) => {
     return (
         <Root onSubmit={handleSubmit}>
             {fields.map(renderFields)}
@@ -45,7 +50,8 @@ const renderForm = ({ dirty, handleSubmit, values }, fields, history) => {
     );
 };
 
-export default ({ fields }) => {
+export default ({ slug, fields }) => {
+    const user = useContext(AuthContext);
     const history = useHistory();
     const initialValues = useMemo(() => {
         let values = {};
@@ -54,9 +60,35 @@ export default ({ fields }) => {
         });
         return values;
     }, [fields]);
-    const handleSubmit = useCallback(values => {
-        console.log(values);
-    }, []);
+
+    const handleSubmit = useCallback(
+        async values => {
+            try {
+                const keys = Object.keys(values);
+                await request(
+                    'v1/plugins',
+                    'post',
+                    {
+                        body: JSON.stringify({
+                            name: slug,
+                            keys: keys.map(key => ({
+                                name: key,
+                                value: values[key],
+                            })),
+                            refs: {
+                                organization: user.refs.organization._id,
+                            },
+                        }),
+                    },
+                    user.tokens.api
+                );
+            } catch (error) {
+                // TODO: Snackbar
+                console.log(error);
+            }
+        },
+        [user, slug]
+    );
     return (
         <Formik
             {...{ initialValues }}
