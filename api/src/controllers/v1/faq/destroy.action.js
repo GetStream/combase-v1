@@ -4,7 +4,7 @@ import { AddToWebhookFaqQueue } from 'workers/webhook-faq/queue';
 exports.destroy = async (req, res) => {
 	try {
 		const data = { ...req.body, ...req.params };
-		const serialized = req.serialized;
+		const { serialized } = req;
 
 		if (serialized.role !== 'admin') {
 			return res.status(403).json({
