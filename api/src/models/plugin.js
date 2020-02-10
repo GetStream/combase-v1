@@ -32,7 +32,7 @@ export const PluginSchema = new Schema(
 		},
 		enabled: {
 			type: Boolean,
-			default: true
+			default: false
 		}
 	},
 	{
