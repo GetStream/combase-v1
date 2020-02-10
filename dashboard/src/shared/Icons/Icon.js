@@ -1,29 +1,30 @@
-import React, { cloneElement } from 'react';
+import React, { cloneElement, useContext, memo } from 'react';
 import PropTypes from 'prop-types';
-import { withTheme } from 'styled-components';
+import { ThemeContext } from 'styled-components';
 
 const Icon = ({
     children,
     className,
     color,
-    gradient,
-    theme,
     size,
     viewBox,
     preserveAspectRatio,
     style,
-}) => (
-    <svg
-        className={className}
-        width={size}
-        height={size}
-        viewBox={viewBox}
-        style={style}
-        preserveAspectRatio={preserveAspectRatio}
-    >
-        {cloneElement(children, { fill: theme.color[color] })}
-    </svg>
-);
+}) => {
+    const theme = useContext(ThemeContext);
+    return (
+        <svg
+            className={className}
+            width={size}
+            height={size}
+            viewBox={viewBox}
+            style={style}
+            preserveAspectRatio={preserveAspectRatio}
+        >
+            {cloneElement(children, { fill: theme.color[color] })}
+        </svg>
+    );
+};
 
 Icon.propTypes = {
     color: PropTypes.string.isRequired,
@@ -37,4 +38,4 @@ Icon.defaultProps = {
     viewBox: '0 0 24 24',
 };
 
-export default withTheme(Icon);
+export default memo(Icon);

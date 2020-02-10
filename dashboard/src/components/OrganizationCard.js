@@ -28,7 +28,7 @@ const Meta = styled.div`
 `;
 
 const OrganizationCard = ({ id, logo, name, tagline }) => {
-    const [_, { setCurrentOrganization }] = useAuth();
+    const [_, { setCurrentOrganization }] = useAuth(); // eslint-disable-line no-unused-vars
     const onClick = useCallback(() => {
         setCurrentOrganization(id);
     }, [id, setCurrentOrganization]);

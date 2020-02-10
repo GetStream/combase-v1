@@ -42,7 +42,7 @@ const renderRow = ({ id, data, partner }, index) => {
 };
 
 export default props => {
-    const [channels, { error, loading }] = useContext(ChannelsContext);
+    const [channels, { error }] = useContext(ChannelsContext);
     const [{ width }, onResize] = useState(initialState);
     const [layoutProvider, setLayoutProvider] = useState(
         LayoutUtil.getLayoutProvider(width, 80)

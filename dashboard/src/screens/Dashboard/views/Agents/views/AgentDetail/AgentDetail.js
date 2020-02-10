@@ -8,7 +8,6 @@ import { PasswordIcon, RoleIcon } from 'shared/Icons';
 import Modal from 'shared/Modal';
 import UserBlock from 'shared/UserBlock';
 import SectionTitle from 'shared/SectionTitle';
-import Text from 'shared/Text';
 import Button from 'shared/Button';
 import AgentSettingsItem from 'components/AgentSettingsItem';
 import AgentDetailTransition from './AgentDetailTransition';

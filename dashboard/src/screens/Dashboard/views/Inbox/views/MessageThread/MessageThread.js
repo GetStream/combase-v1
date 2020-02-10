@@ -31,9 +31,9 @@ const EmptyRoot = styled(Root)`
     align-items: center;
 `;
 
-const dummyMessages = [
-    { system: true, text: 'Start of your conversation with Luke S.' },
-];
+// const dummyMessages = [
+//     { system: true, text: 'Start of your conversation with Luke S.' },
+// ];
 
 const MessageThread = ({
     channel,

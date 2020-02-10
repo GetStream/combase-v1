@@ -4,6 +4,7 @@ export default [
         description:
             'Email address verification that improves quality and deliverability.',
         title: 'Blaze Verify',
+        slug: 'blaze-verify',
         url: 'https://blazeverify.com/',
         type: 'Enrichment',
     },
@@ -11,6 +12,7 @@ export default [
         avatar: 'https://logo.clearbit.com/clearbit.com',
         description: 'Provide enriched data on the user you are talking with.',
         title: 'Clearbit',
+        slug: 'clearbit',
         url: 'https://clearbit.com',
         type: 'Enrichment',
     },
@@ -20,6 +22,7 @@ export default [
         description:
             'HubSpot is a developer and marketer of software products for inbound marketing and sales',
         title: 'HubSpot',
+        slug: 'hubspot',
         url: 'https://hubspot.com',
         type: 'CRM',
     },
@@ -28,6 +31,7 @@ export default [
         description:
             'Connect the apps you use everyday to automate your work and be more productive.',
         title: 'Zapier',
+        slug: 'zapier',
         url: 'https://zapier.com',
         type: 'I/O',
     },
@@ -36,6 +40,7 @@ export default [
         description:
             'Google Analytics is a web analytics service offered by Google that tracks and reports website traffic.',
         title: 'Google Analytics',
+        slug: 'google-analytics',
         url: 'https://analytics.google.com',
         type: 'Analytics',
     },
@@ -43,6 +48,7 @@ export default [
         avatar: 'https://logo.clearbit.com/slack.com',
         description: 'Convert your hottest leads right from Slack.',
         title: 'Slack',
+        slug: 'slack',
         url: 'https://slack.com',
         type: 'CRM',
     },
@@ -51,6 +57,7 @@ export default [
         description:
             'Mailchimp is an American marketing automation platform and an email marketing service.',
         title: 'Mailchimp',
+        slug: 'mailchimp',
         url: 'https://mailchimp.com',
         type: 'CRM',
     },
@@ -59,6 +66,7 @@ export default [
         description:
             'Stripe allows individuals and businesses to make and receive payments over the Internet.',
         title: 'Stripe',
+        slug: 'stripe',
         url: 'https://stripe.com',
         type: 'Payments',
     },

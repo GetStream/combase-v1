@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 // Components //
 import IconButton from 'shared/IconButton';
-import { AttachmentIcon, AddImageIcon, ChevronRightIcon } from 'shared/Icons';
+import { AttachmentIcon, AddImageIcon } from 'shared/Icons';
 
 const Root = styled.div`
     flex-direction: row;
@@ -24,22 +24,9 @@ const Root = styled.div`
     }
 `;
 
-const ExpandWrapper = styled.div`
-    position: absolute;
-    left: 16px;
-`;
-
 const Actions = props => {
     return (
         <Root>
-            {/* <ExpandWrapper>
-                <IconButton
-                    disabled={!props.text}
-                    color="alt_text"
-                    icon={ChevronRightIcon}
-                    // onClick={handleActionsOpen}
-                />
-            </ExpandWrapper> */}
             <Root>
                 <IconButton color="alt_text" icon={AttachmentIcon} />
                 <IconButton color="alt_text" icon={AddImageIcon} />

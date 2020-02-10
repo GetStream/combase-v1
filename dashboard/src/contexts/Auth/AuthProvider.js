@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import request from 'utils/request';
 
 import AuthContext from './index';
@@ -67,7 +66,7 @@ export default ({ children }) => {
 
     useEffect(() => {
         getOrgs();
-    }, []);
+    }, [getOrgs]);
 
     const value = useMemo(
         () => ({

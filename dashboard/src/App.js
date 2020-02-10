@@ -2,12 +2,11 @@ import React from 'react';
 import moment from 'moment';
 
 // Router //
-import { Route, Router, Switch } from 'react-router-dom';
+import { Router, Switch } from 'react-router-dom';
 import history from 'utils/history';
 
 // Styles //
 import ThemeProvider from 'contexts/Theme/ThemeProvider';
-import theme from 'styles/theme';
 import GlobalStyles from 'styles/global';
 
 // Context //

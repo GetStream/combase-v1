@@ -1,6 +1,6 @@
 import React from 'react';
 import { withTheme } from 'styled-components';
-import { Sparklines, SparklinesLine, SparklinesSpots } from 'react-sparklines';
+import { Sparklines, SparklinesLine } from 'react-sparklines';
 
 // Components //
 import InfoWidget from 'shared/InfoWidget';
@@ -9,8 +9,7 @@ function boxMullerRandom() {
     let phase = false,
         x1,
         x2,
-        w,
-        z;
+        w;
 
     return (function() {
         if ((phase = !phase)) {

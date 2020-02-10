@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import Animated from 'animated/lib/targets/react-dom';
 
+// Data //
+import plugins from 'data/plugins';
+
 // Components //
 import Modal from 'shared/Modal';
+import Text from 'shared/Text';
 
 const Root = styled(Animated.div)`
     align-self: center;
@@ -17,6 +21,15 @@ const Root = styled(Animated.div)`
 `;
 
 const PluginDetail = ({ anim, history, match }) => {
+    const plugin = useMemo(() => {
+        if (!match) {
+            return null;
+        }
+        const plugin = plugins.filter(
+            ({ slug }) => slug === match.params.plugin
+        )[0];
+        return plugin;
+    }, [match]);
     const style = {
         opacity: anim,
         transform: [
@@ -41,7 +54,13 @@ const PluginDetail = ({ anim, history, match }) => {
             animated
             onClose={history.goBack}
         >
-            <Root {...{ style }}></Root>
+            {plugin ? (
+                <Root {...{ style }}>
+                    <Text>{plugin.title}</Text>
+                </Root>
+            ) : (
+                <Root />
+            )}
         </Modal>
     );
 };

@@ -65,7 +65,7 @@ const Footer = styled.div`
     justify-content: flex-end;
 `;
 
-const PluginCard = ({ avatar, description, title, url }) => (
+const PluginCard = ({ avatar, description, slug, title, url }) => (
     <Root border flat>
         <Header>
             <Logo>
@@ -89,11 +89,7 @@ const PluginCard = ({ avatar, description, title, url }) => (
         <Fill />
         <Footer>
             <IconButton
-                onClick={() =>
-                    history.push(
-                        `/plugins/${title.toLowerCase().replace(/ /g, '_')}`
-                    )
-                }
+                onClick={() => history.push(`/plugins/${slug}`)}
                 icon={SettingsIcon}
                 size={16}
                 color="alt_text"
@@ -105,6 +101,7 @@ const PluginCard = ({ avatar, description, title, url }) => (
 PluginCard.propTypes = {
     avatar: PropTypes.string,
     description: PropTypes.string,
+    slug: PropTypes.string,
     title: PropTypes.string,
     url: PropTypes.string,
 };
