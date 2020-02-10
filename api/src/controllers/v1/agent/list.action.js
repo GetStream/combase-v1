@@ -8,10 +8,8 @@ exports.list = async (req, res) => {
 
 		const agents = await Agent.apiQuery(data);
 
-		const sanitized = agents.map((agent) => {
+		const sanitized = agents.map(agent => {
 			agent.password = undefined;
-			agent.recovery = undefined;
-
 			return agent;
 		});
 
