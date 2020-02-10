@@ -76,7 +76,7 @@ const auth = async (req, res, next) => {
 			const { sub } = jwt.verify(token, process.env.AUTH_SECRET);
 
 			// eslint-disable-next-line require-atomic-updates
-			req.serialized = await Agent.findById(mongoose.Types.ObjectId(sub)).lean({
+			req.serialized = await Agent.findById(mongoose.Types.ObjectId(sub)).select('-password').lean({
 				autopopulate: false
 			});
 
