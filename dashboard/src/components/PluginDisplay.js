@@ -68,7 +68,7 @@ const PluginDisplay = ({
                 <Switch />
             </Header>
             <Content>
-                <Title>
+                <Title size={titleSize}>
                     <Text size={titleSize} color="alt_text" weight="500">
                         {title}
                     </Text>
