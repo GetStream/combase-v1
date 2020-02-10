@@ -6,12 +6,12 @@ import styled from 'styled-components';
 import history from 'utils/history';
 
 // Components //
-import Switch from 'components/Switch';
 import Card from 'shared/Card';
 import Text from 'shared/Text';
 import Fill from 'shared/Fill';
-import { SettingsIcon, LinkIcon } from 'shared/Icons';
+import { SettingsIcon } from 'shared/Icons';
 import IconButton from 'shared/IconButton';
+import PluginDisplay from 'components/PluginDisplay';
 
 const Root = styled(Card)`
     padding: 20px;
@@ -19,44 +19,6 @@ const Root = styled(Card)`
     & ${Text} {
         user-select: none;
     }
-`;
-
-const Header = styled.div`
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-`;
-
-const Logo = styled.div`
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background-color: ${({ theme }) => theme.color.light_gray};
-    border: 2px solid ${({ theme }) => theme.color.border};
-    overflow: hidden;
-
-    & > img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-`;
-
-const Content = styled.div`
-    margin-top: 16px;
-`;
-
-const Title = styled.div`
-    flex-direction: row;
-    align-items: center;
-    & > ${Text} {
-        margin-right: 8px;
-    }
-`;
-
-const Description = styled(Text)`
-    margin-top: 8px;
-    line-height: 20px;
 `;
 
 const Footer = styled.div`
@@ -67,25 +29,7 @@ const Footer = styled.div`
 
 const PluginCard = ({ avatar, description, slug, title, url }) => (
     <Root border flat>
-        <Header>
-            <Logo>
-                <img alt={title} src={avatar} />
-            </Logo>
-            <Switch />
-        </Header>
-        <Content>
-            <Title>
-                <Text color="alt_text" weight="500">
-                    {title}
-                </Text>
-                <a href={url} target="_blank" rel="noopener noreferrer">
-                    <IconButton size={16} icon={LinkIcon} color="primary" />
-                </a>
-            </Title>
-            <Description faded size={12} color="alt_text">
-                {description}
-            </Description>
-        </Content>
+        <PluginDisplay {...{ avatar, description, title }} />
         <Fill />
         <Footer>
             <IconButton
