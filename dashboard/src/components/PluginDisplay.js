@@ -57,6 +57,7 @@ const PluginDisplay = ({
     avatarSize,
     description,
     descriptionSize,
+    enabled,
     title,
     titleSize,
     url,
@@ -68,7 +69,7 @@ const PluginDisplay = ({
                     <img alt={title} src={avatar} />
                 </Logo>
                 {available ? (
-                    <Switch />
+                    <Switch checked={enabled} />
                 ) : (
                     <Chip color="gray" size={10} label="Coming Soon" />
                 )}
@@ -100,6 +101,7 @@ PluginDisplay.propTypes = {
     avatarSize: PropTypes.number,
     description: PropTypes.string.isRequired,
     descriptionSize: PropTypes.number,
+    enabled: PropTypes.bool,
     title: PropTypes.string.isRequired,
     titleSize: PropTypes.number,
     url: PropTypes.string.isRequired,

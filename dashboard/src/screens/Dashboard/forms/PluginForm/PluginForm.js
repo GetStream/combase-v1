@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useMemo } from 'react';
+import React, { useCallback, useContext, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { Formik } from 'formik';
@@ -33,7 +33,7 @@ const ButtonsWrapper = styled.div`
 
 const renderFields = (input, key) => <InputField {...input} {...{ key }} />;
 
-const renderForm = ({ dirty, handleSubmit }, fields, history) => {
+const renderForm = ({ dirty, handleSubmit }, fields, history, loading) => {
     return (
         <Root onSubmit={handleSubmit}>
             {fields.map(renderFields)}
@@ -44,30 +44,41 @@ const renderForm = ({ dirty, handleSubmit }, fields, history) => {
                     label="Cancel"
                     onClick={history.goBack}
                 />
-                <Button disabled={!dirty} type="submit" label="Save" />
+                <Button
+                    disabled={loading || !dirty}
+                    type="submit"
+                    label="Save"
+                />
             </ButtonsWrapper>
         </Root>
     );
 };
 
-export default ({ slug, fields }) => {
+export default ({ data, onSubmit, slug, fields }) => {
     const user = useContext(AuthContext);
+    const [loading, setLoading] = useState(false);
     const history = useHistory();
     const initialValues = useMemo(() => {
         let values = {};
         fields.forEach(({ name }) => {
-            values[name] = '';
+            let value = null;
+            if (data) {
+                value = data.keys.find(({ name: keyName }) => keyName === name)
+                    .value;
+            }
+            values[name] = value || '';
         });
         return values;
-    }, [fields]);
+    }, [data, fields]);
 
     const handleSubmit = useCallback(
         async values => {
             try {
+                setLoading(true);
                 const keys = Object.keys(values);
                 await request(
-                    'v1/plugins',
-                    'post',
+                    data ? `v1/plugins/${data._id}` : 'v1/plugins',
+                    data ? 'put' : 'post',
                     {
                         body: JSON.stringify({
                             name: slug,
@@ -82,18 +93,25 @@ export default ({ slug, fields }) => {
                     },
                     user.tokens.api
                 );
+                if (onSubmit) {
+                    await onSubmit();
+                }
+                setLoading(false);
+                // TODO: Snackbar
             } catch (error) {
+                setLoading(false);
                 // TODO: Snackbar
                 console.log(error);
             }
         },
-        [user, slug]
+        [data, onSubmit, user, slug]
     );
     return (
         <Formik
             {...{ initialValues }}
+            enableReinitialize
             onSubmit={handleSubmit}
-            children={form => renderForm(form, fields, history)}
+            children={form => renderForm(form, fields, history, loading)}
         />
     );
 };

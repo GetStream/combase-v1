@@ -2,8 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { Route } from 'react-router-dom';
 
+// Contexts //
+import PluginsContext from 'contexts/Plugins';
+
 // Hooks //
-import useAuth from 'hooks/useAuth';
+import useActivePlugins from 'hooks/useActivePlugins';
 
 // Views //
 import PluginDetail from './views/PluginDetail';
@@ -27,18 +30,24 @@ const Root = styled(ScreenRoot)`
 const renderPluginModal = props => <PluginDetail {...props} />;
 
 export default ({ match }) => {
+    const activePlugins = useActivePlugins();
     return (
-        <Root>
-            <FullScreenHeader
-                icon={PluginsIcon}
-                text="Powerful apps and integrations to acquire, engage and retain more
+        <PluginsContext.Provider value={activePlugins}>
+            <Root>
+                <FullScreenHeader
+                    icon={PluginsIcon}
+                    text="Powerful apps and integrations to acquire, engage and retain more
             customers with Combase."
-                title="Plugins"
-            />
-            <Container>
-                <PluginsList />
-            </Container>
-            <Route path={`${match.url}/:plugin`} children={renderPluginModal} />
-        </Root>
+                    title="Plugins"
+                />
+                <Container>
+                    <PluginsList />
+                </Container>
+                <Route
+                    path={`${match.url}/:plugin`}
+                    children={renderPluginModal}
+                />
+            </Root>
+        </PluginsContext.Provider>
     );
 };

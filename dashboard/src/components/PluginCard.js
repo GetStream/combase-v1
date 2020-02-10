@@ -27,9 +27,19 @@ const Footer = styled.div`
     justify-content: flex-end;
 `;
 
-const PluginCard = ({ avatar, available, description, slug, title, url }) => (
+const PluginCard = ({
+    avatar,
+    available,
+    description,
+    enabled,
+    slug,
+    title,
+    url,
+}) => (
     <Root border flat>
-        <PluginDisplay {...{ avatar, available, description, title, url }} />
+        <PluginDisplay
+            {...{ avatar, available, description, enabled, title, url }}
+        />
         <Fill />
         <Footer>
             <IconButton
@@ -46,6 +56,7 @@ const PluginCard = ({ avatar, available, description, slug, title, url }) => (
 PluginCard.propTypes = {
     avatar: PropTypes.string,
     description: PropTypes.string,
+    enabled: PropTypes.bool,
     slug: PropTypes.string,
     title: PropTypes.string,
     url: PropTypes.string,

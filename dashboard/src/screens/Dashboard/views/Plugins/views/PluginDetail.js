@@ -7,6 +7,7 @@ import plugins from 'data/plugins';
 
 // Hooks //
 import usePrevious from 'hooks/usePrevious';
+import usePlugin from 'hooks/usePlugin';
 
 // Forms //
 import PluginForm from 'screens/Dashboard/forms/PluginForm';
@@ -66,10 +67,15 @@ const renderSteps = (step, key) => (
 
 const PluginDetail = ({ anim, history, match }) => {
     const previousMatch = usePrevious(match);
-    const plugin =
+
+    const slug =
         match || previousMatch
-            ? plugins[match ? match.params.plugin : previousMatch.params.plugin]
+            ? match
+                ? match.params.plugin
+                : previousMatch.params.plugin
             : null;
+    const [data, refetchPlugins] = usePlugin(slug);
+    const plugin = slug ? plugins[slug] : null;
 
     const style = {
         opacity: anim,
@@ -102,6 +108,7 @@ const PluginDetail = ({ anim, history, match }) => {
                             avatar={plugin.avatar}
                             available={plugin.available}
                             description={plugin.description}
+                            enabled={data ? data.enabled : false}
                             title={plugin.title}
                             titleSize={24}
                             url={plugin.url}
@@ -115,8 +122,10 @@ const PluginDetail = ({ anim, history, match }) => {
                         {plugin.inputs.length ? (
                             <FormWrapper>
                                 <PluginForm
+                                    {...{ data }}
                                     slug={plugin.slug}
                                     fields={plugin.inputs}
+                                    onSubmit={refetchPlugins}
                                 />
                             </FormWrapper>
                         ) : null}

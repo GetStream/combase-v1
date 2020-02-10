@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+
+// Contexts //
+import PluginsContext from 'contexts/Plugins';
 
 // Hooks //
 import usePageSheet from 'hooks/usePageSheet';
@@ -75,14 +78,18 @@ const renderEmpty = () => (
     </EmptyWrapper>
 );
 
-const renderPlugins = results =>
-    results.map((plugin, key) => (
-        <Cell {...{ key }}>
-            <PluginCard {...plugin} />
-        </Cell>
-    ));
+const renderPlugins = (results, activePlugins) =>
+    results.map((plugin, key) => {
+        const data = activePlugins ? activePlugins[plugin.slug] || {} : {};
+        return (
+            <Cell {...{ key }}>
+                <PluginCard {...plugin} enabled={data.enabled} />
+            </Cell>
+        );
+    });
 
 const PluginsList = ({ className }) => {
+    const [activePlugins, { loading }] = useContext(PluginsContext);
     const [results, setQuery, activeTab, setActiveTab] = usePageSheet(
         pluginsArray,
         'title',
@@ -92,13 +99,14 @@ const PluginsList = ({ className }) => {
     return (
         <Root
             {...{ activeTab, className, setActiveTab, tabs }}
+            loading={!activePlugins ? loading : false}
             onQueryChange={setQuery}
         >
             <Content>
                 <Grid>
                     <Row>
                         {results.length
-                            ? renderPlugins(results)
+                            ? renderPlugins(results, activePlugins)
                             : renderEmpty()}
                     </Row>
                 </Grid>
