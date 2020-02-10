@@ -19,7 +19,7 @@ const auth = async (req, res, next) => {
 		// ensure that header exists
 		if (!auth || !auth.length) {
 			return res.status(401).json({
-				error: 'Missing or incorrect auth credentials.',
+				error: 'Missing or incorrect auth credentials.'
 			});
 		}
 
@@ -32,56 +32,32 @@ const auth = async (req, res, next) => {
 		}
 
 		// whitelist organizations endpoint when token is included
-		if (
-			req.path.includes('organizations') &&
-			req.method === 'GET' &&
-			token === process.env.AUTH_SECRET
-		) {
+		if (req.path.includes('organizations') && req.method === 'GET' && token === process.env.AUTH_SECRET) {
 			return next();
 		}
 
 		// whitelist organizations endpoint when token is included
-		if (
-			req.path.includes('organizations') &&
-			req.method === 'POST' &&
-			token === process.env.AUTH_SECRET
-		) {
+		if (req.path.includes('organizations') && req.method === 'POST' && token === process.env.AUTH_SECRET) {
 			return next();
 		}
 
 		// whitelist auth endpoint when token is included
-		if (
-			req.path.includes('auth') &&
-			req.method === 'POST' &&
-			token === process.env.AUTH_SECRET
-		) {
+		if (req.path.includes('auth') && req.method === 'POST' && token === process.env.AUTH_SECRET) {
 			return next();
 		}
 
 		// whitelist agent creation endpoint when token is included
-		if (
-			req.path.includes('agents') &&
-			req.method === 'POST' &&
-			token === process.env.AUTH_SECRET
-		) {
+		if (req.path.includes('agents') && req.method === 'POST' && token === process.env.AUTH_SECRET) {
 			return next();
 		}
 
 		// whitelist user creation endpoint when token is included
-		if (
-			req.path.includes('users') &&
-			req.method === 'POST' &&
-			token === process.env.AUTH_SECRET
-		) {
+		if (req.path.includes('users') && req.method === 'POST' && token === process.env.AUTH_SECRET) {
 			return next();
 		}
 
 		// whitelist chat creation endpoint when token is included
-		if (
-			req.path.includes('chats') &&
-			req.method === 'POST' &&
-			token === process.env.AUTH_SECRET
-		) {
+		if (req.path.includes('chats') && req.method === 'POST' && token === process.env.AUTH_SECRET) {
 			return next();
 		}
 
@@ -91,10 +67,7 @@ const auth = async (req, res, next) => {
 		}
 
 		// whitelist password reset when token is included
-		if (
-			req.path.includes('password-reset') &&
-			token === process.env.AUTH_SECRET
-		) {
+		if (req.path.includes('password-reset') && token === process.env.AUTH_SECRET) {
 			return next();
 		}
 
@@ -103,13 +76,13 @@ const auth = async (req, res, next) => {
 			const { sub } = jwt.verify(token, process.env.AUTH_SECRET);
 
 			// eslint-disable-next-line require-atomic-updates
-			req.serialized = await Agent.findById(
-				mongoose.Types.ObjectId(sub)
-			).lean();
+			req.serialized = await Agent.findById(mongoose.Types.ObjectId(sub)).lean({
+				autopopulate: false
+			});
 
 			if (!req.serialized._id) {
 				return res.status(401).json({
-					error: 'Unauthorized auth credentials.',
+					error: 'Unauthorized auth credentials.'
 				});
 			}
 
@@ -119,7 +92,7 @@ const auth = async (req, res, next) => {
 		console.error(error);
 
 		return res.status(401).json({
-			error: 'Missing or incorrect auth credentials.',
+			error: 'Missing or incorrect auth credentials.'
 		});
 	}
 };
