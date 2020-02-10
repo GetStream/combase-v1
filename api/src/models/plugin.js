@@ -29,6 +29,10 @@ export const PluginSchema = new Schema(
 				required: true,
 				autopopulate: true
 			}
+		},
+		enabled: {
+			type: Boolean,
+			default: true
 		}
 	},
 	{
