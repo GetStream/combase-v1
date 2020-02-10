@@ -70,7 +70,7 @@ const PluginDisplay = ({
                 {available ? (
                     <Switch />
                 ) : (
-                    <Chip color="alt_text" size={10} label="Coming Soon" />
+                    <Chip color="gray" size={10} label="Coming Soon" />
                 )}
             </Header>
             <Content>
