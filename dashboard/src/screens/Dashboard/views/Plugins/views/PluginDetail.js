@@ -100,6 +100,7 @@ const PluginDetail = ({ anim, history, match }) => {
                     <Header>
                         <PluginDisplay
                             avatar={plugin.avatar}
+                            available={plugin.available}
                             description={plugin.description}
                             title={plugin.title}
                             titleSize={24}
