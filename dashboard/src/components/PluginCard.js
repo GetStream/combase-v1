@@ -35,9 +35,8 @@ const PluginCard = ({ avatar, available, description, slug, title, url }) => {
     return (
         <Root border flat>
             <PluginDisplay
-                enableToggle={!!data}
+                showToggle={!!data}
                 enabled={data ? data.enabled : false}
-                id={data ? data._id : null}
                 {...{ avatar, available, description, title, url }}
                 onToggle={togglePlugin}
             />

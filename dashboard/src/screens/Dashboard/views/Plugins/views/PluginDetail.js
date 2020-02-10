@@ -108,7 +108,7 @@ const PluginDetail = ({ anim, history, match }) => {
                             avatar={plugin.avatar}
                             available={plugin.available}
                             description={plugin.description}
-                            enableToggle={!!data}
+                            showToggle={!!data}
                             enabled={data ? data.enabled : false}
                             onToggle={togglePlugin}
                             title={plugin.title}
