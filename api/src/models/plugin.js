@@ -45,5 +45,6 @@ PluginSchema.plugin(query);
 PluginSchema.plugin(autopopulate);
 
 PluginSchema.index({ createdAt: 1, updatedAt: 1 });
+PluginSchema.index({ name: 1, 'refs.organization': 1 }, { unique: true });
 
 module.exports = exports = mongoose.model('Plugin', PluginSchema);
