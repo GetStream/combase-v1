@@ -33,7 +33,7 @@ export default slug => {
                 console.log(error);
             }
         },
-        [plugin]
+        [plugin, user.tokens.api, refetch]
     );
 
     return [plugin, refetch, togglePlugin];
