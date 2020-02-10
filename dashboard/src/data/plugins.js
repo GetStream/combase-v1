@@ -32,7 +32,7 @@ export default {
     },
     clearbit: {
         avatar: 'https://logo.clearbit.com/clearbit.com',
-        available: true,
+        available: false,
         description: 'Provide enriched data on the user you are talking with.',
         title: 'Clearbit',
         slug: 'clearbit',
