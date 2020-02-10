@@ -26,7 +26,7 @@ export default {
                 icon: PasswordIcon,
                 placeholder: 'API Key',
                 name: 'api_key',
-                type: 'password',
+                type: 'text',
             },
         ],
     },
