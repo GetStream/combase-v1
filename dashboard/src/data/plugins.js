@@ -1,7 +1,7 @@
 import { PasswordIcon } from 'shared/Icons';
 
-export default [
-    {
+export default {
+    blaze_verify: {
         avatar: 'https://logo.clearbit.com/blazeverify.com',
         available: true,
         description:
@@ -30,7 +30,7 @@ export default [
             },
         ],
     },
-    {
+    clearbit: {
         avatar: 'https://logo.clearbit.com/clearbit.com',
         available: false,
         description: 'Provide enriched data on the user you are talking with.',
@@ -41,7 +41,7 @@ export default [
         steps: [],
         inputs: [],
     },
-    {
+    hubspot: {
         avatar:
             'https://www.hubspot.com/hubfs/assets/hubspot.com/style-guide/brand-guidelines/guidelines_approved-sprocket-2.svg',
         available: false,
@@ -54,7 +54,7 @@ export default [
         steps: [],
         inputs: [],
     },
-    {
+    zapier: {
         avatar: 'https://logo.clearbit.com/zapier.com',
         description:
             'Connect the apps you use everyday to automate your work and be more productive.',
@@ -66,7 +66,7 @@ export default [
         steps: [],
         inputs: [],
     },
-    {
+    google_analytics: {
         avatar: 'https://logo.clearbit.com/gaiq-center.com',
         description:
             'Google Analytics is a web analytics service offered by Google that tracks and reports website traffic.',
@@ -78,7 +78,7 @@ export default [
         steps: [],
         inputs: [],
     },
-    {
+    slack: {
         avatar: 'https://logo.clearbit.com/slack.com',
         description: 'Convert your hottest leads right from Slack.',
         available: false,
@@ -89,7 +89,7 @@ export default [
         steps: [],
         inputs: [],
     },
-    {
+    mailchimp: {
         avatar: 'https://logo.clearbit.com/mailchimp.com',
         description:
             'Mailchimp is an American marketing automation platform and an email marketing service.',
@@ -101,7 +101,7 @@ export default [
         steps: [],
         inputs: [],
     },
-    {
+    stripe: {
         avatar: 'https://logo.clearbit.com/stripe.dev',
         description:
             'Stripe allows individuals and businesses to make and receive payments over the Internet.',
@@ -113,4 +113,4 @@ export default [
         steps: [],
         inputs: [],
     },
-];
+};

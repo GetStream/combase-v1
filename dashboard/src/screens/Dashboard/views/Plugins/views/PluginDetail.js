@@ -5,6 +5,9 @@ import Animated from 'animated/lib/targets/react-dom';
 // Data //
 import plugins from 'data/plugins';
 
+// Hooks //
+import usePrevious from 'hooks/usePrevious';
+
 // Forms //
 import PluginForm from 'screens/Dashboard/forms/PluginForm';
 
@@ -62,15 +65,12 @@ const renderSteps = (step, key) => (
 );
 
 const PluginDetail = ({ anim, history, match }) => {
-    const plugin = useMemo(() => {
-        if (!match) {
-            return null;
-        }
-        const plugin = plugins.filter(
-            ({ slug }) => slug === match.params.plugin
-        )[0];
-        return plugin;
-    }, [match]);
+    const previousMatch = usePrevious(match);
+    const plugin =
+        match || previousMatch
+            ? plugins[match ? match.params.plugin : previousMatch.params.plugin]
+            : null;
+
     const style = {
         opacity: anim,
         transform: [

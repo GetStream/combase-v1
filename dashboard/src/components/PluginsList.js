@@ -36,7 +36,7 @@ const Row = styled.div`
 
 const Cell = styled.div`
     flex: 1 1 100%;
-    
+
     @media (max-width: ${({ theme }) => theme.breakpoints.sm - 1}px) {
         & + & {
             margin-top: 16px;
@@ -56,10 +56,12 @@ const EmptyWrapper = styled.div`
     padding: 40px 0px;
 `;
 
+const pluginsArray = Object.values(plugins);
+
 const tabs = [
     ...new Set([
         'All',
-        ...plugins
+        ...pluginsArray
             .reduce((acc, { type }) => {
                 return [...acc, type];
             }, [])
@@ -82,13 +84,16 @@ const renderPlugins = results =>
 
 const PluginsList = ({ className }) => {
     const [results, setQuery, activeTab, setActiveTab] = usePageSheet(
-        plugins,
+        pluginsArray,
         'title',
         'type'
     );
 
     return (
-        <Root {...{ activeTab, className, setActiveTab, tabs }} onQueryChange={setQuery}>
+        <Root
+            {...{ activeTab, className, setActiveTab, tabs }}
+            onQueryChange={setQuery}
+        >
             <Content>
                 <Grid>
                     <Row>
