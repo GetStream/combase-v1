@@ -11,6 +11,7 @@ import GlobalStyles from 'styles/global';
 
 // Context //
 import AuthProvider from 'contexts/Auth/AuthProvider';
+import SnackbarProvider from 'contexts/Snackbar/SnackbarProvider';
 
 // Screens //
 import Auth from 'screens/Auth';
@@ -37,19 +38,21 @@ function App() {
     return (
         <ThemeProvider>
             <AuthProvider>
-                <>
-                    <Router {...{ history }}>
-                        <Switch>
-                            <OrgProtectedRoute
-                                path="/welcome"
-                                component={Welcome}
-                            />
-                            <UnauthedRoute path="/auth" component={Auth} />
-                            <AuthedRoute path="/" component={Dashboard} />
-                        </Switch>
-                    </Router>
-                    <GlobalStyles />
-                </>
+                <SnackbarProvider>
+                    <>
+                        <Router {...{ history }}>
+                            <Switch>
+                                <OrgProtectedRoute
+                                    path="/welcome"
+                                    component={Welcome}
+                                />
+                                <UnauthedRoute path="/auth" component={Auth} />
+                                <AuthedRoute path="/" component={Dashboard} />
+                            </Switch>
+                        </Router>
+                        <GlobalStyles />
+                    </>
+                </SnackbarProvider>
             </AuthProvider>
         </ThemeProvider>
     );

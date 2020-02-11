@@ -1,10 +1,14 @@
 import { useCallback, useContext, useEffect, useState } from 'react';
 import AuthContext from 'contexts/Auth';
 
+// Hooks //
+import { useSnackbar } from 'contexts/Snackbar';
+
 // Utils //
 import request from 'utils/request';
 
 export default () => {
+    const { queueSnackbar } = useSnackbar();
     const [loading, setLoading] = useState(false);
     const [plugins, setPlugins] = useState(null);
     const user = useContext(AuthContext);
@@ -26,10 +30,13 @@ export default () => {
             setLoading(false);
         } catch (error) {
             setLoading(false);
-            // TODO: Snackbar
-            console.log(error);
+            queueSnackbar({
+                replace: true,
+                isError: true,
+                text: error.message,
+            });
         }
-    }, [user]);
+    }, [user, queueSnackbar]); // eslint-disable-line react-hooks/exhaustive-deps
     useEffect(() => {
         fetchPlugins();
     }, [fetchPlugins]);

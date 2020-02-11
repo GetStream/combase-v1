@@ -16,5 +16,6 @@ export default {
         page: 0,
         sidenav: 1,
         modal: 5,
+        snackbar: 6,
     },
 };
