@@ -58,10 +58,11 @@ export default ({ match }) => {
             console.log(error);
         }
     }, [user.tokens.api, user.refs.organization._id]);
+
     useEffect(() => {
         getAgents();
     }, [getAgents]);
-    console.log(agents, tabs);
+
     return (
         <Root>
             <FullScreenHeader
