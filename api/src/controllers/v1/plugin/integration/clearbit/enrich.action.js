@@ -25,7 +25,7 @@ exports.clearbitExecEnrich = async (req, res) => {
 				name: { givenName: firstName, familyName: lastName },
 				avatar,
 				bio,
-				email,
+				email: emails,
 				location: { city, state, country, timezone },
 				employment,
 				site: url,
@@ -40,7 +40,7 @@ exports.clearbitExecEnrich = async (req, res) => {
 			},
 			avatar: avatar,
 			bio: bio,
-			email: email,
+			email: emails,
 			location: {
 				city,
 				state,
