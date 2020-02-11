@@ -7,6 +7,7 @@ import { Formik } from 'formik';
 import request from 'utils/request';
 
 // Contexts //
+import { useSnackbar } from 'contexts/Snackbar';
 import AuthContext from 'contexts/Auth';
 
 // Components //
@@ -55,6 +56,7 @@ const renderForm = ({ dirty, handleSubmit }, fields, history, loading) => {
 };
 
 export default ({ data, onSubmit, slug, fields }) => {
+    const { queueSnackbar } = useSnackbar();
     const user = useContext(AuthContext);
     const [loading, setLoading] = useState(false);
     const history = useHistory();
@@ -97,14 +99,21 @@ export default ({ data, onSubmit, slug, fields }) => {
                     await onSubmit();
                 }
                 setLoading(false);
-                // TODO: Snackbar
+                queueSnackbar({
+                    isError: false,
+                    text: 'Plugin configuration updated.',
+                });
             } catch (error) {
                 setLoading(false);
-                // TODO: Snackbar
+                queueSnackbar({
+                    replace: true,
+                    isError: true,
+                    text: error.message,
+                });
                 console.log(error);
             }
         },
-        [data, onSubmit, user, slug]
+        [data, onSubmit, user, slug, queueSnackbar]
     );
     return (
         <Formik

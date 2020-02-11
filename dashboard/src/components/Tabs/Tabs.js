@@ -16,12 +16,16 @@ const Root = styled.div`
         margin-left: 16px;
     }
 
+    &:last-child {
+        margin-right: 16px;
+    }
+
     @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
         padding: 24px 40px;
 
         & > * + * {
-        margin-left: 24px;
-    }
+            margin-left: 24px;
+        }
     }
 `;
 

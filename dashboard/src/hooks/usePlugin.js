@@ -1,10 +1,12 @@
 import { useCallback, useContext, useMemo } from 'react';
 import AuthContext from 'contexts/Auth';
 import PluginsContext from 'contexts/Plugins';
+import { useSnackbar } from 'contexts/Snackbar';
 import request from 'utils/request';
 
 export default slug => {
     const user = useContext(AuthContext);
+    const { queueSnackbar } = useSnackbar();
     const [activePlugins, { refetch }] = useContext(PluginsContext);
     const plugin = useMemo(() => {
         if (!slug || !activePlugins) {
@@ -29,11 +31,15 @@ export default slug => {
                 );
                 await refetch();
             } catch (error) {
-                // TODO: Snackbar
+                queueSnackbar({
+                    replace: true,
+                    isError: true,
+                    text: error.message,
+                });
                 console.log(error);
             }
         },
-        [plugin, user.tokens.api, refetch]
+        [plugin, user.tokens.api, refetch, queueSnackbar]
     );
 
     return [plugin, refetch, togglePlugin];
