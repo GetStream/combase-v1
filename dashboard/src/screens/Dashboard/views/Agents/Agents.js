@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { Route } from 'react-router-dom';
+
+// Utils //
+import request from 'utils/request';
+
+// Contexdts //
+import AuthContext from 'contexts/Auth';
 
 // Views //
 import AgentDetail from './views/AgentDetail';
@@ -126,16 +132,39 @@ const tabs = [
 
 const renderAgentDetail = props => <AgentDetail {...props} />;
 
-export default ({ match }) => (
-    <Root>
-        <FullScreenHeader
-            icon={AgentsIcon}
-            text={`${agents.length} total agents`}
-            title="Agents"
-        />
-        <Container>
-            <AgentsList {...{ agents, tabs }} />
-        </Container>
-        <Route path={`${match.url}/:agentId`} children={renderAgentDetail} />
-    </Root>
-);
+export default ({ match }) => {
+    const user = useContext(AuthContext);
+    const getAgents = useCallback(async () => {
+        try {
+            const agents = await request(
+                `v1/agents?refs.organization._id=${user.refs.organization._id}`,
+                'get',
+                null,
+                user.tokens.api
+            );
+            console.log(agents);
+        } catch (error) {
+            // TODO: Error Handling
+            console.log(error);
+        }
+    }, []);
+    useEffect(() => {
+        getAgents();
+    }, [getAgents]);
+    return (
+        <Root>
+            <FullScreenHeader
+                icon={AgentsIcon}
+                text={`${agents.length} total agents`}
+                title="Agents"
+            />
+            <Container>
+                <AgentsList {...{ agents, tabs }} />
+            </Container>
+            <Route
+                path={`${match.url}/:agentId`}
+                children={renderAgentDetail}
+            />
+        </Root>
+    );
+};
