@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-import Plugin from '../../../../models/plugin';
+import Plugin from 'models/plugin';
 
 exports.blazeVerifyExecVerify = async (req, res) => {
 	try {
-		const { email } = req.data;
+		const { email } = req.body;
 
 		if (!email) {
 			console.error('An email is required for verification.');

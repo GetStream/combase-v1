@@ -1,10 +1,10 @@
 import { Client } from 'clearbit';
 
-import Plugin from '../../../../models/plugin';
+import Plugin from 'models/plugin';
 
 exports.clearbitExecEnrich = async (req, res) => {
 	try {
-		const { email } = req.data;
+		const { email } = req.body;
 
 		if (!email) {
 			console.error('An email is required for enrichment.');
