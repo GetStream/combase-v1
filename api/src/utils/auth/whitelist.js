@@ -1,27 +1,47 @@
 export default [
 	{
 		path: 'health',
-		method: 'get',
+		method: 'all',
 		auth: false,
 	},
 	{
+		path: 'agents',
+		method: 'POST',
+		auth: true,
+	},
+	{
 		path: 'auth',
-		method: 'post',
+		method: 'POST',
+		auth: true,
+	},
+	{
+		path: 'chats',
+		method: 'POST',
 		auth: true,
 	},
 	{
 		path: 'configs',
-		method: 'get',
+		method: 'GET',
 		auth: true,
 	},
 	{
 		path: 'password-reset',
-		method: 'post',
+		method: 'POST',
 		auth: true,
 	},
 	{
 		path: 'organizations',
-		method: 'post',
+		method: 'POST',
+		auth: true,
+	},
+	{
+		path: 'organizations',
+		method: 'GET',
+		auth: true,
+	},
+	{
+		path: 'users',
+		method: 'POST',
 		auth: true,
 	},
 ];

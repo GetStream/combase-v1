@@ -15,6 +15,8 @@ import AgentsList from 'components/AgentsList';
 const Root = styled(ScreenRoot)`
     flex: 1;
     padding-bottom: 40px;
+    -webkit-overflow-scrolling: touch;
+    overflow-y: scroll;
     @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
         overflow-y: scroll;
     }

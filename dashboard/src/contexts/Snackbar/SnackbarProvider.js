@@ -31,7 +31,7 @@ class SnackbarProvider extends Component {
         }
     }
 
-    queueSnackbar(data, duration) {
+    queueSnackbar = (data, duration) => {
         const { show } = this.state;
 
         const snackbar = {
@@ -55,7 +55,7 @@ class SnackbarProvider extends Component {
         } else {
             this.addSnackbar(snackbar, duration);
         }
-    }
+    };
 
     handleHideSnack = async () => {
         const { replace } = this.state;
@@ -64,7 +64,7 @@ class SnackbarProvider extends Component {
         }
     };
 
-    async addSnackbar(snackbar, duration = 5000) {
+    addSnackbar = async (snackbar, duration = 5000) => {
         await this.setState(prevState => {
             const { queue } = prevState;
             let newQ = [];
@@ -79,9 +79,9 @@ class SnackbarProvider extends Component {
                 replace: null,
             };
         });
-    }
+    };
 
-    async removeSnackbar() {
+    removeSnackbar = async () => {
         const { queue } = this.state;
 
         await this.setState({
@@ -93,16 +93,16 @@ class SnackbarProvider extends Component {
         if (queue.length > 0) {
             this.addSnackbar(queue[0]);
         }
-    }
+    };
 
-    resetSnackbar() {
+    resetSnackbar = () => {
         this.setState({
             snackbar: {
                 isError: false,
                 text: '',
             },
         });
-    }
+    };
 
     render() {
         const { children } = this.props;

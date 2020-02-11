@@ -38,6 +38,7 @@
 		"helmet": "^3.21.2",
 		"ioredis": "^4.14.1",
 		"jsonwebtoken": "^8.5.1",
+		"lodash.find": "^4.6.0",
 		"mongoose": "^5.8.11",
 		"mongoose-autopopulate": "^0.12.0",
 		"mongoose-bcrypt": "^1.6.0",
