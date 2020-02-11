@@ -11,7 +11,7 @@ exports.blazeVerifyExecVerify = async (req, res) => {
 			return res.status(400).json({ error: 'An email is required for verification' });
 		}
 
-		const { keys: { api_key } } = await Plugin.findOne({ name: 'blaze_verify' });
+		const { keys: { api_key } } = await Plugin.findOne({ name: 'blaze_verify' }).lean({ autopopulate: false });
 
 		if (!api_key) {
 			console.error('Blaze Verify has not been initialized.');

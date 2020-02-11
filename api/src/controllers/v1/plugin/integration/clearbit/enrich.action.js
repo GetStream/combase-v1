@@ -11,7 +11,7 @@ exports.clearbitExecEnrich = async (req, res) => {
 			return res.status(400).json({ error: 'An email is required for enrichment' });
 		}
 
-		const { keys: { api_key } } = await Plugin.findOne({ name: 'clearbit' });
+		const { keys: { api_key } } = await Plugin.findOne({ name: 'clearbit' }).lean({ autopopulate: false });
 
 		if (!api_key) {
 			console.error('Clearbit has not been initialized.');
