@@ -1,5 +1,6 @@
 import React, { useCallback, useContext, useEffect } from 'react';
 import styled from 'styled-components';
+import { Route } from 'react-router-dom';
 
 // CSS //
 import pageCard from 'styles/css/pageCard';
@@ -9,6 +10,9 @@ import AuthContext from 'contexts/Auth';
 
 // HOCs //
 import withChat from 'shared/Chat/hocs/withChat';
+
+// Views //
+import SideDrawer from '../SideDrawer';
 
 // Components //
 import LoadingState from 'shared/LoadingState';
@@ -20,6 +24,7 @@ const Root = styled.div`
     flex: 1;
     z-index: 2;
     background-color: ${({ theme }) => theme.color.surface};
+    flex-direction: row;
 
     @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
         ${pageCard}
@@ -29,6 +34,11 @@ const Root = styled.div`
 const EmptyRoot = styled(Root)`
     justify-content: center;
     align-items: center;
+`;
+
+const ChatWrapper = styled.div`
+    margin-right: ${({ drawerOpen }) => (drawerOpen ? 376 : 0)}px;
+    flex: 1;
 `;
 
 // const dummyMessages = [
@@ -79,10 +89,29 @@ const MessageThread = ({
             {loading ? (
                 <LoadingState key="loading" />
             ) : (
-                <Chat
-                    showTypingIndicator={isPartnerTyping}
-                    onLoadMore={loadMoreMessages}
-                    {...{ onSend, messages, partner, read, user }}
+                <Route
+                    path={`${match.url}`}
+                    children={({ match: { isExact } }) => {
+                        const drawerOpen = !isExact;
+                        return (
+                            <>
+                                <ChatWrapper {...{ drawerOpen }}>
+                                    <Chat
+                                        showTypingIndicator={isPartnerTyping}
+                                        onLoadMore={loadMoreMessages}
+                                        {...{
+                                            onSend,
+                                            messages,
+                                            partner,
+                                            read,
+                                            user,
+                                        }}
+                                    />
+                                </ChatWrapper>
+                                <SideDrawer open={drawerOpen} />
+                            </>
+                        );
+                    }}
                 />
             )}
         </Root>
