@@ -14,6 +14,10 @@ async function asyncForEach(array, callback) {
 
 const auth = async (req, res, next) => {
 	try {
+		if (req.path.includes('health')) {
+			next();
+		}
+
 		// extract headers
 		const auth = req.headers.authorization;
 
