@@ -1,10 +1,5 @@
 export default [
 	{
-		path: 'health',
-		method: 'all',
-		auth: false,
-	},
-	{
 		path: 'agents',
 		method: 'POST',
 		auth: true,
