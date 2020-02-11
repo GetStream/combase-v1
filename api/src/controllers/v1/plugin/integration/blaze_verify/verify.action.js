@@ -1,17 +1,17 @@
 import axios from 'axios';
 
-import Plugin from '../../../../models/plugin';
+import Plugin from 'models/plugin';
 
 exports.blazeVerifyExecVerify = async (req, res) => {
 	try {
-		const { email } = req.data;
+		const { email } = req.body;
 
 		if (!email) {
 			console.error('An email is required for verification.');
 			return res.status(400).json({ error: 'An email is required for verification' });
 		}
 
-		const { keys: { api_key } } = await Plugin.findOne({ name: 'blaze_verify' });
+		const { keys: { api_key } } = await Plugin.findOne({ name: 'blaze_verify' }).lean({ autopopulate: false });
 
 		if (!api_key) {
 			console.error('Blaze Verify has not been initialized.');

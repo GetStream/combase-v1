@@ -4104,7 +4104,7 @@ needle@2.4.0, needle@^2.2.1:
     iconv-lite "^0.4.4"
     sax "^1.2.4"
 
-"needle@github:clearbit/needle#84d28b5f2c3916db1e7eb84aeaa9d976cc40054b":
+needle@clearbit/needle#84d28b5f2c3916db1e7eb84aeaa9d976cc40054b:
   version "0.7.10"
   resolved "https://codeload.github.com/clearbit/needle/tar.gz/84d28b5f2c3916db1e7eb84aeaa9d976cc40054b"
   dependencies:
