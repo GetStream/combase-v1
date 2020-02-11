@@ -147,7 +147,7 @@ export default ({ match }) => {
             // TODO: Error Handling
             console.log(error);
         }
-    }, []);
+    }, [user.tokens.api, user.refs.organization._id]);
     useEffect(() => {
         getAgents();
     }, [getAgents]);
