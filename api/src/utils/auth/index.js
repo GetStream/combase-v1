@@ -27,15 +27,11 @@ const auth = async (req, res, next) => {
 		// strip bearer from token
 		const token = req.headers.authorization.replace(/^Bearer\s/, '');
 
-		// whitelist health endpoint without token
-		if (req.path.includes('health')) {
-			return next();
-		}
-
 		const routeConfig = find(
 			whitelist,
 			({ method, path }) =>
-				req.path.includes(path) && req.method === method
+				(req.path.includes(path) && req.method === method) ||
+				method === 'all'
 		);
 		if (routeConfig) {
 			if (routeConfig.auth && token === process.env.AUTH_SECRET) {
@@ -44,72 +40,6 @@ const auth = async (req, res, next) => {
 				return next();
 			}
 		}
-		// // whitelist organizations endpoint when token is included
-		// if (
-		// 	req.path.includes('organizations') &&
-		// 	req.method === 'GET' &&
-		// 	token === process.env.AUTH_SECRET
-		// ) {
-		// 	return next();
-		// }
-
-		// // whitelist organizations endpoint when token is included
-		// if (
-		// 	req.path.includes('organizations') &&
-		// 	req.method === 'POST' &&
-		// 	token === process.env.AUTH_SECRET
-		// ) {
-		// 	return next();
-		// }
-
-		// // whitelist auth endpoint when token is included
-		// if (
-		// 	req.path.includes('auth') &&
-		// 	req.method === 'POST' &&
-		// 	token === process.env.AUTH_SECRET
-		// ) {
-		// 	return next();
-		// }
-
-		// // whitelist agent creation endpoint when token is included
-		// if (
-		// 	req.path.includes('agents') &&
-		// 	req.method === 'POST' &&
-		// 	token === process.env.AUTH_SECRET
-		// ) {
-		// 	return next();
-		// }
-
-		// // whitelist user creation endpoint when token is included
-		// if (
-		// 	req.path.includes('users') &&
-		// 	req.method === 'POST' &&
-		// 	token === process.env.AUTH_SECRET
-		// ) {
-		// 	return next();
-		// }
-
-		// // whitelist chat creation endpoint when token is included
-		// if (
-		// 	req.path.includes('chats') &&
-		// 	req.method === 'POST' &&
-		// 	token === process.env.AUTH_SECRET
-		// ) {
-		// 	return next();
-		// }
-
-		// whitelist config endpoint when token is included
-		// if (req.path.includes('configs') && token === process.env.AUTH_SECRET) {
-		// 	return next();
-		// }
-
-		// // whitelist password reset when token is included
-		// if (
-		// 	req.path.includes('password-reset') &&
-		// 	token === process.env.AUTH_SECRET
-		// ) {
-		// 	return next();
-		// }
 
 		// if a jwt token exists
 		if (token) {

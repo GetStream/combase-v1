@@ -1,7 +1,7 @@
 export default [
 	{
 		path: 'health',
-		method: 'GET',
+		method: 'all',
 		auth: false,
 	},
 	{
