@@ -38,12 +38,15 @@ const renderAgents = results =>
 const AgentsList = ({ agents, className, tabs }) => {
     const [results, setQuery, activeTab, setActiveTab] = usePageSheet(
         agents,
-        'name',
+        'name.first',
         'role'
     );
 
     return (
-        <Root {...{ activeTab, className, setActiveTab, tabs }} onQueryChange={setQuery}>
+        <Root
+            {...{ activeTab, className, setActiveTab, tabs }}
+            onQueryChange={setQuery}
+        >
             <Content>
                 {results.length ? renderAgents(results) : renderEmpty()}
             </Content>

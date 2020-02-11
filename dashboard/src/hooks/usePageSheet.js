@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import getNestedProperty from 'utils/getNestedProperty';
 
 export default (data, searchKey, tabKey) => {
     const [query, setQuery] = useState('');
@@ -10,13 +11,13 @@ export default (data, searchKey, tabKey) => {
             data.filter(item => {
                 if (activeTab !== 'All') {
                     return (
-                        item[searchKey]
+                        getNestedProperty(item, searchKey)
                             .toLowerCase()
                             .includes(query.trim().toLowerCase()) &&
-                        item[tabKey] === activeTab
+                        getNestedProperty(item, tabKey) === activeTab
                     );
                 } else {
-                    return item[searchKey]
+                    return getNestedProperty(item, searchKey)
                         .toLowerCase()
                         .includes(query.trim().toLowerCase());
                 }

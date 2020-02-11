@@ -18,10 +18,10 @@ const Content = styled.div`
 const UserBlock = ({ avatar, avatarSize, meta, metaSize, name, textSize }) => {
     return (
         <Root>
-            <Avatar size={avatarSize} name={name} src={avatar} />
+            <Avatar size={avatarSize} name={name.first} src={avatar} />
             <Content>
                 <Text color="text" weight="600" size={textSize}>
-                    {name}
+                    {name.first} {name.last}
                 </Text>
                 <Text color="alt_text" faded size={metaSize || textSize * 0.75}>
                     {meta}

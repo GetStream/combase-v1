@@ -14,6 +14,7 @@ const Root = styled.div`
         ${({ theme }) => theme.easing.css(theme.easing.standard)};
 
     & > ${Text} {
+        text-transform: capitalize;
         user-select: none;
     }
 
