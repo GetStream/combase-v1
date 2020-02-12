@@ -47,7 +47,7 @@ const Bubble = styled.div`
     margin-right: 24px;
     margin-left: ${({ showAvatar }) => (showAvatar ? 0 : 56)}px;
     & > ${Text} {
-        word-break: break-word;
+        word-break: keep-all;
     }
 
     @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {

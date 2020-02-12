@@ -32,14 +32,31 @@ export default {
     },
     clearbit: {
         avatar: 'https://logo.clearbit.com/clearbit.com',
-        available: false,
+        available: true,
         description: 'Provide enriched data on the user you are talking with.',
         title: 'Clearbit',
         slug: 'clearbit',
         url: 'https://clearbit.com',
         type: 'Enrichment',
-        steps: [],
-        inputs: [],
+        steps: [
+            {
+                text: 'Go to Clearbit and create an account.',
+            },
+            {
+                text: 'Create an API Key for client-side use.',
+            },
+            {
+                text: 'Paste your API Key into the field below and hit save.',
+            },
+        ],
+        inputs: [
+            {
+                icon: PasswordIcon,
+                placeholder: 'API Key',
+                name: 'api_key',
+                type: 'text',
+            },
+        ],
     },
     hubspot: {
         avatar:

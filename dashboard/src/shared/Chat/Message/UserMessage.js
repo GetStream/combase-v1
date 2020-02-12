@@ -34,7 +34,7 @@ const Bubble = styled.div`
     margin-left: 24px;
 
     & > ${Text} {
-        word-break: break-word;
+        word-break: ${({ breakWord }) => (breakWord ? 'break-word' : null)};
     }
 
     @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
@@ -52,9 +52,10 @@ const UserMessage = memo(
         showStatus,
         ...rest
     }) => {
+        const breakWord = !text.includes(' ') && text.length > 48;
         return (
             <Root>
-                <Bubble {...{ hasNext, hasPrev }}>
+                <Bubble {...{ hasNext, hasPrev, breakWord }}>
                     <Text line={24} color="alt_text">
                         {text}
                     </Text>
