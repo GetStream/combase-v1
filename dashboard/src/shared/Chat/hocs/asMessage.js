@@ -18,7 +18,8 @@ const Container = styled.div`
 `;
 
 const MessageWrapper = styled.div`
-    flex: 1;
+    width: 100%;
+    flex: 1 1 100%;
     align-items: ${({ pos }) => (pos === 'left' ? 'flex-start' : 'flex-end')};
 `;
 

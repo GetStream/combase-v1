@@ -14,7 +14,7 @@ const Root = styled.div`
 `;
 
 const StatusCol = styled.div`
-    width: 16px;
+    flex: 1 0 16px;
     margin-left: 8px;
     justify-content: flex-end;
     margin-bottom: 4px;
@@ -30,7 +30,13 @@ const Bubble = styled.div`
     border-bottom-left-radius: ${({ theme }) => theme.borderRadius * 2}px;
     border-bottom-right-radius: ${({ hasNext, theme }) =>
         hasNext ? theme.borderRadius : theme.borderRadius * 2}px;
+    max-width: 640px;
     margin-left: 24px;
+
+    & > ${Text} {
+        word-break: break-word;
+    }
+
     @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
         margin-left: 160px;
     }

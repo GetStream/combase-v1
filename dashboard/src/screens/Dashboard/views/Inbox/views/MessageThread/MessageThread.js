@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo } from 'react';
 import styled from 'styled-components';
 import { Route } from 'react-router-dom';
 
@@ -17,7 +17,8 @@ import SideDrawer from '../SideDrawer';
 // Components //
 import LoadingState from 'shared/LoadingState';
 import Chat from 'shared/Chat';
-import { ChatIcon } from 'shared/Icons';
+import { ChatIcon, CloseChatIcon, InfoIcon, TransferIcon } from 'shared/Icons';
+import IconButton from 'shared/IconButton';
 import EmptyState from 'shared/EmptyState';
 
 const Root = styled.div`
@@ -47,6 +48,7 @@ const ChatWrapper = styled.div`
 
 const MessageThread = ({
     channel,
+    history,
     isPartnerTyping,
     match,
     loading,
@@ -62,6 +64,23 @@ const MessageThread = ({
             await channel.markRead();
         }
     }, [channel]);
+
+    const headerActions = useMemo(
+        () => [
+            <IconButton color="alt_text" icon={CloseChatIcon} />,
+            <IconButton
+                color="alt_text"
+                icon={TransferIcon}
+                onClick={() => history.push(`${match.url}/transfer`)}
+            />,
+            <IconButton
+                color="alt_text"
+                icon={InfoIcon}
+                onClick={() => history.push(`${match.url}/info`)}
+            />,
+        ],
+        [history, match]
+    );
 
     useEffect(() => {
         if (match && match.params.channel) {
@@ -99,7 +118,9 @@ const MessageThread = ({
                                     <Chat
                                         showTypingIndicator={isPartnerTyping}
                                         onLoadMore={loadMoreMessages}
+                                        extendedState={{ drawerOpen }}
                                         {...{
+                                            headerActions,
                                             onSend,
                                             messages,
                                             partner,
@@ -108,7 +129,7 @@ const MessageThread = ({
                                         }}
                                     />
                                 </ChatWrapper>
-                                <SideDrawer open={drawerOpen} />
+                                <SideDrawer {...{ match }} open={drawerOpen} />
                             </>
                         );
                     }}

@@ -1,5 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Switch, Route } from 'react-router-dom';
+
+// Views //
+import InfoDrawer from './views/InfoDrawer';
 
 // Components //
 const Root = styled.div`
@@ -13,8 +17,18 @@ const Root = styled.div`
     transform: translateX(${({ open }) => (open ? 0 : 100)}%);
 `;
 
-const SideDrawer = ({ open }) => {
-    return <Root {...{ open }}></Root>;
+const SideDrawer = ({ match, open }) => {
+    return (
+        <Root {...{ open }}>
+            <Switch>
+                <Route path={`${match.url}/info`} component={InfoDrawer} />
+                <Route
+                    path={`${match.url}/transfer`}
+                    render={() => 'transfer'}
+                />
+            </Switch>
+        </Root>
+    );
 };
 
 export default SideDrawer;

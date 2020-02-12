@@ -148,14 +148,27 @@ class Chat extends Component {
     }
 
     render() {
-        const { onLoadMore, read, partner, user } = this.props;
+        const {
+            extendedState,
+            headerActions,
+            onLoadMore,
+            read,
+            partner,
+            user,
+        } = this.props;
         const { inputToolbarHeight } = this.state;
         return (
             <Root>
-                <ChatHeader {...{ partner }} />
+                <ChatHeader {...{ headerActions, partner }} />
                 <MessagesWrapper {...{ inputToolbarHeight }}>
                     <MessagesList
-                        {...{ inputToolbarHeight, user, partner, read }}
+                        {...{
+                            extendedState,
+                            inputToolbarHeight,
+                            user,
+                            partner,
+                            read,
+                        }}
                         onEndReached={onLoadMore}
                         data={this.messages}
                         setMessageContainerRef={this.setMessageContainerRef}

@@ -5,12 +5,7 @@ import moment from 'moment';
 
 // Components //
 import Avatar from 'shared/Avatar';
-import {
-    ArrowBackIcon,
-    CloseChatIcon,
-    InfoIcon,
-    TransferIcon,
-} from 'shared/Icons';
+import { ArrowBackIcon } from 'shared/Icons';
 import ActionsGroup from 'shared/ActionsGroup';
 import IconButton from 'shared/IconButton';
 import Text from 'shared/Text';
@@ -59,7 +54,7 @@ const Actions = styled(ActionsGroup)`
     }
 `;
 
-const ChatHeader = ({ partner }) => {
+const ChatHeader = ({ headerActions, partner }) => {
     return (
         <Root>
             <Main>
@@ -88,11 +83,7 @@ const ChatHeader = ({ partner }) => {
                     </Content>
                 </UserWrapper>
             </Main>
-            <Actions>
-                <IconButton color="alt_text" icon={CloseChatIcon} />
-                <IconButton color="alt_text" icon={TransferIcon} />
-                <IconButton color="alt_text" icon={InfoIcon} />
-            </Actions>
+            <Actions>{headerActions}</Actions>
         </Root>
     );
 };

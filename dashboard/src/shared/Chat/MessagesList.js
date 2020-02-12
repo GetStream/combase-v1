@@ -98,6 +98,7 @@ class MessagesList extends Component {
     render() {
         const {
             data,
+            extendedState = {},
             onEndReached,
             scrollAnim,
             setMessageContainerRef,
@@ -116,7 +117,7 @@ class MessagesList extends Component {
                     setMessageContainerRef,
                     style,
                 }}
-                extendedState={{ data, read }}
+                extendedState={{ data, read, ...extendedState }}
                 forceNonDeterministicRendering
                 onEndReached={onEndReached}
                 onEndReachedThreshold={240}

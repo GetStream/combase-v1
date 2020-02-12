@@ -46,6 +46,10 @@ const Bubble = styled.div`
     border-bottom-right-radius: ${({ theme }) => theme.borderRadius * 2}px;
     margin-right: 24px;
     margin-left: ${({ showAvatar }) => (showAvatar ? 0 : 56)}px;
+    & > ${Text} {
+        word-break: break-word;
+    }
+
     @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
         margin-right: 160px;
     }
@@ -89,7 +93,9 @@ const PartnerMessage = memo(
                     </AvatarWrapper>
                 ) : null}
                 <Bubble {...{ hasNext, hasPrev, showAvatar }}>
-                    <Text line={24} color="white">{text}</Text>
+                    <Text line={24} color="white">
+                        {text}
+                    </Text>
                 </Bubble>
             </Root>
         );
