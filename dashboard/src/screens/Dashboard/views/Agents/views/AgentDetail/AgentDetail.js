@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Animated from 'animated/lib/targets/react-dom';
 
+// Hooks //
+import useAgent from 'hooks/useAgent';
+
 // Components //
 import { PasswordIcon, RoleIcon } from 'shared/Icons';
 import Modal from 'shared/Modal';
@@ -56,9 +59,12 @@ const Footer = styled.div`
 `;
 
 const AgentDetail = ({ anim, history, match }) => {
+    const agent = useAgent(match ? match.params.agentId : null);
     const style = {
         opacity: anim,
     };
+
+    console.log(agent);
 
     return (
         <>

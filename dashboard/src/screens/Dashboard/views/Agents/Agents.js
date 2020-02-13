@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { Route } from 'react-router-dom';
 
+// Contexts //
+import AgentsContext from 'contexts/Agents';
+
 // Hooks //
 import useAgents from 'hooks/useAgents';
 
@@ -30,19 +33,21 @@ const renderAgentDetail = props => <AgentDetail {...props} />;
 export default ({ match }) => {
     const [agents, tabs] = useAgents();
     return (
-        <Root>
-            <FullScreenHeader
-                icon={AgentsIcon}
-                text={`${agents.length} total agents`}
-                title="Agents"
-            />
-            <Container>
-                <AgentsList {...{ agents, tabs }} />
-            </Container>
-            <Route
-                path={`${match.url}/:agentId`}
-                children={renderAgentDetail}
-            />
-        </Root>
+        <AgentsContext.Provider value={agents}>
+            <Root>
+                <FullScreenHeader
+                    icon={AgentsIcon}
+                    text={`${agents.length} total agents`}
+                    title="Agents"
+                />
+                <Container>
+                    <AgentsList {...{ agents, tabs }} />
+                </Container>
+                <Route
+                    path={`${match.url}/:agentId`}
+                    children={renderAgentDetail}
+                />
+            </Root>
+        </AgentsContext.Provider>
     );
 };
