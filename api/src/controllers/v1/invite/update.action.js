@@ -5,19 +5,12 @@ exports.update = async (req, res) => {
 	try {
 		const data = req.body;
 		const params = req.params;
-		const { serialized } = req;
-
-		if (serialized.role !== 'admin') {
-			return res.status(403).json({
-				status: 'Invalid permissions to view or modify this resource.',
-			});
-		}
 
 		const invite = await Invite.updateOne(
 			{ _id: params.invite },
 			{ $set: data }
 		);
-
+		console.log(invite);
 		await AddToWebhookInviteQueue('updated', invite);
 
 		res.status(200).json(invite);
