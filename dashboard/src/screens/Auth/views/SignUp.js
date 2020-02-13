@@ -64,7 +64,19 @@ const SignUp = ({ match }) => {
   }
 
   if (error || !invite) {
-    return <Root>Error</Root>;
+    return (
+      <Root>
+        <Header>
+          <Text size={40} weight="700">
+            Something went wrong!
+          </Text>
+          <Text color="alt_text" line={24}>
+            This invitation either doesn't exist or something is very wrong,
+            please contact your system admin.
+          </Text>
+        </Header>
+      </Root>
+    );
   }
 
   console.log(invite);
