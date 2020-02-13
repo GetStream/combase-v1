@@ -10,6 +10,12 @@ export default {
         slug: 'blaze_verify',
         url: 'https://blazeverify.com/',
         type: 'Enrichment',
+        endpoints: [
+            {
+                url: '/verify',
+                description: 'Verifies the email of the user.',
+            },
+        ],
         steps: [
             {
                 text: 'Go to Blaze Verify and create an account.',
@@ -38,6 +44,13 @@ export default {
         slug: 'clearbit',
         url: 'https://clearbit.com',
         type: 'Enrichment',
+        endpoints: [
+            {
+                url: '/enrich',
+                description:
+                    'Enriches the users profile information from sources around the web.',
+            },
+        ],
         steps: [
             {
                 text: 'Go to Clearbit and create an account.',
