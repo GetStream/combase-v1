@@ -102,7 +102,10 @@ const AgentDetail = ({ anim, history, match }) => {
                                 title="Role"
                                 text={`Change ${agent.name.first}s permission level`}
                             >
-                                Admin
+                                <select value={agent.role}>
+                                    <option value="admin">Admin</option>
+                                    <option value="moderator">Moderator</option>
+                                </select>
                             </AgentSettingsItem>
                             <AgentSettingsItem
                                 color="slate"

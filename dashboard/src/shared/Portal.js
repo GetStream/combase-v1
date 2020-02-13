@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
@@ -8,7 +8,7 @@ function getContainer(container, defaultContainer) {
     return ReactDOM.findDOMNode(container) || defaultContainer;
 }
 
-class Portal extends React.Component {
+class Portal extends Component {
     componentDidMount() {
         this.setMountNode(this.props.container);
         if (this.props.disable) {
