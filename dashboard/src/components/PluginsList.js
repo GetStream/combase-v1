@@ -18,6 +18,7 @@ import PluginCard from 'components/PluginCard';
 
 const Root = styled(PageSheet)`
     margin-top: -112px;
+    min-height: 414px;
 `;
 
 const Content = styled.div`
