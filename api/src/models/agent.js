@@ -50,7 +50,7 @@ export const AgentSchema = new Schema(
 				ref: 'Organization',
 				required: true,
 				autopopulate: {
-					select: ['name'],
+					select: ['name', 'meta.logo'],
 				},
 			},
 		},

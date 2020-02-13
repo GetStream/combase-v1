@@ -31,7 +31,7 @@ export const InviteSchema = new Schema(
 				ref: 'Organization',
 				required: true,
 				autopopulate: {
-					select: ['name', 'email.address'],
+					select: ['name', 'email.address', 'meta.logo'],
 				},
 			},
 		},
