@@ -29,7 +29,6 @@ const renderAgentDetail = props => <AgentDetail {...props} />;
 
 export default ({ match }) => {
     const [agents, tabs] = useAgents();
-
     return (
         <Root>
             <FullScreenHeader

@@ -35,10 +35,12 @@ const renderEmpty = () => (
 const renderAgents = results =>
     results.map((agent, key) => <AgentItem {...agent} {...{ key }} />);
 
+const searchKeys = ['name.first', 'name.last'];
+
 const AgentsList = ({ agents, className, tabs }) => {
     const [results, setQuery, activeTab, setActiveTab] = usePageSheet(
         agents,
-        'name.first',
+        searchKeys,
         'role'
     );
 

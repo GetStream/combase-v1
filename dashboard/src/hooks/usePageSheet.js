@@ -9,17 +9,32 @@ export default (data, searchKey, tabKey) => {
     useEffect(() => {
         setResults(
             data.filter(item => {
+                let searchTerm = '';
+                if (typeof searchKey !== 'string') {
+                    searchTerm = searchKey
+                        .map(key => getNestedProperty(item, key))
+                        .join(' ');
+                } else {
+                    searchTerm = getNestedProperty(item, searchKey);
+                }
+
                 if (activeTab !== 'All') {
                     return (
-                        getNestedProperty(item, searchKey)
+                        searchTerm
                             .toLowerCase()
                             .includes(query.trim().toLowerCase()) &&
                         getNestedProperty(item, tabKey) === activeTab
                     );
                 } else {
-                    return getNestedProperty(item, searchKey)
-                        .toLowerCase()
-                        .includes(query.trim().toLowerCase());
+                    if (typeof searchKey === 'string') {
+                        return searchTerm
+                            .toLowerCase()
+                            .includes(query.trim().toLowerCase());
+                    } else {
+                        return searchTerm
+                            .toLowerCase()
+                            .includes(query.trim().toLowerCase());
+                    }
                 }
             })
         );
