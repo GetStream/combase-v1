@@ -10,7 +10,9 @@ import request from 'utils/request';
 export default () => {
     const { queueSnackbar } = useSnackbar();
     const [loading, setLoading] = useState(false);
-    const [plugins, setPlugins] = useState(null);
+    const [plugins, setPlugins] = useState(
+        JSON.parse(localStorage.getItem('plugins')) || null
+    );
     const user = useContext(AuthContext);
 
     const fetchPlugins = useCallback(async () => {
@@ -27,6 +29,7 @@ export default () => {
                 pluginData[plugin.name] = plugin;
             });
             setPlugins(pluginData);
+            localStorage.setItem('plugins', JSON.stringify(pluginData));
             setLoading(false);
         } catch (error) {
             setLoading(false);
