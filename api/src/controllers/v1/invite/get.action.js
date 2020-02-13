@@ -3,7 +3,6 @@ import Invite from 'models/invite';
 exports.get = async (req, res) => {
 	try {
 		const data = req.params;
-
 		const invite = await Invite.findById(data.invite).lean({
 			autopopulate: true,
 		});

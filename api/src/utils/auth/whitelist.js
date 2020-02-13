@@ -20,6 +20,11 @@ export default [
 		auth: true,
 	},
 	{
+		path: 'invites',
+		method: 'GET',
+		auth: true,
+	},
+	{
 		path: 'password-reset',
 		method: 'POST',
 		auth: true,

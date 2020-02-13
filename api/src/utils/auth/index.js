@@ -32,6 +32,7 @@ const auth = async (req, res, next) => {
 				method === 'all'
 		);
 		if (routeConfig) {
+			console.log(routeConfig);
 			if (routeConfig.auth && token === process.env.AUTH_SECRET) {
 				return next();
 			} else if (!routeConfig.auth) {
