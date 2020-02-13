@@ -35,17 +35,11 @@ export const InviteSchema = new Schema(
 				},
 			},
 		},
-		token: {
-			value: {
-				type: String,
-				default: shortid.generate(),
-			},
-			expiration: {
-				type: Date,
-				default: moment()
-					.add('48', 'hours')
-					.toISOString(),
-			},
+		expiration: {
+			type: Date,
+			default: moment()
+				.add('48', 'hours')
+				.toISOString(),
 		},
 		accepted: {
 			type: Boolean,
