@@ -60,11 +60,14 @@ const Footer = styled.div`
 
 const AgentDetail = ({ anim, history, match }) => {
     const agent = useAgent(match ? match.params.agentId : null);
+
     const style = {
         opacity: anim,
     };
 
-    console.log(agent);
+    if (!agent) {
+        return null;
+    }
 
     return (
         <>
@@ -78,11 +81,11 @@ const AgentDetail = ({ anim, history, match }) => {
                 <Root {...{ style }}>
                     <Header>
                         <UserBlock
-                            avatar="https://ca.slack-edge.com/T02RM6X6B-UHLLRBJBU-7c9e3281197f-512"
+                            avatar={agent.avatar}
                             avatarSize={96}
-                            meta="luke@getstream.io"
+                            meta={agent.email}
                             metaSize={16}
-                            name="Luke Smetham"
+                            name={`${agent.name.first} ${agent.name.last}`}
                             textSize={32}
                         />
                         <Widgets>
@@ -97,7 +100,7 @@ const AgentDetail = ({ anim, history, match }) => {
                             <AgentSettingsItem
                                 icon={RoleIcon}
                                 title="Role"
-                                text="Change Lukes permission level"
+                                text={`Change ${agent.name.first}s permission level`}
                             >
                                 Admin
                             </AgentSettingsItem>

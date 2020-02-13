@@ -15,21 +15,19 @@ const Content = styled.div`
     margin-left: 24px;
 `;
 
-const UserBlock = ({ avatar, avatarSize, meta, metaSize, name, textSize }) => {
-    return (
-        <Root>
-            <Avatar size={avatarSize} name={name.first} src={avatar} />
-            <Content>
-                <Text color="text" weight="600" size={textSize}>
-                    {name.first} {name.last}
-                </Text>
-                <Text color="alt_text" faded size={metaSize || textSize * 0.75}>
-                    {meta}
-                </Text>
-            </Content>
-        </Root>
-    );
-};
+const UserBlock = ({ avatar, avatarSize, meta, metaSize, name, textSize }) => (
+    <Root>
+        <Avatar size={avatarSize} {...{ name }} src={avatar} />
+        <Content>
+            <Text color="text" weight="600" size={textSize}>
+                {name}
+            </Text>
+            <Text color="alt_text" faded size={metaSize || textSize * 0.75}>
+                {meta}
+            </Text>
+        </Content>
+    </Root>
+);
 
 UserBlock.propTypes = {
     avatar: PropTypes.string.isRequired,

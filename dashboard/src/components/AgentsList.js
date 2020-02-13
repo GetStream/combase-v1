@@ -33,7 +33,16 @@ const renderEmpty = () => (
 );
 
 const renderAgents = results =>
-    results.map((agent, key) => <AgentItem {...agent} {...{ key }} />);
+    results.map(({ name, ...agent }, key) => {
+        console.log(agent);
+        return (
+            <AgentItem
+                {...agent}
+                name={`${name.first} ${name.last}`}
+                {...{ key }}
+            />
+        );
+    });
 
 const searchKeys = ['name.first', 'name.last'];
 
