@@ -79,8 +79,6 @@ const SignUp = ({ match }) => {
     );
   }
 
-  console.log(invite);
-
   return (
     <Root maxWidth={424}>
       <Header>
@@ -97,7 +95,10 @@ const SignUp = ({ match }) => {
           {invite.refs.organization.name}
         </Text>
       </Header>
-      <SignUpForm />
+      <SignUpForm
+        organizationId={invite.refs.organization._id}
+        invitationId={invite._id}
+      />
     </Root>
   );
 };

@@ -21,7 +21,7 @@ export default inviteId => {
         }
 
         setInvite(invite);
-        if (moment(invite.expiration).isBefore(moment())) {
+        if (invite.accepted || moment(invite.expiration).isBefore(moment())) {
           throw new Error("Invitation Expired");
         }
       } catch (error) {

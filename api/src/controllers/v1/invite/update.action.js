@@ -10,7 +10,6 @@ exports.update = async (req, res) => {
 			{ _id: params.invite },
 			{ $set: data }
 		);
-		console.log(invite);
 		await AddToWebhookInviteQueue('updated', invite);
 
 		res.status(200).json(invite);
