@@ -8,6 +8,7 @@ const Card = styled.div`
     !flat ? "0px 4px 40px rgba(0, 0, 0, 0.12)" : null};
   border: ${({ border, theme }) =>
     border ? `1px solid ${theme.color.border}` : null};
+  overflow: hidden;
 `;
 
 Card.defaultProps = {
