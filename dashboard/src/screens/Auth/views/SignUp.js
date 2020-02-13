@@ -25,13 +25,34 @@ const Header = styled.div`
 `;
 
 const SignUp = ({ match }) => {
-  const [invite, { loading }] = useInvite(match.params.inviteId);
-  console.log(invite);
+  const [invite, { loading, error, expired }] = useInvite(
+    match.params.inviteId
+  );
+
   if (loading) {
     return <LoadingState />;
   }
+
+  if (expired) {
+    return (
+      <Root>
+        <Header>
+          <Text size={40} weight="700">
+            Invitation Expired
+          </Text>
+        </Header>
+      </Root>
+    );
+  }
+
+  if (error) {
+    return <Root>Error</Root>;
+  }
+
+  console.log(invite);
+
   return (
-    <Root maxWidth={400}>
+    <Root maxWidth={424}>
       <Header>
         <Text size={40} weight="700">
           Create an Account
