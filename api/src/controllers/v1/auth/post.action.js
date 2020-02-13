@@ -9,16 +9,16 @@ exports.post = async (req, res) => {
 		const data = req.body;
 
 		// if the agent does not exist, create a new agent
-		let agent = await Agent.findOneOrCreate(
+		const agent = await Agent.findOneOrCreate(
 			{ email: data.email.toLowerCase() }, // lowercase email to avoid lookup issues
 			{
 				name: {
 					first: data.name.first,
-					last: data.name.last
+					last: data.name.last,
 				},
 				email: data.email, // email is set to lowercase automatically by mongoose via model
 				password: data.password, // password is hashed using bcrypt automatically by mongoose plugin
-				refs: data.refs
+				refs: data.refs,
 			}
 		);
 

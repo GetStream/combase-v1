@@ -3,7 +3,7 @@ import { AddToWebhookAgentQueue } from 'workers/webhook-agent/queue';
 
 exports.destroy = async (req, res) => {
 	try {
-		const data = { ...req.body, ...req.params };
+		const { agent } = req.params;
 		const { serialized } = req;
 
 		if (serialized.role !== 'admin') {
@@ -12,12 +12,9 @@ exports.destroy = async (req, res) => {
 			});
 		}
 
-		const { password, ...agent } = await Agent.updateOne(
-			{ _id: data.agent },
-			{ $set: { status: 'inactive' } }
-		);
+		const { password, ...removed } = await Agent.findByIdAndRemove(agent);
 
-		await AddToWebhookAgentQueue('removed', agent);
+		await AddToWebhookAgentQueue('removed', removed);
 
 		res.sendStatus(204);
 	} catch (error) {
