@@ -49,8 +49,7 @@ const UserMessage = memo(
     hasPrev,
     isRead,
     partner,
-    showStatus,
-    ...rest
+    showStatus
   }) => {
     const breakWord = !text.includes(" ") && text.length > 48;
     return (

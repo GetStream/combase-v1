@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 // Hooks //
@@ -39,7 +40,7 @@ const renderAgents = results =>
 
 const searchKeys = ["name.first", "name.last"];
 
-const AgentsList = ({ agents, className, tabs }) => {
+const AgentsList = ({ agents, className, tabs, onFABClick }) => {
   const [results, setQuery, activeTab, setActiveTab] = usePageSheet(
     agents,
     searchKeys,
@@ -54,9 +55,16 @@ const AgentsList = ({ agents, className, tabs }) => {
       <Content>
         {results.length ? renderAgents(results) : renderEmpty()}
       </Content>
-      <FAB />
+      {!!onFABClick ? <FAB onClick={onFABClick} /> : null}
     </Root>
   );
+};
+
+AgentsList.propTypes = {
+  agents: PropTypes.array,
+  className: PropTypes.string,
+  onFABClick: PropTypes.func,
+  tabs: PropTypes.array
 };
 
 export default AgentsList;
