@@ -2,6 +2,8 @@ import mongoose, { Schema } from 'mongoose';
 import query from 'mongoose-string-query';
 import timestamps from 'mongoose-timestamp';
 import autopopulate from 'mongoose-autopopulate';
+import moment from 'moment';
+import shortid from 'shortid';
 
 export const InviteSchema = new Schema(
 	{
@@ -31,6 +33,18 @@ export const InviteSchema = new Schema(
 				autopopulate: {
 					select: ['name', 'email.address'],
 				},
+			},
+		},
+		token: {
+			value: {
+				type: String,
+				default: shortid.generate(),
+			},
+			expiration: {
+				type: Date,
+				default: moment()
+					.add('48', 'hours')
+					.toISOString(),
 			},
 		},
 		accepted: {

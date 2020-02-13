@@ -6,7 +6,7 @@ import { AddToWebhookInviteQueue } from 'workers/webhook-invite/queue';
 
 exports.post = async (req, res) => {
 	try {
-		const data = req.body;
+		const { url, ...data } = req.body;
 
 		const invite = await Invite.create(data);
 
@@ -21,12 +21,12 @@ exports.post = async (req, res) => {
 
 		await transport.sendMail({
 			from: invite.refs.organization.email.address,
-			to: agent.email,
+			to: data.email,
 			subject: `${invite.refs.organization.name} – Agent Invite`,
 			html: `
-                <p>Hi ${agent.name.first},</p>
-                <p>You have been invited to ${organization.name}. Please create your account here.</p>
-                <p>Team ${organization.name}<br />
+                <p>Hi ${data.name.first},</p>
+                <p>You have been invited to ${invite.refs.organization.name}. Please create your account <a href="${url}/auth/sign-up">here</a>.</p>
+                <p>Team ${invite.refs.organization.name}<br />
                     <a href="mailto=${invite.refs.organization.email.address}" target="_blank">
                         ${invite.refs.organization.email.address}
                     </a>
