@@ -102,7 +102,6 @@ const renderInviteInputs = ({ form, push, remove }, data) => {
   const {
     values: { invitations }
   } = form;
-  console.log(form.errors);
   return (
     <Invites>
       {invitations.map((invitation, index) => (

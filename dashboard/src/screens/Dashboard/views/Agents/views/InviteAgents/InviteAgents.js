@@ -91,7 +91,7 @@ const InviteAgents = ({ anim, history, match }) => {
         <Header>
           <Container>
             <Title>
-              <IconButton icon={ArrowBackIcon} />
+              <IconButton icon={ArrowBackIcon} onClick={history.goBack} />
               <Text size={20} weight="500">
                 Invite your team
               </Text>
