@@ -1,12 +1,9 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Route } from 'react-router-dom';
 
-// Utils //
-import request from 'utils/request';
-
-// Contexdts //
-import AuthContext from 'contexts/Auth';
+// Hooks //
+import useAgents from 'hooks/useAgents';
 
 // Views //
 import AgentDetail from './views/AgentDetail';
@@ -31,36 +28,7 @@ const Root = styled(ScreenRoot)`
 const renderAgentDetail = props => <AgentDetail {...props} />;
 
 export default ({ match }) => {
-    const [tabs, setTabs] = useState(['All']);
-    const [agents, setAgents] = useState([]);
-    const user = useContext(AuthContext);
-    const getAgents = useCallback(async () => {
-        try {
-            const agents = await request(
-                `v1/agents?refs.organization._id=${user.refs.organization._id}`,
-                'get',
-                null,
-                user.tokens.api
-            );
-            setAgents(agents);
-            setTabs([
-                ...new Set([
-                    'All',
-                    ...agents
-                        .reduce((acc, { role }) => {
-                            return [...acc, role];
-                        }, [])
-                        .sort(),
-                ]),
-            ]);
-        } catch (error) {
-            // TODO: Error Handling
-            console.log(error);
-        }
-    }, [user.tokens.api, user.refs.organization._id]);
-    useEffect(() => {
-        getAgents();
-    }, [getAgents]);
+    const [agents, tabs] = useAgents();
 
     return (
         <Root>
