@@ -1,26 +1,20 @@
 import 'dotenv/config';
 
-import Plugin from 'models/plugin';
 import StreamClient from 'utils/stream';
 
 exports.get = async (req, res) => {
 	try {
 		const { key } = await StreamClient();
 
-		const config = {
+		res.status(200).json({
 			stream: {
-				key,
+				key
 			},
 			algolia: {
 				id: process.env.ALGOLIASEARCH_APPLICATION_ID,
-				key: process.env.ALGOLIASEARCH_API_KEY_SEARCH,
-			},
-		};
-
-		const plugins = await Plugin.find({}).lean({ autopopulate: true });
-		const data = { ...config, plugins };
-
-		res.status(200).json(data);
+				key: process.env.ALGOLIASEARCH_API_KEY_SEARCH
+			}
+		});
 	} catch (error) {
 		console.error(error);
 		res.status(500).json({ error: error.message });
