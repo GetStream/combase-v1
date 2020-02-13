@@ -25,10 +25,10 @@ const Root = styled.div`
     }
 `;
 
-const AgentItem = ({ _id, avatar, email, name }) => (
+const AgentItem = ({ _id, email, image, name }) => (
     <Link to={`/agents/${_id}`}>
         <Root>
-            <UserBlock {...{ avatar, name }} meta={email} />
+            <UserBlock {...{ name }} avatar={image} meta={email} />
         </Root>
     </Link>
 );

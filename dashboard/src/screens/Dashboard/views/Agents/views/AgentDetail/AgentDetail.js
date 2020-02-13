@@ -81,7 +81,7 @@ const AgentDetail = ({ anim, history, match }) => {
                 <Root {...{ style }}>
                     <Header>
                         <UserBlock
-                            avatar={agent.avatar}
+                            avatar={agent.image}
                             avatarSize={96}
                             meta={agent.email}
                             metaSize={16}
