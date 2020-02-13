@@ -20,12 +20,10 @@ export default inviteId => {
           throw new Error("Something went wrong");
         }
 
-        if (
-          !moment(invite.expiration).isBefore(moment().subtract("48", "hours"))
-        ) {
+        setInvite(invite);
+        if (moment(invite.expiration).isBefore(moment())) {
           throw new Error("Invitation Expired");
         }
-        setInvite(invite);
       } catch (error) {
         setLoading(false);
         if (error.message === "Invitation Expired") {

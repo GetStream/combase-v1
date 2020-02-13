@@ -11,6 +11,7 @@ import SignUpForm from "../forms/SignUpForm";
 import Container from "shared/Container";
 import LoadingState from "shared/LoadingState";
 import Text from "shared/Text";
+import Avatar from "shared/Avatar";
 
 const Root = styled(Container)`
   flex: 1;
@@ -22,6 +23,14 @@ const Header = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
+
+  & > ${Text}:first-of-type {
+    margin-top: 8px;
+  }
+
+  & > ${Text} + ${Text} {
+    margin-top: 8px;
+  }
 `;
 
 const SignUp = ({ match }) => {
@@ -35,17 +44,26 @@ const SignUp = ({ match }) => {
 
   if (expired) {
     return (
-      <Root>
+      <Root maxWidth={424}>
         <Header>
+          <Avatar
+            src={invite.refs.organization.meta.logo}
+            size={80}
+            showStatus={false}
+          />
           <Text size={40} weight="700">
-            Invitation Expired
+            Invitation Expired!
+          </Text>
+          <Text color="alt_text" line={24}>
+            This invitation link has expired, please request another invitation
+            from an admin at {invite.refs.organization.name}.
           </Text>
         </Header>
       </Root>
     );
   }
 
-  if (error) {
+  if (error || !invite) {
     return <Root>Error</Root>;
   }
 
@@ -54,8 +72,17 @@ const SignUp = ({ match }) => {
   return (
     <Root maxWidth={424}>
       <Header>
+        <Avatar
+          src={invite.refs.organization.meta.logo}
+          size={80}
+          showStatus={false}
+        />
         <Text size={40} weight="700">
           Create an Account
+        </Text>
+        <Text color="alt_text">
+          Sign up below to activate your account at{" "}
+          {invite.refs.organization.name}
         </Text>
       </Header>
       <SignUpForm />
