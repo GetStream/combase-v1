@@ -25,7 +25,7 @@ exports.post = async (req, res) => {
 			subject: `${invite.refs.organization.name} – Agent Invite`,
 			html: `
                 <p>Hi ${data.name.first},</p>
-                <p>You have been invited to ${invite.refs.organization.name}. Please create your account <a href="${url}/auth/sign-up">here</a>.</p>
+                <p>You have been invited to ${invite.refs.organization.name}. Please create your account <a href="${url}/auth/sign-up/${invite._id}">here</a>.</p>
                 <p>Team ${invite.refs.organization.name}<br />
                     <a href="mailto=${invite.refs.organization.email.address}" target="_blank">
                         ${invite.refs.organization.email.address}
