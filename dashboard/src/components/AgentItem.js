@@ -1,13 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import React, { useCallback, useMemo, useState } from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 // Styles //
-import listItemInteractions from 'styles/css/listItemInteractions';
+import listItemInteractions from "styles/css/listItemInteractions";
 
 // Components //
-import UserBlock from 'shared/UserBlock';
-import Text from 'shared/Text';
+import UserBlock from "shared/UserBlock";
+import Text from "shared/Text";
 
 const Root = styled.div`
     padding: 0px 16px;
@@ -23,14 +23,29 @@ const Root = styled.div`
     @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
         padding: 0px 40px;
     }
-`;
 
-const AgentItem = ({ _id, email, image, name }) => (
-    <Link to={`/agents/${_id}`}>
-        <Root>
-            <UserBlock {...{ name }} avatar={image} meta={email} />
-        </Root>
+`;
+const AgentItem = ({ _id, email, image, name }) => {
+  const [dims, setDims] = useState(null);
+  const rootRef = useCallback(el => {
+    if (el) {
+      setDims(el.getBoundingClientRect());
+    }
+  }, []);
+  const to = useMemo(
+    () => ({
+      pathname: `/agents/${_id}`,
+      startDims: dims
+    }),
+    [dims, _id]
+  );
+  return (
+    <Link {...{ to }}>
+      <Root ref={rootRef}>
+        <UserBlock {...{ name }} avatar={image} meta={email} />
+      </Root>
     </Link>
-);
+  );
+};
 
 export default AgentItem;
