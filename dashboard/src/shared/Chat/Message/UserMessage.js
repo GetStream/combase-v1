@@ -14,7 +14,7 @@ const Root = styled.div`
 `;
 
 const StatusCol = styled.div`
-  flex: 1 0 16px;
+  flex: 0 0 16px;
   margin-left: 8px;
   justify-content: flex-end;
   margin-bottom: 4px;
