@@ -10,7 +10,9 @@ const Root = styled(Animated.div)`
   background-color: ${({ theme }) => theme.color.surface};
   z-index: 999999;
   border-radius: ${({ theme }) => theme.borderRadius}px;
-  box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.16)}
+  box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.16)};
+  will-change: top, left, width, height;
+
 `;
 
 export default ({ anim, endDims, startDims }) => {
