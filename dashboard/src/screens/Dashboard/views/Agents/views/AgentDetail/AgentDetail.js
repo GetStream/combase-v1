@@ -63,6 +63,7 @@ const AgentDetail = ({ anim, location, history, match }) => {
   const [dims, setDims] = useState(null);
   const [mounted, setMount] = useState(false);
   const agent = useAgent(match ? match.params.agentId : null);
+
   const rootRef = useCallback(el => {
     if (el) {
       setDims(findDOMNode(el).getBoundingClientRect());
@@ -76,6 +77,15 @@ const AgentDetail = ({ anim, location, history, match }) => {
     [mounted]
   );
 
+  const handleOpen = useCallback(() => {
+    setMount(true);
+  }, []);
+
+  const handleClose = useCallback(() => {
+    setMount(false);
+    history.goBack();
+  }, [history]);
+
   if (!agent) {
     return null;
   }
@@ -87,7 +97,8 @@ const AgentDetail = ({ anim, location, history, match }) => {
         animatedValue={anim}
         open={!!match}
         showUndersheet={false}
-        onClose={history.goBack}
+        onOpen={handleOpen}
+        onClose={handleClose}
       >
         <Root ref={rootRef} {...{ style }}>
           <Header>
@@ -95,7 +106,6 @@ const AgentDetail = ({ anim, location, history, match }) => {
               avatar={agent.image}
               avatarSize={96}
               meta={agent.email}
-              metaSize={16}
               name={`${agent.name.first} ${agent.name.last}`}
               textSize={32}
             />
@@ -134,7 +144,7 @@ const AgentDetail = ({ anim, location, history, match }) => {
         </Root>
       </Modal>
       <AgentDetailTransition
-        {...{ anim }}
+        {...{ agent, anim }}
         startDims={location.startDims}
         endDims={dims}
       />
