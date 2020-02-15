@@ -43,7 +43,7 @@ function App() {
             <Switch>
               <OrgProtectedRoute path="/welcome" component={Welcome} />
               <UnauthedRoute path="/auth" component={Auth} />
-              <Route path="/" component={Dashboard} />
+              <AuthedRoute path="/" component={Dashboard} />
             </Switch>
           </Router>
           <GlobalStyles />
