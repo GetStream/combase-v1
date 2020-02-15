@@ -23,7 +23,17 @@ const Root = styled.div`
   }
 `;
 
-const renderEmptyState = () => <EmptyState text="Settings" />;
+const EmptyWrapper = styled.div`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+const renderEmptyState = () => (
+  <EmptyWrapper>
+    <EmptyState text="Settings" />
+  </EmptyWrapper>
+);
 
 export default ({ match }) => {
   return (
