@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 // Styles //
 import listItemInteractions from "styles/css/listItemInteractions";
 
 // Components //
-import { ChevronRightIcon } from 'shared/Icons';
+import { ChevronRightIcon } from "shared/Icons";
 import Text from "shared/Text";
 
 const Root = styled.div`
@@ -40,19 +41,21 @@ const Chevron = styled(ChevronRightIcon)`
   align-self: center;
 `;
 
-export default ({ active, icon: Icon, title, text }) => (
-  <Root>
-    <Wrapper {...{ active }} activeColor="alt_text">
-      <IconCol>
-        {Icon ? <Icon color="alt_text" /> : null}
-      </IconCol>
-      <Content>
-        <Text weight="500" color="alt_text">{title}</Text>
-        <Text weight="400" color="alt_text" size={12} faded>
-          {text}
-        </Text>
-      </Content>
-      <Chevron color="gray" />
-    </Wrapper>
-  </Root>
+export default ({ active, icon: Icon, title, to, text }) => (
+  <Link {...{ to }}>
+    <Root>
+      <Wrapper {...{ active }} activeColor="alt_text">
+        <IconCol>{Icon ? <Icon color="alt_text" /> : null}</IconCol>
+        <Content>
+          <Text weight="500" color="alt_text">
+            {title}
+          </Text>
+          <Text weight="400" color="alt_text" size={12} faded>
+            {text}
+          </Text>
+        </Content>
+        <Chevron color="gray" />
+      </Wrapper>
+    </Root>
+  </Link>
 );

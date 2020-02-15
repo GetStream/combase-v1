@@ -15,6 +15,7 @@ export { default as ChevronRightIcon } from './icons/chevron_right';
 export { default as CloseChatIcon } from './icons/close_chat';
 export { default as CustomersIcon } from './icons/customers';
 export { default as FilterIcon } from './icons/filter';
+export { default as ThemeIcon } from './icons/theme';
 export { default as InboxIcon } from './icons/inbox';
 export { default as InfoIcon } from './icons/info';
 export { default as KnowledgeBaseIcon } from './icons/knowledge_base';
