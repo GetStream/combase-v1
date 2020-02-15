@@ -30,7 +30,7 @@ export const dark = {
     disabled: colors.gray,
     light_text: baseTheme.colorUtils.fade(colors.white, 0.32),
     shadow: colors.black,
-    border: baseTheme.colorUtils.fade(colors.white, 0.1),
+    border: baseTheme.colorUtils.fade(colors.white, 0.05),
     text: colors.white,
     alt_text: baseTheme.colorUtils.fade(colors.white, 0.8),
     undersheet: baseTheme.colorUtils.fade(colors.black, 0.64)

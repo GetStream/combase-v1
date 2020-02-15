@@ -23,7 +23,7 @@ const Logo = styled.div`
   width: ${({ size }) => size}px;
   height: ${({ size }) => size}px;
   border-radius: 50%;
-  background-color: ${({ theme }) => theme.color.light_gray};
+  background-color: ${({ theme }) => theme.color.border};
   border: 2px solid ${({ theme }) => theme.color.border};
   overflow: hidden;
 

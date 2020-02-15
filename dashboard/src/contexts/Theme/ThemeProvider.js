@@ -5,7 +5,7 @@ import ThemeSwitcherContext from "./index";
 import * as themes from "styles/theme";
 
 export default ({ children }) => {
-  const [currentTheme, setTheme] = useState("dark");
+  const [currentTheme, setTheme] = useState("light");
   const value = useMemo(
     () => ({
       setTheme

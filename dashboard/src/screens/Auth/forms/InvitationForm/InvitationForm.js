@@ -1,6 +1,5 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
-import { useHistory, useLocation } from "react-router-dom";
 import { FieldArray, Formik } from "formik";
 
 // Hooks //
@@ -51,21 +50,21 @@ const initialValues = {
         first: "",
         last: ""
       }
-    },
-    {
-      email: "",
-      name: {
-        first: "",
-        last: ""
-      }
-    },
-    {
-      email: "",
-      name: {
-        first: "",
-        last: ""
-      }
     }
+    // {
+    //   email: "",
+    //   name: {
+    //     first: "",
+    //     last: ""
+    //   }
+    // },
+    // {
+    //   email: "",
+    //   name: {
+    //     first: "",
+    //     last: ""
+    //   }
+    // }
   ]
 };
 
@@ -129,17 +128,12 @@ const renderForm = ({ dirty, isValid, handleSubmit }) => {
 };
 
 export default () => {
-  const [{ user }, { login }] = useAuth(); // eslint-disable-line no-unused-vars
-  const location = useLocation();
-  const history = useHistory();
+  const [{ organization }] = useAuth();
   const handleSubmit = useCallback(
     values => {
-      login(values.email, values.password);
-      if (location.state.next) {
-        history.push(location.state.next);
-      }
+      console.log({ ...values, refs: { organization: organization._id } });
     },
-    [history, location, login]
+    [organization]
   );
   return (
     <Formik

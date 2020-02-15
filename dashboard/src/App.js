@@ -39,16 +39,14 @@ function App() {
     <ThemeProvider>
       <SnackbarProvider>
         <AuthProvider>
-          <>
-            <Router {...{ history }}>
-              <Switch>
-                <OrgProtectedRoute path="/welcome" component={Welcome} />
-                <UnauthedRoute path="/auth" component={Auth} />
-                <AuthedRoute path="/" component={Dashboard} />
-              </Switch>
-            </Router>
-            <GlobalStyles />
-          </>
+          <Router {...{ history }}>
+            <Switch>
+              <OrgProtectedRoute path="/welcome" component={Welcome} />
+              <UnauthedRoute path="/auth" component={Auth} />
+              <AuthedRoute path="/" component={Dashboard} />
+            </Switch>
+          </Router>
+          <GlobalStyles />
         </AuthProvider>
       </SnackbarProvider>
     </ThemeProvider>
