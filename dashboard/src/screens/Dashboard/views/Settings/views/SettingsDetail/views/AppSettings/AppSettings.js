@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+
+// Contexts //
+import ThemeSwitcherContext from "contexts/Theme";
 
 // Components //
 import { ThemeIcon } from "shared/Icons";
@@ -12,6 +15,7 @@ const Root = styled.div`
 `;
 
 const AppSettings = () => {
+  const { isDarkMode, toggleTheme } = useContext(ThemeSwitcherContext);
   return (
     <Root>
       <Container maxWidth={640}>
@@ -21,7 +25,7 @@ const AppSettings = () => {
           title="Dark Mode"
           text="Toggle the UI theme of Combase."
         >
-          <Switch color="text" />
+          <Switch color="text" checked={isDarkMode} onChange={toggleTheme} />
         </SettingsListItem>
       </Container>
     </Root>
