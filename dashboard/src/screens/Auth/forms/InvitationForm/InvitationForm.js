@@ -4,6 +4,7 @@ import { FieldArray, Formik } from "formik";
 
 // Hooks //
 import useAuth from "hooks/useAuth";
+import { useSnackbar } from "contexts/Snackbar";
 
 // Components //
 import IconButton from "shared/IconButton";
@@ -11,6 +12,7 @@ import InputField from "shared/InputField";
 import Button from "shared/Button";
 import { AddCircleIcon, CancelIcon, MailIcon, UserIcon } from "shared/Icons";
 import validationSchema from "./validationSchema";
+import request from "utils/request";
 
 const Root = styled.form`
   & > * + * {
@@ -128,12 +130,42 @@ const renderForm = ({ dirty, isValid, handleSubmit }) => {
 };
 
 export default () => {
-  const [{ organization }] = useAuth();
+  const [{ organization, user }] = useAuth();
+  const { queueSnackbar } = useSnackbar();
   const handleSubmit = useCallback(
-    values => {
-      console.log({ ...values, refs: { organization: organization._id } });
+    async (values, { resetForm }) => {
+      try {
+        const { invitations } = values;
+        await Promise.all(
+          invitations.map(invite => {
+            console.log(invite);
+            return request(
+              "v1/invites",
+              "post",
+              {
+                body: JSON.stringify({
+                  ...invite,
+                  refs: { organization: organization._id },
+                  url: window.location.origin
+                })
+              },
+              user.tokens.api
+            );
+          })
+        );
+        resetForm();
+        queueSnackbar({
+          isError: false,
+          text: "Invitations sent."
+        });
+      } catch (error) {
+        queueSnackbar({
+          isError: true,
+          text: error.message
+        });
+      }
     },
-    [organization]
+    [organization, queueSnackbar, user.tokens.api]
   );
   return (
     <Formik
