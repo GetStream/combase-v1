@@ -27,6 +27,7 @@ export { default as MessageSentIcon } from './icons/sent_status';
 export { default as OrganizationSettingsIcon } from './icons/organization_settings';
 export { default as PasswordIcon } from './icons/password';
 export { default as PluginsIcon } from './icons/plugins';
+export { default as ResponsesIcon } from './icons/responses';
 export { default as RoleIcon } from './icons/role';
 export { default as SearchIcon } from './icons/search';
 export { default as SendIcon } from './icons/send';

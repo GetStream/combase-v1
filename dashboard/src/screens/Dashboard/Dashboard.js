@@ -15,7 +15,6 @@ const renderRoutes = match =>
 
 const Dashboard = ({ match }) => {
   const [{ organization }] = useAuth();
-  console.log(organization);
   return <Switch>{renderRoutes(match)}</Switch>;
 };
 

@@ -11,6 +11,8 @@ import StatusIcon from "../StatusIcon";
 const Root = styled.div`
   flex-direction: row;
   z-index: 0;
+  width: 100%;
+  justify-content: flex-end;
 `;
 
 const StatusCol = styled.div`

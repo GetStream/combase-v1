@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 
 // Router //
-import { Router, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import history from "utils/history";
 
 // Styles //
@@ -43,7 +43,7 @@ function App() {
             <Switch>
               <OrgProtectedRoute path="/welcome" component={Welcome} />
               <UnauthedRoute path="/auth" component={Auth} />
-              <AuthedRoute path="/" component={Dashboard} />
+              <Route path="/" component={Dashboard} />
             </Switch>
           </Router>
           <GlobalStyles />

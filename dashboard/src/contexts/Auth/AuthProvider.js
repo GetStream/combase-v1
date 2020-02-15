@@ -24,7 +24,7 @@ export default ({ children }) => {
   const [organization, setOrg] = useState(
     JSON.parse(localStorage.getItem("organization")) || null
   );
-  console.log("org", organization);
+
   const getOrgs = useCallback(async () => {
     try {
       setLoading(true);

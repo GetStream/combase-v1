@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 // Components //
 import IconButton from 'shared/IconButton';
-import { AttachmentIcon, AddImageIcon } from 'shared/Icons';
+import { AttachmentIcon, ResponsesIcon } from 'shared/Icons';
 
 const Root = styled.div`
     flex-direction: row;
@@ -29,7 +29,7 @@ const Actions = props => {
         <Root>
             <Root>
                 <IconButton color="alt_text" icon={AttachmentIcon} />
-                <IconButton color="alt_text" icon={AddImageIcon} />
+                <IconButton color="alt_text" icon={ResponsesIcon} />
             </Root>
         </Root>
     );
