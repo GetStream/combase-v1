@@ -1,5 +1,5 @@
 import { useCallback, useContext, useEffect, useReducer } from "react";
-import ChatContext from "contexts/Chat";
+import { useChatClient } from "stream-chat-hooks";
 
 // Hooks //
 import useAuth from "hooks/useAuth";
@@ -14,10 +14,9 @@ const initialState = {
 };
 
 export default () => {
-  const client = useContext(ChatContext);
+  const client = useChatClient();
   const [{ user }] = useAuth();
   const [state, dispatch] = useReducer(reducer, initialState);
-
   const getChannels = useCallback(async () => {
     try {
       await dispatch({

@@ -29,6 +29,7 @@ const Root = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
     ${pageCard}
+    margin-left: 375px;
   }
 `;
 
@@ -61,6 +62,7 @@ const MessageThread = ({
 
   const markRead = useCallback(async () => {
     if (channel) {
+      // console.log(channel);
       await channel.markRead();
     }
   }, [channel]);
@@ -83,6 +85,7 @@ const MessageThread = ({
   );
 
   useEffect(() => {
+    console.log("test");
     if (match && match.params.channel) {
       markRead();
     }

@@ -25,7 +25,7 @@ const AppSettings = () => {
           title="Dark Mode"
           text="Toggle the UI theme of Combase."
         >
-          <Switch color="text" checked={isDarkMode} onChange={toggleTheme} />
+          <Switch checked={isDarkMode} onChange={toggleTheme} />
         </SettingsListItem>
       </Container>
     </Root>

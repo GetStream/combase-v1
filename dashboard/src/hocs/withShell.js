@@ -1,15 +1,14 @@
 import React, { useMemo, useState } from "react";
 import styled from "styled-components";
+import { ChatContext, useInitClient } from "stream-chat-hooks";
 
 // Hooks //
 import useAuth from "hooks/useAuth";
-import useChatClient from "hooks/useChatClient";
 import useConfig from "hooks/useConfig";
 import useMedia from "hooks/useMedia";
 
 // Context //
 import ShellContext from "contexts/Shell";
-import ChatContext from "contexts/Chat";
 
 // Components //
 import Helmet from "components/Shell/Helmet";
@@ -23,11 +22,14 @@ const Root = styled.div`
 `;
 
 export default (WrappedComponent, routes = []) => props => {
+  const [drawerOpen, toggleDrawer] = useState(false);
+  const isMobile = useMedia("sm");
+
   const [config, { loading, error }] = useConfig();
   const [{ user }] = useAuth();
-  const [drawerOpen, toggleDrawer] = useState(false);
-  const chatClient = useChatClient(user, config);
-  const isMobile = useMedia("sm");
+
+  const chatClient = useInitClient(user, config.stream);
+
   const value = useMemo(
     () => ({
       config,
