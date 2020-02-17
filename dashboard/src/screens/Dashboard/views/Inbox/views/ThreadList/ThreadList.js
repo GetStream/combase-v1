@@ -5,7 +5,10 @@ import styled from "styled-components";
 import LayoutUtil from "./LayoutUtil";
 
 // Context //
-import ChannelsContext from "shared/Chat/contexts/Channels";
+import { ChannelsContext } from "stream-chat-hooks";
+
+// Hooks//
+import useChats from "hooks/useChats";
 
 // Components //
 import { ArchiveIcon, FilterIcon, InboxIcon } from "shared/Icons";
@@ -48,6 +51,8 @@ const renderRow = ({ id, data, partner }, index) => {
 
 export default props => {
   const [channels, { error }] = useContext(ChannelsContext);
+  const [chats] = useChats();
+  console.log(chats);
   const [{ width }, onResize] = useState(initialState);
   const [layoutProvider, setLayoutProvider] = useState(
     LayoutUtil.getLayoutProvider(width, 80)

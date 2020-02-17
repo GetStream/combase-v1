@@ -85,7 +85,6 @@ const MessageThread = ({
   );
 
   useEffect(() => {
-    console.log("test");
     if (match && match.params.channel) {
       markRead();
     }

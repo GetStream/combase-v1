@@ -12,14 +12,16 @@ exports.destroy = async (req, res) => {
 			});
 		}
 
-		const chat = await Chat.updateOne(
-			{ _id: data.chat },
-			{ $set: { status: 'Archived' } }
-		);
+		// const chat = await Chat.updateOne(
+		// 	{ _id: data.chat },
+		// 	{ $push: { status: { type: 'Archived', timestamp: Date.now() } } }
+		// );
+
+		const chat = await Chat.findByIdAndRemove(data.chat);
 
 		await AddToWebhookChatQueue('removed', chat);
 
-		res.status(200).json(chat);
+		res.sendStatus(204);
 	} catch (error) {
 		console.error(error);
 		res.status(500).json({ error: error.message });

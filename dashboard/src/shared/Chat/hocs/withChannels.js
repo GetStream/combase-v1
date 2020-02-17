@@ -1,10 +1,7 @@
 import React from "react";
 
-// Contexts //
-import ChannelsContext from "../contexts/Channels";
-
 // Hooks //
-import { useChannels } from "stream-chat-hooks";
+import { useChannels, ChannelsContext } from "stream-chat-hooks";
 
 export default WrappedComponent => props => {
   const channels = useChannels();
