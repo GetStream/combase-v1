@@ -37,6 +37,5 @@ export default () => {
   useEffect(() => {
     getChats();
   }, [getChats]);
-  console.log(chats);
   return [chats];
 };
