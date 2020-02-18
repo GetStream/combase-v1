@@ -16,6 +16,7 @@ const queueArray = [
 	WebhookOrganizationQueue,
 	WebhookUserQueue
 ];
+
 const TTL = 24 * 60 * 60 * 1000; // 1 day
 
 const queueCompletedCleanup = async (queue) => queue.clean(TTL, 'completed');
@@ -61,10 +62,10 @@ start();
 async function shutdown(signal) {
 	console.info(`Worker Received ${signal}. Shutting down.`);
 
-	Promise.all(queueArray.map(queue => queue.close()))
+	Promise.all(queueArray.map((queue) => queue.close()))
 		.then(closeRedisConnections)
 		.then(() => process.exit(0))
-		.catch(err => {
+		.catch((err) => {
 			console.error(`Failure during worker shutdown: ${err.message}`);
 			process.exit(1);
 		});
