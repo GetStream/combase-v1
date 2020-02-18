@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 
 // Router //
-import { Router, Route, Switch } from "react-router-dom";
+import { Router, Switch } from "react-router-dom";
 import history from "utils/history";
 
 // Styles //

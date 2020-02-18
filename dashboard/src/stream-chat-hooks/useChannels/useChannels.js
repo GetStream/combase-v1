@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useReducer } from "react";
+import { useCallback, useEffect, useReducer } from "react";
 import { useChatClient } from "stream-chat-hooks";
 
 // Hooks //

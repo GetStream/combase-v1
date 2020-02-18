@@ -4,6 +4,7 @@ import { useCurrentChannel } from "stream-chat-hooks";
 
 export default (channelId, active) => {
   const channel = useCurrentChannel(channelId);
+
   const [unreadCount, setUnreadCount] = useState(0);
   const [latestMessage, setLatestMessage] = useState(
     channel.state.messages[channel.state.messages.length - 1]

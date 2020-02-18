@@ -1,5 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from "react";
-import AuthContext from "contexts/Auth";
+import { useCallback, useEffect, useState } from "react";
 
 // Hooks //
 import useAuth from "hooks/useAuth";

@@ -15,27 +15,39 @@ export default () => {
   // and progressively load the channels in at runtime.
 
   const [{ user }] = useAuth();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [channels] = useChannels();
-  const [chats, setChats] = useState([]);
+  const [chats, setChats] = useState(
+    JSON.stringify(localStorage.getItem("chat")) || null
+  );
+
   const getChats = useCallback(async () => {
-    try {
-      const data = await request(
-        `v1/chats?refs.agents.assignee.agent._id=${user._id}`,
-        "get",
-        null,
-        user.tokens.api
-      );
+    if (channels.length) {
+      try {
+        setLoading(true);
+        const data = await request(
+          `v1/chats?refs.agents.assignee.agent._id=${user._id}`,
+          "get",
+          null,
+          user.tokens.api
+        );
 
-      const chatData = data.map(chat => ({
-        ...chat,
-        channel: channels.find(({ id }) => id === chat._id)
-      }));
+        const chatData = data.map(chat => ({
+          ...chat,
+          channel: channels.find(({ id }) => id === chat._id)
+        }));
 
-      setChats(chatData);
-    } catch (error) {}
+        setChats(chatData);
+        setLoading(false);
+      } catch (error) {
+        setError(true);
+        setLoading(false);
+      }
+    }
   }, [user._id, user.tokens.api, channels]);
   useEffect(() => {
     getChats();
   }, [getChats]);
-  return [chats];
+  return [chats, { loading, error }];
 };

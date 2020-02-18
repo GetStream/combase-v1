@@ -8,6 +8,7 @@ export default (state, { type, ...action }) => {
         ...state,
         ...action,
         messages: sortBy(action.messages, ({ created_at }) => -created_at),
+        noMoreMessages: action.messages.length < state.limit,
         loading: false
       };
     case "ERROR":

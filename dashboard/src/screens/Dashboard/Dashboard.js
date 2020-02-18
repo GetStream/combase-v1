@@ -3,7 +3,6 @@ import { Route, Switch } from "react-router-dom";
 
 // Data //
 import routes from "./routes";
-import useAuth from "hooks/useAuth";
 
 // HOCs //
 import withShell from "hocs/withShell";
@@ -14,7 +13,6 @@ const renderRoutes = match =>
   ));
 
 const Dashboard = ({ match }) => {
-  const [{ organization }] = useAuth();
   return <Switch>{renderRoutes(match)}</Switch>;
 };
 

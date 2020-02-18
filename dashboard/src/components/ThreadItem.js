@@ -44,7 +44,9 @@ const Row = styled.div`
 
 const LatestMessage = styled(Text)``;
 
-const ThreadItemInner = ({ data, id, match, partner, statusBorder }) => {
+const ThreadItemInner = props => {
+  const { data, id, match, partner, statusBorder } = props;
+
   const active = !!match;
   const [unread, latestMessage] = useChannelListener(id, active);
   return (

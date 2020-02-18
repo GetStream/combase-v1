@@ -13,6 +13,7 @@ import useChats from "hooks/useChats";
 // Components //
 import { ArchiveIcon, FilterIcon, InboxIcon } from "shared/Icons";
 import EmptyState from "shared/EmptyState";
+import LoadingState from "shared/LoadingState";
 import IconButton from "shared/IconButton";
 import ListHeader from "components/ListHeader";
 import ListView, { ContextHelper } from "components/ListView";
@@ -45,14 +46,12 @@ const renderListHeader = props => (
   </ListHeader>
 );
 
-const renderRow = ({ id, data, partner }, index) => {
+const renderRow = ({ channel: { id, data, partner } }, index) => {
   return <ThreadItem {...{ id, data, partner }} />;
 };
 
 export default props => {
-  const [channels, { error }] = useContext(ChannelsContext);
-  const [chats] = useChats();
-  console.log(chats);
+  const [chats, { loading, error }] = useChats();
   const [{ width }, onResize] = useState(initialState);
   const [layoutProvider, setLayoutProvider] = useState(
     LayoutUtil.getLayoutProvider(width, 80)
@@ -65,7 +64,9 @@ export default props => {
 
   return (
     <Root>
-      {!channels.length && error ? (
+      {loading || !chats || !chats.length ? (
+        <LoadingState />
+      ) : error ? (
         <EmptyState text="Error loading threads" />
       ) : (
         <ListView
@@ -76,10 +77,10 @@ export default props => {
             renderRow,
             style
           }}
-          data={channels}
+          data={chats}
           ListHeaderComponent={renderListHeader}
           ListEmptyComponent={renderListEmpty}
-          rowCount={channels.length}
+          rowCount={chats.length}
           showEmptyHeader
         />
       )}
