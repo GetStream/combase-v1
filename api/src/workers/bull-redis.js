@@ -7,16 +7,16 @@ const defaults = [];
 const closeRedisConnections = () => {
 	client.disconnect();
 	subscriber.disconnect();
-	defaults.forEach(c => c.disconnect());
+	defaults.forEach((c) => c.disconnect());
 };
 
-const createClient = type => {
+const createClient = (type) => {
 	if (type === 'client') return client;
 	if (type === 'subscriber') return subscriber;
 
-	const newConnection = new Redis(process.env.REDIS_URL);
-	defaults.push(newConnection);
-	return newConnection;
+	const connection = new Redis(process.env.REDIS_URL);
+	defaults.push(connection);
+	return connection;
 };
 
 export { createClient, closeRedisConnections };
