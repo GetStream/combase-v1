@@ -2,12 +2,21 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import moment from "moment";
+
+// Hooks //
 import usePluginEndpoint from "hooks/usePluginEndpoint";
+import useLiveMoment from "hooks/useLiveMoment";
 
 // Components //
 import Card from "shared/Card";
 import Text from "shared/Text";
-import { JobTitleIcon, LinkIcon, LocationIcon, OrganizationIcon, TimeIcon } from "shared/Icons";
+import {
+  JobTitleIcon,
+  LinkIcon,
+  LocationIcon,
+  OrganizationIcon,
+  TimeIcon
+} from "shared/Icons";
 import ListItem from "shared/ListItem";
 
 const Root = styled(Card)``;
@@ -30,6 +39,8 @@ const ClearbitWidget = props => {
     props
   );
 
+  const time = useLiveMoment();
+
   if (loading && !data) {
     return null;
   }
@@ -47,14 +58,16 @@ const ClearbitWidget = props => {
           title="URL"
           value={`https://${data.employment.domain}`}
         />
-        <ListItem icon={JobTitleIcon} title="Title" value={data.employment.title} />
+        <ListItem
+          icon={JobTitleIcon}
+          title="Title"
+          value={data.employment.title}
+        />
         <ListItem icon={LocationIcon} title="Location" value={data.location} />
         <ListItem
           icon={TimeIcon}
           title="Current Time"
-          value={moment()
-            .utcOffset(data.utcOffset)
-            .format("hh:mma")}
+          value={time.utcOffset(data.utcOffset).format("hh:mma")}
         />
       </Content>
       <Credit>
