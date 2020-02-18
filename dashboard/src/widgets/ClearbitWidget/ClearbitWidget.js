@@ -1,12 +1,69 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import moment from "moment";
+import usePluginEndpoint from "hooks/usePluginEndpoint";
 
 // Components //
-const Root = styled.div``;
+import Card from "shared/Card";
+import Text from "shared/Text";
+import { JobTitleIcon, LinkIcon, LocationIcon, OrganizationIcon, TimeIcon } from "shared/Icons";
+import ListItem from "shared/ListItem";
 
-const ClearbitWidget = ({ email }) => {
-  return <Root>Clearbit Widget {email}</Root>;
+const Root = styled(Card)``;
+
+const Content = styled.div`
+  padding: 8px 0px;
+`;
+
+const Credit = styled.div`
+  background-color: ${({ theme }) => theme.color.black};
+  padding: 8px;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ClearbitWidget = props => {
+  const [data, { loading, error, refetch }] = usePluginEndpoint(
+    "clearbit",
+    "enrich",
+    props
+  );
+
+  if (loading && !data) {
+    return null;
+  }
+
+  return (
+    <Root>
+      <Content>
+        <ListItem
+          icon={OrganizationIcon}
+          title="Company"
+          value={data.employment.name}
+        />
+        <ListItem
+          icon={LinkIcon}
+          title="URL"
+          value={`https://${data.employment.domain}`}
+        />
+        <ListItem icon={JobTitleIcon} title="Title" value={data.employment.title} />
+        <ListItem icon={LocationIcon} title="Location" value={data.location} />
+        <ListItem
+          icon={TimeIcon}
+          title="Current Time"
+          value={moment()
+            .utcOffset(data.utcOffset)
+            .format("hh:mma")}
+        />
+      </Content>
+      <Credit>
+        <Text color="white" size={12}>
+          Powered By Clearbit
+        </Text>
+      </Credit>
+    </Root>
+  );
 };
 
 ClearbitWidget.propTypes = {
