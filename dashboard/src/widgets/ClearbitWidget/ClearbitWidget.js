@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import moment from "moment";
 
 // Hooks //
 import usePluginEndpoint from "hooks/usePluginEndpoint";
@@ -33,12 +32,7 @@ const Credit = styled.div`
 `;
 
 const ClearbitWidget = props => {
-  const [data, { loading, error, refetch }] = usePluginEndpoint(
-    "clearbit",
-    "enrich",
-    props
-  );
-
+  const [data, { loading }] = usePluginEndpoint("clearbit", "enrich", props);
   const time = useLiveMoment();
 
   if (loading && !data) {

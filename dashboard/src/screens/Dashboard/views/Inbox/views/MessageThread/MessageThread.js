@@ -30,6 +30,7 @@ const Root = styled.div`
   @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
     ${pageCard}
     margin-left: 375px;
+    padding-right: ${({ drawerOpen }) => (drawerOpen ? 376 : 0)}px;
   }
 `;
 
@@ -39,7 +40,6 @@ const EmptyRoot = styled(Root)`
 `;
 
 const ChatWrapper = styled.div`
-  margin-right: ${({ drawerOpen }) => (drawerOpen ? 376 : 0)}px;
   flex: 1;
 `;
 
@@ -105,39 +105,34 @@ const MessageThread = ({
     );
   }
 
-  return (
-    <Root>
-      {loading ? (
-        <LoadingState key="loading" />
-      ) : (
-        <Route
-          path={`${match.url}`}
-          children={({ match: { isExact } }) => {
-            const drawerOpen = !isExact;
-            return (
-              <>
-                <ChatWrapper {...{ drawerOpen }}>
-                  <Chat
-                    showTypingIndicator={isPartnerTyping}
-                    onLoadMore={loadMoreMessages}
-                    extendedState={{ drawerOpen }}
-                    {...{
-                      headerActions,
-                      onSend,
-                      messages,
-                      partner,
-                      read,
-                      user
-                    }}
-                  />
-                </ChatWrapper>
-                <SideDrawer {...{ match }} open={drawerOpen} />
-              </>
-            );
-          }}
-        />
-      )}
-    </Root>
+  return loading ? (
+    <LoadingState key="loading" />
+  ) : (
+    <Route
+      path={`${match.url}`}
+      children={({ match: { isExact } }) => {
+        const drawerOpen = !isExact;
+        return (
+          <Root {...{ drawerOpen }}>
+            <ChatWrapper>
+              <Chat
+                showTypingIndicator={isPartnerTyping}
+                onLoadMore={loadMoreMessages}
+                {...{
+                  headerActions,
+                  onSend,
+                  messages,
+                  partner,
+                  read,
+                  user
+                }}
+              />
+            </ChatWrapper>
+            <SideDrawer {...{ match }} open={drawerOpen} />
+          </Root>
+        );
+      }}
+    />
   );
 };
 

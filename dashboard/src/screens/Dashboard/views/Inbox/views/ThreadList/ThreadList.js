@@ -1,11 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 // Utils //
 import LayoutUtil from "./LayoutUtil";
-
-// Context //
-import { ChannelsContext } from "stream-chat-hooks";
 
 // Hooks//
 import useChats from "hooks/useChats";
