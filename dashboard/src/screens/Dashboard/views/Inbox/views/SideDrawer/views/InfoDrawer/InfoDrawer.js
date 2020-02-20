@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 // Widgets //
 import ClearbitWidget from "widgets/ClearbitWidget";
+import EmailVerificationWidget from "widgets/BlazeVerify/EmailVerificationWidget";
 
 // Components //
 import Avatar from "shared/Avatar";
@@ -31,16 +32,17 @@ export default () => {
   return (
     <Root>
       <Header>
-        <Avatar size={136} name="Luke" />
+        <Avatar size={136} name="Nick" />
         <Text size={24} weight="600">
-          Luke Smetham
+          Nick Parsons
         </Text>
         <Text size={12} faded weight="400">
           Active Now
         </Text>
       </Header>
       <Content>
-        <ClearbitWidget email="luke@getstream.io" />
+        <ClearbitWidget email="nick@getstream.io" />
+        <EmailVerificationWidget email="nick@getstream.io" />
       </Content>
     </Root>
   );

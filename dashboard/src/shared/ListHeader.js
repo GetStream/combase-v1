@@ -9,8 +9,8 @@ import useMedia from "hooks/useMedia";
 // Components //
 import MenuButton from "shared/MenuButton";
 import Text from "shared/Text";
-import ActionsGroup from 'shared/ActionsGroup';
-import SearchInput from 'shared/SearchInput';
+import ActionsGroup from "shared/ActionsGroup";
+import SearchInput from "shared/SearchInput";
 
 const Root = styled(Animated.div)`
   position: sticky;
@@ -71,7 +71,13 @@ const getShadowStyle = scrollAnim => {
   };
 };
 
-const ListHeader = ({ children, icon: Icon, scrollAnim, showSearch, title }) => {
+const ListHeader = ({
+  children,
+  icon: Icon,
+  scrollAnim,
+  showSearch,
+  title
+}) => {
   const style = getShadowStyle(scrollAnim);
   const isMobile = useMedia("sm");
   return (
@@ -84,9 +90,7 @@ const ListHeader = ({ children, icon: Icon, scrollAnim, showSearch, title }) => 
             {title}
           </Text>
         </Title>
-        <ActionsGroup>
-          {children}
-        </ActionsGroup>
+        {children ? <ActionsGroup>{children}</ActionsGroup> : null}
       </TitleWrapper>
       {showSearch ? (
         <SearchWrapper>

@@ -12,7 +12,7 @@ import { ArchiveIcon, FilterIcon, InboxIcon } from "shared/Icons";
 import EmptyState from "shared/EmptyState";
 import LoadingState from "shared/LoadingState";
 import IconButton from "shared/IconButton";
-import ListHeader from "components/ListHeader";
+import ListHeader from "shared/ListHeader";
 import ListView, { ContextHelper } from "components/ListView";
 import ThreadItem from "components/ThreadItem";
 

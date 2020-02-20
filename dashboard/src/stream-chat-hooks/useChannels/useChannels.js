@@ -9,7 +9,7 @@ import reducer from "./reducer";
 const initialState = {
   channels: [],
   error: false,
-  loading: false,
+  loading: true,
   offset: 0
 };
 

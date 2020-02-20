@@ -8,7 +8,7 @@ import {
   SettingsIcon,
   UserSettingsIcon
 } from "shared/Icons";
-import ListHeader from "components/ListHeader";
+import ListHeader from "shared/ListHeader";
 import SettingsItem from "./components/SettingsItem";
 
 const Root = styled.div`
