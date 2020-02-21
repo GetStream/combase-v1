@@ -23,6 +23,7 @@ const Root = styled.div`
 
 export default (WrappedComponent, routes = []) => props => {
   const [drawerOpen, toggleDrawer] = useState(false);
+  const [soundsEnabled, toggleSounds] = useState(true);
   const isMobile = useMedia("sm");
 
   const [config, { loading, error }] = useConfig();
@@ -33,12 +34,16 @@ export default (WrappedComponent, routes = []) => props => {
   const value = useMemo(
     () => ({
       config,
+      sounds: {
+        enabled: soundsEnabled,
+        toggle: () => toggleSounds(!soundsEnabled),
+      },
       drawer: {
         open: drawerOpen,
         toggle: () => toggleDrawer(!drawerOpen)
       }
     }),
-    [config, drawerOpen, toggleDrawer]
+    [config, drawerOpen, soundsEnabled, toggleDrawer, toggleSounds]
   );
 
   if (loading || !chatClient) {
@@ -62,8 +67,8 @@ export default (WrappedComponent, routes = []) => props => {
               onClose={value.drawer.toggle}
             />
           ) : (
-            <Sidenav {...props} {...{ routes }} />
-          )}
+              <Sidenav {...props} {...{ routes }} />
+            )}
           <WrappedComponent {...props} />
           <Helmet />
         </Root>

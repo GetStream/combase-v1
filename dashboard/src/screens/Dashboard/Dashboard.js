@@ -4,6 +4,9 @@ import { Route, Switch } from "react-router-dom";
 // Data //
 import routes from "./routes";
 
+// Hooks //
+import useNotificationSounds from 'hooks/useNotificationSounds';
+
 // HOCs //
 import withShell from "hocs/withShell";
 
@@ -13,6 +16,7 @@ const renderRoutes = match =>
   ));
 
 const Dashboard = ({ match }) => {
+  useNotificationSounds();
   return <Switch>{renderRoutes(match)}</Switch>;
 };
 

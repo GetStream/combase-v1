@@ -36,6 +36,7 @@ export { default as RoleIcon } from './icons/role';
 export { default as SearchIcon } from './icons/search';
 export { default as SendIcon } from './icons/send';
 export { default as SettingsIcon } from './icons/settings';
+export { default as SoundsIcon } from './icons/sounds';
 export { default as TimeIcon } from './icons/time';
 export { default as TransferIcon } from './icons/transfer';
 export { default as UnarchiveIcon } from './icons/unarchive';
