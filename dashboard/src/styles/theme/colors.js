@@ -1,6 +1,7 @@
 // TODO: need more colors
 // for dark theme.
 export default {
+    yellow: "#FFD47D",
     blue: '#4D7CFE',
     red: '#FF5B5B',
     green: '#43FC99',

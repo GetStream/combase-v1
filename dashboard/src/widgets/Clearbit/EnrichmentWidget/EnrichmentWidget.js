@@ -25,10 +25,24 @@ const Content = styled.div`
 `;
 
 const Credit = styled.div`
+  border-top: 1px solid ${({ theme }) => theme.color.border};
   background-color: ${({ theme }) => theme.color.black};
   padding: 8px;
   justify-content: center;
   align-items: center;
+
+  & > ${Text} {
+    display: flex;
+    align-items: center;
+
+    & img {
+      margin: 0px 8px;
+      width: 16px;
+      height: 16px;
+      background-color: ${({ theme }) => theme.color.white};
+      border-radius: 50%;
+    }
+  }
 `;
 
 const ClearbitWidget = props => {
@@ -66,7 +80,7 @@ const ClearbitWidget = props => {
       </Content>
       <Credit>
         <Text color="white" size={12}>
-          Powered By Clearbit
+          Powered by <img src="https://logo.clearbit.com/clearbit.com" alt="Clearbit" /> Clearbit
         </Text>
       </Credit>
     </Root>

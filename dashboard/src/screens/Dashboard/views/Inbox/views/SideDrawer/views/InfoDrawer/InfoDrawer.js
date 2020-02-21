@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 // Widgets //
-import ClearbitWidget from "widgets/ClearbitWidget";
+import ClearbitWidget from "widgets/Clearbit/EnrichmentWidget";
 import EmailVerificationWidget from "widgets/BlazeVerify/EmailVerificationWidget";
 
 // Components //
@@ -10,7 +10,10 @@ import Avatar from "shared/Avatar";
 import Container from "shared/Container";
 import Text from "shared/Text";
 
-const Root = styled.div``;
+const Root = styled.div`
+  overflow-y: scroll;
+  padding-bottom: 40px;
+`;
 
 const Header = styled.div`
   padding: 64px 16px;
