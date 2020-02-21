@@ -5,7 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import routes from "./routes";
 
 // Hooks //
-import useNotificationSounds from 'hooks/useNotificationSounds';
+import useNotifications from 'hooks/useNotifications';
 
 // HOCs //
 import withShell from "hocs/withShell";
@@ -16,7 +16,7 @@ const renderRoutes = match =>
   ));
 
 const Dashboard = ({ match }) => {
-  useNotificationSounds();
+  useNotifications(); // Triggers Notification Sounds & Snackbars.
   return <Switch>{renderRoutes(match)}</Switch>;
 };
 
