@@ -15,7 +15,7 @@ export default () => {
 
     useEffect(() => {
         if (sounds.enabled) {
-            client.on('message.new', handleNewMessage);
+            client.on('notification.message_new', handleNewMessage);
         }
         return () => sounds.enabled ? client.off('message.new', handleNewMessage) : null;
     }, [client, handleNewMessage, sounds.enabled])
