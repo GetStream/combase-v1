@@ -13,12 +13,6 @@ import ListItem from 'shared/ListItem';
 import Text from 'shared/Text';
 import IconLabel from 'shared/IconLabel';
 
-const Root = styled(Card)`
-  &:nth-child(2) {
-    margin-top: 16px;
-  }
-`;
-
 const Header = styled.div`
   padding: 16px;
   flex: 1;
@@ -77,7 +71,7 @@ const EmailVerificationWidget = props => {
     return null;
   }
   return (
-    <Root flat border>
+    <Card flat border>
       <Header>
         <CircularProgress animated color={counterColor} value={data.score || 0} size={104} />
         <Text color="alt_text">Validation Score</Text>
@@ -91,7 +85,7 @@ const EmailVerificationWidget = props => {
           Powered by <img alt="Blaze Verify" src="https://logo.clearbit.com/blazeverify.com" /> Blaze Verify
         </Text>
       </Credit>
-    </Root>
+    </Card>
   );
 };
 

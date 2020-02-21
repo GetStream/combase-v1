@@ -31,7 +31,11 @@ const Header = styled.div`
   }
 `;
 
-const Content = styled(Container)``;
+const Content = styled(Container)`
+  & > * + * {
+    margin-top: 16px;
+  } 
+`;
 
 // TODO: Use live email of user. Need to set as custom data
 // on their stream user.
@@ -49,8 +53,8 @@ const InfoDrawer = ({ partner }) => {
         </Text>
       </Header>
       <Content>
-        <ClearbitWidget email="nick@getstream.io" />
         <EmailVerificationWidget email="nick@getstream.io" />
+        <ClearbitWidget email="nick@getstream.io" />
       </Content>
     </Root>
   );

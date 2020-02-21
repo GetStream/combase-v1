@@ -21,9 +21,7 @@ const CircularProgress = ({ animated, color, value, theme, ...props }) => {
     const [animate, setAnimate] = useState(false);
     useEffect(() => {
         if (animated) {
-            setTimeout(() => {
-                setAnimate(true);
-            }, 1000);
+            setAnimate(true);
         }
     }, [animate, animated]);
     const { value: anim } = useSpring({ value: animated ? animate ? 1 : 0 : 1, config: { mass: 8, tension: 500, friction: 80 } });
