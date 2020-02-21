@@ -49,7 +49,6 @@ const InfoDrawer = ({ partner }) => {
       return Object.values(plugins).filter(({ enabled }) => enabled).map(({ name }) => name);
     }
   }, [plugins]);
-  console.log(enabledWidgets);
   return (
     <Root>
       <Header>
