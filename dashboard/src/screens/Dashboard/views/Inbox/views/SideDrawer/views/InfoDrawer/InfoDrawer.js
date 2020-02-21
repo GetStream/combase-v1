@@ -60,7 +60,7 @@ const InfoDrawer = ({ partner }) => {
           {partner.online ? 'Active Now' : `Last active: ${moment(partner.last_active).fromNow()}`}
         </Text>
       </Header>
-      <Content>
+      <Content key={partner.id}>
         {enabledWidgets.includes('blaze_verify') ? <EmailVerificationWidget email="nick@getstream.io" /> : null}
         {enabledWidgets.includes('clearbit') ? <ClearbitWidget email="nick@getstream.io" /> : null}
       </Content>
