@@ -1,7 +1,7 @@
 {
 	"name": "api",
 	"version": "1.0.0",
-	"description": "API for Comda",
+	"description": "API for https://comba.se",
 	"main": "dist/index.js",
 	"repository": "https://github.com/GetStream/comda/tree/master/api",
 	"engines": {
@@ -13,7 +13,8 @@
 		"build": "babel src --out-dir dist",
 		"start": "pm2-runtime start ecosystem.prod.config.js",
 		"dev": "pm2 start ecosystem.dev.config.js && pm2 log",
-		"lint": "yarn prettier --write --check --config ./.prettierrc \"**/*.js\" && eslint --fix ./src"
+		"lint": "yarn prettier --write --check --config ./.prettierrc \"**/*.js\" && eslint --fix ./src",
+		"docs": "swagger-jsdoc -d swaggerDef.js src/controllers/**/*.js && swagger-markdown -i swagger.json -o docs/API.md"
 	},
 	"author": "Nick Parsons <nparsons08@gmail.com>",
 	"license": "BSD-3-Clause",
@@ -52,7 +53,7 @@
 		"@babel/preset-env": "^7.8.4",
 		"axios": "^0.19.2",
 		"axios-retry": "^3.1.2",
-		"bcrypt": "^3.0.8",
+		"bcrypt": "^4.0.0",
 		"body-parser": "^1.19.0",
 		"bull": "^3.13.0",
 		"clearbit": "^1.3.4",
@@ -63,7 +64,7 @@
 		"dotenv": "^8.2.0",
 		"express": "^4.17.1",
 		"helmet": "^3.21.2",
-		"ioredis": "^4.14.1",
+		"ioredis": "^4.16.0",
 		"jsonwebtoken": "^8.5.1",
 		"lodash.find": "^4.6.0",
 		"moment": "^2.24.0",
@@ -80,6 +81,7 @@
 		"pm2": "^4.2.3",
 		"shortid": "^2.2.15",
 		"stream-chat": "^1.3.3",
+		"swagger-jsdoc": "^3.5.0",
 		"uuid": "^3.4.0"
 	},
 	"devDependencies": {
@@ -94,6 +96,7 @@
 		"eslint-plugin-react": "^7.18.3",
 		"eslint-plugin-react-hooks": "^2.4.0",
 		"husky": "^4.2.3",
-		"prettier": "^1.19.1"
+		"prettier": "^1.19.1",
+		"swagger-markdown": "^1.2.0"
 	}
 }

@@ -1,0 +1,80 @@
+{
+  "info": {
+    "title": "Combase API",
+    "version": "1.0.0",
+    "description": "API for https://comba.se"
+  },
+  "basePath": "/src",
+  "swagger": "2.0",
+  "paths": {
+    "DELETE /v1/agents/:id": {
+      "delete": {
+        "description": "Deletes an agent",
+        "tags": [
+          "Agents"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "controllers/v1/agent/destroy.action.js",
+            "name": "ID",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true,
+            "description": "ID of agent to delete"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response"
+          }
+        }
+      }
+    },
+    "GET /v1/agents:id": {
+      "get": {
+        "description": "Get a specific agent",
+        "tags": [
+          "Agents"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "controllers/v1/agent/get.action.js",
+            "name": "ID",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true,
+            "description": "UUID of the agent to retrieve"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON representation of the agent",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {},
+  "responses": {},
+  "parameters": {},
+  "securityDefinitions": {},
+  "tags": []
+}
