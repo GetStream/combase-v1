@@ -7,40 +7,37 @@ import Agent from 'models/agent';
 
 exports.reset = async (req, res) => {
 	try {
-		const data = req.body;
+		const { data } = req.body;
 
 		const transport = nodemailer.createTransport(
 			mailgun({
 				auth: {
 					api_key: process.env.MAILGUN_API_KEY,
-					domain: process.env.MAILGUN_DOMAIN,
-				},
+					domain: process.env.MAILGUN_DOMAIN
+				}
 			})
 		);
 
-		const agent = await Agent.findById(data.agent).lean();
-		const organization = await Organization.findById(
-			agent.refs.organization
-		).lean();
+		const agent = await Agent.findById(data.agent);
 
 		const password = shortid.generate();
-
 		await Agent.findOneAndUpdate({ _id: agent._id }, { password });
 
 		await transport.sendMail({
-			from: organization.email.address,
+			from: agent.refs.organization.email.address,
 			to: agent.email,
-			subject: `${organization.name} – Password Reset`,
+			subject: `${agent.refs.organization.name} – Password Reset`,
 			html: `
                 <p>Hi ${agent.name.first},</p>
                 <p>Your temporary password is: <strong>${password}</strong>. Please use this to temporary password to login to your account.</p>
-                <p>If you have issues with your password reset or would like to reach out, shoot us an email at <a href="mailto="${organization.email.address}" target="_blank">${organization.email.address}</a>.</p>
-                <p>Team ${organization.name}<br />
-                    <a href="mailto=${organization.email.address}" target="_blank">
-                        ${organization.email.address}
+                <p>If you have issues with your password reset or would like to reach out, shoot us an email at <a href="mailto="${agent
+					.refs.organization.email.address}" target="_blank">${agent.refs.organization.email.address}</a>.</p>
+                <p>Team ${agent.refs.organization.name}<br />
+                    <a href="mailto=${agent.refs.organization.email.address}" target="_blank">
+                        ${agent.refs.organization.email.address}
                     </a>
                 </p>
-            `,
+            `
 		});
 
 		res.sendStatus(200);
