@@ -17,7 +17,7 @@ import SideDrawer from "../SideDrawer";
 // Components //
 import LoadingState from "shared/LoadingState";
 import Chat from "shared/Chat";
-import { ChatIcon, CloseChatIcon, InfoIcon, TransferIcon } from "shared/Icons";
+import { ChatIcon, CloseIcon, CloseChatIcon, InfoIcon, TransferIcon } from "shared/Icons";
 import IconButton from "shared/IconButton";
 import EmptyState from "shared/EmptyState";
 
@@ -40,7 +40,7 @@ const EmptyRoot = styled(Root)`
 `;
 
 const ChatWrapper = styled.div`
-  flex: 1;
+  width: 100%;
 `;
 
 // const dummyMessages = [
@@ -75,11 +75,15 @@ const MessageThread = ({
         icon={TransferIcon}
         onClick={() => history.push(`${match.url}/transfer`)}
       />,
-      <IconButton
-        color="alt_text"
-        icon={InfoIcon}
-        onClick={() => history.push(`${match.url}/info`)}
-      />
+      <Route path={`${match.url}/info`} children={props => {
+        return (
+          <IconButton
+            color={match.isExact ? "alt_text" : 'red'}
+            icon={match.isExact ? InfoIcon : CloseIcon}
+            onClick={() => match.isExact ? history.push(`${match.url}/info`) : history.goBack()}
+          />
+        )
+      }} />
     ],
     [history, match]
   );
@@ -113,23 +117,25 @@ const MessageThread = ({
         children={({ match: { isExact } }) => {
           const drawerOpen = !isExact;
           return (
-            <Root {...{ drawerOpen }}>
-              <ChatWrapper>
-                <Chat
-                  showTypingIndicator={isPartnerTyping}
-                  onLoadMore={loadMoreMessages}
-                  {...{
-                    headerActions,
-                    onSend,
-                    messages,
-                    partner,
-                    read,
-                    user
-                  }}
-                />
-              </ChatWrapper>
+            <>
+              <Root {...{ drawerOpen }}>
+                <ChatWrapper>
+                  <Chat
+                    showTypingIndicator={isPartnerTyping}
+                    onLoadMore={loadMoreMessages}
+                    {...{
+                      headerActions,
+                      onSend,
+                      messages,
+                      partner,
+                      read,
+                      user
+                    }}
+                  />
+                </ChatWrapper>
+              </Root>
               <SideDrawer {...{ match, partner }} open={drawerOpen} />
-            </Root>
+            </>
           );
         }}
       />

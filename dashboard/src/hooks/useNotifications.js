@@ -30,5 +30,5 @@ export default () => {
             client.on('notification.added_to_channel', handleNewConversation);
         }
         return () => sounds.enabled ? client.off('message.new', handleNewMessage) : null;
-    }, [client, handleNewMessage, sounds.enabled]);
+    }, [client, handleNewConversation, handleNewMessage, sounds.enabled]);
 }

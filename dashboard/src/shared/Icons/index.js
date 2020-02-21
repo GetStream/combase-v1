@@ -12,6 +12,7 @@ export { default as AttachmentIcon } from './icons/attachment';
 export { default as CancelIcon } from './icons/cancel';
 export { default as ChatIcon } from './icons/chat';
 export { default as ChevronRightIcon } from './icons/chevron_right';
+export { default as CloseIcon } from './icons/close';
 export { default as CloseChatIcon } from './icons/close_chat';
 export { default as CustomersIcon } from './icons/customers';
 export { default as FilterIcon } from './icons/filter';
