@@ -16,7 +16,7 @@ import { AddToWebhookAgentQueue } from 'workers/webhook-agent/queue';
    *           type: string
    *           format: uuid
    *         required: true
-   *         description: ID of agent to delete
+   *         description: UUID of agent to delete
    *     responses:
    *       204:
    *         description: No response

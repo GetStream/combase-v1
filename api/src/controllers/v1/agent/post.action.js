@@ -5,7 +5,7 @@ exports.post = async (req, res) => {
 	try {
 		const data = req.body;
 
-		const agent = await Agent.findOneOrCreate({ email: data.email }, data);
+		const agent = await Agent.findOneOrCreate({ email: data.email.toLowerCase() }, data);
 
 		await AddToWebhookAgentQueue('added', agent);
 

@@ -25,7 +25,7 @@
               "format": "uuid"
             },
             "required": true,
-            "description": "ID of agent to delete"
+            "description": "UUID of agent to delete"
           }
         ],
         "responses": {

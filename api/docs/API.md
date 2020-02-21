@@ -15,7 +15,7 @@ Deletes an agent
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
-| ID | controllers/v1/agent/destroy.action.js | ID of agent to delete | Yes | string (uuid) |
+| ID | controllers/v1/agent/destroy.action.js | UUID of agent to delete | Yes | string (uuid) |
 
 ##### Responses
 
