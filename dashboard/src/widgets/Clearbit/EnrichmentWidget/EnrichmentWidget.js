@@ -49,33 +49,29 @@ const ClearbitWidget = props => {
   const [data, { loading }] = usePluginEndpoint("clearbit", "enrich", props);
   const time = useLiveMoment();
 
-  if (loading && !data) {
-    return null;
-  }
-
   return (
     <Root flat border>
       <Content>
         <ListItem
           icon={OrganizationIcon}
           title="Company"
-          value={data.employment.name}
+          value={data.employment ? data.employment.name : null}
         />
         <ListItem
           icon={LinkIcon}
           title="URL"
-          value={`https://${data.employment.domain}`}
+          value={data.employment ? `https://${data.employment.domain}` : null}
         />
         <ListItem
           icon={JobTitleIcon}
           title="Title"
-          value={data.employment.title}
+          value={data.employment ? data.employment.title : null}
         />
-        <ListItem icon={LocationIcon} title="Location" value={data.location} />
+        <ListItem icon={LocationIcon} title="Location" value={data ? data.location : null} />
         <ListItem
           icon={TimeIcon}
           title="Current Time"
-          value={time.utcOffset(data.utcOffset).format("hh:mma")}
+          value={data.utcOffset ? time.utcOffset(data.utcOffset).format("hh:mma") : null}
         />
       </Content>
       <Credit>

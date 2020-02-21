@@ -50,6 +50,8 @@ export default (WrappedComponent, routes = []) => props => {
     return "Something went wrong!";
   }
 
+  console.log(config);
+
   return (
     <ShellContext.Provider {...{ value }}>
       <ChatContext.Provider value={chatClient}>

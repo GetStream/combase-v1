@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useMemo } from "react";
 import PropTypes from 'prop-types';
 import styled from "styled-components";
 import moment from 'moment';
+
+// Hooks //
+import useActivePlugins from 'hooks/useActivePlugins';
 
 // Widgets //
 import ClearbitWidget from "widgets/Clearbit/EnrichmentWidget";
@@ -40,7 +43,13 @@ const Content = styled(Container)`
 // TODO: Use live email of user. Need to set as custom data
 // on their stream user.
 const InfoDrawer = ({ partner }) => {
-  console.log(partner);
+  const [plugins] = useActivePlugins();
+  const enabledWidgets = useMemo(() => {
+    if (plugins) {
+      return Object.values(plugins).filter(({ enabled }) => enabled).map(({ name }) => name);
+    }
+  }, [plugins]);
+  console.log(enabledWidgets);
   return (
     <Root>
       <Header>
@@ -53,8 +62,8 @@ const InfoDrawer = ({ partner }) => {
         </Text>
       </Header>
       <Content>
-        <EmailVerificationWidget email="nick@getstream.io" />
-        <ClearbitWidget email="nick@getstream.io" />
+        {enabledWidgets.includes('blaze_verify') ? <EmailVerificationWidget email="nick@getstream.io" /> : null}
+        {enabledWidgets.includes('clearbit') ? <ClearbitWidget email="nick@getstream.io" /> : null}
       </Content>
     </Root>
   );

@@ -9,7 +9,7 @@ import usePluginEndpoint from "hooks/usePluginEndpoint";
 import { CancelIcon, MessageDeliveredIcon } from 'shared/Icons';
 import Card from 'shared/Card';
 import CircularProgress from "shared/CircularProgress";
-import ListItem from 'shared/ListItem';
+import PlaceholderIcon from 'shared/Icons/PlaceholderIcon';
 import Text from 'shared/Text';
 import IconLabel from 'shared/IconLabel';
 
@@ -67,18 +67,16 @@ const EmailVerificationWidget = props => {
     }
     return 'red'
   }, [data]);
-  if (loading) {
-    return null;
-  }
+
   return (
     <Card flat border>
       <Header>
-        <CircularProgress animated color={counterColor} value={data.score || 0} size={104} />
+        {!loading ? <CircularProgress animated color={counterColor} value={data.score || 0} size={104} /> : <PlaceholderIcon size={104} />}
         <Text color="alt_text">Validation Score</Text>
       </Header>
       <Content>
-        <IconLabel icon={data.state === 'deliverable' ? MessageDeliveredIcon : CancelIcon} iconColor={data.state === 'deliverable' ? "green" : "red"} label="Deliverable" />
-        <IconLabel icon={data.disposable ? MessageDeliveredIcon : CancelIcon} iconColor={data.disposable ? "green" : "red"} label="Disposable" />
+        <IconLabel showPlaceholder={loading} icon={data.state === 'deliverable' ? MessageDeliveredIcon : CancelIcon} iconColor={data.state === 'deliverable' ? "green" : "red"} label="Deliverable" />
+        <IconLabel showPlaceholder={loading} icon={data.disposable ? MessageDeliveredIcon : CancelIcon} iconColor={data.disposable ? "green" : "red"} label="Disposable" />
       </Content>
       <Credit>
         <Text color="white" size={12}>

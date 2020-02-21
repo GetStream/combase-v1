@@ -4,7 +4,7 @@ import request from "utils/request";
 
 export default (plugin, endpoint, reqBody) => {
   const [{ user }] = useAuth();
-  const [data, setData] = useState(null);
+  const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 // Components //
 import Text from 'shared/Text';
+import PlaceholderIcon from 'shared/Icons/PlaceholderIcon';
 
 const Root = styled.div`
     flex: 1;
@@ -16,10 +17,10 @@ const Root = styled.div`
     }
 `;
 
-const IconLabel = ({ icon: Icon, iconColor, iconSize, label, labelColor, labelSize }) => {
+const IconLabel = ({ icon: Icon, iconColor, iconSize, label, labelColor, labelSize, showPlaceholder }) => {
     return (
         <Root>
-            <Icon color={iconColor} size={iconSize} />
+            {showPlaceholder ? <PlaceholderIcon size={iconSize} /> : <Icon color={iconColor} size={iconSize} />}
             <Text color={labelColor} size={labelSize}>{label}</Text>
         </Root>
     );
@@ -32,6 +33,7 @@ IconLabel.propTypes = {
     label: PropTypes.string.isRequired,
     labelColor: PropTypes.string,
     labelSize: PropTypes.number,
+    showPlaceholder: PropTypes.bool,
 };
 
 IconLabel.defaultProps = {
@@ -39,6 +41,7 @@ IconLabel.defaultProps = {
     iconSize: 32,
     labelColor: 'alt_text',
     labelSize: 12,
+    showPlaceholder: false,
 };
 
 export default IconLabel;
