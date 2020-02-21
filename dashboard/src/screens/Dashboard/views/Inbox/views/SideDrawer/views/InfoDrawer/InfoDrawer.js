@@ -1,5 +1,7 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import styled from "styled-components";
+import moment from 'moment';
 
 // Widgets //
 import ClearbitWidget from "widgets/Clearbit/EnrichmentWidget";
@@ -31,16 +33,19 @@ const Header = styled.div`
 
 const Content = styled(Container)``;
 
-export default () => {
+// TODO: Use live email of user. Need to set as custom data
+// on their stream user.
+const InfoDrawer = ({ partner }) => {
+  console.log(partner);
   return (
     <Root>
       <Header>
-        <Avatar size={136} name="Nick" />
+        <Avatar size={136} name="Nick" showStatus={partner.online} />
         <Text size={24} weight="600">
-          Nick Parsons
+          {partner.name}
         </Text>
         <Text size={12} faded weight="400">
-          Active Now
+          {partner.online ? 'Active Now' : `Last active: ${moment(partner.last_active).fromNow()}`}
         </Text>
       </Header>
       <Content>
@@ -50,3 +55,9 @@ export default () => {
     </Root>
   );
 };
+
+InfoDrawer.propTypes = {
+  partner: PropTypes.object.isRequired,
+}
+
+export default InfoDrawer;

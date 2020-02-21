@@ -17,11 +17,11 @@ const Root = styled.div`
   transform: translateX(${({ open }) => (open ? 0 : 100)}%);
 `;
 
-const SideDrawer = ({ match, open }) => {
+const SideDrawer = ({ match, open, partner }) => {
   return (
     <Root {...{ open }}>
       <Switch>
-        <Route path={`${match.url}/info`} component={InfoDrawer} />
+        <Route path={`${match.url}/info`} component={props => <InfoDrawer {...props} {...{ partner }} />} />
         <Route path={`${match.url}/transfer`} render={() => "transfer"} />
       </Switch>
     </Root>

@@ -108,32 +108,32 @@ const MessageThread = ({
   return loading ? (
     <LoadingState key="loading" />
   ) : (
-    <Route
-      path={`${match.url}`}
-      children={({ match: { isExact } }) => {
-        const drawerOpen = !isExact;
-        return (
-          <Root {...{ drawerOpen }}>
-            <ChatWrapper>
-              <Chat
-                showTypingIndicator={isPartnerTyping}
-                onLoadMore={loadMoreMessages}
-                {...{
-                  headerActions,
-                  onSend,
-                  messages,
-                  partner,
-                  read,
-                  user
-                }}
-              />
-            </ChatWrapper>
-            <SideDrawer {...{ match }} open={drawerOpen} />
-          </Root>
-        );
-      }}
-    />
-  );
+      <Route
+        path={`${match.url}`}
+        children={({ match: { isExact } }) => {
+          const drawerOpen = !isExact;
+          return (
+            <Root {...{ drawerOpen }}>
+              <ChatWrapper>
+                <Chat
+                  showTypingIndicator={isPartnerTyping}
+                  onLoadMore={loadMoreMessages}
+                  {...{
+                    headerActions,
+                    onSend,
+                    messages,
+                    partner,
+                    read,
+                    user
+                  }}
+                />
+              </ChatWrapper>
+              <SideDrawer {...{ match, partner }} open={drawerOpen} />
+            </Root>
+          );
+        }}
+      />
+    );
 };
 
 export default withChat(MessageThread);
