@@ -6,10 +6,12 @@ import styled from 'styled-components';
 import usePluginEndpoint from "hooks/usePluginEndpoint";
 
 // Components //
+import { CancelIcon, MessageDeliveredIcon } from 'shared/Icons';
 import Card from 'shared/Card';
 import CircularProgress from "shared/CircularProgress";
 import ListItem from 'shared/ListItem';
 import Text from 'shared/Text';
+import IconLabel from 'shared/IconLabel';
 
 const Root = styled(Card)`
   &:nth-child(2) {
@@ -26,6 +28,12 @@ const Header = styled.div`
   & > ${Text} {
     margin-top: 8px;
   }
+`;
+
+const Content = styled.div`
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 8px 24px;
 `;
 
 const Credit = styled.div`
@@ -68,21 +76,16 @@ const EmailVerificationWidget = props => {
   if (loading) {
     return null;
   }
-  console.log(data);
   return (
-    <Root>
+    <Root flat border>
       <Header>
         <CircularProgress animated color={counterColor} value={data.score || 0} size={104} />
         <Text color="alt_text">Validation Score</Text>
       </Header>
-      <ListItem
-        title="State"
-        value={data.state}
-      />
-      <ListItem
-        title="Disposable"
-        value={`${data.disposable}`}
-      />
+      <Content>
+        <IconLabel icon={data.state === 'deliverable' ? MessageDeliveredIcon : CancelIcon} iconColor={data.state === 'deliverable' ? "green" : "red"} label="Deliverable" />
+        <IconLabel icon={data.disposable ? MessageDeliveredIcon : CancelIcon} iconColor={data.disposable ? "green" : "red"} label="Disposable" />
+      </Content>
       <Credit>
         <Text color="white" size={12}>
           Powered by <img alt="Blaze Verify" src="https://logo.clearbit.com/blazeverify.com" /> Blaze Verify

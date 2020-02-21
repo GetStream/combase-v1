@@ -54,7 +54,7 @@ const ClearbitWidget = props => {
   }
 
   return (
-    <Root>
+    <Root flat border>
       <Content>
         <ListItem
           icon={OrganizationIcon}
