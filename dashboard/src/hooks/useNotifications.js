@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useMemo } from 'react';
+import { useCallback, useContext, useEffect } from 'react';
 import { useChatClient } from 'stream-chat-hooks';
 import UIfx from 'uifx';
 

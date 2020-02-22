@@ -46,7 +46,7 @@ const Credit = styled.div`
 `;
 
 const ClearbitWidget = props => {
-  const [data, { loading }] = usePluginEndpoint("clearbit", "enrich", props);
+  const [data] = usePluginEndpoint("clearbit", "enrich", props);
   const time = useLiveMoment();
 
   return (

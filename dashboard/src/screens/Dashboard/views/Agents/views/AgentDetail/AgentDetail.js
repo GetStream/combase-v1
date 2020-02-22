@@ -18,7 +18,7 @@ import AgentDetailTransition from "./AgentDetailTransition";
 import TotalThreadsWidget from "./widgets/TotalThreadsWidget";
 import ChatActivityWidget from "./widgets/ChatActivityWidget";
 
-const Root = styled(Animated.div)`
+const Root = styled.div`
     margin-left: 96px;
     align-self: center;
     width: 100%;
@@ -145,6 +145,7 @@ const AgentDetail = ({ anim, location, history, match }) => {
       </Modal>
       <AgentDetailTransition
         {...{ agent, anim }}
+        hide={mounted}
         startDims={location.startDims}
         endDims={dims}
       />

@@ -20,9 +20,9 @@ const Root = styled(Animated.div)`
 
 `;
 
-export default ({ agent, anim, endDims, startDims }) => {
+export default ({ agent, anim, endDims, hide, startDims }) => {
   const prevStartDims = usePrevious(startDims);
-  if ((!startDims && !prevStartDims) || !endDims) {
+  if ((!startDims && !prevStartDims) || !endDims || hide) {
     return null;
   }
   const style = {

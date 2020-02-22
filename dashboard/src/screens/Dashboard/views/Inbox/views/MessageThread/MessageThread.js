@@ -75,7 +75,7 @@ const MessageThread = ({
         icon={TransferIcon}
         onClick={() => history.push(`${match.url}/transfer`)}
       />,
-      <Route path={`${match.url}/info`} children={props => {
+      <Route path={`/inbox/:channel/info`} children={props => {
         return (
           <IconButton
             color={match.isExact ? "alt_text" : 'red'}

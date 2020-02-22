@@ -123,10 +123,6 @@ class Modal extends Component {
     if (this.props.onRendered) {
       this.props.onRendered();
     }
-
-    if (this.props.open) {
-      this.handleOpened();
-    }
   };
 
   handleOpened = () => {

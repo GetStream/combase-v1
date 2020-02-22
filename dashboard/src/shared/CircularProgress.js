@@ -26,26 +26,34 @@ const CircularProgress = ({ animated, color, value, theme, ...props }) => {
     }, [animate, animated]);
     const { value: anim } = useSpring({ value: animated ? animate ? 1 : 0 : 1, config: { mass: 8, tension: 500, friction: 80 } });
     const { value: textAnim } = useSpring({ value: animated ? animate ? 1 : 0 : 1, config: { mass: 8, tension: 500, friction: 80, clamp: true } });
-    const style = {
-        opacity: anim.interpolate({
-            range: [0, 0.0000001],
-            output: [0, 1]
-        }),
-        strokeDasharray: anim.interpolate({
-            range: [0, 1],
-            output: [0, value]
-        }).interpolate(v => `${v}, 100000`),
-    };
+
     const countValue = animated ? textAnim.interpolate({
         range: [0, 1],
         output: [0, value],
     }).interpolate(v => Math.floor(v)) : value;
-    const textStyle = animated ? {
-        opacity: anim.interpolate({
-            range: [0, 0.0000001],
-            output: [0, 1]
-        }),
-    } : {};
+
+    const style = useMemo(() => {
+        return animated ? {
+            opacity: anim.interpolate({
+                range: [0, 0.0000001],
+                output: [0, 1]
+            }),
+            strokeDasharray: anim.interpolate({
+                range: [0, 1],
+                output: [0, value]
+            }).interpolate(v => `${v}, 100000`),
+        } : {};
+    }, [anim, animated, value])
+
+    const textStyle = useMemo(() => {
+        return animated ? {
+            opacity: anim.interpolate({
+                range: [0, 0.0000001],
+                output: [0, 1]
+            }),
+        } : {}
+    }, [anim, animated]);
+
     return (
         <Root color="transparent" viewBox="0 0 40 40" {...props} {...{ value }}>
             <g>
