@@ -14,7 +14,7 @@ const renderSettingsList = props => <SettingsList {...props} />;
 
 export default props => (
   <ListDetailView {...props} rootAs={ScreenRoot}>
-    <Route path={props.match.url} children={renderSettingsDetail} />
+    <Route path={`${props.match.url}/:screen`} children={renderSettingsDetail} />
     <Route path={props.match.url} children={renderSettingsList} />
   </ListDetailView>
 );
