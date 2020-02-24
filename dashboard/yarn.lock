@@ -10949,6 +10949,11 @@ text-table@0.2.0, text-table@^0.2.0:
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
 
+textarea-autogrow@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/textarea-autogrow/-/textarea-autogrow-1.0.0.tgz#cda08e884809f7481750f347ff9c71e4db2c6918"
+  integrity sha1-zaCOiEgJ90gXUPNH/5xx5NssaRg=
+
 throat@^4.0.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/throat/-/throat-4.1.0.tgz#89037cbc92c56ab18926e6ba4cbb200e15672a6a"

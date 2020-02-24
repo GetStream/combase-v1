@@ -9,6 +9,7 @@ import useAuth from 'hooks/useAuth';
 import Avatar from 'shared/Avatar';
 import InputField from 'shared/InputField';
 import SectionTitle from 'shared/SectionTitle';
+import AutoSizeTextArea from 'shared/AutoSizeTextArea';
 
 const Root = styled.form`
     & > * + * {
@@ -36,6 +37,7 @@ const renderForm = ({ values }) => {
             <InputField placeholder="Welcome Message" name="welcome.message" />
             <InputField placeholder="Default Response" name="response" />
             <TitleSeparator title="Availability" />
+            <AutoSizeTextArea />
         </Root>
     );
 };
