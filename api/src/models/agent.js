@@ -38,6 +38,16 @@ export const AgentSchema = new Schema(
 			trim: true,
 			default: ''
 		},
+		password: {
+			type: String,
+			required: true,
+			bcrypt: true
+		},
+		role: {
+			type: String,
+			enum: [ 'admin', 'moderator', 'viewer' ],
+			default: 'admin'
+		},
 		refs: {
 			tags: {
 				type: Schema.Types.ObjectId,
@@ -52,16 +62,6 @@ export const AgentSchema = new Schema(
 					select: [ 'name', 'meta.logo' ]
 				}
 			}
-		},
-		password: {
-			type: String,
-			required: true,
-			bcrypt: true
-		},
-		role: {
-			type: String,
-			enum: [ 'admin', 'moderator', 'viewer' ],
-			default: 'admin'
 		},
 		active: {
 			type: Boolean,
