@@ -10,8 +10,8 @@ const Root = styled.div`
     border-bottom: 1px solid ${({ theme }) => theme.color.border};
 `;
 
-const SectionTitle = ({ title }) => (
-    <Root>
+const SectionTitle = ({ className, title }) => (
+    <Root {...{ className }}>
         <Text color="alt_text" faded weight="500">
             {title}
         </Text>
