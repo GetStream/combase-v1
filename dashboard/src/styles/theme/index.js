@@ -18,7 +18,8 @@ export const light = {
     undersheet: baseTheme.colorUtils.fade(colors.black, 0.64),
     placeholder: colors.light_gray,
     placeholder_shimmer: baseTheme.colorUtils.lighten(colors.light_gray, .64),
-  }
+  },
+  name: 'light'
 };
 
 export const dark = {
@@ -38,5 +39,6 @@ export const dark = {
     undersheet: baseTheme.colorUtils.fade(colors.black, 0.64),
     placeholder: baseTheme.colorUtils.darken(colors.black, .2),
     placeholder_shimmer: baseTheme.colorUtils.darken(colors.black, .1),
-  }
+  },
+  name: 'dark',
 };
