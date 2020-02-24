@@ -3,7 +3,6 @@ import query from 'mongoose-string-query';
 import timestamps from 'mongoose-timestamp';
 import autopopulate from 'mongoose-autopopulate';
 import moment from 'moment';
-import shortid from 'shortid';
 
 export const InviteSchema = new Schema(
 	{
@@ -11,19 +10,19 @@ export const InviteSchema = new Schema(
 			first: {
 				type: String,
 				trim: true,
-				required: true,
+				required: true
 			},
 			last: {
 				type: String,
 				trim: true,
-				required: true,
-			},
+				required: true
+			}
 		},
 		email: {
 			type: String,
 			lowercase: true,
 			trim: true,
-			required: true,
+			required: true
 		},
 		refs: {
 			organization: {
@@ -31,23 +30,21 @@ export const InviteSchema = new Schema(
 				ref: 'Organization',
 				required: true,
 				autopopulate: {
-					select: ['name', 'email.address', 'meta.logo'],
-				},
-			},
+					select: [ 'name', 'email.address', 'meta.branding.logo' ]
+				}
+			}
 		},
 		expiration: {
 			type: Date,
-			default: moment()
-				.add('48', 'hours')
-				.toISOString(),
+			default: moment().add('48', 'hours').toISOString()
 		},
 		accepted: {
 			type: Boolean,
-			default: false,
-		},
+			default: false
+		}
 	},
 	{
-		collection: 'invites',
+		collection: 'invites'
 	}
 );
 

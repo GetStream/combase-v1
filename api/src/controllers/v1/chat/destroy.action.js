@@ -1,5 +1,4 @@
 import Chat from 'models/chat';
-import { AddToWebhookChatQueue } from 'workers/webhook-chat/queue';
 
 exports.destroy = async (req, res) => {
 	try {
@@ -8,7 +7,7 @@ exports.destroy = async (req, res) => {
 
 		if (serialized.role !== 'admin') {
 			return res.status(403).json({
-				status: 'Invalid permissions to view or modify this resource.',
+				status: 'Invalid permissions to view or modify this resource.'
 			});
 		}
 
@@ -18,8 +17,6 @@ exports.destroy = async (req, res) => {
 		// );
 
 		const chat = await Chat.findByIdAndRemove(data.chat);
-
-		await AddToWebhookChatQueue('removed', chat);
 
 		res.sendStatus(204);
 	} catch (error) {

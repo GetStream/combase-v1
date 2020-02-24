@@ -3,32 +3,25 @@ import { StreamChat } from 'stream-chat';
 
 import Chat from 'models/chat';
 import StreamClient from 'utils/stream';
-import { AddToWebhookChatQueue } from 'workers/webhook-chat/queue';
 
 exports.post = async (req, res) => {
 	try {
 		const data = req.body;
 
-		const {
-			agents: {
-				assignee: { agent },
-			},
-			organization,
-			user,
-		} = data.refs;
+		const { agents: { assignee: { agent } }, organization, user } = data.refs;
 
 		const create = await Chat.create(data);
 
 		const { key, secret } = await StreamClient();
 		const client = new StreamChat(key, secret);
 		const channel = client.channel('commerce', create._id.toString(), {
-			members: [agent, user],
+			members: [ agent, user ],
 			roles: {
 				agent: 'moderator',
-				user: 'channel_member',
+				user: 'channel_member'
 			},
 			created_by_id: user,
-			organization,
+			organization
 		});
 
 		await channel.create();
@@ -36,14 +29,12 @@ exports.post = async (req, res) => {
 		const agentToken = client.createToken(agent);
 		const userToken = client.createToken(user);
 
-		await AddToWebhookChatQueue('added', create);
-
 		res.status(200).json({
 			...create,
 			tokens: {
 				agent: agentToken,
-				user: userToken,
-			},
+				user: userToken
+			}
 		});
 	} catch (error) {
 		console.error(error);

@@ -1,13 +1,10 @@
 import Faq from 'models/faq';
-import { AddToWebhookFaqQueue } from 'workers/webhook-faq/queue';
 
 exports.post = async (req, res) => {
 	try {
 		const data = { ...req.body, ...req.params };
 
 		const faq = await Faq.create(data);
-
-		await AddToWebhookFaqQueue('added', faq);
 
 		res.status(200).json(faq);
 	} catch (error) {

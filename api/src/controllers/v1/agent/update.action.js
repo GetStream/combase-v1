@@ -1,5 +1,4 @@
 import Agent from 'models/agent';
-import { AddToWebhookAgentQueue } from 'workers/webhook-agent/queue';
 
 exports.update = async (req, res) => {
 	try {
@@ -9,16 +8,11 @@ exports.update = async (req, res) => {
 
 		if (serialized.role !== 'admin') {
 			return res.status(403).json({
-				status: 'Invalid permissions to view or modify this resource.',
+				status: 'Invalid permissions to view or modify this resource.'
 			});
 		}
 
-		const agent = await Agent.updateOne(
-			{ _id: params.agent },
-			{ $set: data }
-		);
-
-		await AddToWebhookAgentQueue('updated', agent);
+		const agent = await Agent.updateOne({ _id: params.agent }, { $set: data });
 
 		res.status(200).json(agent);
 	} catch (error) {

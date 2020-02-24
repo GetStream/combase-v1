@@ -69,9 +69,7 @@ export const AgentSchema = new Schema(
 				type: Schema.Types.ObjectId,
 				ref: 'Organization',
 				required: true,
-				autopopulate: {
-					select: [ 'name', 'meta.branding.logo', 'meta.branding.colors' ]
-				}
+				autopopulate: true
 			}
 		},
 		active: {

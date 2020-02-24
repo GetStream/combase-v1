@@ -36,6 +36,14 @@ const auth = async (req, res, next) => {
 		}
 
 		if (token) {
+			try {
+				jwt.verify(token, process.env.AUTH_TOKEN);
+			} catch (error) {
+				return res.status(401).json({
+					error: 'Missing or invalid JWT credentials.'
+				});
+			}
+
 			const { sub } = jwt.verify(token, process.env.AUTH_SECRET);
 
 			// eslint-disable-next-line require-atomic-updates

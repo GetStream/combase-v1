@@ -1,5 +1,4 @@
 import Faq from 'models/faq';
-import { AddToWebhookFaqQueue } from 'workers/webhook-faq/queue';
 
 exports.destroy = async (req, res) => {
 	try {
@@ -8,13 +7,11 @@ exports.destroy = async (req, res) => {
 
 		if (serialized.role !== 'admin') {
 			return res.status(403).json({
-				status: 'Invalid permissions to view or modify this resource.',
+				status: 'Invalid permissions to view or modify this resource.'
 			});
 		}
 
 		const faq = await Faq.updateOne({ _id: data.faq }, { $set: data });
-
-		await AddToWebhookFaqQueue('removed', faq);
 
 		res.status(200).json(faq);
 	} catch (error) {
