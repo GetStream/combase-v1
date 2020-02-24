@@ -57,7 +57,12 @@ const Placeholder = styled.div`
     user-select: none;
 `;
 
+const ErrorRow = styled.div`
+    height: 12px;
+`
+
 const Input = ({
+    error,
     icon: Icon,
     name,
     onBlur,
@@ -68,6 +73,7 @@ const Input = ({
     value,
     ...rest
 }) => {
+    console.log(rest);
     const [focused, setFocus] = useState(false);
     const anim = useSpring({ value: focused || !!value ? 1 : 0, config: { tension: 200, friction: 15 } });
     const handleChange = useCallback(
@@ -141,6 +147,9 @@ const Input = ({
                         </Text>
                     </Placeholder>
                 ) : null}
+                <ErrorRow>
+                    {error}
+                </ErrorRow>
             </Root>
         </div>
     );

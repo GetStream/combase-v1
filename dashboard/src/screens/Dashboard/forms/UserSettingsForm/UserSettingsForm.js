@@ -10,8 +10,6 @@ import Avatar from 'shared/Avatar';
 import InputField from 'shared/InputField';
 import SectionTitle from 'shared/SectionTitle';
 
-import validationSchema from './validationSchema';
-
 const Root = styled.form`
     & > * + * {
         margin-top: 8px;
@@ -27,26 +25,29 @@ const renderForm = ({ values }) => {
     console.log(values);
     return (
         <Root>
-            <TitleSeparator title="Organization Profile" />
-            <Avatar size={96} src={values.meta ? values.meta.logo : null} name={values.name} showStatus={false} />
-            <InputField placeholder="Name" name="name" />
-            <InputField placeholder="Tagline" name="meta.tagline" />
+            <TitleSeparator title="Your Profile" />
+            <Avatar size={96} src={values.image || null} name={values.name.first} showStatus={false} />
+            <InputField placeholder="First Name" name="name.first" />
+            <InputField placeholder="Last Name" name="name.last" />
+            <InputField placeholder="Email" name="email" />
+            <InputField placeholder="Title" name="title" />
+            {/* <InputField placeholder="Tagline" name="meta.tagline" />
             <InputField placeholder="Phone" name="phone.number" />
             <InputField placeholder="Email" name="email.address" />
             <InputField placeholder="Website" name="website.url" />
             <TitleSeparator title="Chat Defaults" />
             <InputField placeholder="Welcome Message" name="welcome.message" />
             <InputField placeholder="Default Response" name="response" />
-            <TitleSeparator title="Availability" />
+            <TitleSeparator title="Availability" /> */}
         </Root>
     );
 };
 
-const OrganizationSettingsForm = () => {
-    const [{ organization }] = useAuth();
+const UserSettingsForm = () => {
+    const [{ user }] = useAuth();
     return (
-        <Formik {...{ validationSchema }} initialValues={organization} children={renderForm} />
+        <Formik initialValues={user} children={renderForm} />
     )
 }
 
-export default OrganizationSettingsForm;
+export default UserSettingsForm;
