@@ -48,6 +48,17 @@ export const AgentSchema = new Schema(
 			enum: [ 'admin', 'moderator', 'viewer' ],
 			default: 'admin'
 		},
+		meta: {
+			theme: {
+				type: String,
+				enum: [ 'dark', 'light' ],
+				default: 'light'
+			},
+			sounds: {
+				type: Boolean,
+				default: true
+			}
+		},
 		refs: {
 			tags: {
 				type: Schema.Types.ObjectId,
