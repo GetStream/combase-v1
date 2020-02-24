@@ -11,97 +11,98 @@ export const OrganizationSchema = new Schema(
 				key: {
 					type: String,
 					trim: true,
-					default: shortid.generate(),
+					default: shortid.generate()
 				},
 				secret: {
 					type: String,
 					trim: true,
-					default: uuid(),
-				},
+					default: uuid()
+				}
 			},
 			private: {
 				key: {
 					type: String,
 					trim: true,
-					default: shortid.generate(),
+					default: shortid.generate()
 				},
 				secret: {
 					type: String,
 					trim: true,
-					default: uuid(),
-				},
-			},
+					default: uuid()
+				}
+			}
 		},
 		name: {
 			type: String,
 			trim: true,
-			required: true,
+			required: true
 		},
 		meta: {
-			logo: {
-				type: String,
-				trim: true,
-				required: true,
+			branding: {
+				logo: {
+					type: String,
+					trim: true,
+					required: true
+				},
+				colors: {
+					primary: {
+						type: String,
+						trim: true
+					},
+					secondary: {
+						type: String,
+						trim: true
+					}
+				}
 			},
 			tagline: {
 				type: String,
 				trim: true,
-				required: true,
-			},
-			colors: {
-				primary: {
-					type: String,
-					trim: true,
-				},
-				secondary: {
-					type: String,
-					trim: true,
-				},
-			},
+				required: true
+			}
 		},
 		phone: {
 			number: {
 				type: String,
-				trim: true,
+				trim: true
 			},
 			display: {
 				type: Boolean,
-				default: false,
-			},
+				default: false
+			}
 		},
 		email: {
 			address: {
 				type: String,
 				trim: true,
-				required: true,
+				required: true
 			},
 			display: {
 				type: Boolean,
-				default: true,
-			},
+				default: true
+			}
 		},
 		website: {
 			url: {
 				type: String,
 				trim: true,
-				required: true,
+				required: true
 			},
 			display: {
 				type: Boolean,
-				default: true,
-			},
+				default: true
+			}
 		},
 		welcome: {
 			message: {
 				type: String,
 				trim: true,
-				default:
-					'Welcome! Type a message to get started and we will connect you with an available agent!',
+				default: 'Welcome! Type a message to get started and we will connect you with an available agent!'
 			},
 			enabled: {
 				type: Boolean,
-				default: false,
-			},
+				default: false
+			}
 		},
 		response: {
 			type: String,
@@ -109,9 +110,9 @@ export const OrganizationSchema = new Schema(
 				'We typically reply in a few minutes.',
 				'We typically reply in under 5 minutes.',
 				'We typically reply in a few hours.',
-				'We typically reply in a day.',
+				'We typically reply in a day.'
 			],
-			default: 'We typically reply in a few minutes.',
+			default: 'We typically reply in a few minutes.'
 		},
 		availability: {
 			days: {
@@ -125,34 +126,34 @@ export const OrganizationSchema = new Schema(
 					'Thursday',
 					'Friday',
 					'Saturday',
-					'Sunday',
+					'Sunday'
 				],
-				default: 'Daily',
+				default: 'Daily'
 			},
 			hours: {
 				from: {
 					type: String,
 					trim: true,
-					default: '9:00 am',
+					default: '9:00 am'
 				},
 				to: {
 					type: String,
 					trim: true,
-					default: '6:00 pm',
-				},
-			},
+					default: '6:00 pm'
+				}
+			}
 		},
 		domains: [
 			{
 				url: {
 					type: String,
-					trim: true,
-				},
-			},
-		],
+					trim: true
+				}
+			}
+		]
 	},
 	{
-		collection: 'organizations',
+		collection: 'organizations'
 	}
 );
 
