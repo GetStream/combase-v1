@@ -39,8 +39,8 @@
 			"as": "CLOUDINARY"
 		},
 		{
-			"plan": "mailgun:starter",
-			"as": "MAILGUN"
+			"plan": "sendgrid:free",
+			"as": "SENDGRID"
 		}
 	],
 	"buildpacks": [

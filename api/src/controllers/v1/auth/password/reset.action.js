@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import shortid from 'shortid';
 import nodemailer from 'nodemailer';
-import mailgun from 'nodemailer-mailgun-transport';
+import sendgrid from 'nodemailer-sendgrid-transport';
 
 import Agent from 'models/agent';
 
@@ -10,7 +10,7 @@ exports.reset = async (req, res) => {
 		const { data } = req.body;
 
 		const transport = nodemailer.createTransport(
-			mailgun({
+			sendgrid({
 				auth: {
 					api_key: process.env.MAILGUN_API_KEY,
 					domain: process.env.MAILGUN_DOMAIN

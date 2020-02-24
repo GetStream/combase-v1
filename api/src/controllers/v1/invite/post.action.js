@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import mailgun from 'nodemailer-mailgun-transport';
+import sendgrid from 'nodemailer-sendgrid-transport';
 
 import Invite from 'models/invite';
 
@@ -10,10 +10,10 @@ exports.post = async (req, res) => {
 		const invite = await Invite.create(data);
 
 		const transport = nodemailer.createTransport(
-			mailgun({
+			sendgrid({
 				auth: {
-					api_key: process.env.MAILGUN_API_KEY,
-					domain: process.env.MAILGUN_DOMAIN
+					api_user: process.env.SENDGRID_USERNAME,
+					api_key: process.env.SENDGRID_PASSWORD
 				}
 			})
 		);
