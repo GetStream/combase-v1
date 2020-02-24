@@ -40,9 +40,7 @@
 			[
 				"module-resolver",
 				{
-					"root": [
-						"./src"
-					]
+					"root": [ "./src" ]
 				}
 			],
 			"transform-optional-chaining"
@@ -84,9 +82,7 @@
 		"shortid": "^2.2.15",
 		"stream-chat": "^1.3.3",
 		"swagger-jsdoc": "^3.5.0",
-		"uuid": "^7.0.0",
-		"winston": "^3.2.1",
-		"winston-papertrail": "^1.0.5"
+		"uuid": "^7.0.0"
 	},
 	"devDependencies": {
 		"babel-eslint": "^10.0.3",
