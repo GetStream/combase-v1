@@ -36,18 +36,18 @@ const auth = async (req, res, next) => {
 		}
 
 		if (token) {
+			let apiToken;
+
 			try {
-				jwt.verify(token, process.env.AUTH_TOKEN);
+				apiToken = jwt.verify(token, process.env.AUTH_SECRET);
 			} catch (error) {
 				return res.status(401).json({
 					error: 'Missing or invalid JWT credentials.'
 				});
 			}
 
-			const { sub } = jwt.verify(token, process.env.AUTH_SECRET);
-
 			// eslint-disable-next-line require-atomic-updates
-			req.serialized = await Agent.findById(mongoose.Types.ObjectId(sub)).select('-password').lean({
+			req.serialized = await Agent.findById(mongoose.Types.ObjectId(apiToken.sub)).select('-password').lean({
 				autopopulate: false
 			});
 
