@@ -5,14 +5,7 @@ module.exports = {
 			script: 'src/index.js',
 			interpreter: 'babel-node',
 			watch: true,
-			ignore_watch: ['.git', 'node_modules'],
-		},
-		{
-			name: 'worker',
-			script: 'src/workers/index.js',
-			interpreter: 'babel-node',
-			watch: true,
-			ignore_watch: ['.git', 'node_modules'],
-		},
-	],
+			ignore_watch: [ '.git', 'node_modules' ]
+		}
+	]
 };

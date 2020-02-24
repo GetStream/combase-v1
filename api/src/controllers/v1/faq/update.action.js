@@ -1,5 +1,4 @@
 import Faq from 'models/faq';
-import { AddToWebhookFaqQueue } from 'workers/webhook-faq/queue';
 
 exports.update = async (req, res) => {
 	try {
@@ -7,8 +6,6 @@ exports.update = async (req, res) => {
 		const params = req.params;
 
 		const faq = await Faq.updateOne({ _id: params.faq }, { $set: data });
-
-		await AddToWebhookFaqQueue('updated', faq);
 
 		res.status(200).json(faq);
 	} catch (error) {

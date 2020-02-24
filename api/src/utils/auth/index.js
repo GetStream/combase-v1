@@ -12,47 +12,48 @@ const auth = async (req, res, next) => {
 			next();
 		}
 
-		// extract headers
 		const auth = req.headers.authorization;
 
-		// ensure that header exists
 		if (!auth || !auth.length) {
 			return res.status(401).json({
-				error: 'Missing or incorrect auth credentials.',
+				error: 'Missing or unauthorized auth credentials.'
 			});
 		}
 
-		// strip bearer from token
 		const token = req.headers.authorization.replace(/^Bearer\s/, '');
 
-		const routeConfig = find(
+		const config = find(
 			whitelist,
-			({ method, path }) =>
-				(req.path.includes(path) && req.method === method) ||
-				method === 'all'
+			({ method, path }) => (req.path.includes(path) && req.method === method) || method === 'all'
 		);
-		if (routeConfig) {
-			if (routeConfig.auth && token === process.env.AUTH_SECRET) {
+
+		if (config) {
+			if (config.auth && token === process.env.AUTH_SECRET) {
 				return next();
-			} else if (!routeConfig.auth) {
+			} else if (!config.auth) {
 				return next();
 			}
 		}
 
-		// if a jwt token exists
 		if (token) {
-			const { sub } = jwt.verify(token, process.env.AUTH_SECRET);
+			let apiToken;
+
+			try {
+				apiToken = jwt.verify(token, process.env.AUTH_SECRET);
+			} catch (error) {
+				return res.status(401).json({
+					error: 'Missing or invalid JWT credentials.'
+				});
+			}
 
 			// eslint-disable-next-line require-atomic-updates
-			req.serialized = await Agent.findById(mongoose.Types.ObjectId(sub))
-				.select('-password')
-				.lean({
-					autopopulate: false,
-				});
+			req.serialized = await Agent.findById(mongoose.Types.ObjectId(apiToken.sub)).select('-password').lean({
+				autopopulate: false
+			});
 
 			if (!req.serialized._id) {
 				return res.status(401).json({
-					error: 'Unauthorized auth credentials.',
+					error: 'Missing or unauthorized auth credentials.'
 				});
 			}
 
@@ -60,9 +61,8 @@ const auth = async (req, res, next) => {
 		}
 	} catch (error) {
 		console.error(error);
-
 		return res.status(401).json({
-			error: 'Missing or incorrect auth credentials.',
+			error: 'Missing or unauthorized auth credentials.'
 		});
 	}
 };

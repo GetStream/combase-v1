@@ -1,37 +1,9 @@
 import mongoose, { Schema } from 'mongoose';
 import query from 'mongoose-string-query';
 import timestamps from 'mongoose-timestamp';
-import shortid from 'shortid';
-import uuid from 'uuid/v4';
 
 export const OrganizationSchema = new Schema(
 	{
-		api: {
-			public: {
-				key: {
-					type: String,
-					trim: true,
-					default: shortid.generate()
-				},
-				secret: {
-					type: String,
-					trim: true,
-					default: uuid()
-				}
-			},
-			private: {
-				key: {
-					type: String,
-					trim: true,
-					default: shortid.generate()
-				},
-				secret: {
-					type: String,
-					trim: true,
-					default: uuid()
-				}
-			}
-		},
 		name: {
 			type: String,
 			trim: true,
@@ -41,8 +13,7 @@ export const OrganizationSchema = new Schema(
 			branding: {
 				logo: {
 					type: String,
-					trim: true,
-					required: true
+					trim: true
 				},
 				colors: {
 					primary: {

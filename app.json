@@ -31,8 +31,8 @@
 			"as": "ALGOLIASEARCH"
 		},
 		{
-			"plan": "papertrail:choklad",
-			"as": "PAPERTRAIL"
+			"plan": "timber-logging:free",
+			"as": "TIMBER_LOGGING"
 		},
 		{
 			"plan": "cloudinary:starter",

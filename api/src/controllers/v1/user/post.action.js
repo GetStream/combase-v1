@@ -1,7 +1,6 @@
 import { StreamChat } from 'stream-chat';
 
 import User from 'models/user';
-import { AddToWebhookUserQueue } from 'workers/webhook-user/queue';
 import StreamClient from 'utils/stream';
 
 exports.post = async (req, res) => {
@@ -16,10 +15,8 @@ exports.post = async (req, res) => {
 		await client.updateUser({
 			id: user._id.toString(),
 			name: `${user.name.first} ${user.name.last}`,
-			role: 'channel_member',
+			role: 'channel_member'
 		});
-
-		await AddToWebhookUserQueue('created', user);
 
 		res.status(200).json(user);
 	} catch (error) {

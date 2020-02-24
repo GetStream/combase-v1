@@ -1,5 +1,4 @@
 import Agent from 'models/agent';
-import { AddToWebhookAgentQueue } from 'workers/webhook-agent/queue';
 
 /**
    * @swagger
@@ -33,8 +32,6 @@ exports.destroy = async (req, res) => {
 		}
 
 		const { password, ...removed } = await Agent.findByIdAndRemove(agent);
-
-		await AddToWebhookAgentQueue('removed', removed);
 
 		res.sendStatus(204);
 	} catch (error) {
