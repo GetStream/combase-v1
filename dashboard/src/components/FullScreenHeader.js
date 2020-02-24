@@ -23,7 +23,7 @@ const Root = styled.div`
 `;
 
 const Content = styled.div`
-  padding: 0px 16px;
+  padding: 0px 8px;
   @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
     padding: 0px 24px;
   }

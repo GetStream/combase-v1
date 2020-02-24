@@ -12,7 +12,7 @@ const Root = styled.div`
   flex: 0 0 64px;
   flex-direction: row;
   align-items: center;
-  padding: 0px 24px;
+  padding: 0px 16px;
   & ${Text} {
       margin-left: 16px;
   }
