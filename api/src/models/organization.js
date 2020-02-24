@@ -6,32 +6,6 @@ import uuid from 'uuid/v4';
 
 export const OrganizationSchema = new Schema(
 	{
-		api: {
-			public: {
-				key: {
-					type: String,
-					trim: true,
-					default: shortid.generate()
-				},
-				secret: {
-					type: String,
-					trim: true,
-					default: uuid()
-				}
-			},
-			private: {
-				key: {
-					type: String,
-					trim: true,
-					default: shortid.generate()
-				},
-				secret: {
-					type: String,
-					trim: true,
-					default: uuid()
-				}
-			}
-		},
 		name: {
 			type: String,
 			trim: true,
