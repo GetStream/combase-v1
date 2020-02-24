@@ -51,6 +51,10 @@ const SearchWrapper = styled.div`
   }
 `;
 
+const MenuBtn = styled(MenuButton)`
+  margin-right: 16px;
+`
+
 let interpolation;
 
 const getShadowStyle = scrollAnim => {
@@ -84,7 +88,7 @@ const ListHeader = ({
     <Root {...{ style }}>
       <TitleWrapper {...{ showSearch }}>
         <Title>
-          <MenuButton />
+          <MenuBtn />
           {Icon ? <Icon color="text" size={24} /> : null}
           <Text size={isMobile ? 20 : 24} weight="600">
             {title}

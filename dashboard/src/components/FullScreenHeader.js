@@ -7,8 +7,8 @@ import useMedia from "hooks/useMedia";
 
 // Components //
 import Container from "shared/Container";
-import Text from "shared/Text";
-import MenuButton from "shared/MenuButton";
+import Text from "shared/Text"
+import MobileHeader from "components/MobileHeader";
 
 const Root = styled.div`
   background-color: ${({ theme }) => theme.color.primary};
@@ -23,7 +23,7 @@ const Root = styled.div`
 `;
 
 const Content = styled.div`
-  padding: 0px 16px;
+  padding: 0px 8px;
   @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
     padding: 0px 24px;
   }
@@ -45,21 +45,12 @@ const Description = styled(Text)`
   max-width: 360px;
 `;
 
-const Header = styled.div`
-  height: 64px;
-  flex-direction: row;
-  align-items: center;
-  padding: 0px 24px;
-`;
-
 const FullScreenHeader = ({ icon: Icon, text, title }) => {
   const isMobile = useMedia("sm");
   return (
     <Root>
       {isMobile ? (
-        <Header>
-          <MenuButton color="white" />
-        </Header>
+        <MobileHeader color="white" />
       ) : null}
       <Container>
         <Content>

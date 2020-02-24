@@ -12,12 +12,13 @@ import SectionTitle from 'shared/SectionTitle';
 
 const Root = styled.form`
     & > * + * {
-        margin-top: 16px;
+        margin-top: 8px;
     }
 `;
 
 const TitleSeparator = styled(SectionTitle)`
     margin-top: 32px;
+    margin-bottom: 16px;
 `
 
 const renderForm = ({ values }) => {
@@ -30,9 +31,11 @@ const renderForm = ({ values }) => {
             <InputField placeholder="Tagline" name="meta.tagline" />
             <InputField placeholder="Phone" name="phone.number" />
             <InputField placeholder="Email" name="email.address" />
+            <InputField placeholder="Website" name="website.url" />
             <TitleSeparator title="Chat Defaults" />
             <InputField placeholder="Welcome Message" name="welcome.message" />
             <InputField placeholder="Default Response" name="response" />
+            <TitleSeparator title="Availability" />
         </Root>
     );
 };

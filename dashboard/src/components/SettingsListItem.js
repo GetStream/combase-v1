@@ -7,10 +7,13 @@ import Text from "shared/Text";
 import IconBubble from "shared/IconBubble";
 
 const Root = styled.div`
-  padding: 16px;
+  padding: 16px 0px;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
+    padding: 16px;
+  }
 `;
 
 const TitleBlock = styled.div`

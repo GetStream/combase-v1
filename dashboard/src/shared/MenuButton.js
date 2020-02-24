@@ -10,8 +10,6 @@ import { MenuIcon } from 'shared/Icons';
 import IconButton from 'shared/IconButton';
 
 const Root = styled(IconButton)`
-    margin-right: 16px;
-
     @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
         display: none;
     }
