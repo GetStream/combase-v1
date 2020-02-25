@@ -30,7 +30,7 @@ const renderOrganizations = (org, key) => {
     return (
         <OrganizationCard
             id={org._id}
-            logo={org.meta.logo}
+            logo={org.meta.branding.logo}
             name={org.name}
             tagline={org.meta.tagline}
         />

@@ -37,7 +37,7 @@ const Col = styled.div`
               `
         flex-basis: ${(100 / config(p).gridSize) * p[k]}%;
         max-width: ${(100 / config(p).gridSize) * p[k]}%;
-        display: block;
+        display: flex;
       `
               : // Boolean
               p[k]
@@ -46,7 +46,7 @@ const Col = styled.div`
           flex-grow: 1;
           flex-basis: 0;
           max-width: 100%;
-          display: block;
+          display: flex;
         `
                 : // Hide element
                 "display: none;"

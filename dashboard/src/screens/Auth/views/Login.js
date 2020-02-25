@@ -31,7 +31,7 @@ const Login = () => {
         <Root maxWidth={400}>
             <Header>
                 <Avatar
-                    src={organization.meta.logo}
+                    src={organization.meta.branding.logo}
                     name={organization.name}
                     size={80}
                     showStatus={false}

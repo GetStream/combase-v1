@@ -81,11 +81,19 @@ export default ({ children }) => {
   useEffect(() => {
     getOrgs();
   }, [getOrgs]);
+
+  const refetchCurrentOrg = useCallback(async () => {
+    const org = await request(`v1/organizations/${organization._id}`, "get");
+    localStorage.setItem("organization", JSON.stringify(org));
+    setOrg(org);
+  }, [organization]);
+
   const value = useMemo(
     () => ({
       organization,
       organizations,
       setCurrentOrganization,
+      refetchCurrentOrg,
       user,
       loading,
       error,
@@ -96,6 +104,7 @@ export default ({ children }) => {
       organization,
       organizations,
       setCurrentOrganization,
+      refetchCurrentOrg,
       user,
       loading,
       error,

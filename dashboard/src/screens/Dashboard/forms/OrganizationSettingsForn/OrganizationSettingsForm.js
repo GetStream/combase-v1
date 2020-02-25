@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { Formik } from 'formik';
 
 // Hooks //
 import useAuth from 'hooks/useAuth';
+import { useSnackbar } from 'contexts/Snackbar';
 
 // Component //
 import AvatarField from 'shared/AvatarField';
+import Button from 'shared/Button';
 import { Col, Grid, Row } from 'shared/Grid';
 import InputField from 'shared/InputField';
 import SectionTitle from 'shared/SectionTitle';
 
 import validationSchema from './validationSchema';
+import request from 'utils/request';
 
 const Root = styled.form`
     flex: 1;
@@ -25,10 +28,18 @@ const TitleSeparator = styled(SectionTitle)`
     margin-bottom: 16px;
 `
 
-const renderForm = ({ initialValues, values }) => {
-    console.log('org data', values);
+const AvatarCol = styled(Col)`
+    margin-bottom: 32px;
+`
+
+const FormFooter = styled(Col)`
+    margin-top: 24px;
+    align-items: flex-end;
+`
+
+const renderForm = ({ dirty, handleSubmit, initialValues, isValid, values }) => {
     return (
-        <Root>
+        <Root onSubmit={handleSubmit}>
             <Grid fluid>
                 <Row>
                     <Col>
@@ -36,9 +47,9 @@ const renderForm = ({ initialValues, values }) => {
                     </Col>
                 </Row>
                 <Row>
-                    <Col>
-                        <AvatarField name="meta.logo" size={96} avatarName={values.name || initialValues.name} showStatus={false} />
-                    </Col>
+                    <AvatarCol>
+                        <AvatarField name="meta.branding.logo" size={96} avatarName={values.name || initialValues.name} showStatus={false} />
+                    </AvatarCol>
                 </Row>
                 <Row>
                     <Col sm={6}>
@@ -60,6 +71,11 @@ const renderForm = ({ initialValues, values }) => {
                     <Col sm={6}>
                         <InputField placeholder="Website" name="website.url" />
                     </Col>
+                </Row>
+                <Row>
+                    <FormFooter>
+                        <Button disabled={!dirty || !isValid} label="Save" type="submit" />
+                    </FormFooter>
                 </Row>
                 <Row>
                     <Col>
@@ -85,9 +101,33 @@ const renderForm = ({ initialValues, values }) => {
 };
 
 const OrganizationSettingsForm = () => {
-    const [{ organization }] = useAuth();
+    const [{ user, organization }, { refetchCurrentOrg }] = useAuth();
+    const { queueSnackbar } = useSnackbar();
+    const handleSubmit = useCallback(
+        async ({ _id, updatedAt, createdAt, ...values }) => {
+            try {
+                await request(`v1/organizations/${_id}`, 'put', {
+                    body: JSON.stringify(values)
+                }, user.tokens.api);
+                await refetchCurrentOrg();
+                queueSnackbar({
+                    isError: false,
+                    replace: true,
+                    text: "Organization profile updated! 🥳"
+                });
+            } catch (error) {
+                queueSnackbar({
+                    isError: true,
+                    replace: true,
+                    text: "Something went wrong!"
+                });
+            }
+        },
+        [queueSnackbar, user.tokens.api, refetchCurrentOrg]
+    );
+
     return (
-        <Formik {...{ validationSchema }} initialValues={organization} children={renderForm} />
+        <Formik {...{ validationSchema }} enableReinitialize onSubmit={handleSubmit} initialValues={organization} children={renderForm} />
     )
 }
 

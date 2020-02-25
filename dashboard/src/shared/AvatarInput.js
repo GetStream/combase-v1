@@ -10,6 +10,7 @@ import upload from 'utils/upload';
 
 // Components //
 import Avatar from 'shared/Avatar';
+import IconButton from 'shared/IconButton';
 import LoadingState from 'shared/LoadingState';
 import { EditIcon } from 'shared/Icons';
 
@@ -36,6 +37,15 @@ const Overlay = styled.div`
     align-items: center;
     cursor: pointer;
     transition: .3s opacity ${({ theme }) => theme.easing.css(theme.easing.standard)};
+`;
+
+const Wrapper = styled.div`
+    align-items: center;
+    justify-content: center;
+
+    & > ${Root} {
+        margin-bottom: 16px;
+    }
 `;
 
 const AvatarInput = ({ avatarName, onBlur, onChange, name, value, ...props }) => {
@@ -84,13 +94,16 @@ const AvatarInput = ({ avatarName, onBlur, onChange, name, value, ...props }) =>
     }, [onChange, user.tokens.api, name, queueSnackbar]);
 
     return (
-        <Root size={props.size} {...{ onClick, onMouseEnter, onMouseLeave }}>
-            <input {...{ name, onBlur }} type="file" ref={inputRef} onChange={handleChange} />
-            <Avatar {...props} name={avatarName} src={value || file} />
-            <Overlay show={loading || hovered}>
-                {loading ? <LoadingState /> : <EditIcon size={props.size / 3} color="white" />}
-            </Overlay>
-        </Root>
+        <Wrapper>
+            <Root size={props.size} {...{ onClick, onMouseEnter, onMouseLeave }}>
+                <input {...{ name, onBlur }} type="file" ref={inputRef} onChange={handleChange} />
+                <Avatar {...props} name={avatarName} src={value || file} />
+                <Overlay show={loading || hovered}>
+                    {loading ? <LoadingState /> : <EditIcon size={props.size / 3} color="white" />}
+                </Overlay>
+            </Root>
+            <IconButton color="alt_text" icon={EditIcon} {...{ onClick }} />
+        </Wrapper>
     );
 };
 

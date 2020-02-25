@@ -47,7 +47,7 @@ const SignUp = ({ match }) => {
       <Root maxWidth={424}>
         <Header>
           <Avatar
-            src={invite.refs.organization.meta.logo}
+            src={invite.refs.organization.meta.branding.logo}
             name={invite.refs.organization.name}
             size={80}
             showStatus={false}
@@ -85,7 +85,7 @@ const SignUp = ({ match }) => {
       <Header>
         <Avatar
           name={invite.refs.organization.name}
-          src={invite.refs.organization.meta.logo}
+          src={invite.refs.organization.meta.branding.logo}
           size={80}
           showStatus={false}
         />
