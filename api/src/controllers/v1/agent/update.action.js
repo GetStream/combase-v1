@@ -12,7 +12,7 @@ exports.update = async (req, res) => {
 			});
 		}
 
-		const agent = await Agent.updateOne({ _id: params.agent }, { $set: data });
+		const agent = await Agent.findOneAndUpdate({ _id: params.agent }, { $set: data }, { new: true });
 
 		res.status(200).json(agent);
 	} catch (error) {

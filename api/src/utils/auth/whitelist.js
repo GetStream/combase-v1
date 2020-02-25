@@ -1,6 +1,11 @@
 export default [
 	{
 		path: 'agents',
+		method: 'GET',
+		auth: true,
+	},
+	{
+		path: 'agents',
 		method: 'POST',
 		auth: true,
 	},
