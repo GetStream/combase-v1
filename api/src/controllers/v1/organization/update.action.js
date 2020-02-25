@@ -12,7 +12,7 @@ exports.update = async (req, res) => {
 			});
 		}
 
-		const organization = await Organization.updateOne({ _id: params.organization }, { $set: data });
+		const organization = await Organization.findOneAndUpdate({ _id: params.organization }, { $set: data }, { new: true });
 
 		res.status(200).json(organization);
 	} catch (error) {

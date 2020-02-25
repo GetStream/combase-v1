@@ -3,7 +3,7 @@ import DataURI from 'datauri';
 import path from 'path';
 import { v2 as cloudinary } from 'cloudinary';
 
-exports.post = async (req, res) => {
+exports.post = (req, res) => {
 	try {
 		let cloudinaryKey;
 		let cloudinarySecret;
