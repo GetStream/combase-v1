@@ -27,6 +27,8 @@ const Root = styled(Card)`
 
     & > textarea {
         width: 100%;
+        min-height: 50px;
+        max-height: 288px;
         ${baseInputStyle}
     }
 `;

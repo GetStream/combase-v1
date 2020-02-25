@@ -1,13 +1,15 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
 
-// Compmonents //
+// Components //
+import AutoSizeTextArea from 'shared/AutoSizeTextArea';
+
 const Root = styled.div`
   flex: 1;
 `;
 
-const Input = styled.textarea`
-  flex: 1;
+const Input = styled(AutoSizeTextArea)`
+  width: 100%;
   resize: none;
   margin-right: 16px;
   font-size: 16px;
@@ -15,6 +17,7 @@ const Input = styled.textarea`
   outline: none;
   color: ${({ theme }) => theme.color.alt_text};
   font-weight: 500;
+  max-height: 144px;
 
   &::-webkit-input-placeholder {
     color: ${({ theme }) => theme.colorUtils.fade(theme.color.alt_text, 0.56)};
@@ -22,6 +25,7 @@ const Input = styled.textarea`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
     margin-right: 0;
+    max-height: 288px;
   }
 `;
 

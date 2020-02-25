@@ -11,7 +11,7 @@ import FAB from 'shared/FAB';
 
 const Button = styled(FAB)`
     position: absolute;
-    top: -50%;
+    top: -28px;
     right: 0;
 `;
 

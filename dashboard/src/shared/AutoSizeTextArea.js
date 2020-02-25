@@ -9,8 +9,6 @@ const Root = styled.textarea`
     resize: none;
     border-box: content-box;
     line-height: 24px;
-    min-height: 50px;
-    max-height: 288px;
 `;
 
 const AutoSizeTextArea = props => {
@@ -26,7 +24,7 @@ const AutoSizeTextArea = props => {
             setInputRef(el);
         }
     }, [inputRef]);
-    return <Root {...{ ref }} {...props} rows="3" />
+    return <Root {...{ ref }} rows="3" {...props} />
 };
 
 export default AutoSizeTextArea;
