@@ -15,7 +15,7 @@ const Root = styled.div`
 const UserSettings = () => {
   return (
     <Root>
-      <Container maxWidth={640}>
+      <Container noPadding maxWidth={640}>
         <UserSettingsForm />
       </Container>
     </Root>
