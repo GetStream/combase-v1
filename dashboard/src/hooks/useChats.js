@@ -40,7 +40,7 @@ export default () => {
           ...chat,
           channel: channels.find(({ id }) => id === chat._id)
         }));
-        console.log(chatData);
+
         setChats(chatData);
         setLoading(false);
       } catch (error) {
