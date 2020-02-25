@@ -78,6 +78,9 @@ const renderForm = ({ dirty, handleSubmit, initialValues, isValid, values }) => 
                     <Col sm={6}>
                         <InputField placeholder="Website" name="website.url" />
                     </Col>
+                    <Col sm={6}>
+                        <InputField placeholder="Color" name="meta.branding.colors.primary" />
+                    </Col>
                 </Row>
                 <Row>
                     <FormFooter>

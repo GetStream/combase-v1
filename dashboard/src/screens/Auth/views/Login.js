@@ -26,7 +26,6 @@ const Header = styled.div`
 
 const Login = () => {
     const [{ organization }] = useAuth();
-    console.log(organization);
     return (
         <Root maxWidth={400}>
             <Header>
