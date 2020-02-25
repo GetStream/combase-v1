@@ -33,13 +33,13 @@ export default ({ match }) => (
       to={`${match.url}/app`}
     />
     <SettingsItem
-      icon={OrganizationSettingsIcon}
+      icon={UserSettingsIcon}
       title="User Settings"
       text="Change your profile information, password and user preferences"
       to={`${match.url}/user`}
     />
     <SettingsItem
-      icon={UserSettingsIcon}
+      icon={OrganizationSettingsIcon}
       title="Organization Settings"
       text="Change your organization profile, welcome message, color palette, branding and more"
       to={`${match.url}/organization`}
