@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { animated, useSpring } from 'react-spring';
 
+// Hooks //
+import usePrevious from 'hooks/usePrevious';
+
 // Components //
 import Text from 'shared/Text';
 
@@ -13,6 +16,7 @@ const Root = styled.div`
     background-color: ${({ theme }) => theme.color.surface};
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.12);
     overflow: hidden;
+    z-index: 1;
 
     & > input {
         color: ${({ theme }) => theme.color.alt_text};
@@ -51,14 +55,19 @@ const Label = styled.div`
 const Placeholder = styled.div`
     position: absolute;
     top: 50%;
-    left: 12px;
+    left: ${({ hasIcon }) => hasIcon ? 56 : 12}px;
     transform: translateY(-50%);
     pointer-events: none;
     user-select: none;
 `;
 
 const ErrorRow = styled.div`
+    z-index: 0;
+    padding: 0px 8px;
     height: 12px;
+    & ${Text} {
+        padding: 4px 0px;
+    }
 `
 
 const Input = ({
@@ -69,13 +78,15 @@ const Input = ({
     onChange,
     onFocus,
     placeholder,
+    touched,
     type,
     value,
     ...rest
 }) => {
-    console.log(rest);
+    const prevError = usePrevious(error);
     const [focused, setFocus] = useState(false);
-    const anim = useSpring({ value: focused || !!value ? 1 : 0, config: { tension: 200, friction: 15 } });
+    const anim = useSpring({ value: !!value || focused ? 1 : 0, config: { tension: 200, friction: 15 } });
+    const errorAnim = useSpring({ value: !!error && touched && !focused ? 1 : 0, config: { tension: 200, friction: 15 } });
     const handleChange = useCallback(
         e => {
             if (onChange) {
@@ -123,6 +134,13 @@ const Input = ({
         }).interpolate(v => `translate3d(0, ${v}, 0)`)
     }), [anim]);
 
+    const errorStyle = useMemo(() => ({
+        transform: errorAnim.value.interpolate({
+            range: [0, 1],
+            output: ['-100%', '0%'],
+        }).interpolate(v => `translate3d(0, ${v}, 0)`)
+    }), [errorAnim]);
+
     return (
         <div>
             <Label>
@@ -141,16 +159,16 @@ const Input = ({
                     onFocus={handleFocus}
                 />
                 {placeholder ? (
-                    <Placeholder>
+                    <Placeholder hasIcon={!!Icon}>
                         <Text as={animated.p} faded color="alt_text" weight="500" size={14} style={placeholderStyle}>
                             {placeholder}
                         </Text>
                     </Placeholder>
                 ) : null}
-                <ErrorRow>
-                    {error}
-                </ErrorRow>
             </Root>
+            <ErrorRow>
+                <Text as={animated.p} color="error" size={12} style={errorStyle}>{error || prevError}</Text>
+            </ErrorRow>
         </div>
     );
 };

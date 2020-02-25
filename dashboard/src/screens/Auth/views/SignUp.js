@@ -41,13 +41,14 @@ const SignUp = ({ match }) => {
   if (loading) {
     return <LoadingState />;
   }
-
+  console.log(invite);
   if (expired) {
     return (
       <Root maxWidth={424}>
         <Header>
           <Avatar
             src={invite.refs.organization.meta.logo}
+            name={invite.refs.organization.name}
             size={80}
             showStatus={false}
           />
@@ -83,6 +84,7 @@ const SignUp = ({ match }) => {
     <Root maxWidth={424}>
       <Header>
         <Avatar
+          name={invite.refs.organization.name}
           src={invite.refs.organization.meta.logo}
           size={80}
           showStatus={false}

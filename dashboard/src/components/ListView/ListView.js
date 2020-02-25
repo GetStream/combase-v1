@@ -127,7 +127,7 @@ class ListView extends Component {
 
         const { dataProvider } = this.state;
 
-        if (rowCount === 0) {
+        if (!data || rowCount === 0) {
             return (
                 <>
                     {showEmptyHeader ? <ListHeaderComponent /> : null}

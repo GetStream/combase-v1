@@ -19,7 +19,7 @@ export default () => {
   const [error, setError] = useState(false);
   const [channels] = useChannels();
   const [chats, setChats] = useState(
-    JSON.stringify(localStorage.getItem("chat")) || null
+    JSON.parse(localStorage.getItem("chats")) || []
   );
 
   const getChats = useCallback(async () => {
@@ -37,13 +37,14 @@ export default () => {
           ...chat,
           channel: channels.find(({ id }) => id === chat._id)
         }));
-
         setChats(chatData);
         setLoading(false);
       } catch (error) {
         setError(true);
         setLoading(false);
       }
+    } else {
+      setLoading(false);
     }
   }, [user._id, user.tokens.api, channels]);
   useEffect(() => {

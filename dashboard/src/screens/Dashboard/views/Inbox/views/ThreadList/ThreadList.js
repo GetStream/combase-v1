@@ -61,26 +61,26 @@ export default props => {
 
   return (
     <Root>
-      {loading || !chats || !chats.length ? (
+      {loading ? (
         <LoadingState />
       ) : error ? (
         <EmptyState text="Error loading threads" />
       ) : (
-        <ListView
-          {...{
-            contextProvider,
-            layoutProvider,
-            onResize,
-            renderRow,
-            style
-          }}
-          data={chats}
-          ListHeaderComponent={renderListHeader}
-          ListEmptyComponent={renderListEmpty}
-          rowCount={chats.length}
-          showEmptyHeader
-        />
-      )}
+            <ListView
+              {...{
+                contextProvider,
+                layoutProvider,
+                onResize,
+                renderRow,
+                style
+              }}
+              data={chats}
+              ListHeaderComponent={renderListHeader}
+              ListEmptyComponent={renderListEmpty}
+              rowCount={chats.length}
+              showEmptyHeader
+            />
+          )}
     </Root>
   );
 };
