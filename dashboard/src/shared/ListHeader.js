@@ -16,7 +16,7 @@ const Root = styled(Animated.div)`
   position: sticky;
   top: -56px;
   z-index: 1;
-  background-color: ${({ theme }) => theme.color.background};
+  background-color: ${({ bgColor, theme }) => theme.color[bgColor]};
   @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
     top: -64px;
   }
@@ -30,7 +30,7 @@ const TitleWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 16px;
-  background-color: ${({ theme }) => theme.color.background};
+  background-color: ${({ bgColor, theme }) => theme.color[bgColor]};
   @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
     padding: 24px 32px 24px 32px;
   }
@@ -76,6 +76,7 @@ const getShadowStyle = scrollAnim => {
 };
 
 const ListHeader = ({
+  bgColor,
   children,
   icon: Icon,
   scrollAnim,
@@ -85,8 +86,8 @@ const ListHeader = ({
   const style = getShadowStyle(scrollAnim);
   const isMobile = useMedia("sm");
   return (
-    <Root {...{ style }}>
-      <TitleWrapper {...{ showSearch }}>
+    <Root {...{ bgColor, style }}>
+      <TitleWrapper {...{ bgColor, showSearch }}>
         <Title>
           <MenuBtn />
           {Icon ? <Icon color="text" size={24} /> : null}
@@ -106,11 +107,13 @@ const ListHeader = ({
 };
 
 ListHeader.propTypes = {
+  bgColor: PropTypes.string,
   showSearch: PropTypes.bool,
   title: PropTypes.string
 };
 
 ListHeader.defaultProps = {
+  bgColor: "background",
   showSearch: true,
   title: "Title"
 };

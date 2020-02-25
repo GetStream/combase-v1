@@ -7,6 +7,8 @@ import Text from 'shared/Text';
 const Root = styled.div`
     flex-direction: row;
     padding-bottom: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
     border-bottom: 1px solid ${({ theme }) => theme.color.border};
 `;
 

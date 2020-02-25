@@ -21,9 +21,9 @@ const Root = styled.div`
   flex: 1;
   z-index: 2;
   background-color: ${({ theme }) => theme.color.surface};
-  overflow-y: scroll;
   -webkit-overflow-scroll: touch;
   padding-bottom: 32px;
+  overflow-y: scroll !important;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
     ${pageCard}

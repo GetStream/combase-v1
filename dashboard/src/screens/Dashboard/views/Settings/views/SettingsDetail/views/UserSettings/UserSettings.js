@@ -1,21 +1,27 @@
 import React from "react";
 import styled from "styled-components";
 
+// Hooks //
+import useMedia from 'hooks/useMedia';
+
 // Forms //
 import UserSettingsForm from 'screens/Dashboard/forms/UserSettingsForm';
 
 // Components //
 import Container from "shared/Container";
-import Text from "shared/Text";
+import ListHeader from 'shared/ListHeader';
+import { UserSettingsIcon } from 'shared/Icons';
 
 const Root = styled.div`
   flex: 1;
 `;
 
 const UserSettings = () => {
+  const isMobile = useMedia('sm');
   return (
     <Root>
       <Container noPadding maxWidth={640}>
+        {!isMobile ? <ListHeader bgColor="surface" showSearch={false} icon={UserSettingsIcon} title="User Settings" /> : null}
         <UserSettingsForm />
       </Container>
     </Root>

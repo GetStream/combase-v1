@@ -3,34 +3,31 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { animated, useSpring } from 'react-spring';
 
+// Styles //
+import baseInputStyle from 'styles/css/baseInputStyle'
+
 // Hooks //
 import usePrevious from 'hooks/usePrevious';
 
 // Components //
+import AutoSizeTextArea from 'shared/AutoSizeTextArea';
 import Card from 'shared/Card';
 import Text from 'shared/Text';
 
 const Root = styled(Card)`
     flex-direction: row;
-    height: 48px;
+    min-height: 48px;
     overflow: hidden;
     z-index: 1;
 
     & > input {
-        color: ${({ theme }) => theme.color.alt_text};
-        font-size: 14px;
-        padding: 12px;
         flex: 1;
+        ${baseInputStyle}
+    }
 
-        &:-webkit-autofill,
-        &:-webkit-autofill:hover,
-        &:-webkit-autofill:focus,
-        &:-webkit-autofill:active {
-            -webkit-text-fill-color: ${({ theme }) =>
-        theme.color.alt_text} !important;
-            -webkit-box-shadow: 0 0 0 30px ${({ theme }) => theme.color.surface}
-                inset !important;
-        }
+    & > textarea {
+        width: 100%;
+        ${baseInputStyle}
     }
 `;
 
@@ -42,7 +39,7 @@ const IconWrapper = styled.div`
 `;
 
 const Label = styled.div`
-    padding: 0px 8px;
+    padding: 0px 12px;
     overflow: hidden;
     user-select: none;
     & ${Text} {
@@ -52,16 +49,16 @@ const Label = styled.div`
 
 const Placeholder = styled.div`
     position: absolute;
-    top: 50%;
+    top: ${({ textarea }) => textarea ? "12px" : "50%"};
     left: ${({ hasIcon }) => hasIcon ? 56 : 12}px;
-    transform: translateY(-50%);
+    transform: ${({ textarea }) => !textarea ? 'translateY(-50%)' : null};
     pointer-events: none;
     user-select: none;
 `;
 
 const ErrorRow = styled.div`
     z-index: 0;
-    padding: 0px 8px;
+    padding: 0px 12px;
     height: 16px;
     & ${Text} {
         padding: 4px 0px;
@@ -76,6 +73,7 @@ const Input = ({
     onChange,
     onFocus,
     placeholder,
+    textarea,
     touched,
     type,
     value,
@@ -150,14 +148,23 @@ const Input = ({
                         <Icon color="alt_text" />
                     </IconWrapper>
                 ) : null}
-                <input
-                    {...{ focused, name, type, value }}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    onFocus={handleFocus}
-                />
+                {!textarea ? (
+                    <input
+                        {...{ focused, name, type, value }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        onFocus={handleFocus}
+                    />
+                ) : (
+                        <AutoSizeTextArea
+                            {...{ focused, name, type, value }}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            onFocus={handleFocus}
+                        />
+                    )}
                 {placeholder ? (
-                    <Placeholder hasIcon={!!Icon}>
+                    <Placeholder {...{ textarea }} hasIcon={!!Icon}>
                         <Text as={animated.p} faded color="alt_text" weight="500" size={14} style={placeholderStyle}>
                             {placeholder}
                         </Text>

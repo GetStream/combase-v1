@@ -1,12 +1,16 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 
+// Hooks //
+import useMedia from 'hooks/useMedia';
+
 // Contexts //
 import ThemeSwitcherContext from "contexts/Theme";
 import ShellContext from "contexts/Shell";
 
 // Components //
-import { SoundsIcon, ThemeIcon } from "shared/Icons";
+import ListHeader from 'shared/ListHeader';
+import { AppSettingsIcon, SoundsIcon, ThemeIcon } from "shared/Icons";
 import Container from "shared/Container";
 import Switch from "components/Switch";
 import SettingsListItem from "components/SettingsListItem";
@@ -16,11 +20,13 @@ const Root = styled.div`
 `;
 
 const AppSettings = () => {
+  const isMobile = useMedia('sm');
   const { isDarkMode, toggleTheme } = useContext(ThemeSwitcherContext);
   const { sounds } = useContext(ShellContext);
   return (
     <Root>
       <Container maxWidth={640}>
+        {!isMobile ? <ListHeader bgColor="surface" showSearch={false} icon={AppSettingsIcon} title="App Settings" /> : null}
         <SettingsListItem
           icon={ThemeIcon}
           color="text"
