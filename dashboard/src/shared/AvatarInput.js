@@ -38,7 +38,7 @@ const Overlay = styled.div`
     transition: .3s opacity ${({ theme }) => theme.easing.css(theme.easing.standard)};
 `;
 
-const AvatarInput = ({ onChange, ...props }) => {
+const AvatarInput = ({ avatarName, onBlur, onChange, name, value, ...props }) => {
     const [{ user }] = useAuth();
     const { queueSnackbar } = useSnackbar();
     const [hovered, setHover] = useState(false);
@@ -60,14 +60,18 @@ const AvatarInput = ({ onChange, ...props }) => {
         try {
             setLoading(true);
             const data = await upload(files[0], user.tokens.api);
-            console.log(data);
+
             if (data.error) {
                 throw new Error(data.error);
             }
+
             setFile(data.url);
+
             if (onChange) {
-                onChange(data.url);
+                console.log({ target: { name, value: data.url } });
+                onChange({ target: { name, value: data.url } });
             }
+
             setLoading(false);
         } catch (error) {
             setLoading(false);
@@ -77,15 +81,17 @@ const AvatarInput = ({ onChange, ...props }) => {
             });
             console.error(error);
         }
-    }, [onChange, user.tokens.api, queueSnackbar]);
+    }, [onChange, user.tokens.api, name, queueSnackbar]);
 
-    return <Root size={props.size} {...{ onClick, onMouseEnter, onMouseLeave }}>
-        <input type="file" ref={inputRef} onChange={handleChange} />
-        <Avatar {...props} src={file} />
-        <Overlay show={loading || hovered}>
-            {loading ? <LoadingState /> : <EditIcon size={props.size / 3} color="white" />}
-        </Overlay>
-    </Root>
+    return (
+        <Root size={props.size} {...{ onClick, onMouseEnter, onMouseLeave }}>
+            <input {...{ name, onBlur }} type="file" ref={inputRef} onChange={handleChange} />
+            <Avatar {...props} name={avatarName} src={value || file} />
+            <Overlay show={loading || hovered}>
+                {loading ? <LoadingState /> : <EditIcon size={props.size / 3} color="white" />}
+            </Overlay>
+        </Root>
+    );
 };
 
 export default AvatarInput;

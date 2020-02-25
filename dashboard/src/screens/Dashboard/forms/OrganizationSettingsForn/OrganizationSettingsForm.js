@@ -6,7 +6,7 @@ import { Formik } from 'formik';
 import useAuth from 'hooks/useAuth';
 
 // Component //
-import AvatarInput from 'shared/AvatarInput';
+import AvatarField from 'shared/AvatarField';
 import { Col, Grid, Row } from 'shared/Grid';
 import InputField from 'shared/InputField';
 import SectionTitle from 'shared/SectionTitle';
@@ -26,7 +26,7 @@ const TitleSeparator = styled(SectionTitle)`
 `
 
 const renderForm = ({ initialValues, values }) => {
-    console.log('org data', initialValues);
+    console.log('org data', values);
     return (
         <Root>
             <Grid fluid>
@@ -37,7 +37,7 @@ const renderForm = ({ initialValues, values }) => {
                 </Row>
                 <Row>
                     <Col>
-                        <AvatarInput size={96} src={values.meta ? values.meta.logo : null} name={values.name || initialValues.name} showStatus={false} />
+                        <AvatarField name="meta.logo" size={96} avatarName={values.name || initialValues.name} showStatus={false} />
                     </Col>
                 </Row>
                 <Row>
