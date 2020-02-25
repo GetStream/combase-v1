@@ -7,14 +7,12 @@ import { animated, useSpring } from 'react-spring';
 import usePrevious from 'hooks/usePrevious';
 
 // Components //
+import Card from 'shared/Card';
 import Text from 'shared/Text';
 
-const Root = styled.div`
+const Root = styled(Card)`
     flex-direction: row;
     height: 48px;
-    border-radius: ${({ theme }) => theme.borderRadius}px;
-    background-color: ${({ theme }) => theme.color.surface};
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.12);
     overflow: hidden;
     z-index: 1;
 
@@ -146,7 +144,7 @@ const Input = ({
             <Label>
                 <Text color="primary" as={animated.p} size={12} line={12} weight="500" style={labelStyle}>{placeholder}</Text>
             </Label>
-            <Root {...rest}>
+            <Root flat border {...rest}>
                 {Icon ? (
                     <IconWrapper>
                         <Icon color="alt_text" />
