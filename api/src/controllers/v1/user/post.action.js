@@ -15,7 +15,7 @@ exports.post = async (req, res) => {
 		await client.updateUser({
 			id: user._id.toString(),
 			name: `${user.name.first} ${user.name.last}`,
-			role: 'channel_member'
+			role: 'user'
 		});
 
 		res.status(200).json(user);
