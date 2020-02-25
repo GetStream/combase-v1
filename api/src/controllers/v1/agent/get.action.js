@@ -31,17 +31,6 @@ exports.get = async (req, res) => {
 
       const agent = await Agent.findById(data.agent);
 
-      // const streamToken = client.createToken(agent._id.toString());
-
-      // // jwt token generation (for api)
-      // const apiToken = jwt.sign(
-      //    {
-      //       sub: agent._id,
-      //       role: agent.role
-      //    },
-      //    process.env.AUTH_SECRET
-      // );
-
       res.status(200).json(agent);
    } catch (error) {
       console.error(error);
