@@ -16,6 +16,7 @@ const Root = styled.div`
   overflow: hidden;
 
   & > ${Text} {
+    text-transform: uppercase;
     user-select: none;
   }
 
@@ -51,8 +52,8 @@ const Avatar = ({
             {name.charAt(0)}
           </Text>
         ) : (
-          <img alt={name} {...{ src }} />
-        )}
+            <img alt={name} {...{ src }} />
+          )}
       </Root>
       {showStatus ? (
         <Status

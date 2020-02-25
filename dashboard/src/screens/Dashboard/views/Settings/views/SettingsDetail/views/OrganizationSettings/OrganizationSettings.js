@@ -14,7 +14,7 @@ const Root = styled.div`
 const OrganizationSettings = () => {
   return (
     <Root>
-      <Container maxWidth={640}>
+      <Container noPadding maxWidth={640}>
         <OrganizationSettingsForm />
       </Container>
     </Root>
