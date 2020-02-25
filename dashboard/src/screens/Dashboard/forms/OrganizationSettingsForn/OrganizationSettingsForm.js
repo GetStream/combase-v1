@@ -6,7 +6,7 @@ import { Formik } from 'formik';
 import useAuth from 'hooks/useAuth';
 
 // Component //
-import Avatar from 'shared/Avatar';
+import AvatarInput from 'shared/AvatarInput';
 import { Col, Grid, Row } from 'shared/Grid';
 import InputField from 'shared/InputField';
 import SectionTitle from 'shared/SectionTitle';
@@ -37,7 +37,7 @@ const renderForm = ({ initialValues, values }) => {
                 </Row>
                 <Row>
                     <Col>
-                        <Avatar size={96} src={values.meta ? values.meta.logo : null} name={values.name || initialValues.name} showStatus={false} />
+                        <AvatarInput size={96} src={values.meta ? values.meta.logo : null} name={values.name || initialValues.name} showStatus={false} />
                     </Col>
                 </Row>
                 <Row>

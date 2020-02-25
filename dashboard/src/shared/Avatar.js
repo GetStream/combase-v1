@@ -1,4 +1,4 @@
-import React, { cloneElement } from "react"; // eslint-disable-line no-unused-vars
+import React, { useCallback } from "react"; // eslint-disable-line no-unused-vars
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -35,7 +35,9 @@ const Status = styled.div`
 
 const Avatar = ({
   className,
+  editable,
   name,
+  onClick,
   showStatus,
   size,
   src,
@@ -46,7 +48,7 @@ const Avatar = ({
 }) => {
   return (
     <div>
-      <Root {...{ className, size }}>
+      <Root {...{ className, onClick, size }}>
         {!src ? (
           <Text color="white" size={size / 2} weight="600">
             {name.charAt(0)}
@@ -70,6 +72,7 @@ const Avatar = ({
 
 Avatar.propTypes = {
   name: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
   showStatus: PropTypes.bool,
   size: PropTypes.number,
   src: PropTypes.string,
