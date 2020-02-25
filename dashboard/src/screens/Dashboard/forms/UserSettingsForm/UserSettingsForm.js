@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { Formik } from 'formik';
 
+// Utils //
+import request from 'utils/request';
+
 // Hooks //
 import useAuth from 'hooks/useAuth';
+import { useSnackbar } from 'contexts/Snackbar';
 
 // Component //
 import AvatarField from 'shared/AvatarField';
@@ -34,9 +38,9 @@ const TitleSeparator = styled(SectionTitle)`
     margin-bottom: 16px;
 `
 
-const renderForm = ({ dirty, initialValues, isValid, values }) => {
+const renderForm = ({ dirty, handleSubmit, initialValues, isValid, values }) => {
     return (
-        <Root>
+        <Root onSubmit={handleSubmit}>
             <Grid fluid>
                 <Row>
                     <Col>
@@ -80,9 +84,33 @@ const renderForm = ({ dirty, initialValues, isValid, values }) => {
 };
 
 const UserSettingsForm = () => {
-    const [{ user }] = useAuth();
+    const [{ user }, { refetchUser }] = useAuth();
+    const { queueSnackbar } = useSnackbar();
+    const handleSubmit = useCallback(
+        async ({ _id, updatedAt, createdAt, ...values }) => {
+            try {
+                await request(`v1/agents/${_id}`, 'put', {
+                    body: JSON.stringify(values)
+                }, user.tokens.api);
+                await refetchUser();
+                queueSnackbar({
+                    isError: false,
+                    replace: true,
+                    text: "Your profile was updated! 🥳"
+                });
+            } catch (error) {
+                queueSnackbar({
+                    isError: true,
+                    replace: true,
+                    text: "Something went wrong!"
+                });
+            }
+        },
+        [queueSnackbar, user.tokens.api, refetchUser]
+    );
+
     return (
-        <Formik {...{ validationSchema }} initialValues={user} children={renderForm} />
+        <Formik {...{ validationSchema }} enableReinitialize onSubmit={handleSubmit} initialValues={user} children={renderForm} />
     )
 }
 

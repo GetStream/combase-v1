@@ -12,9 +12,10 @@ export default () => {
     logout,
     setCurrentOrganization,
     refetchCurrentOrg,
+    refetchUser,
   } = useContext(AuthContext);
   return [
     { organization, organizations, user },
-    { loading, error, login, logout, setCurrentOrganization, refetchCurrentOrg }
+    { loading, error, login, logout, setCurrentOrganization, refetchCurrentOrg, refetchUser }
   ];
 };

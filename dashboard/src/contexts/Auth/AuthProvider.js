@@ -82,6 +82,13 @@ export default ({ children }) => {
     getOrgs();
   }, [getOrgs]);
 
+  const refetchUser = useCallback(async () => {
+    const data = await request(`v1/agents/${user._id}`, "get");
+    const userData = { tokens: user.tokens, ...data };
+    localStorage.setItem("user", JSON.stringify(userData));
+    setUser(userData);
+  }, [user]);
+
   const refetchCurrentOrg = useCallback(async () => {
     const org = await request(`v1/organizations/${organization._id}`, "get");
     localStorage.setItem("organization", JSON.stringify(org));
@@ -94,6 +101,7 @@ export default ({ children }) => {
       organizations,
       setCurrentOrganization,
       refetchCurrentOrg,
+      refetchUser,
       user,
       loading,
       error,
@@ -105,6 +113,7 @@ export default ({ children }) => {
       organizations,
       setCurrentOrganization,
       refetchCurrentOrg,
+      refetchUser,
       user,
       loading,
       error,
