@@ -62,7 +62,7 @@ const Placeholder = styled.div`
 const ErrorRow = styled.div`
     z-index: 0;
     padding: 0px 8px;
-    height: 12px;
+    height: 16px;
     & ${Text} {
         padding: 4px 0px;
     }

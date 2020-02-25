@@ -6,10 +6,13 @@ import { Formik } from 'formik';
 import useAuth from 'hooks/useAuth';
 
 // Component //
-import Avatar from 'shared/Avatar';
+import AvatarField from 'shared/AvatarField';
+import Button from 'shared/Button';
 import { Col, Grid, Row } from 'shared/Grid';
 import InputField from 'shared/InputField';
 import SectionTitle from 'shared/SectionTitle';
+
+import validationSchema from './validationSchema';
 
 const Root = styled.form`
     & > * + * {
@@ -17,13 +20,21 @@ const Root = styled.form`
     }
 `;
 
+const AvatarCol = styled(Col)`
+    margin-bottom: 32px;
+`
+
+const FormFooter = styled(Col)`
+    margin-top: 24px;
+    align-items: flex-end;
+`
+
 const TitleSeparator = styled(SectionTitle)`
     margin-top: 32px;
     margin-bottom: 16px;
 `
 
-const renderForm = ({ values }) => {
-    console.log(values);
+const renderForm = ({ dirty, initialValues, isValid, values }) => {
     return (
         <Root>
             <Grid fluid>
@@ -33,9 +44,9 @@ const renderForm = ({ values }) => {
                     </Col>
                 </Row>
                 <Row>
-                    <Col>
-                        <Avatar size={96} src={values.image || null} name={values.name.first} showStatus={false} />
-                    </Col>
+                    <AvatarCol>
+                        <AvatarField name="image" size={96} avatarName={values.name.first || initialValues.name.first} showStatus={false} />
+                    </AvatarCol>
                 </Row>
                 <Row>
                     <Col sm={6}>
@@ -54,6 +65,11 @@ const renderForm = ({ values }) => {
                     </Col>
                 </Row>
                 <Row>
+                    <FormFooter>
+                        <Button disabled={!dirty || !isValid} label="Save" type="submit" />
+                    </FormFooter>
+                </Row>
+                <Row>
                     <Col>
                         <TitleSeparator title="Your Availability" />
                     </Col>
@@ -66,7 +82,7 @@ const renderForm = ({ values }) => {
 const UserSettingsForm = () => {
     const [{ user }] = useAuth();
     return (
-        <Formik initialValues={user} children={renderForm} />
+        <Formik {...{ validationSchema }} initialValues={user} children={renderForm} />
     )
 }
 
