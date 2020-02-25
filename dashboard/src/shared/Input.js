@@ -144,7 +144,7 @@ const Input = ({
     return (
         <div>
             <Label>
-                <Text color="primary" as={animated.p} size={12} weight="500" style={labelStyle}>{placeholder}</Text>
+                <Text color="primary" as={animated.p} size={12} line={12} weight="500" style={labelStyle}>{placeholder}</Text>
             </Label>
             <Root {...rest}>
                 {Icon ? (
@@ -167,7 +167,7 @@ const Input = ({
                 ) : null}
             </Root>
             <ErrorRow>
-                <Text as={animated.p} color="error" size={12} style={errorStyle}>{error || prevError}</Text>
+                <Text as={animated.p} color="error" size={12} line={12} style={errorStyle}>{error || prevError}</Text>
             </ErrorRow>
         </div>
     );

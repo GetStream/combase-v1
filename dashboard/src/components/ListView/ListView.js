@@ -9,6 +9,7 @@ import {
 } from 'recyclerlistview/web';
 
 // Components //
+import LoadingState from 'shared/LoadingState';
 import ResizeAwareScrollView from './ResizeAwareScrollView';
 
 const itemAnimator = new BaseItemAnimator();
@@ -23,6 +24,7 @@ class ListView extends Component {
         emptyText: PropTypes.string,
         immutable: PropTypes.bool,
         layoutProvider: PropTypes.instanceOf(LayoutProvider).isRequired,
+        loading: PropTypes.bool,
         renderRow: PropTypes.func,
         rowCount: PropTypes.number.isRequired,
         scrollAnim: PropTypes.instanceOf(Animated.Value),
@@ -113,8 +115,10 @@ class ListView extends Component {
             initialRenderIndex,
             initialOffset,
             layoutProvider,
+            loading,
             ListEmptyComponent,
             ListHeaderComponent,
+            ListLoadingComponent,
             onEndReached,
             onEndReachedThreshold,
             renderAheadOffset,
@@ -126,6 +130,15 @@ class ListView extends Component {
         } = this.props;
 
         const { dataProvider } = this.state;
+
+        if (loading) {
+            return (
+                <>
+                    {showEmptyHeader ? <ListHeaderComponent /> : null}
+                    {ListLoadingComponent ? <ListLoadingComponent /> : <LoadingState />}
+                </>
+            )
+        }
 
         if (!data || rowCount === 0) {
             return (

@@ -17,12 +17,15 @@ export default () => {
   const [{ user }] = useAuth();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [channels] = useChannels();
+  const [channels, { loading: channelsLoading }] = useChannels();
   const [chats, setChats] = useState(
     JSON.parse(localStorage.getItem("chats")) || []
   );
 
   const getChats = useCallback(async () => {
+    if (channelsLoading) {
+      return;
+    }
     if (channels.length) {
       try {
         setLoading(true);
@@ -37,6 +40,7 @@ export default () => {
           ...chat,
           channel: channels.find(({ id }) => id === chat._id)
         }));
+        console.log(chatData);
         setChats(chatData);
         setLoading(false);
       } catch (error) {
@@ -46,7 +50,7 @@ export default () => {
     } else {
       setLoading(false);
     }
-  }, [user._id, user.tokens.api, channels]);
+  }, [user._id, user.tokens.api, channels, channelsLoading]);
   useEffect(() => {
     getChats();
   }, [getChats]);

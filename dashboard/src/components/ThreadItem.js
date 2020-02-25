@@ -1,7 +1,8 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { withTheme } from "styled-components";
 import { Route, Link } from "react-router-dom";
 import moment from "moment";
+import ContentLoader from 'react-content-loader';
 
 // Styles //
 import listItemInteractions from "styles/css/listItemInteractions";
@@ -45,10 +46,28 @@ const Row = styled.div`
 const LatestMessage = styled(Text)``;
 
 const ThreadItemInner = props => {
-  const { data, id, match, partner, statusBorder } = props;
+  const { data, id, match, partner, statusBorder, theme } = props;
 
   const active = !!match;
   const [unread, latestMessage] = useChannelListener(id, active);
+
+  if (!data || !id || !partner) {
+    return (
+      <ContentLoader
+        speed={2}
+        width={375}
+        height={80}
+        viewBox="0 0 375 80"
+        backgroundColor={theme.color.placeholder}
+        foregroundColor={theme.color.placeholder_shimmer}
+      >
+        <circle cx="48" cy="40" r="24" />
+        <rect x="88" y="24" rx="4" ry="4" width="134" height="16" />
+        <rect x="88" y="44" rx="4" ry="4" width="120" height="12" />
+      </ContentLoader>
+    );
+  }
+
   return (
     <Root to={`/inbox/${id}`}>
       <Wrapper {...{ active }}>
@@ -98,4 +117,4 @@ const ThreadItem = props => {
   );
 };
 
-export default ThreadItem;
+export default withTheme(ThreadItem);

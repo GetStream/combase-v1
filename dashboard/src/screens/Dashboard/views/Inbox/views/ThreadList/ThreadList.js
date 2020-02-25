@@ -47,6 +47,19 @@ const renderRow = ({ channel: { id, data, partner } }, index) => {
   return <ThreadItem {...{ id, data, partner }} />;
 };
 
+const ListLoadingComponent = () => {
+  return (
+    <>
+      <ThreadItem />
+      <ThreadItem />
+      <ThreadItem />
+      <ThreadItem />
+      <ThreadItem />
+      <ThreadItem />
+    </>
+  )
+}
+
 export default props => {
   const [chats, { loading, error }] = useChats();
   const [{ width }, onResize] = useState(initialState);
@@ -61,26 +74,26 @@ export default props => {
 
   return (
     <Root>
-      {loading ? (
-        <LoadingState />
-      ) : error ? (
+      {error ? (
         <EmptyState text="Error loading threads" />
       ) : (
-            <ListView
-              {...{
-                contextProvider,
-                layoutProvider,
-                onResize,
-                renderRow,
-                style
-              }}
-              data={chats}
-              ListHeaderComponent={renderListHeader}
-              ListEmptyComponent={renderListEmpty}
-              rowCount={chats.length}
-              showEmptyHeader
-            />
-          )}
+          <ListView
+            {...{
+              contextProvider,
+              layoutProvider,
+              ListLoadingComponent,
+              onResize,
+              renderRow,
+              style
+            }}
+            loading={loading && !chats.length}
+            data={chats}
+            ListHeaderComponent={renderListHeader}
+            ListEmptyComponent={renderListEmpty}
+            rowCount={chats.length}
+            showEmptyHeader
+          />
+        )}
     </Root>
   );
 };

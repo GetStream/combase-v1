@@ -14,7 +14,7 @@ import validationSchema from "./validationSchema";
 
 const Root = styled.form`
   & > * + * {
-    margin-top: 16px;
+    margin-top: 8px;
   }
 `;
 
