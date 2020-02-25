@@ -29,9 +29,7 @@ export const InviteSchema = new Schema(
 				type: Schema.Types.ObjectId,
 				ref: 'Organization',
 				required: true,
-				autopopulate: {
-					select: [ 'name', 'email.address', 'meta.branding.logo' ]
-				}
+				autopopulate: true
 			}
 		},
 		expiration: {
