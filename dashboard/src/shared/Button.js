@@ -17,40 +17,41 @@ const Root = styled.button`
     box-shadow: ${({ color, disabled, flat, theme }) =>
         !disabled && !flat
             ? `0px 1px 4px ${theme.colorUtils.fade(
-                  theme.colorUtils.darken(theme.color[color], 0.1),
-                  0.4
-              )}`
+                theme.colorUtils.darken(theme.color[color], 0.1),
+                0.4
+            )}`
             : null};
     background-color: ${({ disabled, flat, color, theme }) =>
         flat
             ? 'transparent'
             : disabled
-            ? theme.color.disabled
-            : theme.color[color]};
+                ? theme.color.disabled
+                : theme.color[color]};
     ${({ color, disabled, flat, theme }) =>
         !disabled
             ? flat
                 ? listItemInteractions
                 : `
             transition: 0.24s background-color ${theme.easing.css(
-                theme.easing.standard
-            )};
+                    theme.easing.standard
+                )};
         &:hover {
             background-color: ${theme.colorUtils.darken(
-                theme.color[color],
-                0.05
-            )}
+                    theme.color[color],
+                    0.05
+                )}
         }
         &:active {
             background-color: ${theme.colorUtils.darken(
-                theme.color[color],
-                0.15
-            )}
+                    theme.color[color],
+                    0.15
+                )}
         }
     `
             : null};
 
     & > ${Text} {
+        user-select: none;
         margin-left: ${({ hasIcon }) => (hasIcon ? 8 : 0)}px;
     }
 `;
