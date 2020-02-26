@@ -76,7 +76,7 @@ const UserAvailabilityForm = () => {
                 queueSnackbar({
                     isError: false,
                     replace: true,
-                    text: "Your profile was updated! 🥳"
+                    text: "Your availability was updated! 🥳"
                 });
             } catch (error) {
                 queueSnackbar({
