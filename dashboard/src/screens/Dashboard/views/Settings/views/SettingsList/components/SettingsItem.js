@@ -11,6 +11,7 @@ import Text from "shared/Text";
 
 const Root = styled.div`
   padding: 8px;
+  pointer-events: ${({ active }) => active ? 'none' : 'auto'};
 `;
 
 const Wrapper = styled.div`
@@ -43,7 +44,7 @@ const Chevron = styled(ChevronRightIcon)`
 
 export default ({ active, icon: Icon, title, to, text }) => (
   <Link {...{ to }}>
-    <Root>
+    <Root {...{ active }}>
       <Wrapper {...{ active }} activeColor="alt_text">
         <IconCol>{Icon ? <Icon color="alt_text" /> : null}</IconCol>
         <Content>
