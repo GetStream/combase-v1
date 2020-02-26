@@ -88,7 +88,7 @@ const OrganizationProfileForm = () => {
                 queueSnackbar({
                     isError: false,
                     replace: true,
-                    text: "Organization profile updated! 🥳"
+                    text: "Chat defaults updated! 🥳"
                 });
             } catch (error) {
                 queueSnackbar({
