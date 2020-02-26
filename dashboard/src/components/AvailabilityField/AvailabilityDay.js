@@ -16,6 +16,7 @@ const Root = styled.div`
     cursor: pointer;
 
     & > ${Text} {
+        user-select: none;
         text-transform: uppercase;
     }
 `;
