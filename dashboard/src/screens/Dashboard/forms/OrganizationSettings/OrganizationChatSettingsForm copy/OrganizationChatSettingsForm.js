@@ -9,34 +9,34 @@ import request from 'utils/request';
 import useAuth from 'hooks/useAuth';
 import { useSnackbar } from 'contexts/Snackbar';
 
-// Component //
-import Availability from 'components/Availability';
-import AvatarField from 'shared/AvatarField';
+// Components //
 import Button from 'shared/Button';
 import { Col, Grid, Row } from 'shared/Grid';
 import InputField from 'shared/InputField';
 import SectionTitle from 'shared/SectionTitle';
+import Text from 'shared/Text';
 
 import validationSchema from './validationSchema';
 
 const Root = styled.form`
+    flex: 1;
     & > * + * {
         margin-top: 8px;
     }
 `;
 
-const AvatarCol = styled(Col)`
-    margin-bottom: 32px;
+const InputInfo = styled.div`
+    padding: 12px 12px 4px 12px;
+`;
+
+const TitleSeparator = styled(SectionTitle)`
+    margin-top: 32px;
+    margin-bottom: 16px;
 `
 
 const FormFooter = styled(Col)`
     margin-top: 24px;
     align-items: flex-end;
-`
-
-const TitleSeparator = styled(SectionTitle)`
-    margin-top: 32px;
-    margin-bottom: 16px;
 `
 
 const renderForm = ({ dirty, handleSubmit, initialValues, isValid, values }) => {
@@ -45,28 +45,23 @@ const renderForm = ({ dirty, handleSubmit, initialValues, isValid, values }) => 
             <Grid fluid>
                 <Row>
                     <Col>
-                        <TitleSeparator title="Your Profile" />
-                    </Col>
-                </Row>
-                <Row>
-                    <AvatarCol>
-                        <AvatarField name="image" size={96} avatarName={values.name.first || initialValues.name.first} showStatus={false} />
-                    </AvatarCol>
-                </Row>
-                <Row>
-                    <Col sm={6}>
-                        <InputField placeholder="First Name" name="name.first" />
-                    </Col>
-                    <Col sm={6}>
-                        <InputField placeholder="Last Name" name="name.last" />
+                        <TitleSeparator title="Chat Defaults" />
                     </Col>
                 </Row>
                 <Row>
                     <Col sm={6}>
-                        <InputField placeholder="Email" name="email" />
+                        <InputInfo>
+                            <Text weight="500" size={14} color="primary">Welcome Message</Text>
+                            <Text size={12} line={20} faded>The welcome message that will be displayed as soon as a user starts a new thread.</Text>
+                        </InputInfo>
+                        <InputField textarea name="welcome.message" />
                     </Col>
                     <Col sm={6}>
-                        <InputField placeholder="Title" name="title" />
+                        <InputInfo>
+                            <Text weight="500" size={14} color="primary">Response</Text>
+                            <Text size={12} line={20} faded>The default auto-repsonse message that will send as soon as a user sends their first message.</Text>
+                        </InputInfo>
+                        <InputField textarea name="response" />
                     </Col>
                 </Row>
                 <Row>
@@ -74,31 +69,26 @@ const renderForm = ({ dirty, handleSubmit, initialValues, isValid, values }) => 
                         <Button disabled={!dirty || !isValid} label="Save" type="submit" />
                     </FormFooter>
                 </Row>
-                <Row>
-                    <Col>
-                        <TitleSeparator title="Your Availability" />
-                        <Availability />
-                    </Col>
-                </Row>
             </Grid>
         </Root>
     );
 };
 
-const UserSettingsForm = () => {
-    const [{ user }, { refetchUser }] = useAuth();
+const OrganizationProfileForm = () => {
+    const [{ user, organization }, { refetchCurrentOrg }] = useAuth();
     const { queueSnackbar } = useSnackbar();
+
     const handleSubmit = useCallback(
         async ({ _id, updatedAt, createdAt, ...values }) => {
             try {
-                await request(`v1/agents/${_id}`, 'put', {
+                await request(`v1/organizations/${_id}`, 'put', {
                     body: JSON.stringify(values)
                 }, user.tokens.api);
-                await refetchUser();
+                await refetchCurrentOrg();
                 queueSnackbar({
                     isError: false,
                     replace: true,
-                    text: "Your profile was updated! 🥳"
+                    text: "Organization profile updated! 🥳"
                 });
             } catch (error) {
                 queueSnackbar({
@@ -108,12 +98,14 @@ const UserSettingsForm = () => {
                 });
             }
         },
-        [queueSnackbar, user.tokens.api, refetchUser]
+        [queueSnackbar, user.tokens.api, refetchCurrentOrg]
     );
 
     return (
-        <Formik {...{ validationSchema }} enableReinitialize onSubmit={handleSubmit} initialValues={user} children={renderForm} />
+        <Formik {...{ validationSchema }} enableReinitialize onSubmit={handleSubmit} initialValues={organization} children={renderForm} />
     )
-}
+};
 
-export default UserSettingsForm;
+
+
+export default OrganizationProfileForm;

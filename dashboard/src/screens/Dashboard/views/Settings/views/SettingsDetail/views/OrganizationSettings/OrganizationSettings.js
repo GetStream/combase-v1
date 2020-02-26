@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 // Forms //
-import OrganizationSettingsForm from 'screens/Dashboard/forms/OrganizationSettingsForn';
+import { OrganizationProfileForm, OrganizationChatSettingsForm } from 'screens/Dashboard/forms/OrganizationSettings';
 
 // Hooks //
 import useMedia from 'hooks/useMedia';
@@ -22,7 +22,8 @@ const OrganizationSettings = () => {
     <Root>
       <Container noPadding maxWidth={640}>
         {!isMobile ? <ListHeader bgColor="surface" showSearch={false} icon={OrganizationSettingsIcon} title="Organization Settings" /> : null}
-        <OrganizationSettingsForm />
+        <OrganizationProfileForm />
+        <OrganizationChatSettingsForm />
       </Container>
     </Root>
   );

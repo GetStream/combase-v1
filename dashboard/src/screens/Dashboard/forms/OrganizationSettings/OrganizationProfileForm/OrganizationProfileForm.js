@@ -9,8 +9,7 @@ import request from 'utils/request';
 import useAuth from 'hooks/useAuth';
 import { useSnackbar } from 'contexts/Snackbar';
 
-// Component //
-import Availability from 'components/Availability';
+// Components //
 import AvatarField from 'shared/AvatarField';
 import Button from 'shared/Button';
 import { Col, Grid, Row } from 'shared/Grid';
@@ -20,6 +19,7 @@ import SectionTitle from 'shared/SectionTitle';
 import validationSchema from './validationSchema';
 
 const Root = styled.form`
+    flex: 1;
     & > * + * {
         margin-top: 8px;
     }
@@ -29,14 +29,14 @@ const AvatarCol = styled(Col)`
     margin-bottom: 32px;
 `
 
-const FormFooter = styled(Col)`
-    margin-top: 24px;
-    align-items: flex-end;
-`
-
 const TitleSeparator = styled(SectionTitle)`
     margin-top: 32px;
     margin-bottom: 16px;
+`
+
+const FormFooter = styled(Col)`
+    margin-top: 24px;
+    align-items: flex-end;
 `
 
 const renderForm = ({ dirty, handleSubmit, initialValues, isValid, values }) => {
@@ -45,28 +45,36 @@ const renderForm = ({ dirty, handleSubmit, initialValues, isValid, values }) => 
             <Grid fluid>
                 <Row>
                     <Col>
-                        <TitleSeparator title="Your Profile" />
+                        <TitleSeparator title="Organization Profile" />
                     </Col>
                 </Row>
                 <Row>
                     <AvatarCol>
-                        <AvatarField name="image" size={96} avatarName={values.name.first || initialValues.name.first} showStatus={false} />
+                        <AvatarField name="meta.branding.logo" size={96} avatarName={values.name || initialValues.name} showStatus={false} />
                     </AvatarCol>
                 </Row>
                 <Row>
                     <Col sm={6}>
-                        <InputField placeholder="First Name" name="name.first" />
+                        <InputField placeholder="Name" name="name" />
                     </Col>
                     <Col sm={6}>
-                        <InputField placeholder="Last Name" name="name.last" />
+                        <InputField placeholder="Tagline" name="meta.tagline" />
                     </Col>
                 </Row>
                 <Row>
                     <Col sm={6}>
-                        <InputField placeholder="Email" name="email" />
+                        <InputField placeholder="Phone" name="phone.number" />
                     </Col>
                     <Col sm={6}>
-                        <InputField placeholder="Title" name="title" />
+                        <InputField placeholder="Email" name="email.address" />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={6}>
+                        <InputField placeholder="Website" name="website.url" />
+                    </Col>
+                    <Col sm={6}>
+                        <InputField placeholder="Color" name="meta.branding.colors.primary" />
                     </Col>
                 </Row>
                 <Row>
@@ -74,31 +82,26 @@ const renderForm = ({ dirty, handleSubmit, initialValues, isValid, values }) => 
                         <Button disabled={!dirty || !isValid} label="Save" type="submit" />
                     </FormFooter>
                 </Row>
-                <Row>
-                    <Col>
-                        <TitleSeparator title="Your Availability" />
-                        <Availability />
-                    </Col>
-                </Row>
             </Grid>
         </Root>
     );
 };
 
-const UserSettingsForm = () => {
-    const [{ user }, { refetchUser }] = useAuth();
+const OrganizationProfileForm = () => {
+    const [{ user, organization }, { refetchCurrentOrg }] = useAuth();
     const { queueSnackbar } = useSnackbar();
+
     const handleSubmit = useCallback(
         async ({ _id, updatedAt, createdAt, ...values }) => {
             try {
-                await request(`v1/agents/${_id}`, 'put', {
+                await request(`v1/organizations/${_id}`, 'put', {
                     body: JSON.stringify(values)
                 }, user.tokens.api);
-                await refetchUser();
+                await refetchCurrentOrg();
                 queueSnackbar({
                     isError: false,
                     replace: true,
-                    text: "Your profile was updated! 🥳"
+                    text: "Organization profile updated! 🥳"
                 });
             } catch (error) {
                 queueSnackbar({
@@ -108,12 +111,14 @@ const UserSettingsForm = () => {
                 });
             }
         },
-        [queueSnackbar, user.tokens.api, refetchUser]
+        [queueSnackbar, user.tokens.api, refetchCurrentOrg]
     );
 
     return (
-        <Formik {...{ validationSchema }} enableReinitialize onSubmit={handleSubmit} initialValues={user} children={renderForm} />
+        <Formik {...{ validationSchema }} enableReinitialize onSubmit={handleSubmit} initialValues={organization} children={renderForm} />
     )
-}
+};
 
-export default UserSettingsForm;
+
+
+export default OrganizationProfileForm;
