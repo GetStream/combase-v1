@@ -16,6 +16,7 @@ import { Col, Grid, Row } from 'shared/Grid';
 import InputField from 'shared/InputField';
 import SectionTitle from 'shared/SectionTitle';
 import Text from 'shared/Text';
+import Availability from 'components/Availability';
 
 import validationSchema from './validationSchema';
 
@@ -111,6 +112,7 @@ const renderForm = ({ dirty, handleSubmit, initialValues, isValid, values }) => 
                 <Row>
                     <Col>
                         <TitleSeparator title="Availability" />
+                        <Availability />
                     </Col>
                 </Row>
             </Grid>

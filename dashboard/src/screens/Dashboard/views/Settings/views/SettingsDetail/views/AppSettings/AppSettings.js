@@ -5,7 +5,7 @@ import styled from "styled-components";
 import useMedia from 'hooks/useMedia';
 
 // Contexts //
-import ThemeSwitcherContext from "contexts/Theme";
+import ThemeSwitcherContext from "contexts/ThemeSwitcher";
 import ShellContext from "contexts/Shell";
 
 // Components //

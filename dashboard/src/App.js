@@ -6,7 +6,8 @@ import { Router, Switch } from "react-router-dom";
 import history from "utils/history";
 
 // Styles //
-import ThemeProvider from "contexts/Theme/ThemeProvider";
+import { ThemeSwitcher } from 'contexts/ThemeSwitcher';
+import { light } from 'styles/theme';
 import GlobalStyles from "styles/global";
 
 // Context //
@@ -36,7 +37,7 @@ moment.updateLocale("en", {
 
 function App() {
   return (
-    <ThemeProvider>
+    <ThemeSwitcher>
       <SnackbarProvider>
         <AuthProvider>
           <Router {...{ history }}>
@@ -49,7 +50,7 @@ function App() {
           <GlobalStyles />
         </AuthProvider>
       </SnackbarProvider>
-    </ThemeProvider>
+    </ThemeSwitcher>
   );
 }
 
