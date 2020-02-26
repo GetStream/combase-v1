@@ -85,35 +85,6 @@ export const OrganizationSchema = new Schema(
 			],
 			default: 'We typically reply in a few minutes.'
 		},
-		availability: {
-			days: {
-				type: String,
-				enum: [
-					'Daily',
-					'Monday - Friday',
-					'Monday',
-					'Tuesday',
-					'Wednesday',
-					'Thursday',
-					'Friday',
-					'Saturday',
-					'Sunday'
-				],
-				default: 'Daily'
-			},
-			hours: {
-				from: {
-					type: String,
-					trim: true,
-					default: '9:00 am'
-				},
-				to: {
-					type: String,
-					trim: true,
-					default: '6:00 pm'
-				}
-			}
-		},
 		domains: [
 			{
 				url: {

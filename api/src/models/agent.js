@@ -45,18 +45,132 @@ export const AgentSchema = new Schema(
 		},
 		role: {
 			type: String,
-			enum: [ 'admin', 'moderator', 'viewer' ],
+			enum: ['admin', 'moderator', 'viewer'],
 			default: 'admin'
 		},
 		meta: {
 			theme: {
 				type: String,
-				enum: [ 'dark', 'light' ],
+				enum: ['dark', 'light'],
 				default: 'light'
 			},
 			sounds: {
 				type: Boolean,
 				default: true
+			}
+		},
+		availability: {
+			monday: {
+				enabled: {
+					type: Boolean,
+					default: true,
+				},
+				hours: {
+					from: {
+						type: Number,
+						default: 9,
+					},
+					to: {
+						type: Number,
+						default: 17
+					}
+				}
+			},
+			tuesday: {
+				enabled: {
+					type: Boolean,
+					default: true,
+				},
+				hours: {
+					from: {
+						type: Number,
+						default: 9,
+					},
+					to: {
+						type: Number,
+						default: 17
+					}
+				}
+			},
+			wednesday: {
+				enabled: {
+					type: Boolean,
+					default: true,
+				},
+				hours: {
+					from: {
+						type: Number,
+						default: 9,
+					},
+					to: {
+						type: Number,
+						default: 17
+					}
+				}
+			},
+			thursday: {
+				enabled: {
+					type: Boolean,
+					default: true,
+				},
+				hours: {
+					from: {
+						type: Number,
+						default: 9,
+					},
+					to: {
+						type: Number,
+						default: 17
+					}
+				}
+			},
+			friday: {
+				enabled: {
+					type: Boolean,
+					default: true,
+				},
+				hours: {
+					from: {
+						type: Number,
+						default: 9,
+					},
+					to: {
+						type: Number,
+						default: 17
+					}
+				}
+			},
+			saturday: {
+				enabled: {
+					type: Boolean,
+					default: false,
+				},
+				hours: {
+					from: {
+						type: Number,
+						default: 9,
+					},
+					to: {
+						type: Number,
+						default: 17
+					}
+				}
+			},
+			sunday: {
+				enabled: {
+					type: Boolean,
+					default: false,
+				},
+				hours: {
+					from: {
+						type: Number,
+						default: 9,
+					},
+					to: {
+						type: Number,
+						default: 17
+					}
+				}
 			}
 		},
 		refs: {
