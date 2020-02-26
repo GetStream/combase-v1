@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 import { Formik } from 'formik';
 
@@ -10,11 +10,9 @@ import useAuth from 'hooks/useAuth';
 import { useSnackbar } from 'contexts/Snackbar';
 
 // Component //
-import Availability from 'components/Availability';
-import AvatarField from 'shared/AvatarField';
+import AvailabilityField from 'components/AvailabilityField';
 import Button from 'shared/Button';
 import { Col, Grid, Row } from 'shared/Grid';
-import InputField from 'shared/InputField';
 import SectionTitle from 'shared/SectionTitle';
 
 import validationSchema from './validationSchema';
@@ -50,7 +48,7 @@ const renderForm = ({ dirty, handleSubmit, initialValues, isValid, values }) => 
                 </Row>
                 <Row>
                     <Col>
-                        <Availability />
+                        <AvailabilityField name="availability" />
                     </Col>
                 </Row>
                 <Row>
@@ -67,9 +65,9 @@ const UserAvailabilityForm = () => {
     const [{ user }, { refetchUser }] = useAuth();
     const { queueSnackbar } = useSnackbar();
     const handleSubmit = useCallback(
-        async ({ _id, updatedAt, createdAt, ...values }) => {
+        async (values) => {
             try {
-                await request(`v1/agents/${_id}`, 'put', {
+                await request(`v1/agents/${user._id}`, 'put', {
                     body: JSON.stringify(values)
                 }, user.tokens.api);
                 await refetchUser();
@@ -86,11 +84,14 @@ const UserAvailabilityForm = () => {
                 });
             }
         },
-        [queueSnackbar, user.tokens.api, refetchUser]
+        [queueSnackbar, user._id, user.tokens.api, refetchUser]
     );
+    const initialValues = useMemo(() => {
+        return { availability: user.availability }
+    }, [user.availability]);
 
     return (
-        <Formik {...{ validationSchema }} enableReinitialize onSubmit={handleSubmit} initialValues={user} children={renderForm} />
+        <Formik {...{ initialValues, validationSchema }} enableReinitialize onSubmit={handleSubmit} children={renderForm} />
     )
 }
 

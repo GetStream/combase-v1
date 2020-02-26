@@ -11,12 +11,12 @@ const Root = styled.div`
     align-items: center;
 `;
 
-const renderDays = () => dayMap.map((day, key) => (<AvailabilityDay {...{ day, key }} />));
+const renderDays = (days, onChange) => Object.entries(days).map(([day, data], key) => (<AvailabilityDay {...{ days, day, key, onChange }} {...data} />));
 
-const Availability = () => {
+const Availability = ({ value, onChange }) => {
     return (
         <Root>
-            {renderDays()}
+            {renderDays(value, onChange)}
         </Root>
     );
 };

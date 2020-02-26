@@ -57,7 +57,7 @@ export default () => {
     values => {
       try {
         login(values.email, values.password);
-        if (location.state.next) {
+        if (location.state && location.state.next) {
           history.push(location.state.next);
         }
       } catch (error) {
