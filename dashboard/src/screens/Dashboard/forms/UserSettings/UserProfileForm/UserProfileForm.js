@@ -10,7 +10,6 @@ import useAuth from 'hooks/useAuth';
 import { useSnackbar } from 'contexts/Snackbar';
 
 // Component //
-import Availability from 'components/Availability';
 import AvatarField from 'shared/AvatarField';
 import Button from 'shared/Button';
 import { Col, Grid, Row } from 'shared/Grid';
@@ -73,12 +72,6 @@ const renderForm = ({ dirty, handleSubmit, initialValues, isValid, values }) => 
                     <FormFooter>
                         <Button disabled={!dirty || !isValid} label="Save" type="submit" />
                     </FormFooter>
-                </Row>
-                <Row>
-                    <Col>
-                        <TitleSeparator title="Your Availability" />
-                        <Availability />
-                    </Col>
                 </Row>
             </Grid>
         </Root>

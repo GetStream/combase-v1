@@ -5,7 +5,7 @@ import styled from "styled-components";
 import useMedia from 'hooks/useMedia';
 
 // Forms //
-import UserSettingsForm from 'screens/Dashboard/forms/UserSettingsForm';
+import { UserAvailabilityForm, UserProfileForm } from 'screens/Dashboard/forms/UserSettings';
 
 // Components //
 import Container from "shared/Container";
@@ -22,7 +22,8 @@ const UserSettings = () => {
     <Root>
       <Container noPadding maxWidth={640}>
         {!isMobile ? <ListHeader bgColor="surface" showSearch={false} icon={UserSettingsIcon} title="User Settings" /> : null}
-        <UserSettingsForm />
+        <UserProfileForm />
+        <UserAvailabilityForm />
       </Container>
     </Root>
   );
