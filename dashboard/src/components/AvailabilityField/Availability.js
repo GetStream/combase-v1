@@ -9,6 +9,11 @@ import AvailabilityDay from './AvailabilityDay';
 const Root = styled.div`
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+
+    @media (min-width: ${ ({ theme }) => theme.breakpoints.sm}px) {
+        padding: 0px 16px;
+    }
 `;
 
 const renderDays = (days, onChange) => Object.entries(days).map(([day, data], key) => (<AvailabilityDay {...{ days, day, key, onChange }} {...data} />));

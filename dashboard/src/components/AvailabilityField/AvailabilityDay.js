@@ -15,10 +15,6 @@ const Root = styled.div`
     align-items: center;
     cursor: pointer;
 
-    & + & {
-        margin-left: 16px;
-    }
-
     & > ${Text} {
         text-transform: uppercase;
     }

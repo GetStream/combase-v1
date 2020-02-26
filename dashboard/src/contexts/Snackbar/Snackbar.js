@@ -13,15 +13,25 @@ const Root = styled.div`
     bottom: 32px;
     left: 32px;
     z-index: ${({ theme }) => theme.z.snackbar};
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.sm - 1}px) {
+        bottom: 16px;
+        left: 16px;
+        right: 16px;
+    }
 `;
 
 const SnackbarRoot = styled(Animated.div)`
     padding: 16px;
-    max-width: 344px;
+    width: 100%;
     background-color: ${({ isError, theme }) =>
         isError ? theme.color.error : theme.color.black};
     border-radius: ${({ theme }) => theme.borderRadius / 2}px;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.32);
+
+    @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
+        max-width: 344px;
+    }
 
     & > ${Text} {
         color: ${({ theme }) => theme.color.white};
