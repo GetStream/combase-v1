@@ -7,7 +7,6 @@ import history from "utils/history";
 
 // Styles //
 import { ThemeSwitcher } from 'contexts/ThemeSwitcher';
-import { light } from 'styles/theme';
 import GlobalStyles from "styles/global";
 
 // Context //

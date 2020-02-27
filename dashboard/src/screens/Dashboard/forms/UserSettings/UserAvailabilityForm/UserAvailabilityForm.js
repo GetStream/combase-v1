@@ -23,10 +23,6 @@ const Root = styled.form`
     }
 `;
 
-const AvatarCol = styled(Col)`
-    margin-bottom: 32px;
-`
-
 const FormFooter = styled(Col)`
     margin-top: 24px;
     align-items: flex-end;

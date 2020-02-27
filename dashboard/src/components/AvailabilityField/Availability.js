@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import dayMap from './dayMap';
-
 // Components //
 import AvailabilityDay from './AvailabilityDay';
 
