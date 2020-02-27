@@ -37,10 +37,6 @@
 		{
 			"plan": "cloudinary:starter",
 			"as": "CLOUDINARY"
-		},
-		{
-			"plan": "sendgrid:free",
-			"as": "SENDGRID"
 		}
 	],
 	"buildpacks": [
