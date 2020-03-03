@@ -1018,10 +1018,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@comba.se/ui@^0.0.32":
-  version "0.0.32"
-  resolved "https://registry.yarnpkg.com/@comba.se/ui/-/ui-0.0.32.tgz#bf46ff8d2eb398bc4d30acbc23e8024f0b388d84"
-  integrity sha512-KQP1t9tlbhRZRn5X+GphnUE6ldzq7j6SwQiGUhZ65Wqdwcco8jG7juFF1c0dljxg4Y01wdc3cf44hyD8sPQgkw==
+"@comba.se/ui@^0.0.34":
+  version "0.0.34"
+  resolved "https://registry.yarnpkg.com/@comba.se/ui/-/ui-0.0.34.tgz#b30658490d9222fa6a221466551b7ebfd21e9024"
+  integrity sha512-7a1JOzHHHF+KgUzxY7MPZ7KMyWRL7hEh8ECaz/AJkzHjuRObYNSFlvRPWu/RfqYHTi9aMgB6weLHNu4xAtjRVQ==
   dependencies:
     autosize "^4.0.2"
     browser-monads "^1.0.0"
