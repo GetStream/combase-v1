@@ -1,7 +1,6 @@
-import { AgentsIcon, AnalyticsIcon, InboxIcon, PluginsIcon, SettingsIcon } from "@comba.se/ui/dist/Icons";
+import { AgentsIcon, InboxIcon, PluginsIcon, SettingsIcon } from "@comba.se/ui/dist/Icons";
 
 import Agents from "./views/Agents";
-import Analytics from "./views/Analytics";
 import Inbox from "./views/Inbox";
 import Settings from "./views/Settings";
 import Plugins from './views/Plugins';
@@ -22,11 +21,11 @@ export default [
     icon: AgentsIcon
   },
   {
-    label: "Analytics",
-    slug: "analytics",
-    component: Analytics,
+    label: "Plugins",
+    slug: "plugins",
+    component: Plugins,
     isExact: false,
-    icon: AnalyticsIcon
+    icon: PluginsIcon
   },
   {
     label: "Settings",
@@ -35,11 +34,4 @@ export default [
     isExact: false,
     icon: SettingsIcon
   },
-  {
-    label: "Plugins",
-    slug: "plugins",
-    component: Plugins,
-    isExact: false,
-    icon: PluginsIcon
-  }
 ];

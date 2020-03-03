@@ -22,7 +22,7 @@ export default createGlobalStyle`
     margin: 0;
     height: 100vh;
     overflow: hidden;
-    font-family: "Circular Std", sans-serif;
+    font-family: "Cerebri Sans", sans-serif;
     -webkit-font-smoothing: antialiased;
   }
 
