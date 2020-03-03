@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Card, Text } from '@comba.se/ui';
+import { Card, IconButton, Text } from '@comba.se/ui';
 import { SettingsIcon } from "@comba.se/ui/dist/Icons";
 
 // Hooks //
@@ -12,7 +12,6 @@ import history from 'utils/history';
 
 // Components //
 import Fill from 'shared/Fill';
-import IconButton from 'shared/IconButton';
 import PluginDisplay from 'components/PluginDisplay';
 
 const Root = styled(Card)`

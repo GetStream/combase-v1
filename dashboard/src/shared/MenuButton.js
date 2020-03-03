@@ -1,14 +1,13 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { IconButton } from '@comba.se/ui';
 import { MenuIcon } from "@comba.se/ui/dist/Icons";
 
 // Contexts //
 import ShellContext from 'contexts/Shell';
 
 // Components //
-import IconButton from 'shared/IconButton';
-
 const Root = styled(IconButton)`
     @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
         display: none;

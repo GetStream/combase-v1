@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
 import { FieldArray, Formik } from "formik";
-import { Button } from '@comba.se/ui';
+import { Button, IconButton } from '@comba.se/ui';
 import { AddCircleIcon, CancelIcon, MailIcon, UserIcon } from "@comba.se/ui/dist/Icons";
 
 // Hooks //
@@ -9,7 +9,6 @@ import useAuth from "hooks/useAuth";
 import { useSnackbar } from "contexts/Snackbar";
 
 // Components //
-import IconButton from "shared/IconButton";
 import InputField from "shared/InputField";
 import validationSchema from "./validationSchema";
 import request from "utils/request";

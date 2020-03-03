@@ -1,13 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { Text } from '@comba.se/ui';
+import { IconButton, Text } from '@comba.se/ui';
 import { LinkIcon } from "@comba.se/ui/dist/Icons";
 
 // Components //
 import Switch from "components/Switch";
 import Chip from "shared/Chip";
-import IconButton from "shared/IconButton";
 
 const Root = styled.div`
   flex: 1;

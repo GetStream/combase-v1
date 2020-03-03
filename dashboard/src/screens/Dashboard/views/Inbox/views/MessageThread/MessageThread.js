@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo } from "react";
 import styled from "styled-components";
 import { Route } from "react-router-dom";
+import { IconButton } from '@comba.se/ui';
 import { ChatIcon, CloseIcon, CloseChatIcon, InfoIcon, TransferIcon } from "@comba.se/ui/dist/Icons";
 
 // CSS //
@@ -18,7 +19,6 @@ import SideDrawer from "../SideDrawer";
 // Components //
 import LoadingState from "shared/LoadingState";
 import Chat from "shared/Chat";
-import IconButton from "shared/IconButton";
 import EmptyState from "shared/EmptyState";
 
 const Root = styled.div`

@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { IconButton } from '@comba.se/ui';
 import { AttachmentIcon, ResponsesIcon } from "@comba.se/ui/dist/Icons";
 
 // Components //
-import IconButton from 'shared/IconButton';
-
 const Root = styled.div`
     flex-direction: row;
     align-items: center;

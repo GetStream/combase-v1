@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Animated from "animated/lib/targets/react-dom";
-import { Container, Text } from '@comba.se/ui';
+import { Container, IconButton, Text } from '@comba.se/ui';
 import { ArrowBackIcon } from "@comba.se/ui/dist/Icons";
 
 // Forms //
@@ -10,7 +10,6 @@ import InvitationForm from "screens/Auth/forms/InvitationForm";
 
 // Components //
 import Modal from 'shared/Modal';
-import IconButton from "shared/IconButton";
 
 const Root = styled(Animated.div)`
   position: fixed;
