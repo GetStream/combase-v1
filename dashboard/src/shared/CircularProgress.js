@@ -89,9 +89,9 @@ const CircularProgress = ({
                 {showCount ? (
                     <Animated.text
                         style={textStyle}
-                        fontFamily="CircularStd-Medium, Circular Std"
+                        fontFamily="Cerebri Sans"
                         fontSize="12"
-                        fontWeight="400"
+                        fontWeight="600"
                         lineSpacing="12"
                         fill={theme.color[color]}
                     >
