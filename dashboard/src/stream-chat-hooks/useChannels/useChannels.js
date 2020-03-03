@@ -17,25 +17,25 @@ export default () => {
   const client = useChatClient();
   const [{ user }] = useAuth();
   const [state, dispatch] = useReducer(reducer, initialState);
+
   const getChannels = useCallback(async () => {
     try {
       await dispatch({
         type: "REQUEST"
       });
       const channels = await client.queryChannels();
-      await dispatch({
+      dispatch({
         type: "SET",
         channels: channels.map(data => {
           const partner = Object.values(
             data.state.members
-              .without(({ user: { id } }) => id === user._id)
-              .asMutable()
-          )[0].user;
+          ).filter(({ user: { id } }) => id !== user._id)[0].user;
           data.partner = partner;
           return data;
-        })
+        }),
       });
     } catch (error) {
+      console.log('error', error);
       await dispatch({
         type: "ERROR",
         error

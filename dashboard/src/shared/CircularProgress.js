@@ -42,10 +42,6 @@ const CircularProgress = ({
 
     const countValue = animated
         ? textAnim
-            .interpolate({
-                range: [0, 1],
-                output: [0, value],
-            })
             .interpolate(v => Math.floor(v))
         : value
 

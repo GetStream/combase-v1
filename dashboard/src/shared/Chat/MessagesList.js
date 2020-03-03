@@ -65,7 +65,7 @@ class MessagesList extends Component {
     if (data && user) {
       const previousMessage = data[index + 1];
       const nextMessage = data[index - 1];
-      const isOwn = currentMessage.user && currentMessage.user.id === user.id;
+      const isOwn = currentMessage.user && currentMessage.user.id === user._id;
       const messageProps = {
         ...rest,
         user,

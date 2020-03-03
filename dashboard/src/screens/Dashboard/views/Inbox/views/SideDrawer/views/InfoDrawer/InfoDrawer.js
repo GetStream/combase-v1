@@ -52,7 +52,7 @@ const InfoDrawer = ({ partner }) => {
   return (
     <Root>
       <Header>
-        <Avatar size={136} name="Nick" showStatus={partner.online} />
+        <Avatar size={136} name={partner.name} showStatus={partner.online} />
         <Text size={24} weight="600">
           {partner.name}
         </Text>

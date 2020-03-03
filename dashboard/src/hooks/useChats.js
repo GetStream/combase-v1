@@ -26,6 +26,7 @@ export default () => {
     if (channelsLoading) {
       return;
     }
+
     if (channels.length) {
       try {
         setLoading(true);

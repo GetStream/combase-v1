@@ -45,7 +45,7 @@ class Message extends Component {
 
     get isOwn() {
         const { currentMessage, user } = this.props;
-        return currentMessage.user.id === user.id;
+        return currentMessage.user.id === user._id;
     }
 
     shouldComponentUpdate(nextProps) {

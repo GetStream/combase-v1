@@ -57,9 +57,10 @@ const renderForm = ({ dirty, handleSubmit }, fields, history, loading) => {
 
 export default ({ data, onSubmit, slug, fields }) => {
     const { queueSnackbar } = useSnackbar();
-    const user = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const [loading, setLoading] = useState(false);
     const history = useHistory();
+
     const initialValues = useMemo(() => {
         let values = {};
         fields.forEach(({ name }) => {
