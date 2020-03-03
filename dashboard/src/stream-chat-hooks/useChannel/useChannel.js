@@ -25,7 +25,6 @@ export default channelId => {
   }, []);
 
   const loadMoreMessages = useCallback(async () => {
-    console.log("loading more?", state.noMoreMessages, state.loadingMore);
     if (state.noMoreMessages || state.loadingMore) {
       return;
     }
