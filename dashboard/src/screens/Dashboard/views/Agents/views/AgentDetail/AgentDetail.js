@@ -93,8 +93,8 @@ const AgentDetail = ({ anim, location, history, match }) => {
   return (
     <>
       <Modal
-        animated
-        animatedValue={anim}
+        // animated
+        // animatedValue={anim}
         open={!!match}
         showUndersheet={false}
         onOpen={handleOpen}
@@ -143,12 +143,12 @@ const AgentDetail = ({ anim, location, history, match }) => {
           </Footer>
         </Root>
       </Modal>
-      <AgentDetailTransition
+      {/* <AgentDetailTransition
         {...{ agent, anim }}
         hide={mounted}
         startDims={location.startDims}
         endDims={dims}
-      />
+      /> */}
     </>
   );
 };
