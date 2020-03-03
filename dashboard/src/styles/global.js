@@ -84,7 +84,7 @@ export default createGlobalStyle`
     border: 0;
     background: none;
     font-size: 16px;
-    font-family: "Circular Std", sans-serif;
+    font-family: "Cerebri Sans", sans-serif;
 
     &::-webkit-input-placeholder {
         color: ${({ theme }) => theme.color.gray};
