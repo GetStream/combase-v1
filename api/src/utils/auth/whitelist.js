@@ -51,6 +51,11 @@ export default [
 	},
 	{
 		path: 'users',
+		method: 'GET',
+		auth: true,
+	},
+	{
+		path: 'users',
 		method: 'POST',
 		auth: true,
 	},

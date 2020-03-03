@@ -16,7 +16,7 @@ exports.destroy = async (req, res) => {
 		// 	{ $push: { status: { type: 'Archived', timestamp: Date.now() } } }
 		// );
 
-		const chat = await Chat.findByIdAndRemove(data.chat);
+		await Chat.findByIdAndRemove(data.chat);
 
 		res.sendStatus(204);
 	} catch (error) {

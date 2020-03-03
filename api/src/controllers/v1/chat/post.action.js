@@ -15,7 +15,7 @@ exports.post = async (req, res) => {
 		const { key, secret } = await StreamClient();
 		const client = new StreamChat(key, secret);
 		const channel = client.channel('commerce', create._id.toString(), {
-			members: [ agent, user ],
+			members: [agent, user],
 			roles: {
 				agent: 'moderator',
 				user: 'channel_member'
@@ -28,7 +28,7 @@ exports.post = async (req, res) => {
 
 		const agentToken = client.createToken(agent);
 		const userToken = client.createToken(user);
-
+		console.log('channel', channel.state);
 		res.status(200).json({
 			...create,
 			tokens: {
