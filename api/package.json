@@ -50,9 +50,9 @@
 	},
 	"dependencies": {
 		"@babel/cli": "^7.8.4",
-		"@babel/core": "^7.8.4",
+		"@babel/core": "^7.8.6",
 		"@babel/node": "^7.8.4",
-		"@babel/preset-env": "^7.8.4",
+		"@babel/preset-env": "^7.8.6",
 		"axios": "^0.19.2",
 		"axios-retry": "^3.1.2",
 		"bcrypt": "^4.0.0",
@@ -64,7 +64,8 @@
 		"datauri": "^2.0.0",
 		"dotenv": "^8.2.0",
 		"express": "^4.17.1",
-		"helmet": "^3.21.2",
+		"helmet": "^3.21.3",
+		"hubspot": "^2.3.9",
 		"ioredis": "^4.16.0",
 		"jsonwebtoken": "^8.5.1",
 		"lodash.find": "^4.6.0",
@@ -84,10 +85,10 @@
 		"shortid": "^2.2.15",
 		"stream-chat": "^1.3.3",
 		"swagger-jsdoc": "^3.5.0",
-		"uuid": "^7.0.0"
+		"uuid": "^7.0.1"
 	},
 	"devDependencies": {
-		"babel-eslint": "^10.0.3",
+		"babel-eslint": "^10.1.0",
 		"babel-plugin-module-resolver": "^4.0.0",
 		"babel-plugin-transform-optional-chaining": "^7.0.0-beta.3",
 		"eslint": "^6.8.0",
@@ -96,7 +97,7 @@
 		"eslint-plugin-import": "^2.20.1",
 		"eslint-plugin-jsx-a11y": "^6.2.3",
 		"eslint-plugin-react": "^7.18.3",
-		"eslint-plugin-react-hooks": "^2.4.0",
+		"eslint-plugin-react-hooks": "^2.5.0",
 		"husky": "^4.2.3",
 		"prettier": "^1.19.1",
 		"swagger-markdown": "^1.2.0"

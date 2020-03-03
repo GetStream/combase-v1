@@ -2,6 +2,8 @@
 
 # Combase – White Label Customer Service Chat Solution
 
+> Note: Combase is currently under active development and is not ready for production use. 
+
 Based on React, Node.js, Express, MongoDB, and [Stream Chat](https://getstream.io/chat/), Combase is an open-source and [fully white-label solution](https://getstream.io/blog/white-label-chat-solutions/) for building a customer-service-oriented chat and messaging solution. Combase provides everything you need to get a custom white-label chat solution up and running and off the ground through powerful built-in features and add-ons:
 
 - Lightning Fast Real-Time Chat (Powered by Stream Chat) ⚡
