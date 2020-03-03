@@ -1,13 +1,11 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
+import { Avatar, Text } from '@comba.se/ui';
 
 // HOCs //
 import asMessage from '../hocs/asMessage';
 
 // Components //
-import Avatar from 'shared/Avatar';
-import Text from 'shared/Text';
-
 const Root = styled.div`
     flex-direction: row;
     z-index: 0;
@@ -41,8 +39,8 @@ const Bubble = styled.div`
         showAvatar
             ? 0
             : hasNext
-            ? theme.borderRadius
-            : theme.borderRadius * 2}px;
+                ? theme.borderRadius
+                : theme.borderRadius * 2}px;
     border-bottom-right-radius: ${({ theme }) => theme.borderRadius * 2}px;
     margin-right: 24px;
     margin-left: ${({ showAvatar }) => (showAvatar ? 0 : 56)}px;

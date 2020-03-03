@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Avatar, Container, Text } from '@comba.se/ui';
 
 // Hooks //
 import useAuth from 'hooks/useAuth';
@@ -8,10 +9,6 @@ import useAuth from 'hooks/useAuth';
 import LoginForm from '../forms/LoginForm';
 
 // Components //
-import Avatar from 'shared/Avatar';
-import Container from 'shared/Container';
-import Text from 'shared/Text';
-
 const Root = styled(Container)`
     flex: 1;
     justify-content: center;

@@ -1,11 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { IconBubble, Text } from '@comba.se/ui';
 
 // Components //
-import Text from "shared/Text";
-import IconBubble from "shared/IconBubble";
-
 const Root = styled.div`
   padding: 16px 0px;
   flex-direction: row;

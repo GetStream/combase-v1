@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { Formik } from 'formik';
+import { Button, Text } from '@comba.se/ui';
 
 // Utils //
 import request from 'utils/request';
@@ -10,11 +11,9 @@ import useAuth from 'hooks/useAuth';
 import { useSnackbar } from 'contexts/Snackbar';
 
 // Components //
-import Button from 'shared/Button';
 import { Col, Grid, Row } from 'shared/Grid';
 import InputField from 'shared/InputField';
 import SectionTitle from 'shared/SectionTitle';
-import Text from 'shared/Text';
 
 import validationSchema from './validationSchema';
 

@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from "react";
+import { FAB } from "@comba.se/ui";
+import { ChatIcon } from "@comba.se/ui/dist/Icons";
 
 // Components //
-import { ChatIcon } from "shared/Icons";
-import FAB from "shared/FAB";
 import Widget from "./Widget";
 
 const ChatWidget = () => {

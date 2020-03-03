@@ -1,13 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Container, Text } from '@comba.se/ui';
 
 // Forms //
 import InvitationForm from '../forms/InvitationForm';
 
 // Components //
-import Container from 'shared/Container';
-import Text from 'shared/Text';
-
 const Root = styled(Container)`
     flex: 1;
     justify-content: center;

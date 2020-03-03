@@ -2,13 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Animated from "animated/lib/targets/react-dom";
+import { Text } from '@comba.se/ui';
 
 // Hooks //
 import useMedia from "hooks/useMedia";
 
 // Components //
 import MenuButton from "shared/MenuButton";
-import Text from "shared/Text";
 import ActionsGroup from "shared/ActionsGroup";
 import SearchInput from "shared/SearchInput";
 

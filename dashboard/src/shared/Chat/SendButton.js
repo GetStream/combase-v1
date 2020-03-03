@@ -1,13 +1,13 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
+import { FAB } from "@comba.se/ui";
+import { SendIcon } from "@comba.se/ui/dist/Icons";
 
 // Hooks //
 import useMedia from 'hooks/useMedia';
 
 // Components //
-import { SendIcon } from 'shared/Icons';
 import IconButton from 'shared/IconButton';
-import FAB from 'shared/FAB';
 
 const Button = styled(FAB)`
     position: absolute;

@@ -1,9 +1,8 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
+import { Text } from '@comba.se/ui';
 
 // Components //
-import Text from 'shared/Text';
-
 const Root = styled.div`
     justify-content: center;
     align-items: center;

@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Avatar, Text } from '@comba.se/ui';
 
 // Components //
-import Avatar from 'shared/Avatar';
-import Text from 'shared/Text';
-
 const Root = styled.div`
     flex-direction: row;
     align-items: center;

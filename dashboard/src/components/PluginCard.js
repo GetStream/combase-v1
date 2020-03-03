@@ -1,6 +1,8 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Card, Text } from '@comba.se/ui';
+import { SettingsIcon } from "@comba.se/ui/dist/Icons";
 
 // Hooks //
 import usePlugin from 'hooks/usePlugin';
@@ -9,10 +11,7 @@ import usePlugin from 'hooks/usePlugin';
 import history from 'utils/history';
 
 // Components //
-import Card from 'shared/Card';
-import Text from 'shared/Text';
 import Fill from 'shared/Fill';
-import { SettingsIcon } from 'shared/Icons';
 import IconButton from 'shared/IconButton';
 import PluginDisplay from 'components/PluginDisplay';
 

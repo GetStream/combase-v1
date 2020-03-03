@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { SearchIcon } from "@comba.se/ui/dist/Icons";
 
 // Components //
-import { SearchIcon } from 'shared/Icons';
-
 const Root = styled.div`
     border-radius: ${({ theme }) => theme.borderRadius * 1.5}px;
     background-color: ${({ theme }) => theme.color.border};

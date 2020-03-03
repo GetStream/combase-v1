@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import PropTypes from 'prop-types';
 import styled from "styled-components";
 import moment from 'moment';
+import { Avatar, Container, Text } from '@comba.se/ui';
 
 // Hooks //
 import useActivePlugins from 'hooks/useActivePlugins';
@@ -11,10 +12,6 @@ import ClearbitWidget from "widgets/Clearbit/EnrichmentWidget";
 import EmailVerificationWidget from "widgets/BlazeVerify/EmailVerificationWidget";
 
 // Components //
-import Avatar from "shared/Avatar";
-import Container from "shared/Container";
-import Text from "shared/Text";
-
 const Root = styled.div`
   overflow-y: scroll;
   padding-bottom: 40px;

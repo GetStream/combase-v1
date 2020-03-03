@@ -1,13 +1,13 @@
 import React from "react"; // eslint-disable-line no-unused-vars
 import styled from "styled-components";
 import Animated from "animated/lib/targets/react-dom";
+import { Portal } from "@comba.se/ui";
 
 // Hooks //
 import usePrevious from "hooks/usePrevious";
 
 // Components //
 import UserBlock from "shared/UserBlock";
-import Portal from "shared/Portal";
 
 const Root = styled(Animated.div)`
   position: fixed;

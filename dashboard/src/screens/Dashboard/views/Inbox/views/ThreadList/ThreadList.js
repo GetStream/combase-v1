@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { ArchiveIcon, FilterIcon, InboxIcon } from "@comba.se/ui/dist/Icons";
 
 // Utils //
 import LayoutUtil from "./LayoutUtil";
@@ -8,7 +9,6 @@ import LayoutUtil from "./LayoutUtil";
 import useChats from "hooks/useChats";
 
 // Components //
-import { ArchiveIcon, FilterIcon, InboxIcon } from "shared/Icons";
 import EmptyState from "shared/EmptyState";
 import IconButton from "shared/IconButton";
 import ListHeader from "shared/ListHeader";

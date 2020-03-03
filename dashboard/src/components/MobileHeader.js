@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Text } from '@comba.se/ui';
+import { ArrowBackIcon } from "@comba.se/ui/dist/Icons";
 
 // Components //
-import { ArrowBackIcon } from 'shared/Icons';
 import MenuButton from "shared/MenuButton";
 import IconButton from "shared/IconButton";
-import Text from 'shared/Text';
 
 const Root = styled.div`
   flex: 0 0 64px;

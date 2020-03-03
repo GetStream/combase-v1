@@ -1,9 +1,8 @@
 import React, { memo, useCallback } from 'react';
 import styled from 'styled-components';
+import { Text } from '@comba.se/ui';
 
 // Components //
-import Text from 'shared/Text';
-
 const Root = styled.div`
     padding: 4px 8px;
     border-radius: 9999px;
@@ -20,12 +19,12 @@ const Root = styled.div`
 
     &:hover {
         background-color: ${({ active, theme }) =>
-            !active ? theme.colorUtils.fade(theme.color.gray, 0.24) : null};
+        !active ? theme.colorUtils.fade(theme.color.gray, 0.24) : null};
     }
 
     &:active {
         background-color: ${({ active, theme }) =>
-            !active ? theme.colorUtils.fade(theme.color.gray, 0.48) : null};
+        !active ? theme.colorUtils.fade(theme.color.gray, 0.48) : null};
     }
 `;
 

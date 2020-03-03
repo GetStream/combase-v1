@@ -1,14 +1,13 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
+import { AutosizeTextArea } from '@comba.se/ui';
 
 // Components //
-import AutoSizeTextArea from 'shared/AutoSizeTextArea';
-
 const Root = styled.div`
   flex: 1;
 `;
 
-const Input = styled(AutoSizeTextArea)`
+const Input = styled(AutosizeTextArea)`
   width: 100%;
   resize: none;
   margin-right: 16px;

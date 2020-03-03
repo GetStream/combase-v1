@@ -1,9 +1,8 @@
 import React, { useCallback, memo } from 'react';
 import styled from 'styled-components';
+import { SearchIcon } from "@comba.se/ui/dist/Icons";
 
 // Components //
-import { SearchIcon } from 'shared/Icons';
-
 const Root = styled.div`
     height: 64px;
     flex-direction: row;

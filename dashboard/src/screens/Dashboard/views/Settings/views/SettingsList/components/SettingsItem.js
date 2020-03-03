@@ -1,14 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { Text } from '@comba.se/ui';
+import { ChevronRightIcon } from "@comba.se/ui/dist/Icons";
 
 // Styles //
 import listItemInteractions from "styles/css/listItemInteractions";
 
 // Components //
-import { ChevronRightIcon } from "shared/Icons";
-import Text from "shared/Text";
-
 const Root = styled.div`
   padding: 8px;
   pointer-events: ${({ active }) => active ? 'none' : 'auto'};

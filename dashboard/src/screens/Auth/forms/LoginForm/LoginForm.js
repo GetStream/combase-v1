@@ -2,14 +2,14 @@ import React, { useCallback } from "react";
 import styled from "styled-components";
 import { useHistory, useLocation } from "react-router-dom";
 import { Formik } from "formik";
+import { Button } from '@comba.se/ui';
+import { MailIcon, PasswordIcon } from "@comba.se/ui/dist/Icons";
 
 // Hooks //
 import useAuth from "hooks/useAuth";
 
 // Components //
 import InputField from "shared/InputField";
-import Button from "shared/Button";
-import { MailIcon, PasswordIcon } from "shared/Icons";
 import validationSchema from "./validationSchema";
 
 const Root = styled.form`

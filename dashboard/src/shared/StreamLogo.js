@@ -1,5 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import Icon from 'shared/Icons';
+import { Icon } from '@comba.se/ui';
 
 const StreamLogo = props => (
     <Icon {...props} viewBox="0 0 40 20">

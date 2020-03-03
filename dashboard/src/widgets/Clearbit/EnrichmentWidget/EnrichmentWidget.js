@@ -1,21 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-
-// Hooks //
-import usePluginEndpoint from "hooks/usePluginEndpoint";
-import useLiveMoment from "hooks/useLiveMoment";
-
-// Components //
-import Card from "shared/Card";
-import Text from "shared/Text";
+import { Card, Text } from '@comba.se/ui';
 import {
   JobTitleIcon,
   LinkIcon,
   LocationIcon,
   OrganizationIcon,
   TimeIcon
-} from "shared/Icons";
+} from "@comba.se/ui/dist/Icons";
+
+// Hooks //
+import usePluginEndpoint from "hooks/usePluginEndpoint";
+import useLiveMoment from "hooks/useLiveMoment";
+
+// Components //
 import ListItem from "shared/ListItem";
 
 const Root = styled(Card)``;

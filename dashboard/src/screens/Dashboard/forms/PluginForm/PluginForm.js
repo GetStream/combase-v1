@@ -2,6 +2,7 @@ import React, { useCallback, useContext, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { Formik } from 'formik';
+import { Button } from '@comba.se/ui';
 
 // utils //
 import request from 'utils/request';
@@ -12,7 +13,6 @@ import AuthContext from 'contexts/Auth';
 
 // Components //
 import InputField from 'shared/InputField';
-import Button from 'shared/Button';
 
 const Root = styled.form`
     & > * + * {

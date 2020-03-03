@@ -1,6 +1,8 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
 import { Route } from "react-router-dom";
+import { Container } from "@comba.se/ui";
+import { AgentsIcon } from "@comba.se/ui/dist/Icons";
 
 // Contexts //
 import AgentsContext from "contexts/Agents";
@@ -13,9 +15,7 @@ import AgentDetail from "./views/AgentDetail";
 import InviteAgents from "./views/InviteAgents";
 
 // Components ///
-import { AgentsIcon } from "shared/Icons";
 import ScreenRoot from "shared/ScreenRoot";
-import Container from "shared/Container";
 import FullScreenHeader from "components/FullScreenHeader";
 import AgentsList from "components/AgentsList";
 

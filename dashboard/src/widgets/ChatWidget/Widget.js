@@ -1,10 +1,10 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
 import { animated, useSpring } from "react-spring";
+import { Card } from '@comba.se/ui';
+import { InboxIcon } from "@comba.se/ui/dist/Icons";
 
 // Components //
-import Card from "shared/Card";
-import { InboxIcon } from "shared/Icons";
 import ListHeader from "shared/ListHeader";
 
 const Root = styled(animated.div)`

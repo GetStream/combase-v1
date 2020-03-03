@@ -1,13 +1,13 @@
 import React, { useCallback, useMemo, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { Text } from '@comba.se/ui';
 
 // Styles //
 import listItemInteractions from "styles/css/listItemInteractions";
 
 // Components //
 import UserBlock from "shared/UserBlock";
-import Text from "shared/Text";
 
 const Root = styled.div`
     padding: 0px 16px;

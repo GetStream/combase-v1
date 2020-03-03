@@ -1,6 +1,7 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
+import { Text } from '@comba.se/ui';
 
 // Views //
 import Invite from "./views/Invite";
@@ -9,7 +10,6 @@ import SignUp from "./views/SignUp";
 
 // Components //
 import StreamLogo from "shared/StreamLogo";
-import Text from "shared/Text";
 
 const Root = styled.div`
   flex: 1;

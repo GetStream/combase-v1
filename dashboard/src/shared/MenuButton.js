@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { MenuIcon } from "@comba.se/ui/dist/Icons";
 
 // Contexts //
 import ShellContext from 'contexts/Shell';
 
 // Components //
-import { MenuIcon } from 'shared/Icons';
 import IconButton from 'shared/IconButton';
 
 const Root = styled(IconButton)`

@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Animated from 'animated/lib/targets/react-dom';
 import Easing from 'animated/lib/Easing';
+import { Portal, Text } from '@comba.se/ui';
 
 // Components //
-import Portal from 'shared/Portal';
-import Text from 'shared/Text';
-
 const Root = styled.div`
     position: fixed;
     bottom: 32px;

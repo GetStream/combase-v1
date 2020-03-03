@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { PluginsIcon } from "@comba.se/ui/dist/Icons";
 
 // Contexts //
 import PluginsContext from 'contexts/Plugins';
@@ -12,7 +13,6 @@ import plugins from 'data/plugins';
 
 // Components //
 import EmptyState from 'shared/EmptyState';
-import { PluginsIcon } from 'shared/Icons';
 import PageSheet from 'components/PageSheet';
 import PluginCard from 'components/PluginCard';
 

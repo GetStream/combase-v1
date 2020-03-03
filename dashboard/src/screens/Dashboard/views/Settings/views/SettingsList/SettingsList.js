@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { Route } from 'react-router-dom';
-
-// Components //
 import {
   AppSettingsIcon,
   OrganizationSettingsIcon,
   SettingsIcon,
   UserSettingsIcon
-} from "shared/Icons";
+} from "@comba.se/ui/dist/Icons";
+
+// Components //
 import ListHeader from "shared/ListHeader";
 import SettingsItem from "./components/SettingsItem";
 

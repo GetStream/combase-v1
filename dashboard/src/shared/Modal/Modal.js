@@ -5,12 +5,12 @@ import styled from "styled-components";
 import ScrollLock from "react-scrolllock";
 import Animated from "animated/lib/targets/react-dom";
 import Easing from "animated/lib/Easing";
+import { Portal } from "@comba.se/ui";
 
 // Utils //
 import GetRef from "utils/GetRef";
 
 // Components //
-import Portal from "shared/Portal";
 import Undersheet from "./Undersheet";
 
 const ModalRoot = styled(Animated.div)`

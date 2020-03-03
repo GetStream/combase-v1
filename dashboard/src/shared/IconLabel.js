@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Text } from '@comba.se/ui';
 
 // Components //
-import Text from 'shared/Text';
-import PlaceholderIcon from 'shared/Icons/PlaceholderIcon';
+import PlaceholderIcon from 'shared/PlaceholderIcon';
 
 const Root = styled.div`
     flex: 1;

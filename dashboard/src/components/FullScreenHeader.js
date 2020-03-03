@@ -1,13 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { Container, Text } from '@comba.se/ui';
 
 // Hooks //
 import useMedia from "hooks/useMedia";
 
 // Components //
-import Container from "shared/Container";
-import Text from "shared/Text"
 import MobileHeader from "components/MobileHeader";
 
 const Root = styled.div`

@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Avatar } from '@comba.se/ui';
 
 // Components //
-import Avatar from 'shared/Avatar';
 import Logo from 'shared/Logo';
 import StreamLogo from 'shared/StreamLogo';
 import SidenavItem from './SidenavItem';

@@ -3,6 +3,7 @@ import styled, { withTheme } from "styled-components";
 import { Route, Link } from "react-router-dom";
 import moment from "moment";
 import ContentLoader from 'react-content-loader';
+import { Avatar, Text } from '@comba.se/ui';
 
 // Styles //
 import listItemInteractions from "styles/css/listItemInteractions";
@@ -11,10 +12,8 @@ import listItemInteractions from "styles/css/listItemInteractions";
 import { useChannelListener } from "stream-chat-hooks";
 
 // Components //
-import Avatar from "shared/Avatar";
 import Badge from "shared/Badge";
 import Fill from "shared/Fill";
-import Text from "shared/Text";
 
 const Root = styled(Link)`
   padding: 4px 8px;

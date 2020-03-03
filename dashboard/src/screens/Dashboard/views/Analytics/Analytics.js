@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import { AnalyticsIcon } from "@comba.se/ui/dist/Icons";
 
 import ChatWidget from "widgets/ChatWidget";
 
 // Components ///
-import { AnalyticsIcon } from "shared/Icons";
 import ScreenRoot from "shared/ScreenRoot";
 import FullScreenHeader from "components/FullScreenHeader";
 

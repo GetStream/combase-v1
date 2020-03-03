@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Card } from '@comba.se/ui';
 
 // Components //
 import Tabs from 'components/Tabs';
-import Card from 'shared/Card';
 import LoadingState from 'shared/LoadingState';
 import SearchHeader from './SearchHeader';
 

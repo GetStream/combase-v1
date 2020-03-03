@@ -1,9 +1,8 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
+import { Text } from '@comba.se/ui';
 
 // Components //
-import Text from 'shared/Text';
-
 const Root = styled.div`
     padding: ${({ size }) => `${size / 4}px ${size / 2}px`};
     border-radius: 9999px;

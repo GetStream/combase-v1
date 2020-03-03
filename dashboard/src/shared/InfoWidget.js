@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Text } from '@comba.se/ui';
 
 // Components //
-import Text from 'shared/Text';
-
 const Root = styled.div`
     flex: 1;
     justify-content: flex-start;

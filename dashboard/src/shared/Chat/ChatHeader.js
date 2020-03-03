@@ -2,13 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import { Avatar, Text } from '@comba.se/ui';
+import { ArrowBackIcon } from "@comba.se/ui/dist/Icons";
 
 // Components //
-import Avatar from 'shared/Avatar';
-import { ArrowBackIcon } from 'shared/Icons';
 import ActionsGroup from 'shared/ActionsGroup';
 import IconButton from 'shared/IconButton';
-import Text from 'shared/Text';
 
 const Root = styled.div`
     flex: 0 0 64px;
@@ -75,10 +74,10 @@ const ChatHeader = ({ headerActions, partner }) => {
                             {partner.online
                                 ? 'Active Now'
                                 : partner.last_active
-                                ? `Last active: ${moment(
-                                      partner.last_active
-                                  ).fromNow()}`
-                                : 'Offline'}
+                                    ? `Last active: ${moment(
+                                        partner.last_active
+                                    ).fromNow()}`
+                                    : 'Offline'}
                         </Text>
                     </Content>
                 </UserWrapper>

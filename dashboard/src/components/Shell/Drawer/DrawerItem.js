@@ -2,13 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { Text } from '@comba.se/ui';
 
 // Styles //
 import listItemInteractions from 'styles/css/listItemInteractions';
 
 // Components //
-import Text from 'shared/Text';
-
 const Root = styled.div`
     padding: 4px 8px;
     pointer-events: ${({ active, disabled }) =>

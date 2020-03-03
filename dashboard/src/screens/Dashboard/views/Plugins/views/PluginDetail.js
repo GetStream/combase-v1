@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Animated from 'animated/lib/targets/react-dom';
+import { Text } from '@comba.se/ui';
 
 // Data //
 import plugins from 'data/plugins';
@@ -16,7 +17,6 @@ import PluginForm from 'screens/Dashboard/forms/PluginForm';
 import Modal from 'shared/Modal';
 import PluginDisplay from 'components/PluginDisplay';
 import SectionTitle from 'shared/SectionTitle';
-import Text from 'shared/Text';
 
 const Root = styled(Animated.div)`
     align-self: center;
@@ -134,8 +134,8 @@ const PluginDetail = ({ anim, history, match }) => {
                     </Content>
                 </Root>
             ) : (
-                <Root />
-            )}
+                    <Root />
+                )}
         </Modal>
     );
 };

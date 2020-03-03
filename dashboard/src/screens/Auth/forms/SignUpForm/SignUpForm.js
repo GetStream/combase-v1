@@ -2,6 +2,8 @@ import React, { useCallback, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { Formik } from "formik";
+import { Button } from '@comba.se/ui';
+import { MailIcon, PasswordIcon, UserIcon } from "@comba.se/ui/dist/Icons";
 
 // Utils //
 import request from "utils/request";
@@ -11,8 +13,6 @@ import SnackbarContext from "contexts/Snackbar";
 
 // Components //
 import InputField from "shared/InputField";
-import Button from "shared/Button";
-import { MailIcon, PasswordIcon, UserIcon } from "shared/Icons";
 import validationSchema from "./validationSchema";
 
 const Root = styled.form`

@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo } from "react";
 import styled from "styled-components";
 import { Route } from "react-router-dom";
+import { ChatIcon, CloseIcon, CloseChatIcon, InfoIcon, TransferIcon } from "@comba.se/ui/dist/Icons";
 
 // CSS //
 import pageCard from "styles/css/pageCard";
@@ -17,7 +18,6 @@ import SideDrawer from "../SideDrawer";
 // Components //
 import LoadingState from "shared/LoadingState";
 import Chat from "shared/Chat";
-import { ChatIcon, CloseIcon, CloseChatIcon, InfoIcon, TransferIcon } from "shared/Icons";
 import IconButton from "shared/IconButton";
 import EmptyState from "shared/EmptyState";
 

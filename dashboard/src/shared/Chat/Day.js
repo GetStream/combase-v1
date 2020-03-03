@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
+import { Text } from '@comba.se/ui';
 
 // Components //
-import Text from 'shared/Text';
-
 const Root = styled.div`
     height: 32px;
     align-items: center;

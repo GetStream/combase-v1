@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Container, Text } from '@comba.se/ui';
 
 // Hooks //
 import useAuth from 'hooks/useAuth';
 
 // Components //
-import Container from 'shared/Container';
-import Text from 'shared/Text';
 import OrganizationCard from 'components/OrganizationCard';
 
 const Root = styled.div`

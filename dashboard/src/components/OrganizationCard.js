@@ -1,13 +1,11 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
+import { Card, Text } from '@comba.se/ui';
 
 // Hooks //
 import useAuth from 'hooks/useAuth';
 
 // Components //
-import Card from 'shared/Card';
-import Text from 'shared/Text';
-
 const Root = styled(Card)`
     padding: 4px;
     cursor: pointer;

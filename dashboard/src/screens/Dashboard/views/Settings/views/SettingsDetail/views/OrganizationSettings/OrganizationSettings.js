@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { Container } from '@comba.se/ui';
+import { OrganizationSettingsIcon } from "@comba.se/ui/dist/Icons";
 
 // Forms //
 import { OrganizationProfileForm, OrganizationChatSettingsForm } from 'screens/Dashboard/forms/OrganizationSettings';
@@ -8,9 +10,7 @@ import { OrganizationProfileForm, OrganizationChatSettingsForm } from 'screens/D
 import useMedia from 'hooks/useMedia';
 
 // Components //
-import Container from "shared/Container";
 import ListHeader from 'shared/ListHeader';
-import { OrganizationSettingsIcon } from 'shared/Icons';
 
 const Root = styled.div`
   flex: 1;

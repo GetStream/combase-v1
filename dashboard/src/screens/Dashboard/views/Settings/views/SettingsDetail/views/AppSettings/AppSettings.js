@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
+import { Container } from "@comba.se/ui";
+import { AppSettingsIcon, SoundsIcon, ThemeIcon } from "@comba.se/ui/dist/Icons";
 
 // Hooks //
 import useMedia from 'hooks/useMedia';
@@ -10,9 +12,7 @@ import ShellContext from "contexts/Shell";
 
 // Components //
 import ListHeader from 'shared/ListHeader';
-import { AppSettingsIcon, SoundsIcon, ThemeIcon } from "shared/Icons";
 import { Col, Grid, Row } from 'shared/Grid';
-import Container from "shared/Container";
 import Switch from "components/Switch";
 import SettingsListItem from "components/SettingsListItem";
 

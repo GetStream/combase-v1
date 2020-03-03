@@ -1,13 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-
-// Components //
-import Avatar from "shared/Avatar";
+import { Avatar } from '@comba.se/ui';
 import {
   MessageDeliveredIcon,
   MessageSendingIcon,
   MessageSentIcon
-} from "shared/Icons";
+} from "@comba.se/ui/dist/Icons";
 
 const StatusIcon = ({ status, partner, ...rest }) => {
   switch (status) {

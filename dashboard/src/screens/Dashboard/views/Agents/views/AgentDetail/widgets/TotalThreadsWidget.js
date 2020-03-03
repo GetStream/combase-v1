@@ -1,7 +1,7 @@
 import React from 'react';
+import { Text } from '@comba.se/ui';
 
 // Components //
-import Text from 'shared/Text';
 import InfoWidget from 'shared/InfoWidget';
 
 const ThreadCount = () => {

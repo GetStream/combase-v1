@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { AttachmentIcon, ResponsesIcon } from "@comba.se/ui/dist/Icons";
 
 // Components //
 import IconButton from 'shared/IconButton';
-import { AttachmentIcon, ResponsesIcon } from 'shared/Icons';
 
 const Root = styled.div`
     flex-direction: row;

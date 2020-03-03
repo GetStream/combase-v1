@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { FAB } from "@comba.se/ui";
+import { AgentsIcon } from "@comba.se/ui/dist/Icons";
 
 // Hooks //
 import usePageSheet from "hooks/usePageSheet";
 
 // Components //
-import { AgentsIcon } from "shared/Icons";
 import AgentItem from "components/AgentItem";
 import EmptyState from "shared/EmptyState";
-import FAB from "shared/FAB";
 import PageSheet from "components/PageSheet";
 
 const Root = styled(PageSheet)`

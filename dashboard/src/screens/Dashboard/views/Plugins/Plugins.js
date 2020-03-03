@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Route } from 'react-router-dom';
+import { Container } from "@comba.se/ui";
+import { PluginsIcon } from "@comba.se/ui/dist/Icons";
 
 // Contexts //
 import PluginsContext from 'contexts/Plugins';
@@ -12,9 +14,7 @@ import useActivePlugins from 'hooks/useActivePlugins';
 import PluginDetail from './views/PluginDetail';
 
 // Components ///
-import { PluginsIcon } from 'shared/Icons';
 import ScreenRoot from 'shared/ScreenRoot';
-import Container from 'shared/Container';
 import FullScreenHeader from 'components/FullScreenHeader';
 import PluginsList from 'components/PluginsList';
 

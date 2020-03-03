@@ -1,11 +1,11 @@
 import React, { memo } from "react";
 import styled from "styled-components";
+import { Text } from '@comba.se/ui';
 
 // HOCs //
 import asMessage from "../hocs/asMessage";
 
 // Components //
-import Text from "shared/Text";
 import StatusIcon from "../StatusIcon";
 
 const Root = styled.div`

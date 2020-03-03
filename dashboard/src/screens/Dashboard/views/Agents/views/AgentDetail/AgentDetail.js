@@ -3,16 +3,16 @@ import { findDOMNode } from "react-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Animated from "animated/lib/targets/react-dom";
+import { Button } from '@comba.se/ui';
+import { PasswordIcon, RoleIcon } from "@comba.se/ui/dist/Icons";
 
 // Hooks //
 import useAgent from "hooks/useAgent";
 
 // Components //
-import { PasswordIcon, RoleIcon } from "shared/Icons";
 import Modal from "shared/Modal";
 import UserBlock from "shared/UserBlock";
 import SectionTitle from "shared/SectionTitle";
-import Button from "shared/Button";
 import AgentSettingsItem from "components/SettingsListItem";
 import AgentDetailTransition from "./AgentDetailTransition";
 import TotalThreadsWidget from "./widgets/TotalThreadsWidget";

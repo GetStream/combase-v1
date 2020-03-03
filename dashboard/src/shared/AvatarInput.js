@@ -1,5 +1,7 @@
 import React, { useCallback, useRef, useState } from 'react';
 import styled from 'styled-components';
+import { Avatar } from '@comba.se/ui';
+import { EditIcon } from "@comba.se/ui/dist/Icons";
 
 // Hooks //
 import useAuth from 'hooks/useAuth';
@@ -9,10 +11,8 @@ import { useSnackbar } from 'contexts/Snackbar';
 import upload from 'utils/upload';
 
 // Components //
-import Avatar from 'shared/Avatar';
 import IconButton from 'shared/IconButton';
 import LoadingState from 'shared/LoadingState';
-import { EditIcon } from 'shared/Icons';
 
 const Root = styled.div`
     width: ${({ size }) => size}px;
