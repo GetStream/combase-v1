@@ -13,7 +13,10 @@ const initialState = {
   offset: 0
 };
 
-export default (filter = {}, sort = { last_updated_at: -1 }) => {
+const defaultFilter = {};
+const defaultSort = { last_updated_at: -1 };
+
+export default (filter = defaultFilter, sort = defaultSort) => {
   const client = useChatClient();
   const [{ user }] = useAuth();
   const [state, dispatch] = useReducer(reducer, initialState);
