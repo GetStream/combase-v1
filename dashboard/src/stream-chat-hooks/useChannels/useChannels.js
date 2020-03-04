@@ -41,7 +41,7 @@ export default (filter = {}, sort = { last_updated_at: -1 }) => {
         error
       });
     }
-  }, [client, user._id]);
+  }, [filter, sort, client, user._id]);
 
   const handleEvents = useCallback(e => {
     dispatch(e);
