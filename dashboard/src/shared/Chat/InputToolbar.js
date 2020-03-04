@@ -23,16 +23,17 @@ const Root = styled(Container)`
 `;
 
 const InputToolbar = ({
+  onAttachment,
   onSend,
   onTextChanged,
   placeholder,
   setRef,
   text,
-  textInputProps
+  textInputProps,
 }) => {
   return (
     <Root ref={setRef} maxWidth={840}>
-      <Actions />
+      <Actions {...{ onAttachment }} />
       <Composer
         {...{ onSend, onTextChanged, placeholder, text, textInputProps }}
       />

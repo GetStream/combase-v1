@@ -6,8 +6,10 @@ import { Avatar, Container, Text } from '@comba.se/ui';
 
 // Hooks //
 import useActivePlugins from 'hooks/useActivePlugins';
+import { useCurrentChannel } from 'stream-chat-hooks';
 
 // Widgets //
+import ChatDataWidget from 'widgets/Combase/ChatDataWidget';
 import ClearbitWidget from "widgets/Clearbit/EnrichmentWidget";
 import EmailVerificationWidget from "widgets/BlazeVerify/EmailVerificationWidget";
 
@@ -33,13 +35,14 @@ const Header = styled.div`
 
 const Content = styled(Container)`
   & > * + * {
-    margin-top: 16px;
+    margin-top: 24px;
   } 
 `;
 
 // TODO: Use live email of user. Need to set as custom data
 // on their stream user.
-const InfoDrawer = ({ partner }) => {
+const InfoDrawer = ({ channelId, partner, ...props }) => {
+  const channel = useCurrentChannel(channelId);
   const [plugins] = useActivePlugins();
   const enabledWidgets = useMemo(() => {
     if (plugins) {
@@ -58,6 +61,7 @@ const InfoDrawer = ({ partner }) => {
         </Text>
       </Header>
       <Content key={partner.id}>
+        <ChatDataWidget partnerId={partner.id} createdAt={channel.created_at} />
         {enabledWidgets.includes('blaze_verify') ? <EmailVerificationWidget email="nick@getstream.io" /> : null}
         {enabledWidgets.includes('clearbit') ? <ClearbitWidget email="nick@getstream.io" /> : null}
       </Content>

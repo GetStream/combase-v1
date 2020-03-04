@@ -42,7 +42,7 @@ const renderListHeader = props => (
   </ListHeader>
 );
 
-const renderRow = ({ channel: { id, data, partner } }, index) => {
+const renderRow = ({ channel: { id, data, partner }, ...rest }, index) => {
   return <ThreadItem {...{ id, data, partner }} />;
 };
 

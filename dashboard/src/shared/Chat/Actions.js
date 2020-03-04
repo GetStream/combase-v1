@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useRef } from 'react';
 import styled from 'styled-components';
 import { IconButton } from '@comba.se/ui';
 import { AttachmentIcon, ResponsesIcon } from "@comba.se/ui/Icons";
@@ -23,11 +23,20 @@ const Root = styled.div`
     }
 `;
 
-const Actions = props => {
+const FileInput = styled.input`
+    display: none;
+`
+
+const Actions = ({ onAttachment }) => {
+    const fileInput = useRef(null);
+    const handleClickAttachment = useCallback(() => {
+        fileInput.current.click();
+    }, []);
     return (
         <Root>
             <Root>
-                <IconButton color="alt_text" icon={AttachmentIcon} />
+                <FileInput type="file" ref={fileInput} onChange={onAttachment} />
+                <IconButton color="alt_text" icon={AttachmentIcon} onClick={handleClickAttachment} />
                 <IconButton color="alt_text" icon={ResponsesIcon} />
             </Root>
         </Root>

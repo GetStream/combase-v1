@@ -19,15 +19,13 @@ const Root = styled.div`
   transition: .3s transform ${({ theme }) => theme.easing.css(theme.easing.accelerate)};
 `;
 
-const SideDrawer = ({ location, match, open, partner }) => {
-  return (
-    <Root {...{ open }}>
-      <Switch>
-        <Route path={`${match.url}/info`} component={props => <InfoDrawer {...props} {...{ partner }} />} />
-        <Route path={`${match.url}/transfer`} render={() => "transfer"} />
-      </Switch>
-    </Root>
-  );
-};
+const SideDrawer = ({ match, open, partner }) => (
+  <Root {...{ open }}>
+    <Switch>
+      <Route path={`${match.url}/info`} render={props => <InfoDrawer {...props} channelId={match.params.channel} {...{ partner }} />} />
+      <Route path={`${match.url}/transfer`} render={() => "transfer"} />
+    </Switch>
+  </Root>
+);
 
 export default SideDrawer;

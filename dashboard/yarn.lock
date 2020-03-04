@@ -1677,14 +1677,15 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@comba.se/ui@^0.0.39":
-  version "0.0.39"
-  resolved "https://registry.yarnpkg.com/@comba.se/ui/-/ui-0.0.39.tgz#bd89f7b0bad26ed38e024a29f9a1eab7a9411d11"
-  integrity sha512-nTqXo0Qvg1rw6B4X8nxokfaGgNRm3MwCrpMMzlWqnTIjaovnFZEeF6A3MuubIlCSZ0tQTBFtNC+U2Ni28g4QLw==
+"@comba.se/ui@^0.0.40":
+  version "0.0.40"
+  resolved "https://registry.yarnpkg.com/@comba.se/ui/-/ui-0.0.40.tgz#063dcfbbc4cfeadc24430e001ce59ed7f5265659"
+  integrity sha512-p9XWMnjlaCr7efY58Uvki/B0zkCTLYqZnhvcNJtEFrxPNuG3IcdUfM4G8IYtgOWu73ujcbusOxicV6A8dr3dJQ==
   dependencies:
     autosize "^4.0.2"
     browser-monads "^1.0.0"
     react-color shreshthmohan/react-color
+    react-content-loader "^5.0.2"
 
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"

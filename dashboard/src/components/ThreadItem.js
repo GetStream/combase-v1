@@ -3,7 +3,7 @@ import styled, { withTheme } from "styled-components";
 import { Route, Link } from "react-router-dom";
 import moment from "moment";
 import ContentLoader from 'react-content-loader';
-import { Avatar, Badge, Fill, Text } from '@comba.se/ui';
+import { Avatar, Badge, Chip, Fill, Text } from '@comba.se/ui';
 
 // Styles //
 import listItemInteractions from "styles/css/listItemInteractions";
@@ -41,9 +41,15 @@ const Row = styled.div`
 
 const LatestMessage = styled(Text)``;
 
+const renderText = text => {
+  if (text.length >= 32) {
+    return `${text.slice(0, 32)}...`
+  }
+  return text
+}
+
 const ThreadItemInner = props => {
   const { data, id, match, partner, statusBorder, theme } = props;
-
   const active = !!match;
   const [unread, latestMessage] = useChannelListener(id, active);
 
@@ -82,7 +88,7 @@ const ThreadItemInner = props => {
             <Fill />
             <Text color="gray" size={12}>
               {moment(
-                latestMessage ? latestMessage.created_at : data.created_at
+                latestMessage ? latestMessage.created_at : data.createdAt
               ).calendar()}
             </Text>
           </Row>
@@ -93,8 +99,10 @@ const ThreadItemInner = props => {
               size={12}
               weight="500"
             >
-              {latestMessage ? latestMessage.text : "No Messages"}
+              {latestMessage ? renderText(latestMessage.text) : "No Messages"}
             </LatestMessage>
+            <Fill />
+            <Chip label="OPEN" color="green" size={8} />
           </Row>
         </Content>
       </Wrapper>
