@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Avatar, IconButton } from '@comba.se/ui';
-import { EditIcon } from "@comba.se/ui/dist/Icons";
+import { EditIcon } from "@comba.se/ui/Icons";
 
 // Hooks //
 import useAuth from 'hooks/useAuth';

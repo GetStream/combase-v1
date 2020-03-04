@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { IconButton } from '@comba.se/ui';
-import { ArchiveIcon, FilterIcon, InboxIcon } from "@comba.se/ui/dist/Icons";
+import { ArchiveIcon, FilterIcon, InboxIcon } from "@comba.se/ui/Icons";
 
 // Utils //
 import LayoutUtil from "./LayoutUtil";

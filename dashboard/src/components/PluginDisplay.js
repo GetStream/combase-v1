@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Chip, IconButton, Text } from '@comba.se/ui';
-import { LinkIcon } from "@comba.se/ui/dist/Icons";
+import { LinkIcon } from "@comba.se/ui/Icons";
 
 // Components //
 import Switch from "components/Switch";

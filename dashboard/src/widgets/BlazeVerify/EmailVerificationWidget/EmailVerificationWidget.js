@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import styled from 'styled-components';
 import { Card, CircularProgress, Text } from '@comba.se/ui';
-import { CancelIcon, MessageDeliveredIcon } from "@comba.se/ui/dist/Icons";
+import { CancelIcon, MessageDeliveredIcon } from "@comba.se/ui/Icons";
 
 // Hooks //
 import usePluginEndpoint from "hooks/usePluginEndpoint";

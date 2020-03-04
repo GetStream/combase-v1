@@ -1,6 +1,6 @@
 import React, { useCallback, memo } from 'react';
 import styled from 'styled-components';
-import { SearchIcon } from "@comba.se/ui/dist/Icons";
+import { SearchIcon } from "@comba.se/ui/Icons";
 
 // Components //
 const Root = styled.div`

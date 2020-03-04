@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { Avatar, IconButton, Text } from '@comba.se/ui';
-import { ArrowBackIcon } from "@comba.se/ui/dist/Icons";
+import { ArrowBackIcon } from "@comba.se/ui/Icons";
 
 // Components //
 import ActionsGroup from 'shared/ActionsGroup';

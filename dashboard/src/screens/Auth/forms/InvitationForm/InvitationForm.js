@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import styled from "styled-components";
 import { FieldArray, Formik } from "formik";
 import { Button, IconButton } from '@comba.se/ui';
-import { AddCircleIcon, CancelIcon, MailIcon, UserIcon } from "@comba.se/ui/dist/Icons";
+import { AddCircleIcon, CancelIcon, MailIcon, UserIcon } from "@comba.se/ui/Icons";
 
 // Hooks //
 import useAuth from "hooks/useAuth";

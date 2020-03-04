@@ -8,7 +8,7 @@ import {
   LocationIcon,
   OrganizationIcon,
   TimeIcon
-} from "@comba.se/ui/dist/Icons";
+} from "@comba.se/ui/Icons";
 
 // Hooks //
 import usePluginEndpoint from "hooks/usePluginEndpoint";

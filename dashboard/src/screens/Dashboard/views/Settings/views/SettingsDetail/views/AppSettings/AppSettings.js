@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { Container } from "@comba.se/ui";
-import { AppSettingsIcon, SoundsIcon, ThemeIcon } from "@comba.se/ui/dist/Icons";
+import { AppSettingsIcon, SoundsIcon, ThemeIcon } from "@comba.se/ui/Icons";
 
 // Hooks //
 import useMedia from 'hooks/useMedia';

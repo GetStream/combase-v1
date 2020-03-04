@@ -1,4 +1,4 @@
-import { PasswordIcon } from "@comba.se/ui/dist/Icons";
+import { PasswordIcon } from "@comba.se/ui/Icons";
 
 export default {
     blaze_verify: {

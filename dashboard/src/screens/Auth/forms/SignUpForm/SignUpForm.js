@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { Formik } from "formik";
 import { Button } from '@comba.se/ui';
-import { MailIcon, PasswordIcon, UserIcon } from "@comba.se/ui/dist/Icons";
+import { MailIcon, PasswordIcon, UserIcon } from "@comba.se/ui/Icons";
 
 // Utils //
 import request from "utils/request";

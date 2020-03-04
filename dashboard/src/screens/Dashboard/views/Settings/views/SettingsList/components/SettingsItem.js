@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Text } from '@comba.se/ui';
-import { ChevronRightIcon } from "@comba.se/ui/dist/Icons";
+import { ChevronRightIcon } from "@comba.se/ui/Icons";
 
 // Styles //
 import listItemInteractions from "styles/css/listItemInteractions";

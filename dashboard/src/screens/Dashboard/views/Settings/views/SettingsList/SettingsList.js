@@ -6,7 +6,7 @@ import {
   OrganizationSettingsIcon,
   SettingsIcon,
   UserSettingsIcon
-} from "@comba.se/ui/dist/Icons";
+} from "@comba.se/ui/Icons";
 
 // Components //
 import ListHeader from "shared/ListHeader";

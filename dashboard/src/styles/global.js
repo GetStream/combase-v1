@@ -80,6 +80,14 @@ export default createGlobalStyle`
     color: inherit;
   }
 
+  .twitter-picker {
+    display: block;
+
+    & * {
+      display: block;
+    }
+  }
+
   input, textarea {
     border: 0;
     background: none;

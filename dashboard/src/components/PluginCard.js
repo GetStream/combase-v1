@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Card, Fill, IconButton, Text } from '@comba.se/ui';
-import { SettingsIcon } from "@comba.se/ui/dist/Icons";
+import { SettingsIcon } from "@comba.se/ui/Icons";
 
 // Hooks //
 import usePlugin from 'hooks/usePlugin';

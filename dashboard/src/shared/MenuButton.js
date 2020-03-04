@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { IconButton } from '@comba.se/ui';
-import { MenuIcon } from "@comba.se/ui/dist/Icons";
+import { MenuIcon } from "@comba.se/ui/Icons";
 
 // Contexts //
 import ShellContext from 'contexts/Shell';

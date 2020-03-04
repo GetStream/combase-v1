@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Container } from '@comba.se/ui';
-import { OrganizationSettingsIcon } from "@comba.se/ui/dist/Icons";
+import { OrganizationSettingsIcon } from "@comba.se/ui/Icons";
 
 // Forms //
 import { OrganizationProfileForm, OrganizationChatSettingsForm } from 'screens/Dashboard/forms/OrganizationSettings';

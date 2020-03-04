@@ -14,10 +14,10 @@ export default () => {
   // the chat data like score, etc. also gives us a way to persist chats,
   // and progressively load the channels in at runtime.
 
-  const [{ user }] = useAuth();
+  const [{ organization, user }] = useAuth();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [channels, { loading: channelsLoading }] = useChannels({ members: { $in: [user._id] } }); // TODO: We probably want to filter by org id too if possible (custom channel data?) so when a user choose their org, the only see chats related to that org.
+  const [channels, { loading: channelsLoading }] = useChannels({ organization: organization._id, members: { $in: [user._id] } });
   const [chats, setChats] = useState(
     JSON.parse(localStorage.getItem("chats")) || []
   );

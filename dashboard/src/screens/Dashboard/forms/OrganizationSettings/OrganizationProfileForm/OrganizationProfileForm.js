@@ -14,6 +14,7 @@ import { useSnackbar } from 'contexts/Snackbar';
 import AvatarField from 'shared/AvatarField';
 import { Col, Grid, Row } from 'shared/Grid';
 import InputField from 'shared/InputField';
+import ColorField from 'shared/ColorField';
 import SectionTitle from 'shared/SectionTitle';
 
 import validationSchema from './validationSchema';
@@ -74,7 +75,7 @@ const renderForm = ({ dirty, handleSubmit, initialValues, isValid, values }) => 
                         <InputField placeholder="Website" name="website.url" />
                     </Col>
                     <Col sm={6}>
-                        <InputField placeholder="Color" name="meta.branding.colors.primary" />
+                        <ColorField placeholder="Color" name="meta.branding.colors.primary" />
                     </Col>
                 </Row>
                 <Row>

@@ -74,7 +74,10 @@ class Chat extends Component {
     }
 
     onSend(messages);
-    this.messageContainerRef.scrollToTop();
+
+    if (this.messageContainerRef) {
+      this.messageContainerRef.scrollToTop();
+    }
 
     if (shouldResetInputToolbar === true) {
       setTimeout(() => {

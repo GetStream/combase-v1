@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo } from "react";
 import styled from "styled-components";
 import { Route } from "react-router-dom";
 import { IconButton } from '@comba.se/ui';
-import { ChatIcon, CloseIcon, CloseChatIcon, InfoIcon, TransferIcon } from "@comba.se/ui/dist/Icons";
+import { ChatIcon, CloseIcon, CloseChatIcon, InfoIcon, TransferIcon } from "@comba.se/ui/Icons";
 
 // CSS //
 import pageCard from "styles/css/pageCard";

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useHistory, useLocation } from "react-router-dom";
 import { Formik } from "formik";
 import { Button } from '@comba.se/ui';
-import { MailIcon, PasswordIcon } from "@comba.se/ui/dist/Icons";
+import { MailIcon, PasswordIcon } from "@comba.se/ui/Icons";
 
 // Hooks //
 import useAuth from "hooks/useAuth";

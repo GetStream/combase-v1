@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import styled from "styled-components";
 import { Route } from "react-router-dom";
 import { Container } from "@comba.se/ui";
-import { AgentsIcon } from "@comba.se/ui/dist/Icons";
+import { AgentsIcon } from "@comba.se/ui/Icons";
 
 // Contexts //
 import AgentsContext from "contexts/Agents";

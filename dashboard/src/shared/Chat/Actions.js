@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { IconButton } from '@comba.se/ui';
-import { AttachmentIcon, ResponsesIcon } from "@comba.se/ui/dist/Icons";
+import { AttachmentIcon, ResponsesIcon } from "@comba.se/ui/Icons";
 
 // Components //
 const Root = styled.div`

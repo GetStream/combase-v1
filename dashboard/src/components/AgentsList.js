@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { FAB } from "@comba.se/ui";
-import { AgentsIcon } from "@comba.se/ui/dist/Icons";
+import { AgentsIcon } from "@comba.se/ui/Icons";
 
 // Hooks //
 import usePageSheet from "hooks/usePageSheet";

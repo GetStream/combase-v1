@@ -5,7 +5,7 @@ import {
   MessageDeliveredIcon,
   MessageSendingIcon,
   MessageSentIcon
-} from "@comba.se/ui/dist/Icons";
+} from "@comba.se/ui/Icons";
 
 const StatusIcon = ({ status, partner, ...rest }) => {
   switch (status) {

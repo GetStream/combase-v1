@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { FAB, IconButton } from "@comba.se/ui";
-import { SendIcon } from "@comba.se/ui/dist/Icons";
+import { SendIcon } from "@comba.se/ui/Icons";
 
 // Hooks //
 import useMedia from 'hooks/useMedia';

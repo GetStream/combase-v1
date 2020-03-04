@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { FAB } from "@comba.se/ui";
-import { ChatIcon } from "@comba.se/ui/dist/Icons";
+import { ChatIcon } from "@comba.se/ui/Icons";
 
 // Components //
 import Widget from "./Widget";

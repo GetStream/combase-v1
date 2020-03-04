@@ -1,4 +1,4 @@
-import { AgentsIcon, InboxIcon, PluginsIcon, SettingsIcon } from "@comba.se/ui/dist/Icons";
+import { AgentsIcon, InboxIcon, PluginsIcon, SettingsIcon } from "@comba.se/ui/Icons";
 
 import Agents from "./views/Agents";
 import Inbox from "./views/Inbox";

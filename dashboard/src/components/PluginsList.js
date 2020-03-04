@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { PluginsIcon } from "@comba.se/ui/dist/Icons";
+import { PluginsIcon } from "@comba.se/ui/Icons";
 
 // Contexts //
 import PluginsContext from 'contexts/Plugins';

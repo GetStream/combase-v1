@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import styled from "styled-components";
 import { animated, useSpring } from "react-spring";
 import { Card } from '@comba.se/ui';
-import { InboxIcon } from "@comba.se/ui/dist/Icons";
+import { InboxIcon } from "@comba.se/ui/Icons";
 
 // Components //
 import ListHeader from "shared/ListHeader";

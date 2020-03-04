@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Route } from 'react-router-dom';
 import { Container } from "@comba.se/ui";
-import { PluginsIcon } from "@comba.se/ui/dist/Icons";
+import { PluginsIcon } from "@comba.se/ui/Icons";
 
 // Contexts //
 import PluginsContext from 'contexts/Plugins';

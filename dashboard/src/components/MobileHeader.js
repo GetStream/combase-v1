@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { IconButton, Text } from '@comba.se/ui';
-import { ArrowBackIcon } from "@comba.se/ui/dist/Icons";
+import { ArrowBackIcon } from "@comba.se/ui/Icons";
 
 // Components //
 import MenuButton from "shared/MenuButton";
