@@ -3,6 +3,7 @@ import { StreamChat } from 'stream-chat';
 
 import Agent from 'models/agent';
 import Chat from 'models/chat';
+import StreamClient from 'utils/stream';
 
 exports.exchange = async (req, res) => {
 	try {

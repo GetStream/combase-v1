@@ -85,6 +85,16 @@ export const OrganizationSchema = new Schema(
 			],
 			default: 'We typically reply in a few minutes.'
 		},
+		settings: {
+			faqs: {
+				type: Boolean,
+				default: false
+			},
+			transcripts: {
+				type: Boolean,
+				default: true
+			}
+		},
 		domains: [
 			{
 				url: {
