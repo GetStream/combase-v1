@@ -17,7 +17,7 @@ export default () => {
   const [{ user }] = useAuth();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [channels, { loading: channelsLoading }] = useChannels();
+  const [channels, { loading: channelsLoading }] = useChannels({ members: { $in: [user._id] } }); // TODO: We probably want to filter by org id too if possible (custom channel data?) so when a user choose their org, the only see chats related to that org.
   const [chats, setChats] = useState(
     JSON.parse(localStorage.getItem("chats")) || []
   );

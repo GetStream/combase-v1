@@ -13,7 +13,7 @@ const initialState = {
   offset: 0
 };
 
-export default () => {
+export default (filter = {}, sort = { last_updated_at: -1 }) => {
   const client = useChatClient();
   const [{ user }] = useAuth();
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -23,7 +23,7 @@ export default () => {
       await dispatch({
         type: "REQUEST"
       });
-      const channels = await client.queryChannels();
+      const channels = await client.queryChannels(filter, sort);
       dispatch({
         type: "SET",
         channels: channels.map(data => {
