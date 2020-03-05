@@ -35,7 +35,7 @@ const Actions = ({ onAttachment }) => {
     return (
         <Root>
             <Root>
-                <FileInput type="file" ref={fileInput} onChange={onAttachment} />
+                <FileInput multiple type="file" ref={fileInput} onChange={onAttachment} />
                 <IconButton color="alt_text" icon={AttachmentIcon} onClick={handleClickAttachment} />
                 <IconButton color="alt_text" icon={ResponsesIcon} />
             </Root>

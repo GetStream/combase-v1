@@ -9,6 +9,7 @@ import withLayout from "hocs/withLayout";
 import Actions from "./Actions";
 import Composer from "./Composer";
 import SendButton from "./SendButton";
+import useUploadAttachments from "stream-chat-hooks/useUploadAttachments";
 
 const Root = styled(Container)`
   flex-direction: row;
@@ -23,7 +24,7 @@ const Root = styled(Container)`
 `;
 
 const InputToolbar = ({
-  onAttachment,
+  channelId,
   onSend,
   onTextChanged,
   placeholder,
@@ -31,9 +32,10 @@ const InputToolbar = ({
   text,
   textInputProps,
 }) => {
+  const [attachments, { loading, error, upload }] = useUploadAttachments(channelId);
   return (
     <Root ref={setRef} maxWidth={840}>
-      <Actions {...{ onAttachment }} />
+      <Actions onAttachment={upload} />
       <Composer
         {...{ onSend, onTextChanged, placeholder, text, textInputProps }}
       />

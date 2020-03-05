@@ -6,4 +6,5 @@ export { default as useChannelListener } from "./useChannelListener";
 export { default as useChatClient } from "./useChatClient";
 export { default as useCurrentChannel } from "./useCurrentChannel";
 export { default as useInitClient } from "./useInitClient";
+export { default as useUploadAttachments } from './useUploadAttachments';
 export { default as StreamChatProvider } from "./StreamChatProvider";

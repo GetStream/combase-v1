@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import { Route } from "react-router-dom";
 import { IconButton } from '@comba.se/ui';
@@ -47,6 +47,11 @@ const ChatWrapper = styled.div`
 //     { system: true, text: 'Start of your conversation with Luke S.' },
 // ];
 
+// TODO: Extract all attachments stuff into a hook, useAttachmentsUploader,
+// which uses useCurrentChannel internally to upload the images so we can
+// include it in the input toolbar instead rather than pass the onAttachment
+// and attachments array down through multiple components.
+
 const MessageThread = ({
   channel,
   history,
@@ -62,7 +67,6 @@ const MessageThread = ({
 
   const markRead = useCallback(async () => {
     if (channel) {
-      // console.log(channel);
       await channel.markRead();
     }
   }, [channel]);
@@ -123,6 +127,7 @@ const MessageThread = ({
                   <Chat
                     showTypingIndicator={isPartnerTyping}
                     onLoadMore={loadMoreMessages}
+                    channelId={channel.id}
                     {...{
                       headerActions,
                       onSend,

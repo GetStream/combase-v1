@@ -21,7 +21,6 @@ const MessagesWrapper = styled.div`
 class Chat extends Component {
   static propTypes = {
     messages: PropTypes.array,
-    onAttachment: PropTypes.func,
     onLoadMore: PropTypes.func,
     onSend: PropTypes.func,
     partner: PropTypes.object,
@@ -93,10 +92,11 @@ class Chat extends Component {
 
   renderInputToolbar = () => {
     const { text } = this.state;
-    const { onAttachment, placeholder, textInputProps } = this.props;
+    const { channelId, placeholder, textInputProps } = this.props;
     const { onInputTextChanged, onSend, uploadAttachment } = this;
 
     const props = {
+      channelId,
       text,
       onSend,
       onTextChanged: onInputTextChanged,
@@ -108,7 +108,7 @@ class Chat extends Component {
       uploadAttachment,
     };
 
-    return <InputToolbar {...{ onAttachment }} onResize={this.setInputToolbarHeight} {...props} />;
+    return <InputToolbar onResize={this.setInputToolbarHeight} {...props} />;
   };
 
   resetInputToolbar = () => {
