@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@comba.se/ui": "^0.0.42",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -12,7 +13,7 @@
     "react-scripts": "3.4.0",
     "react-spring": "^8.0.27",
     "stream-chat": "^1.3.4",
-    "stream-chat-hooks": "^0.0.3",
+    "stream-chat-hooks": "^0.0.9",
     "styled-components": "^5.0.1"
   },
   "scripts": {

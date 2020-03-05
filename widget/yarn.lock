@@ -943,6 +943,16 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@comba.se/ui@^0.0.42":
+  version "0.0.42"
+  resolved "https://registry.yarnpkg.com/@comba.se/ui/-/ui-0.0.42.tgz#e74a18e49f6c4696dc399900c905f3a3d1f6cc64"
+  integrity sha512-FO1XIiI0D6hH74dcASWFiEIaajjlc+jvhnzDmGvPNrM3FZxCzZdkr1yCaPDSfnF3TzODkuXOA+NC9UAHtWAhIQ==
+  dependencies:
+    autosize "^4.0.2"
+    browser-monads "^1.0.0"
+    react-color shreshthmohan/react-color
+    react-content-loader "^5.0.2"
+
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
@@ -1006,6 +1016,11 @@
   integrity sha512-tAag0jEcjwH+P2quUfipd7liWCNX2F8NvYjQp2wtInsZxnMlypdw0FtAOLxtvvkO+GSRRbmNi8m/5y42PQJYCQ==
   dependencies:
     "@hapi/hoek" "^8.3.0"
+
+"@icons/material@^0.2.4":
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@icons/material/-/material-0.2.4.tgz#e90c9f71768b3736e76d7dd6783fc6c2afa88bc8"
+  integrity sha512-QPcGmICAPbGLGb6F/yNf/KzKqvFx8z5qx3D1yFqVAjoFmXK35EgyW+cJ57Te3CNsmzblwtzakLGFqHPqrfb4Tw==
 
 "@jest/console@^24.7.1", "@jest/console@^24.9.0":
   version "24.9.0"
@@ -2059,6 +2074,11 @@ autoprefixer@^9.6.1:
     postcss "^7.0.26"
     postcss-value-parser "^4.0.2"
 
+autosize@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/autosize/-/autosize-4.0.2.tgz#073cfd07c8bf45da4b9fd153437f5bafbba1e4c9"
+  integrity sha512-jnSyH2d+qdfPGpWlcuhGiHmqBJ6g3X+8T+iRwFrHPLVcdoGJE/x6Qicm6aDHfTsbgZKxyV8UU/YB2p4cjKDRRA==
+
 aws-sign2@~0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/aws-sign2/-/aws-sign2-0.7.0.tgz#b46e890934a9591f2d2f6f86d7e6a9f1b3fe76a8"
@@ -2379,6 +2399,13 @@ brorand@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/brorand/-/brorand-1.1.0.tgz#12c25efe40a45e3c323eb8675a0a0ce57b22371f"
   integrity sha1-EsJe/kCkXjwyPrhnWgoM5XsiNx8=
+
+browser-monads@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/browser-monads/-/browser-monads-1.0.0.tgz#c9a210ef3793cae7016440d9a9adfedd9a5ad7bd"
+  integrity sha1-yaIQ7zeTyucBZEDZqa3+3Zpa170=
+  dependencies:
+    nothing-mock "^1.0.0"
 
 browser-process-hrtime@^0.1.2:
   version "0.1.3"
@@ -6526,7 +6553,7 @@ lodash.uniq@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
-"lodash@>=3.5 <5", lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.5:
+"lodash@>=3.5 <5", lodash@^4.0.1, lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.5:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
@@ -6600,6 +6627,11 @@ map-visit@^1.0.0:
   integrity sha1-7Nyo8TFE5mDxtb1B8S80edmN+48=
   dependencies:
     object-visit "^1.0.0"
+
+material-colors@^1.2.1:
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/material-colors/-/material-colors-1.2.6.tgz#6d1958871126992ceecc72f4bcc4d8f010865f46"
+  integrity sha512-6qE4B9deFBIa9YSpOc9O0Sgc43zTeVYbgDT5veRKSlB2+ZuHNoVVxA1L/ckMUayV9Ay9y7Z/SZCLcGteW9i7bg==
 
 md5.js@^1.3.4:
   version "1.3.5"
@@ -7058,6 +7090,11 @@ normalize-url@^3.0.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-3.3.0.tgz#b2e1c4dc4f7c6d57743df733a4f5978d18650559"
   integrity sha512-U+JJi7duF1o+u2pynbp2zXDW2/PADgC30f0GsHZtRh+HOcXHnw137TrNlyxxRvWW5fjKd3bcLHPxofWuCjaeZg==
+
+nothing-mock@^1.0.0:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/nothing-mock/-/nothing-mock-1.0.2.tgz#e269ce26919e9b13c7ad0178348ab2b060186879"
+  integrity sha512-7/Ss8rzSY78UX0cbPB8Qj7X6IHV+QO7T0Rq2nYbpd7HymBCE0HIWSjoTjqbSVV8JSuuD50oVObwZDfvnwOT/NQ==
 
 npm-run-path@^2.0.0:
   version "2.0.2"
@@ -8406,7 +8443,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.3"
 
-prop-types@^15.5.8, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -8572,6 +8609,22 @@ react-app-polyfill@^1.0.6:
     regenerator-runtime "^0.13.3"
     whatwg-fetch "^3.0.0"
 
+react-color@shreshthmohan/react-color:
+  version "2.17.4"
+  resolved "https://codeload.github.com/shreshthmohan/react-color/tar.gz/f9dbfe55eacbd230229223cc204ed144f9cd0448"
+  dependencies:
+    "@icons/material" "^0.2.4"
+    lodash "^4.17.11"
+    material-colors "^1.2.1"
+    prop-types "^15.5.10"
+    reactcss "^1.2.0"
+    tinycolor2 "^1.4.1"
+
+react-content-loader@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/react-content-loader/-/react-content-loader-5.0.2.tgz#f4d417ac2b3a913a4b5e406b8b36ff724bcfe15b"
+  integrity sha512-d9+/FX640VXyO+9dBgMWaHD5IL0+tGsCAFBhYPGNziPx2abTMUBXL1+oIlenOTYlxuOWDcUcpmgjj4Ws+0xdhA==
+
 react-dev-utils@^10.2.0:
   version "10.2.0"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-10.2.0.tgz#b11cc48aa2be2502fb3c27a50d1dfa95cfa9dfe0"
@@ -8732,6 +8785,13 @@ react@^16.13.0:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
+
+reactcss@^1.2.0:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/reactcss/-/reactcss-1.2.3.tgz#c00013875e557b1cf0dfd9a368a1c3dab3b548dd"
+  integrity sha512-KiwVUcFu1RErkI97ywr8nvx8dNOpT03rbnma0SSalTYjkrPYaEajR4a/MRt6DZ46K6arDRbWMNHF+xH7G7n/8A==
+  dependencies:
+    lodash "^4.0.1"
 
 read-pkg-up@^2.0.0:
   version "2.0.0"
@@ -9687,10 +9747,10 @@ stream-browserify@^2.0.1:
     inherits "~2.0.1"
     readable-stream "^2.0.2"
 
-stream-chat-hooks@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/stream-chat-hooks/-/stream-chat-hooks-0.0.3.tgz#fdbe2074eaafd7901df06a809612c50744b4ffcc"
-  integrity sha512-JCOyCVRrZCd4xUAFlIWDCVE3gd1xKuX+Kii3Lktx4ZN42RqABhmy6G1Y5nSUMZoqzkP5DMvv4bzpe8rPv/5WNg==
+stream-chat-hooks@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/stream-chat-hooks/-/stream-chat-hooks-0.0.9.tgz#33ccccc6fa405df8298cc2ea0150678f48df1a94"
+  integrity sha512-0CQVU9e7/NoPOk1v25y/oGjACwjcVH2tJUmJlrHY54FNGgmOTzJ0tSrRTwT4+dcJ4sm6fVw3XZjLxlWpeMd7Kw==
 
 stream-chat@^1.3.4:
   version "1.3.4"
@@ -10087,6 +10147,11 @@ tiny-warning@^1.0.0, tiny-warning@^1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/tiny-warning/-/tiny-warning-1.0.3.tgz#94a30db453df4c643d0fd566060d60a875d84754"
   integrity sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==
+
+tinycolor2@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.4.1.tgz#f4fad333447bc0b07d4dc8e9209d8f39a8ac77e8"
+  integrity sha1-9PrTM0R7wLB9TcjpIJ2POaisd+g=
 
 tmp@^0.0.33:
   version "0.0.33"
