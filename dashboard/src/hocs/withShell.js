@@ -28,8 +28,13 @@ export default (WrappedComponent, routes = []) => props => {
 
   const [config, { loading, error }] = useConfig();
   const [{ user }] = useAuth();
+  
+  const streamUser = useMemo(() => ({
+      id: user._id,
+      name: `${user.name.first} ${user.name.last}`,
+  }), [user]);
 
-  const chatClient = useInitClient(user, config.stream);
+  const chatClient = useInitClient(streamUser, config.stream ? config.stream.key : '', user.tokens.stream);
 
   const value = useMemo(
     () => ({

@@ -33,10 +33,12 @@ const InputToolbar = ({
   textInputProps,
 }) => {
   const [attachments, { loading, error, uploadAttachment, deleteAttachment, clearAttachments }] = useUploadAttachments(channelId);
+
   const onSend = useCallback((data, clear) => {
     handleSend(data, clear);
     clearAttachments();
-  }, [])
+  }, [clearAttachments, handleSend]);
+
   return (
     <Root ref={setRef} maxWidth={840}>
       <Actions onAttachment={uploadAttachment} />

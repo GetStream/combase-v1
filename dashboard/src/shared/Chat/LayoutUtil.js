@@ -36,8 +36,13 @@ export default class LayoutUtil {
             dim.height = 72;
             dim.width = width;
             break;
-          case "UserMessageWithDate":
-          case "PartnerMessageWithDate":
+          case "UserMessageWithAttachmentAndDate":
+          case "PartnerMessageWithAttachmentAndDate":
+            dim.height = 544;
+            dim.width = width || 375;
+            break;
+          case "UserMessageWithAttachment":
+          case "PartnerMessageWithAttachment":
             dim.height = 496;
             dim.width = width || 375;
             break;

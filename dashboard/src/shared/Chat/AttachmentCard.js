@@ -45,7 +45,7 @@ export default ({ className, index, type, thumb_url, onDelete }) => {
         if (onDelete) {
             onDelete(index)
         }
-    }, [index])
+    }, [index, onDelete])
     return (
         <Root>
             <Attachment {...{ className }}>
