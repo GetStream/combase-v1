@@ -23,6 +23,10 @@ const StatusCol = styled.div`
   margin-bottom: 4px;
 `;
 
+const BubbleWrap = styled.div`
+  align-items: flex-end;
+`;
+
 const Bubble = styled.div`
   padding: 20px;
   background-color: ${({ theme }) => theme.color.surface};
@@ -46,6 +50,8 @@ const Bubble = styled.div`
   }
 `;
 
+const renderAttachments = (attachments, hasNext, hasPrev) => attachments.map((attachment) => <MessageAttachment {...{ hasNext, hasPrev }} {...attachment} />);
+
 const UserMessage = memo(
   ({
     currentMessage: { attachments, text },
@@ -58,14 +64,14 @@ const UserMessage = memo(
     const breakWord = !text.includes(" ") && text.length > 48;
     return (
       <Root>
-        <div>
-          {attachments.length ? <MessageAttachment {...{ hasNext, hasPrev }} {...attachments[0]} /> : null}
+        <BubbleWrap>
+          {attachments.length ? renderAttachments(attachments, hasNext, hasPrev) : null}
           <Bubble hasAttachment={!!attachments.length} {...{ hasNext, hasPrev, breakWord }}>
             <Text line={24} color="alt_text">
               {text}
             </Text>
           </Bubble>
-        </div>
+        </BubbleWrap>
         <StatusCol>
           {!hasNext ? (
             <StatusIcon

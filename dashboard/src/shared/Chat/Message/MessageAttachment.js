@@ -10,7 +10,7 @@ const Root = styled.div`
         hasPrev ? theme.borderRadius : theme.borderRadius * 2}px;
     border-bottom-left-radius: ${({ theme }) => theme.borderRadius * 2}px;
     border-bottom-right-radius: ${({ hasNext, theme }) => theme.borderRadius}px;
-    max-width: 640px;
+    max-width: 400px;
     overflow: hidden;
     & > img {
         width: 100%;

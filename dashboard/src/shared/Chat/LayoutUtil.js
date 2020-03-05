@@ -12,10 +12,20 @@ export default class LayoutUtil {
           return "SystemMessage";
         }
 
+        const hasAttachments = !!currentMessage.attachments;
+
         const isOwn = user.id === currentMessage.user.id;
         const hasDate = !isSameSection(currentMessage, previousMessage);
+
         if (isOwn) {
+          if (hasAttachments) {
+            return !hasDate ? "UserMessageWithAttachments" : "UserMessageWithAttachmentAndDate";
+          }
           return !hasDate ? "UserMessage" : "UserMessageWithDate";
+        }
+
+        if (hasAttachments) {
+          return !hasDate ? "PartnerMessageWithAttachments" : "PartnerMessageWithAttachmentAndDate";
         }
 
         return !hasDate ? "PartnerMessage" : "PartnerMessageWithDate";
@@ -25,6 +35,11 @@ export default class LayoutUtil {
           case "SystemMessage":
             dim.height = 72;
             dim.width = width;
+            break;
+          case "UserMessageWithDate":
+          case "PartnerMessageWithDate":
+            dim.height = 496;
+            dim.width = width || 375;
             break;
           case "UserMessageWithDate":
           case "PartnerMessageWithDate":

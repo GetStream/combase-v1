@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
 import { Container } from "@comba.se/ui";
 
@@ -25,19 +25,23 @@ const Root = styled(Container)`
 
 const InputToolbar = ({
   channelId,
-  onSend,
+  onSend: handleSend,
   onTextChanged,
   placeholder,
   setRef,
   text,
   textInputProps,
 }) => {
-  const [attachments, { loading, error, upload }] = useUploadAttachments(channelId);
+  const [attachments, { loading, error, uploadAttachment, deleteAttachment, clearAttachments }] = useUploadAttachments(channelId);
+  const onSend = useCallback((data, clear) => {
+    handleSend(data, clear);
+    clearAttachments();
+  }, [])
   return (
     <Root ref={setRef} maxWidth={840}>
-      <Actions onAttachment={upload} />
+      <Actions onAttachment={uploadAttachment} />
       <Composer
-        {...{ attachments, onSend, onTextChanged, placeholder, text, textInputProps }}
+        {...{ attachments, deleteAttachment, onSend, onTextChanged, placeholder, text, textInputProps }}
       />
       <SendButton {...{ onSend, text }} />
     </Root>

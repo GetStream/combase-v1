@@ -7,7 +7,7 @@ export default (channelId) => {
     const [error, setError] = useState(false);
     const [attachments, setAttachments] = useState([]);
 
-    const upload = useCallback(async ({ target: { files } }) => {
+    const uploadAttachment = useCallback(async ({ target: { files } }) => {
         try {
             setLoading(true);
             let promises = [];
@@ -40,5 +40,15 @@ export default (channelId) => {
         }
     }, [attachments, channel]);
 
-    return [attachments, { loading, error, upload }];
+    const deleteAttachment = useCallback((index) => {
+        const newAttachments = [...attachments];
+        newAttachments.splice(index, 1);
+        setAttachments(newAttachments);
+    }, [attachments]);
+
+    const clearAttachments = useCallback(() => {
+        setAttachments([]);
+    }, []);
+
+    return [attachments, { loading, error, clearAttachments, deleteAttachment, uploadAttachment }];
 }

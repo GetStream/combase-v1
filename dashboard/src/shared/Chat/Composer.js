@@ -42,10 +42,11 @@ const Attachments = styled.div`
   }
 `
 
-const renderAttachments = (attachments) => attachments.map(data => <AttachmentCard {...data} />)
+const renderAttachments = (attachments, deleteAttachment) => attachments.map((data, index) => <AttachmentCard {...data} {...{ index }} onDelete={deleteAttachment} />)
 
 const Composer = ({
   attachments,
+  deleteAttachment,
   onTextChanged,
   onSend,
   placeholder,
@@ -88,7 +89,7 @@ const Composer = ({
         <Attachments>
           <Text faded size={12} weight="500">Attachments</Text>
           <div>
-            {renderAttachments(attachments)}
+            {renderAttachments(attachments, deleteAttachment)}
           </div>
         </Attachments>
       ) : null}
