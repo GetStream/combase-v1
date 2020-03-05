@@ -38,7 +38,7 @@ export default (channelId) => {
             setLoading(false);
             setError(true);
         }
-    }, []);
+    }, [attachments, channel]);
 
     return [attachments, { loading, error, upload }];
 }

@@ -37,7 +37,7 @@ const InputToolbar = ({
     <Root ref={setRef} maxWidth={840}>
       <Actions onAttachment={upload} />
       <Composer
-        {...{ onSend, onTextChanged, placeholder, text, textInputProps }}
+        {...{ attachments, onSend, onTextChanged, placeholder, text, textInputProps }}
       />
       <SendButton {...{ onSend, text }} />
     </Root>

@@ -6,6 +6,7 @@ import { Text } from '@comba.se/ui';
 import asMessage from "../hocs/asMessage";
 
 // Components //
+import MessageAttachment from './MessageAttachment';
 import StatusIcon from "../StatusIcon";
 
 const Root = styled.div`
@@ -34,6 +35,7 @@ const Bubble = styled.div`
     hasNext ? theme.borderRadius : theme.borderRadius * 2}px;
   max-width: 640px;
   margin-left: 24px;
+  margin-top: ${({ hasAttachment }) => hasAttachment ? 4 : 0}px;
 
   & > ${Text} {
     word-break: ${({ breakWord }) => (breakWord ? "break-word" : null)};
@@ -46,7 +48,7 @@ const Bubble = styled.div`
 
 const UserMessage = memo(
   ({
-    currentMessage: { text },
+    currentMessage: { attachments, text },
     hasNext,
     hasPrev,
     isRead,
@@ -56,11 +58,14 @@ const UserMessage = memo(
     const breakWord = !text.includes(" ") && text.length > 48;
     return (
       <Root>
-        <Bubble {...{ hasNext, hasPrev, breakWord }}>
-          <Text line={24} color="alt_text">
-            {text}
-          </Text>
-        </Bubble>
+        <div>
+          {attachments.length ? <MessageAttachment {...{ hasNext, hasPrev }} {...attachments[0]} /> : null}
+          <Bubble hasAttachment={!!attachments.length} {...{ hasNext, hasPrev, breakWord }}>
+            <Text line={24} color="alt_text">
+              {text}
+            </Text>
+          </Bubble>
+        </div>
         <StatusCol>
           {!hasNext ? (
             <StatusIcon

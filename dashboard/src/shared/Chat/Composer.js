@@ -1,8 +1,10 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
-import { AutosizeTextArea } from '@comba.se/ui';
+import { AutosizeTextArea, Text } from '@comba.se/ui';
 
 // Components //
+import AttachmentCard from './AttachmentCard';
+
 const Root = styled.div`
   flex: 1;
 `;
@@ -28,7 +30,22 @@ const Input = styled(AutosizeTextArea)`
   }
 `;
 
+const Attachments = styled.div`
+  margin-top: 16px;
+  & > div {
+    margin-top: 8px;
+    flex-direction: row;
+
+    & ${AttachmentCard} + ${AttachmentCard} {
+      margin-left: 16px;
+    }
+  }
+`
+
+const renderAttachments = (attachments) => attachments.map(data => <AttachmentCard {...data} />)
+
 const Composer = ({
+  attachments,
   onTextChanged,
   onSend,
   placeholder,
@@ -41,11 +58,11 @@ const Composer = ({
         if (!text) {
           return e.preventDefault();
         }
-        onSend({ text: text.trim() }, true);
+        onSend({ text: text.trim(), attachments }, true);
       }
       return false;
     },
-    [text, onSend]
+    [attachments, text, onSend]
   );
 
   const handleChange = useCallback(
@@ -67,6 +84,14 @@ const Composer = ({
         value={text}
         {...textInputProps}
       />
+      {attachments.length ? (
+        <Attachments>
+          <Text faded size={12} weight="500">Attachments</Text>
+          <div>
+            {renderAttachments(attachments)}
+          </div>
+        </Attachments>
+      ) : null}
     </Root>
   );
 };
