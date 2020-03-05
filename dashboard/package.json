@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@comba.se/ui": "^0.0.40",
+    "@comba.se/ui": "^0.0.41",
     "@juggle/resize-observer": "^3.1.0",
     "@material/react-switch": "^0.15.0",
     "@testing-library/jest-dom": "^5.1.1",
