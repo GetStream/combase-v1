@@ -11,12 +11,7 @@ exports.destroy = async (req, res) => {
 			});
 		}
 
-		// const chat = await Chat.updateOne(
-		// 	{ _id: data.chat },
-		// 	{ $push: { status: { type: 'Archived', timestamp: Date.now() } } }
-		// );
-
-		await Chat.findByIdAndRemove(data.chat);
+		await Chat.updateOne({ _id: data.chat }, { $push: { status: { type: 'Archived', timestamp: Date.now() } } });
 
 		res.sendStatus(204);
 	} catch (error) {
