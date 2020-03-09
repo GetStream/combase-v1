@@ -11,7 +11,7 @@ import StreamClient from 'utils/stream';
 
 exports.post = async (req, res) => {
 	try {
-		const data = req.params;
+		const data = req.body;
 
 		if (!process.env.POSTMARK_KEY) {
 			return res.status(400).json({
@@ -41,9 +41,14 @@ exports.post = async (req, res) => {
 
 		const transcript = messages.map((message) => {
 			return {
-				ts: moment(message.created_at).format('LLLL'),
 				name: message.user.name.split(' ')[0] + ' ' + message.user.name.split(' ')[1].charAt(0) + '.',
-				text: message.text
+				text: message.text,
+				timestamp: moment(message.created_at).format('LLLL'),
+				attachments: message.attachments.length
+					? message.attachments.map((attachment) => {
+							return { path: attachment.asset_url };
+						})
+					: []
 			};
 		});
 
@@ -57,7 +62,12 @@ exports.post = async (req, res) => {
 			subject: `${chat.refs.organization.name} Chat Transcript on ${moment(chat.createdAt).format(
 				'LLLL'
 			)} (Chat #${data.chat})`,
-			html
+			html,
+			attachments: transcript
+				.map((t) => {
+					return t.attachments.length ? t.attachments : [];
+				})
+				.flat(1)
 		});
 
 		res.sendStatus(200);

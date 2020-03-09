@@ -33,7 +33,12 @@ exports.get = async (req, res) => {
 			return {
 				name: message.user.name.split(' ')[0] + ' ' + message.user.name.split(' ')[1].charAt(0) + '.',
 				text: message.text,
-				timestamp: moment(message.created_at).format('LLLL')
+				timestamp: moment(message.created_at).format('LLLL'),
+				attachments: message.attachments.map((attachment) => {
+					return {
+						url: attachment.asset_url
+					};
+				})
 			};
 		});
 

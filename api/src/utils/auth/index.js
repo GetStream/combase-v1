@@ -35,28 +35,29 @@ const auth = async (req, res, next) => {
 			}
 		}
 
-		if (token) {
-			try {
-				const { sub } = jwt.verify(token, process.env.AUTH_SECRET);
+		// if (token) {
+		// 	try {
+		// 		const { sub } = jwt.verify(token, process.env.AUTH_SECRET);
 
-				// eslint-disable-next-line require-atomic-updates
-				req.serialized = await Agent.findById(mongoose.Types.ObjectId(sub)).select('-password').lean({
-					autopopulate: false
-				});
+		// 		// eslint-disable-next-line require-atomic-updates
+		// 		req.serialized = await Agent.findById(mongoose.Types.ObjectId(sub)).select('-password').lean({
+		// 			autopopulate: false
+		// 		});
 
-				if (!req.serialized._id) {
-					return res.status(401).json({
-						error: 'Missing or unauthorized auth credentials.'
-					});
-				}
+		// 		if (!req.serialized._id) {
+		// 			return res.status(401).json({
+		// 				error: 'Missing or unauthorized auth credentials.'
+		// 			});
+		// 		}
 
-				return next();
-			} catch (error) {
-				return res.status(401).json({
-					error: 'Missing or invalid JWT credentials.'
-				});
-			}
-		}
+		// 		return next();
+		// 	} catch (error) {
+		// 		return res.status(401).json({
+		// 			error: 'Missing or invalid JWT credentials.'
+		// 		});
+		// 	}
+		// }
+
 		return next();
 	} catch (error) {
 		console.error(error);
