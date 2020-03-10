@@ -1,6 +1,6 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
-import { animated } from 'react-spring';
+import { animated, interpolate } from 'react-spring';
 import { Text } from '@comba.se/ui';
 
 // HOCs //
@@ -26,28 +26,67 @@ const Field = styled.input`
     font-weight: 500;
 `;
 
-const Label = styled(Text)`
+const LabelWrapper = styled.div`
     position: absolute;
-    top: 24px;
+    top: -8px;
     left: 16px;
-    transform: translate3d(0, -50%);
-`
+`;
 
-const Input = ({ focused, focusAnim, hasValue, inputProps, label }) => {
-    const labelStyle = useMemo(() => {
-        transform: focusAnim.value.interpolate({
+const Label = styled(Text)`
+    transform-origin: top left;
+    pointer-events: none;
+    user-select: none;
+`;
+
+const LabelBg = styled(animated.div)`
+    position: absolute;
+    top: -4px;
+    bottom: -4px;
+    left: -4px;
+    right: -4px;
+    background-color: ${({ theme }) => theme.color.surface};
+    transform-origin: center;
+`;
+
+const Input = ({ focused, hasValue, inputProps, labelAnim, label }) => {
+    const [labelDims, setLabelDims] = useState();
+    const labelRef = useCallback((el) => {
+        if (el && !labelDims) {
+            const dims = el.getBoundingClientRect();
+            setLabelDims(dims);
+        }
+    }, [labelDims]);
+
+    const labelStyle = useMemo(() => ({
+        transform: interpolate([
+            labelAnim.translate.interpolate({
+                range: [0, 1],
+                output: [32, 0],
+            }),
+            labelAnim.scale.interpolate({
+                range: [0, 1],
+                output: [1.3333333333, 1],
+            })
+        ], (translate, scale) => `translate3d(0, ${translate}px, 0) scale(${scale})`),
+    }), [labelAnim.translate, labelAnim.scale]);
+
+    const labelBgStyle = useMemo(() => ({
+        transform: labelAnim.scale.interpolate({
             range: [0, 1],
-            output: [50, 0],
-        }).interpolate(v => `translate3d(0, ${v}%, 0)`)
-    }, []);
+            output: [0, 1],
+        }).interpolate(v => `scaleX(${v})`),
+    }), [labelAnim.scale]);
 
     return (
         <Root {...{ focused, hasValue }}>
             <Field {...inputProps} />
             {label ? (
-                <Label color="alt_text" as={animated.p} weight="500" size={16} style={labelStyle} faded>
-                    {label}
-                </Label>
+                <LabelWrapper>
+                    <LabelBg style={labelBgStyle} width={labelDims ? labelDims.width + 4 : 0} />
+                    <Label ref={labelRef} color={focused || hasValue ? "primary" : "alt_text"} as={animated.p} weight="500" size={12} style={labelStyle} faded={!hasValue && !focused}>
+                        {label}
+                    </Label>
+                </LabelWrapper>
             ) : null}
         </Root>
     );

@@ -43,11 +43,11 @@ const asInput = WrappedComponent => ({ disabled, label, maxLength, onBlur, onCha
         onChange: handleChange,
         onFocus: handleFocus,
         value,
-    }), [disabled, maxLength, handleBlur, handleChange, handleFocus, placeholder, value]);
+    }), [disabled, maxLength, handleBlur, handleChange, handleFocus, value]);
 
-    const focusAnim = useSpring({ value: state.hasValue || state.focused ? 1 : 0 });
+    const labelAnim = useSpring({ translate: state.hasValue || state.focused ? 1 : 0, scale: state.hasValue || state.focused ? 1 : 0, config: { mass: 1, tension: 500, friction: 30 } });
 
-    return <WrappedComponent {...props} {...state} {...{ focusAnim, inputProps }} label={placeholder || label} />
+    return <WrappedComponent {...props} {...state} {...{ labelAnim, inputProps }} label={placeholder || label} />
 }
 
 asInput.propTypes = {
