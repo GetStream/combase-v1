@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card } from '@comba.se/ui';
+import { Card, LoadingState } from '@comba.se/ui';
 
 // Components //
 import Tabs from 'components/Tabs';
-import LoadingState from 'shared/LoadingState';
 import SearchHeader from './SearchHeader';
 
 const PageSheet = ({

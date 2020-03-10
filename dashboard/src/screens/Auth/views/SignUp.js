@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Avatar, Container, Text } from '@comba.se/ui';
+import { Avatar, Container, LoadingState, Text } from '@comba.se/ui';
 
 // Hooks //
 import useInvite from "hooks/useInvite";
@@ -9,7 +9,6 @@ import useInvite from "hooks/useInvite";
 import SignUpForm from "../forms/SignUpForm";
 
 // Components //
-import LoadingState from "shared/LoadingState";
 
 const Root = styled(Container)`
   flex: 1;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import LoadingState from 'shared/LoadingState';
+import { LoadingState } from "@comba.se/ui";
 import useAuth from 'hooks/useAuth';
 
 export default ({ component: Component, ...rest }) => {

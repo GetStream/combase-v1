@@ -94,6 +94,13 @@ export default createGlobalStyle`
     font-size: 16px;
     font-family: "Cerebri Sans", sans-serif;
 
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active{
+      transition-delay: 99999s;
+    }
+
     &::-webkit-input-placeholder {
         color: ${({ theme }) => theme.color.gray};
         font-weight: 500;

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo } from "react";
 import styled from "styled-components";
 import { Route } from "react-router-dom";
-import { IconButton } from '@comba.se/ui';
+import { EmptyState, IconButton, LoadingState } from '@comba.se/ui';
 import { ChatIcon, CloseIcon, CloseChatIcon, InfoIcon, TransferIcon } from "@comba.se/ui/Icons";
 import Chat from "@comba.se/chat";
 
@@ -12,15 +12,12 @@ import pageCard from "styles/css/pageCard";
 import useAuth from "hooks/useAuth";
 
 // HOCs //
-import withChat from "shared/Chat/hocs/withChat";
+import withChat from "@comba.se/chat/hocs/withChat";
 
 // Views //
 import SideDrawer from "../SideDrawer";
 
 // Components //
-import LoadingState from "shared/LoadingState";
-import EmptyState from "shared/EmptyState";
-
 const Root = styled.div`
   flex: 1;
   z-index: 2;

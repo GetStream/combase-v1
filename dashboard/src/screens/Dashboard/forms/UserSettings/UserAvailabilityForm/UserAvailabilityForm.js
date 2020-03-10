@@ -2,6 +2,7 @@ import React, { useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 import { Formik } from 'formik';
 import { Button } from '@comba.se/ui';
+import { Col, Grid, Row } from '@comba.se/ui/Grid';
 
 // Utils //
 import request from 'utils/request';
@@ -12,7 +13,6 @@ import { useSnackbar } from 'contexts/Snackbar';
 
 // Component //
 import AvailabilityField from 'components/AvailabilityField';
-import { Col, Grid, Row } from 'shared/Grid';
 import SectionTitle from 'shared/SectionTitle';
 
 import validationSchema from './validationSchema';

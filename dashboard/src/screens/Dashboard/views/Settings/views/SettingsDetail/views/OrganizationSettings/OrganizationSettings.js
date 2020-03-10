@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Container } from '@comba.se/ui';
+import { Container, ListHeader } from '@comba.se/ui';
 import { OrganizationSettingsIcon } from "@comba.se/ui/Icons";
 
 // Forms //
@@ -10,7 +10,7 @@ import { OrganizationProfileForm, OrganizationChatSettingsForm } from 'screens/D
 import useMedia from 'hooks/useMedia';
 
 // Components //
-import ListHeader from 'shared/ListHeader';
+import MenuButton from 'shared/MenuButton';
 
 const Root = styled.div`
   flex: 1;
@@ -21,7 +21,7 @@ const OrganizationSettings = () => {
   return (
     <Root>
       <Container noPadding maxWidth={640}>
-        {!isMobile ? <ListHeader bgColor="surface" showSearch={false} icon={OrganizationSettingsIcon} title="Organization Settings" /> : null}
+        {!isMobile ? <ListHeader bgColor="surface" leftButtonElement={MenuButton} showSearch={false} icon={OrganizationSettingsIcon} title="Organization Settings" /> : null}
         <OrganizationProfileForm />
         <OrganizationChatSettingsForm />
       </Container>

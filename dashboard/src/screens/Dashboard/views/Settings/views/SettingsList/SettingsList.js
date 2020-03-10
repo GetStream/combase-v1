@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Route } from 'react-router-dom';
+import { ListHeader } from '@comba.se/ui';
 import {
   AppSettingsIcon,
   OrganizationSettingsIcon,
@@ -9,7 +10,7 @@ import {
 } from "@comba.se/ui/Icons";
 
 // Components //
-import ListHeader from "shared/ListHeader";
+import MenuButton from 'shared/MenuButton';
 import SettingsItem from "./components/SettingsItem";
 
 const Root = styled.div`
@@ -25,7 +26,7 @@ const Root = styled.div`
 
 export default ({ match }) => (
   <Root>
-    <ListHeader showSearch={false} icon={SettingsIcon} title="Settings" />
+    <ListHeader leftButtonElement={MenuButton} showSearch={false} icon={SettingsIcon} title="Settings" />
     <Route path={`${match.url}/app`} children={({ match: active }) => {
       return (
         <SettingsItem

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { Container } from "@comba.se/ui";
+import { Container, ListHeader } from "@comba.se/ui";
+import { Col, Grid, Row } from '@comba.se/ui/Grid';
 import { AppSettingsIcon, SoundsIcon, ThemeIcon } from "@comba.se/ui/Icons";
 
 // Hooks //
@@ -11,8 +12,7 @@ import ThemeSwitcherContext from "contexts/ThemeSwitcher";
 import ShellContext from "contexts/Shell";
 
 // Components //
-import ListHeader from 'shared/ListHeader';
-import { Col, Grid, Row } from 'shared/Grid';
+import MenuButton from 'shared/MenuButton';
 import Switch from "components/Switch";
 import SettingsListItem from "components/SettingsListItem";
 
@@ -27,7 +27,7 @@ const AppSettings = () => {
   return (
     <Root>
       <Container noPadding maxWidth={640}>
-        {!isMobile ? <ListHeader bgColor="surface" showSearch={false} icon={AppSettingsIcon} title="App Settings" /> : null}
+        {!isMobile ? <ListHeader bgColor="surface" leftButtonElement={MenuButton} showSearch={false} icon={AppSettingsIcon} title="App Settings" /> : null}
         <Grid fluid>
           <Row>
             <Col>

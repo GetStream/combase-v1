@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from "react";
 import styled from "styled-components";
 import { ChatContext, useInitClient } from "stream-chat-hooks";
+import { LoadingState } from "@comba.se/ui";
 
 // Hooks //
 import useAuth from "hooks/useAuth";
@@ -14,7 +15,6 @@ import ShellContext from "contexts/Shell";
 import Helmet from "components/Shell/Helmet";
 import Drawer from "components/Shell/Drawer";
 import Sidenav from "components/Shell/Sidenav";
-import LoadingState from "shared/LoadingState";
 
 const Root = styled.div`
   flex: 1;

@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { Formik } from 'formik';
 import { Button, Text } from '@comba.se/ui';
+import { Col, Grid, Row } from '@comba.se/ui/Grid';
 
 // Utils //
 import request from 'utils/request';
@@ -11,7 +12,6 @@ import useAuth from 'hooks/useAuth';
 import { useSnackbar } from 'contexts/Snackbar';
 
 // Components //
-import { Col, Grid, Row } from 'shared/Grid';
 import InputField from 'shared/InputField';
 import SectionTitle from 'shared/SectionTitle';
 

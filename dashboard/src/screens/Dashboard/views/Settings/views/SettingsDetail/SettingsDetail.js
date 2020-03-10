@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Switch, Route } from "react-router-dom";
+import { EmptyState } from '@comba.se/ui';
 
 // CSS //
 import pageCard from "styles/css/pageCard";
@@ -15,7 +16,6 @@ import OrganizationSettings from "./views/OrganizationSettings";
 
 // Components //
 import MobileHeader from 'components/MobileHeader';
-import EmptyState from "shared/EmptyState";
 
 const Root = styled.div`
   flex: 1;

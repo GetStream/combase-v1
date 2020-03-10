@@ -1,11 +1,11 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
 import { animated, useSpring } from "react-spring";
-import { Card } from '@comba.se/ui';
+import { Card, ListHeader } from '@comba.se/ui';
 import { InboxIcon } from "@comba.se/ui/Icons";
 
 // Components //
-import ListHeader from "shared/ListHeader";
+import MenuButton from 'shared/MenuButton';
 
 const Root = styled(animated.div)`
   position: fixed;
@@ -57,6 +57,7 @@ const Widget = ({ open }) => {
         <Card>
           <ListHeader
             icon={InboxIcon}
+            leftButtonElement={MenuButton}
             showSearch={false}
             title="Conversations"
           />
