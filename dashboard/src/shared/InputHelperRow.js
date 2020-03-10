@@ -65,13 +65,13 @@ const InputHelperRow = ({ error, helperText }) => {
         <Root>
             <Content>
                 <animated.div style={errorStyle}>
-                    <Text size={12} line={12} color="error">
+                    <Text size={12} line={12} color="error" weight="500">
                         {error || prevError}
                     </Text>
                 </animated.div>
                 {helperText ? (
                     <animated.div style={helperStyle}>
-                        <Text size={12} line={12} color="alt_text" faded>
+                        <Text size={12} line={12} weight="500" color="alt_text" faded>
                             {helperText}
                         </Text>
                     </animated.div>
