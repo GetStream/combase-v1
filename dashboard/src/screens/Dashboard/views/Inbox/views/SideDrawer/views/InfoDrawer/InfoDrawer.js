@@ -61,7 +61,7 @@ const InfoDrawer = ({ channelId, partner, ...props }) => {
         </Text>
       </Header>
       <Content key={partner.id}>
-        {/* <ChatDataWidget partnerId={partner.id} createdAt={channel.created_at} /> */}
+        <ChatDataWidget partnerId={partner.id} createdAt={channel.created_at} />
         {enabledWidgets.includes('blaze_verify') ? <EmailVerificationWidget email="nick@getstream.io" /> : null}
         {enabledWidgets.includes('clearbit') ? <ClearbitWidget email="nick@getstream.io" /> : null}
       </Content>

@@ -34,7 +34,7 @@ const initialValues = {
 const renderForm = ({ dirty, handleSubmit, isValid }) => {
   return (
     <Root onSubmit={handleSubmit}>
-      <InputField icon={MailIcon} name="email" placeholder="Email" />
+      <InputField icon={MailIcon} name="email" label="Email" />
       <InputField
         icon={PasswordIcon}
         name="password"

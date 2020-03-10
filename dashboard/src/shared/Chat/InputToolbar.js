@@ -32,7 +32,7 @@ const InputToolbar = ({
   text,
   textInputProps,
 }) => {
-  const [attachments, { loading, error, uploadAttachment, deleteAttachment, clearAttachments }] = useUploadAttachments(channelId);
+  const [attachments, { uploadAttachment, deleteAttachment, clearAttachments }] = useUploadAttachments(channelId);
 
   const onSend = useCallback((data, clear) => {
     handleSend(data, clear);

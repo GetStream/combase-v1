@@ -8,7 +8,7 @@ export default () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const filter = useMemo(() => ({ organization: organization._id, members: { $in: [user._id] } }), [organization, user]);
-  const [channels, { loading: channelsLoading }] = useChannels(filter);
+  const [channels, { loading: channelsLoading }] = useChannels(user._id, filter);
   const [chats, setChats] = useState(
     JSON.parse(localStorage.getItem("chats")) || []
   );
