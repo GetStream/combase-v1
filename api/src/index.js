@@ -17,7 +17,7 @@ api.use(compression());
 api.use(helmet());
 api.use(bodyParser.urlencoded({ extended: true }));
 api.use(bodyParser.json());
-api.use(auth);
+//api.use(auth);
 
 api.listen(process.env.PORT, (err) => {
 	if (err) {
