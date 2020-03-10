@@ -16,7 +16,6 @@ const Root = styled.div`
   background-color: ${({ theme }) => theme.color.surface};
   border-left: 1px solid ${({ theme }) => theme.color.border};
   transform: translateX(${({ open }) => (open ? 0 : 100)}%);
-  transition: .3s transform ${({ theme }) => theme.easing.css(theme.easing.accelerate)};
 `;
 
 const SideDrawer = ({ match, open, partner }) => (
