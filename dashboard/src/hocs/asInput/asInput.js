@@ -10,7 +10,7 @@ const initialState = {
 
 const isValid = value => value !== '' && value !== undefined && value !== null && !(Array.isArray(value) && value.length === 0);
 
-const asInput = WrappedComponent => ({ disabled, label, maxLength, onBlur, onChange, onFocus, placeholder, value, ...props }) => {
+const asInput = WrappedComponent => ({ disabled, error, helperText, label, maxLength, name, onBlur, onChange, onFocus, placeholder, type, value, ...props }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const handleBlur = useCallback((e) => {
         if (disabled) return;
@@ -39,15 +39,17 @@ const asInput = WrappedComponent => ({ disabled, label, maxLength, onBlur, onCha
     const inputProps = useMemo(() => ({
         disabled,
         maxLength,
+        name,
         onBlur: handleBlur,
         onChange: handleChange,
         onFocus: handleFocus,
+        type,
         value,
-    }), [disabled, maxLength, handleBlur, handleChange, handleFocus, value]);
+    }), [disabled, maxLength, name, handleBlur, handleChange, handleFocus, type, value]);
 
     const labelAnim = useSpring({ translate: state.hasValue || state.focused ? 1 : 0, scale: state.hasValue || state.focused ? 1 : 0, config: { mass: 1, tension: 500, friction: 30 } });
 
-    return <WrappedComponent {...props} {...state} {...{ labelAnim, inputProps }} label={placeholder || label} />
+    return <WrappedComponent {...props} {...state} {...{ error, helperText, labelAnim, inputProps }} label={placeholder || label} />
 }
 
 asInput.propTypes = {

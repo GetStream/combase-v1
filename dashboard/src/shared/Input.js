@@ -7,7 +7,13 @@ import { Text } from '@comba.se/ui';
 import asInput from 'hocs/asInput';
 
 // Components //
+import InputHelperRow from 'shared/InputHelperRow';
+
 const Root = styled.div`
+
+`
+
+const Wrapper = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: row;
@@ -15,7 +21,7 @@ const Root = styled.div`
     border: 2px solid ${({ focused, hasValue, theme }) => hasValue || focused ? theme.color.primary : theme.color.border};
 
     &:hover {
-        border-color: ${({ focused, hasValue, theme }) => hasValue || focused ? theme.color.primary : theme.colorUtils.darken(theme.color.border, 0.1)};
+        border-color: ${({ focused, hasValue, theme }) => hasValue || focused ? theme.color.primary : theme.colorUtils.darken(theme.color.border, 0.05)};
     }
 `;
 
@@ -40,15 +46,14 @@ const Label = styled(Text)`
 
 const LabelBg = styled(animated.div)`
     position: absolute;
-    top: -4px;
-    bottom: -4px;
     left: -4px;
     right: -4px;
+    height: 12px;
     background-color: ${({ theme }) => theme.color.surface};
     transform-origin: center;
 `;
 
-const Input = ({ focused, hasValue, inputProps, labelAnim, label }) => {
+const Input = ({ error, focused, hasValue, helperText, inputProps, labelAnim, label, ...rest }) => {
     const [labelDims, setLabelDims] = useState();
     const labelRef = useCallback((el) => {
         if (el && !labelDims) {
@@ -74,20 +79,26 @@ const Input = ({ focused, hasValue, inputProps, labelAnim, label }) => {
         transform: labelAnim.scale.interpolate({
             range: [0, 1],
             output: [0, 1],
+            extrapolate: 'clamp'
         }).interpolate(v => `scaleX(${v})`),
     }), [labelAnim.scale]);
 
     return (
-        <Root {...{ focused, hasValue }}>
-            <Field {...inputProps} />
-            {label ? (
-                <LabelWrapper>
-                    <LabelBg style={labelBgStyle} width={labelDims ? labelDims.width + 4 : 0} />
-                    <Label ref={labelRef} color={focused || hasValue ? "primary" : "alt_text"} as={animated.p} weight="500" size={12} style={labelStyle} faded={!hasValue && !focused}>
-                        {label}
-                    </Label>
-                </LabelWrapper>
-            ) : null}
+        <Root {...rest}>
+            <Wrapper {...{ focused, hasValue }}>
+                <Field {...inputProps} />
+                {label ? (
+                    <LabelWrapper>
+                        <LabelBg style={labelBgStyle} width={labelDims ? labelDims.width + 4 : 0} />
+                        <Label ref={labelRef} color={focused || hasValue ? "primary" : "alt_text"} as={animated.p} weight="500" size={12} style={labelStyle} faded={!hasValue && !focused}>
+                            {label}
+                        </Label>
+                    </LabelWrapper>
+                ) : null}
+            </Wrapper>
+            <InputHelperRow 
+                {...{error, helperText}}
+            />
         </Root>
     );
 }
