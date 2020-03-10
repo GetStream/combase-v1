@@ -17,7 +17,7 @@ const Root = styled.div`
 const CardHeader = ({ icon: Icon, title }) => {
     return (
         <Root>
-            <Icon />
+            <Icon color="text" />
             <Text weight="600">{title}</Text>
         </Root>
     );

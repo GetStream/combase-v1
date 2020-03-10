@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Card } from "@comba.se/ui";
 import { InboxIcon } from "@comba.se/ui/Icons";
+import { useChatClient } from 'stream-chat-hooks';
+import { ThreadItem } from '@comba.se/chat';
 
 // Components //
 import CardHeader from 'components/CardHeader';
@@ -15,11 +17,14 @@ const List = styled.div`
 `
 
 const ThreadsWidget = ({ className }) => {
+    const client = useChatClient();
+    console.log(client);
     return (
         <Root {...{ className }}>
             <CardHeader icon={InboxIcon} title="Conversations" />
             <List>
-
+                <ThreadItem />
+                <ThreadItem />
             </List>
         </Root>
     );

@@ -943,10 +943,17 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@comba.se/ui@^0.0.42":
-  version "0.0.42"
-  resolved "https://registry.yarnpkg.com/@comba.se/ui/-/ui-0.0.42.tgz#e74a18e49f6c4696dc399900c905f3a3d1f6cc64"
-  integrity sha512-FO1XIiI0D6hH74dcASWFiEIaajjlc+jvhnzDmGvPNrM3FZxCzZdkr1yCaPDSfnF3TzODkuXOA+NC9UAHtWAhIQ==
+"@comba.se/chat@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@comba.se/chat/-/chat-0.0.4.tgz#463992396926497d317e86c10632ccae4f5ac5c7"
+  integrity sha512-tTwcTBXWz19ck3DpC9Tnj2B3iYGHt2fy7GVMH9T9gJ5k+hpjPdLe+JjWlSOaDm7/SMTJn4RaZRjDnT2b7MF7eg==
+  dependencies:
+    react-content-loader "^5.0.2"
+
+"@comba.se/ui@^0.0.52":
+  version "0.0.52"
+  resolved "https://registry.yarnpkg.com/@comba.se/ui/-/ui-0.0.52.tgz#09b0a90dae8d73ae7f09e0d87e13d01b93a29d5f"
+  integrity sha512-fTM+oALqlXfCxcAaZ4JR3BTATtJQr3poWXUjCUI5zodnlBwpeSy7EmBApJSTj/HwXxgvOTCmIOK1Oboqwt0GPw==
   dependencies:
     autosize "^4.0.2"
     browser-monads "^1.0.0"
@@ -1179,6 +1186,11 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^15.0.0"
     chalk "^3.0.0"
+
+"@juggle/resize-observer@^3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@juggle/resize-observer/-/resize-observer-3.1.1.tgz#ade32049ae8e6cd692ef5d760aa4fdbe0db356e2"
+  integrity sha512-zo+xWLZ0FNY4hhFLHyvJ+fOzWUKGkK0wQDdiLkJU6daXvQDEohh9p5rvGl5GpkXAr2Zx6WMRstl8Ulu/QTRKww==
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -1797,6 +1809,14 @@ alphanum-sort@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
   integrity sha1-l6ERlkmyEa0zaR2fn0hqjsn74KM=
+
+animated@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/animated/-/animated-0.2.2.tgz#04af7846ad0b9b8d1f0472cc53d82b8efeb4a751"
+  integrity sha512-7pMzS0Sk2lA6/JT6he+apuy3GnDWUWVCurHMrpsbT9ugeLe80kpDQWjZQvkFiU9o7LsPGydPnoZpJsmt1HPPMA==
+  dependencies:
+    invariant "^2.2.0"
+    normalize-css-color "^1.0.1"
 
 ansi-colors@^3.0.0:
   version "3.2.4"
@@ -5299,7 +5319,7 @@ internal-ip@^4.3.0:
     default-gateway "^4.2.0"
     ipaddr.js "^1.9.0"
 
-invariant@^2.2.2, invariant@^2.2.4:
+invariant@^2.2.0, invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   integrity sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==
@@ -7048,6 +7068,11 @@ node-releases@^1.1.47, node-releases@^1.1.49:
   integrity sha512-xH8t0LS0disN0mtRCh+eByxFPie+msJUBL/lJDBuap53QGiYPa9joh83K4pCZgWJ+2L4b9h88vCVdXQ60NO2bg==
   dependencies:
     semver "^6.3.0"
+
+normalize-css-color@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/normalize-css-color/-/normalize-css-color-1.0.2.tgz#02991e97cccec6623fe573afbbf0de6a1f3e9f8d"
+  integrity sha1-Apkel8zOxmI/5XOvu/Deah8+n40=
 
 normalize-package-data@^2.3.2:
   version "2.5.0"
