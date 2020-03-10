@@ -28,6 +28,12 @@ const AvatarCol = styled(Col)`
     margin-bottom: 32px;
 `
 
+const FormRow =  styled(Row)`
+    & + & {
+        margin-top: 12px;
+    }
+`
+
 const FormFooter = styled(Col)`
     margin-top: 24px;
     align-items: flex-end;
@@ -52,22 +58,22 @@ const renderForm = ({ dirty, handleSubmit, initialValues, isValid, values }) => 
                         <AvatarField name="image" size={96} avatarName={values.name.first || initialValues.name.first} showStatus={false} />
                     </AvatarCol>
                 </Row>
-                <Row>
+                <FormRow>
                     <Col sm={6}>
                         <InputField placeholder="First Name" name="name.first" />
                     </Col>
                     <Col sm={6}>
                         <InputField placeholder="Last Name" name="name.last" />
                     </Col>
-                </Row>
-                <Row>
+                </FormRow>
+                <FormRow>
                     <Col sm={6}>
                         <InputField placeholder="Email" name="email" />
                     </Col>
                     <Col sm={6}>
                         <InputField placeholder="Title" name="title" />
                     </Col>
-                </Row>
+                </FormRow>
                 <Row>
                     <FormFooter>
                         <Button disabled={!dirty || !isValid} label="Save" type="submit" />
