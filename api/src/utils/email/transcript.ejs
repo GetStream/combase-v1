@@ -1,0 +1,12 @@
+<% if (transcript.length) { %>
+<ul style="list-style: none; padding-left: 0;">
+	<% transcript.forEach((msg) => { %>
+	<li style="margin-left: 0;">
+		<i>&raquo; <strong><%= msg.name %></strong></i
+		><br />
+		<i><%= msg.timestamp %></i>
+		<p><%= msg.text %></p>
+	</li>
+	<% }) %>
+</ul>
+<% } %>
