@@ -18,7 +18,7 @@ const Root = styled(Animated.div)`
   z-index: 1;
   background-color: ${({ bgColor, theme }) => theme.color[bgColor]};
   @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
-    top: -64px;
+    top: -80px;
   }
 `;
 

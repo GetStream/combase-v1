@@ -40,6 +40,12 @@ const FormFooter = styled(Col)`
     align-items: flex-end;
 `
 
+const FormRow =  styled(Row)`
+    & + & {
+        margin-top: 12px;
+    }
+`
+
 const renderForm = ({ dirty, handleSubmit, initialValues, isValid, values }) => {
     return (
         <Root onSubmit={handleSubmit}>
@@ -54,35 +60,35 @@ const renderForm = ({ dirty, handleSubmit, initialValues, isValid, values }) => 
                         <AvatarField name="meta.branding.logo" size={96} avatarName={values.name || initialValues.name} showStatus={false} />
                     </AvatarCol>
                 </Row>
-                <Row>
+                <FormRow>
                     <Col sm={6}>
                         <InputField placeholder="Name" name="name" />
                     </Col>
                     <Col sm={6}>
                         <InputField placeholder="Tagline" name="meta.tagline" />
                     </Col>
-                </Row>
-                <Row>
+                </FormRow>
+                <FormRow>
                     <Col sm={6}>
                         <InputField placeholder="Phone" name="phone.number" />
                     </Col>
                     <Col sm={6}>
                         <InputField placeholder="Email" name="email.address" />
                     </Col>
-                </Row>
-                <Row>
+                </FormRow>
+                <FormRow>
                     <Col sm={6}>
                         <InputField placeholder="Website" name="website.url" />
                     </Col>
                     <Col sm={6}>
                         <ColorField placeholder="Color" name="meta.branding.colors.primary" />
                     </Col>
-                </Row>
-                <Row>
+                </FormRow>
+                <FormRow>
                     <FormFooter>
                         <Button disabled={!dirty || !isValid} label="Save" type="submit" />
                     </FormFooter>
-                </Row>
+                </FormRow>
             </Grid>
         </Root>
     );
