@@ -1,8 +1,9 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Route } from 'react-router-dom';
+import { ThreadList } from '@comba.se/chat';
 
 // Views //
-import ThreadList from './views/ThreadList';
 import MessageThread from './views/MessageThread';
 
 // HOCs //
@@ -12,7 +13,23 @@ import withChannels from 'shared/Chat/hocs/withChannels';
 import ListDetailView from 'components/ListDetailView';
 import ScreenRoot from 'shared/ScreenRoot';
 
-const renderThreadList = props => <ThreadList {...props} />;
+const ListRoot = styled.div`
+    flex: 1;
+  order: -1;
+  height: 100%;
+  background-color: ${({ theme }) => theme.color.background};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
+    width: 375px;
+    position: fixed;
+    top: 0;
+    left: 96px;
+    right: 0;
+    bottom: 0;
+  }
+`;
+
+const renderThreadList = props => <ListRoot><ThreadList {...props} /></ListRoot>;
 const renderMessageThread = props => (
     <MessageThread
         channelId={props.match ? props.match.params.channel : null}

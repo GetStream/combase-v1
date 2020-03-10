@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@comba.se/chat": "^0.0.2",
     "@comba.se/ui": "^0.0.50",
     "@juggle/resize-observer": "^3.1.0",
     "@material/react-switch": "^0.15.0",

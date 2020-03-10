@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Route } from "react-router-dom";
 import { IconButton } from '@comba.se/ui';
 import { ChatIcon, CloseIcon, CloseChatIcon, InfoIcon, TransferIcon } from "@comba.se/ui/Icons";
+import Chat from "@comba.se/chat";
 
 // CSS //
 import pageCard from "styles/css/pageCard";
@@ -18,7 +19,6 @@ import SideDrawer from "../SideDrawer";
 
 // Components //
 import LoadingState from "shared/LoadingState";
-import Chat from "shared/Chat";
 import EmptyState from "shared/EmptyState";
 
 const Root = styled.div`
