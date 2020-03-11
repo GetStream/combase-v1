@@ -997,15 +997,16 @@
   dependencies:
     react-content-loader "^5.0.2"
 
-"@comba.se/ui@^0.0.62":
-  version "0.0.62"
-  resolved "https://registry.yarnpkg.com/@comba.se/ui/-/ui-0.0.62.tgz#d567c4319c0cdfb79772e3e44d5415eee4e5195b"
-  integrity sha512-jUkfYeVTCGsrfpHghHcf54e955Xdkxvp1hXaxFwW1z4wtfZKIgR5teV5qseS/OHpDiPDgq9wN5q4QJm8h7EcJA==
+"@comba.se/ui@^0.0.65":
+  version "0.0.65"
+  resolved "https://registry.yarnpkg.com/@comba.se/ui/-/ui-0.0.65.tgz#2c897d87aea0f3154c141afb49b0e4d41cae4862"
+  integrity sha512-mVzU9i4FMssnD7oBRfskvNRCa2FLMW3lEzkiFMto+W065b8kAT0ySVS0k5URCi/MSdhuH+rt2hr+Q17ehhNACg==
   dependencies:
     autosize "^4.0.2"
     browser-monads "^1.0.0"
     react-color shreshthmohan/react-color
     react-content-loader "^5.0.2"
+    uuid "^7.0.2"
 
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
@@ -9383,7 +9384,7 @@ react-app-polyfill@^1.0.6:
     regenerator-runtime "^0.13.3"
     whatwg-fetch "^3.0.0"
 
-react-color@shreshthmohan/react-color:
+"react-color@github:shreshthmohan/react-color", react-color@shreshthmohan/react-color:
   version "2.17.4"
   resolved "https://codeload.github.com/shreshthmohan/react-color/tar.gz/f9dbfe55eacbd230229223cc204ed144f9cd0448"
   dependencies:

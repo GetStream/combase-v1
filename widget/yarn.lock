@@ -950,10 +950,10 @@
   dependencies:
     react-content-loader "^5.0.2"
 
-"@comba.se/ui@^0.0.65":
-  version "0.0.65"
-  resolved "https://registry.yarnpkg.com/@comba.se/ui/-/ui-0.0.65.tgz#2c897d87aea0f3154c141afb49b0e4d41cae4862"
-  integrity sha512-mVzU9i4FMssnD7oBRfskvNRCa2FLMW3lEzkiFMto+W065b8kAT0ySVS0k5URCi/MSdhuH+rt2hr+Q17ehhNACg==
+"@comba.se/ui@^0.0.66":
+  version "0.0.66"
+  resolved "https://registry.yarnpkg.com/@comba.se/ui/-/ui-0.0.66.tgz#e2b9d9fb10ed7dc6f56acefb14b1fb091e7b8e69"
+  integrity sha512-a2uBbCk+5mf6++kDcLdd79TgQtpF8FruNpWsK209jsVL+6gmkR/o1IQR4l6uqXaYUDlmqiEQ4p9EPFQhOv+I5w==
   dependencies:
     autosize "^4.0.2"
     browser-monads "^1.0.0"
