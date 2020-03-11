@@ -4,7 +4,7 @@ import { window } from 'browser-monads';
 import Context from './index';
 
 export default ({ children, target = window }) => {
-    const [anim, set] = useSpring(() => ({ value: 0 }));
+    const [anim, set] = useSpring(() => ({ value: 0, config: { mass: 1, tension: 500, friction: 30 } }));
     const onScroll = useCallback(({ target: eventTarget }) => set({ value: eventTarget.scrollTop }), [set])
 
     useEffect(() => {

@@ -18,7 +18,7 @@ const Root = styled.div`
 
 const Content = styled(Container)`
     z-index: 2;
-    flex: 1 0 2000px;
+    padding-bottom: 40px;
     margin-top: 280px;
 
     & > * + * {

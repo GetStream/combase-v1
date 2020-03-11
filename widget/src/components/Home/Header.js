@@ -38,6 +38,10 @@ const Brand = styled(animated.div)`
     text-align: center;
 `
 
+const Tagline = styled(Text)`
+    max-width: 288px;
+`
+
 const OrgMeta = styled.div`
     margin-top: 16px;
 `
@@ -77,9 +81,9 @@ const Header = () => {
                             <Text color="white" size={32} weight="700">
                                 {organization.name}
                             </Text>
-                            <Text faded color="white" size={12} weight="500">
+                            <Tagline line={20} faded color="white" size={12} weight="500">
                                 {organization.meta.tagline}
-                            </Text>
+                            </Tagline>
                         </OrgMeta>
                     </Brand>
                     <Fill />
