@@ -1,20 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Text } from '@comba.se/ui';
+
+// HOCs //
+import withChannels from '@comba.se/chat/hocs/withChannels';
+
+// Views //
+import MessageThread from './views/MessageThread';
 
 // Components //
 const Root = styled.div`
     flex: 1;
-    justify-content: center;
-    align-items: center;
 `
 
-const Inbox = () => {
+const Inbox = ({ match, ...props }) => {
     return (
         <Root>
-            <Text>Inbox</Text>
+            <MessageThread {...{match}} {...props} channelId={match.params.channel} />
         </Root>
     );
 };
 
-export default Inbox;
+export default withChannels(Inbox);

@@ -87,7 +87,7 @@ const Header = () => {
                         </OrgMeta>
                     </Brand>
                     <Fill />
-                    <Text as={animated.p} style={textStyle} size={24} weight="600" color="white">Hello, Josh! <span role="img" aria-label="Waving">👋</span></Text>
+                    <Text as={animated.p} style={textStyle} size={24} weight="700" color="white">Hello, Josh! <span role="img" aria-label="Waving">👋</span></Text>
                 </Container>
             </Root>
         </>

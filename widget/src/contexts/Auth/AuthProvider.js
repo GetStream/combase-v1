@@ -24,7 +24,11 @@ export default ({ children }) => {
   const [error, setError] = useState(null);
 
   const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("user")) || null
+    // JSON.parse(localStorage.getItem("user")) || null
+    {
+      _id: '5e5552961e7f700abd0dff23',
+      name: 'Josh Tilton'
+    }
   );
 
   const [organization, setOrg] = useState(

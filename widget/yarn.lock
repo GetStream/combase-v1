@@ -943,17 +943,17 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@comba.se/chat@^0.0.10":
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/@comba.se/chat/-/chat-0.0.10.tgz#459bf3c0ee1b363c84adfb0490619c3456e07ae1"
-  integrity sha512-2ASxOzkSfZaIR2/Bf6KmW00ZG6i1UgF28GA/7U3ZIvhVrGmhYBcgjtwYpWiW1kw2EqGWEKqInSc1HMlc1chowg==
+"@comba.se/chat@^0.0.11":
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/@comba.se/chat/-/chat-0.0.11.tgz#0fe196d7a97e3d07af0ac067bbe49377d7ba9a27"
+  integrity sha512-m8B8uEKOOG2RonShAYRpm4OKYO8Mozl8IptzICT08k3aQqP0F03PDKXkkbcL5yAn7RB9AR90YLy3cD6t0Q9zpw==
   dependencies:
     react-content-loader "^5.0.2"
 
-"@comba.se/ui@^0.0.66":
-  version "0.0.66"
-  resolved "https://registry.yarnpkg.com/@comba.se/ui/-/ui-0.0.66.tgz#e2b9d9fb10ed7dc6f56acefb14b1fb091e7b8e69"
-  integrity sha512-a2uBbCk+5mf6++kDcLdd79TgQtpF8FruNpWsK209jsVL+6gmkR/o1IQR4l6uqXaYUDlmqiEQ4p9EPFQhOv+I5w==
+"@comba.se/ui@^0.0.67":
+  version "0.0.67"
+  resolved "https://registry.yarnpkg.com/@comba.se/ui/-/ui-0.0.67.tgz#b0c6f7ff82307c83bd5f339fb26e18150df09003"
+  integrity sha512-u6JGr2s00Zovr5nU37bUVUuw/HYTS41X4arJlyy6AeodHcqu0uQCg4csmxvhWoDILY2GWgIm71d3yW+OiMffQQ==
   dependencies:
     autosize "^4.0.2"
     browser-monads "^1.0.0"
