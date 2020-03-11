@@ -7,6 +7,7 @@ import { ThreadItem } from '@comba.se/chat';
 
 // Components //
 import CardHeader from 'components/CardHeader';
+import CardFooter from 'components/CardFooter';
 
 const Root = styled(Card)`
     width: 100%;  
@@ -25,7 +26,9 @@ const ThreadsWidget = ({ className }) => {
             <List>
                 <ThreadItem />
                 <ThreadItem />
+                <ThreadItem />
             </List>
+            <CardFooter />
         </Root>
     );
 };

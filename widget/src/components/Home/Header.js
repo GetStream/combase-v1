@@ -19,6 +19,7 @@ const Root = styled.div`
     left: 0;
     right: 0;
     height: 320px;
+    padding: 0px 16px;
     padding-bottom: 64px;
     & ${Container} {
         flex: 1;
@@ -32,7 +33,7 @@ const Header = () => {
             <Background />
             <Root>
                 <Container>
-                    <Text>Test</Text>
+                    <Text size={24} weight="600" color="white">Hello, Josh! <span role="img">👋</span></Text>
                 </Container>
             </Root>
         </>

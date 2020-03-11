@@ -22,7 +22,7 @@ export default () => {
       try {
         setLoading(true);
         const data = await request(
-          `v1/chats?refs.agents.assignee.agent._id=${user._id}`,
+          `v1/chats?refs.user._id=${user._id}`,
           "get",
           null,
           user.tokens.api
