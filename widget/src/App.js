@@ -9,6 +9,10 @@ import { ThemeProvider } from 'styled-components';
 import { light as theme } from '@comba.se/ui/styles/theme';
 import GlobalStyles from '@comba.se/ui/styles/global';
 
+// Contexts //
+import { AuthProvider } from 'contexts/Auth';
+import { SnackbarProvider } from "@comba.se/ui/Snackbar";
+
 // Screens //
 import Home from 'screens/Home';
 
@@ -22,14 +26,18 @@ const user = {
 function App() {
   return (
     <ThemeProvider {...{ theme }}>
-      <StreamChatProvider {...{ apiKey, token, user }}>
-        <Router>
-          <Switch>
-            <Route path="/" component={Home} />
-          </Switch>
-        </Router>
-        <GlobalStyles />
-      </StreamChatProvider>
+      <SnackbarProvider>
+        <AuthProvider>
+          <StreamChatProvider {...{ apiKey, token, user }}>
+            <Router>
+              <Switch>
+                <Route path="/" component={Home} />
+              </Switch>
+            </Router>
+            <GlobalStyles />
+          </StreamChatProvider>
+        </AuthProvider>
+      </SnackbarProvider>
     </ThemeProvider>
   );
 }

@@ -5,10 +5,18 @@ import React, {
   useMemo,
   useState
 } from "react";
+import styled from 'styled-components';
 import request from "utils/request";
 
 import AuthContext from "./index";
-import SnackbarContext from "contexts/Snackbar";
+import SnackbarContext from "@comba.se/ui/Snackbar";
+import { LoadingState } from "@comba.se/ui";
+
+const LoadingRoot = styled.div`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`
 
 export default ({ children }) => {
   const { queueSnackbar } = useContext(SnackbarContext);
@@ -19,17 +27,16 @@ export default ({ children }) => {
     JSON.parse(localStorage.getItem("user")) || null
   );
 
-  const [organizations, setOrgs] = useState([]);
-
   const [organization, setOrg] = useState(
     JSON.parse(localStorage.getItem("organization")) || null
   );
 
-  const getOrgs = useCallback(async () => {
+  const getOrg = useCallback(async () => {
     try {
       setLoading(true);
-      const data = await request("v1/organizations", "get");
-      setOrgs(data);
+      const data = await request(`v1/organizations/${process.env.REACT_APP_ORGANIZATION_ID}`, "get");
+      localStorage.setItem("organization", JSON.stringify(data));
+      setOrg(data);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -69,18 +76,9 @@ export default ({ children }) => {
     localStorage.removeItem("user");
   }, []);
 
-  const setCurrentOrganization = useCallback(
-    id => {
-      const org = organizations.filter(({ _id }) => _id === id)[0];
-      localStorage.setItem("organization", JSON.stringify(org));
-      setOrg(org);
-    },
-    [organizations, setOrg]
-  );
-
   useEffect(() => {
-    getOrgs();
-  }, [getOrgs]);
+    getOrg();
+  }, [getOrg]);
 
   const refetchUser = useCallback(async () => {
     const data = await request(`v1/agents/${user._id}`, "get");
@@ -98,8 +96,6 @@ export default ({ children }) => {
   const value = useMemo(
     () => ({
       organization,
-      organizations,
-      setCurrentOrganization,
       refetchCurrentOrg,
       refetchUser,
       user,
@@ -110,8 +106,6 @@ export default ({ children }) => {
     }),
     [
       organization,
-      organizations,
-      setCurrentOrganization,
       refetchCurrentOrg,
       refetchUser,
       user,
@@ -121,5 +115,13 @@ export default ({ children }) => {
       logout
     ]
   );
+
+  if (loading || !organization) {
+    return (
+      <LoadingRoot>
+        <LoadingState />
+      </LoadingRoot>
+    );
+  }
   return <AuthContext.Provider {...{ value }}>{children}</AuthContext.Provider>;
 };

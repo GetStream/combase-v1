@@ -5,7 +5,6 @@ import { Button } from "@comba.se/ui";
 // Components //
 const Root = styled.div`
     padding: 16px;
-    margin-top: 8px;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
