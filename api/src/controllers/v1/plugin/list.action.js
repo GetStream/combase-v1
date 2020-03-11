@@ -5,11 +5,11 @@ exports.list = async (req, res) => {
 		const data = req.query;
 		const { serialized } = req;
 
-		if (serialized.role !== 'admin') {
-			return res.status(403).json({
-				status: 'Invalid permissions to view or modify this resource.',
-			});
-		}
+		// if (serialized.role !== 'admin') {
+		// 	return res.status(403).json({
+		// 		status: 'Invalid permissions to view or modify this resource.',
+		// 	});
+		// }
 
 		const plugins = await Plugin.apiQuery(data);
 		res.status(200).json(plugins);

@@ -5,11 +5,11 @@ exports.get = async (req, res) => {
 		const data = req.params;
 		const { serialized } = req;
 
-		if (serialized.role !== 'admin') {
-			return res.status(403).json({
-				status: 'Invalid permissions to view or modify this resource.',
-			});
-		}
+		// if (serialized.role !== 'admin') {
+		// 	return res.status(403).json({
+		// 		status: 'Invalid permissions to view or modify this resource.',
+		// 	});
+		// }
 
 		const plugin = await Plugin.findById(data.plugin).lean({
 			autopopulate: true,
