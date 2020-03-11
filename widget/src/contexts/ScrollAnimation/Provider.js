@@ -1,15 +1,18 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { useSpring } from 'react-spring';
+import { window } from 'browser-monads';
 import Context from './index';
 
-export default ({ children, target = window, scrollAnimDistance = 120 }) => {
+export default ({ children, target = window }) => {
     const [anim, set] = useSpring(() => ({ value: 0 }));
-    const onScroll = useCallback(e => set({ value: window.scrollY }), [set])
+    const onScroll = useCallback(({ target: eventTarget }) => set({ value: eventTarget.scrollTop }), [set])
 
     useEffect(() => {
-        window.addEventListener('scroll', onScroll);
-        return () => window.removeEventListener('scroll', onScroll);
-    }, [onScroll]);
+        if (!!target) {
+            target.addEventListener('scroll', onScroll);
+            return () => target.removeEventListener('scroll', onScroll);
+        }
+    }, [onScroll, target]);
 
     const value = useMemo(() => ({
         anim,

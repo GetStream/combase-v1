@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { Container } from '@comba.se/ui';
+
+// Contexts //
+import { ScrollAnimationProvider } from 'contexts/ScrollAnimation';
 
 // Components //
 import Header from 'components/Home/Header';
@@ -24,14 +27,24 @@ const Content = styled(Container)`
 `;
 
 const Home = () => {
+    const [rootRef, setRootRef] = useState();
+    
+    const ref = useCallback((el) =>{
+        if (el && !rootRef) {
+            setRootRef(el);
+        }
+    }, [rootRef]);
+
     return (
-        <Root>
-            <Header />
-            <Content>
-                <ConversationsWidget />
-                <KnowledgeBaseWidget />
-            </Content>
-        </Root>
+        <ScrollAnimationProvider target={rootRef}>
+            <Root {...{ref}}>
+                <Header />
+                <Content>
+                    <ConversationsWidget />
+                    <KnowledgeBaseWidget />
+                </Content>
+            </Root>
+        </ScrollAnimationProvider>
     );
 };
 
