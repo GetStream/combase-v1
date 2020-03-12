@@ -1,7 +1,6 @@
 import 'whatwg-fetch';
 
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { StreamChatProvider } from 'stream-chat-hooks';
 
 // Styles //
@@ -13,9 +12,7 @@ import GlobalStyles from '@comba.se/ui/styles/global';
 import { AuthProvider } from 'contexts/Auth';
 import { SnackbarProvider } from "@comba.se/ui/Snackbar";
 
-// Screens //
-import Home from 'screens/Home';
-import Thread from 'screens/Thread';
+import Root from './Root';
 
 const apiKey = "pyst6tqux4vf";
 const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWU1NTUyOTYxZTdmNzAwYWJkMGRmZjIzIn0.Z1WIshH9NZ54eVbcGeNOcfVSNGjUEOtLJ2FDuTfbtVI";
@@ -30,12 +27,7 @@ function App() {
       <SnackbarProvider>
         <AuthProvider>
           <StreamChatProvider {...{ apiKey, token, user }}>
-            <Router>
-              <Switch>
-                <Route path="/:channel" component={Thread} />
-                <Route path="/" component={Home} />
-              </Switch>
-            </Router>
+            <Root />
             <GlobalStyles />
           </StreamChatProvider>
         </AuthProvider>

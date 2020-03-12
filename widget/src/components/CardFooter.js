@@ -16,7 +16,7 @@ const CardFooter = () => {
     return (
         <Root>
             <div />
-            <Button onClick={() => history.push('/5e5f54c4c5a922f38b59aa19')} flat label="New Conversation" />
+            <Button onClick={() => history.push('/inbox/5e5f54c4c5a922f38b59aa19')} label="New Conversation" />
         </Root>
     );
 };

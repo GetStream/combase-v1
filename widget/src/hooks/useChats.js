@@ -25,7 +25,7 @@ export default () => {
           `v1/chats?refs.user._id=${user._id}`,
           "get",
           null,
-          user.tokens.api
+          process.env.REACT_APP_API_KEY
         );
 
         const chatData = data.map(chat => ({
@@ -42,7 +42,7 @@ export default () => {
     } else {
       setLoading(false);
     }
-  }, [user._id, user.tokens.api, channels, channelsLoading]);
+  }, [user._id, channels, channelsLoading]);
   useEffect(() => {
     getChats();
   }, [getChats]);

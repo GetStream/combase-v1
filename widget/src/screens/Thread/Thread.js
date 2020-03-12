@@ -1,10 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import compose from 'lodash.flowright';
-
-// HOCs //
-import withAuth from 'hocs/withAuth';
-import withChannels from '@comba.se/chat/hocs/withChannels';
 
 // Views //
 import MessageThread from './views/MessageThread';
@@ -22,4 +17,4 @@ const Thread = ({ match, ...props }) => {
     );
 };
 
-export default compose(withAuth, withChannels)(Thread);
+export default Thread;

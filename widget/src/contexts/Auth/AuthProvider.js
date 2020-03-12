@@ -18,6 +18,69 @@ const LoadingRoot = styled.div`
   align-items: center;
 `
 
+const dummyUser = {
+  "name": {
+    "first": "Josh",
+    "last": "Tilton"
+  },
+  "email": {
+    "verified": true,
+    "address": "josh@getstream.io"
+  },
+  "refs": {
+    "tags": [],
+    "organization": {
+      "meta": {
+        "branding": {
+          "colors": {
+            "primary": "#00d084"
+          },
+          "logo": "http://res.cloudinary.com/hxx1zzrux/image/upload/v1582662535/edqfwsuqr4a75dfltxtn.png"
+        },
+        "tagline": "Ship Activity Feeds & Chat faster than ever before."
+      },
+      "phone": {
+        "display": true,
+        "number": "+17206123845"
+      },
+      "email": {
+        "display": true,
+        "address": "support@getstream.io"
+      },
+      "website": {
+        "display": true,
+        "url": "https://getstream.io"
+      },
+      "welcome": {
+        "message": "Welcome! How can we help?",
+        "enabled": false
+      },
+      "settings": {
+        "faqs": false,
+        "transcripts": true
+      },
+      "response": "We typically reply in a few minutes.",
+      "_id": "5e541df992a1f64016ab8357",
+      "availability": {
+        "hours": {
+          "from": "9:00 am",
+          "to": "6:00 pm"
+        },
+        "days": "Daily"
+      },
+      "name": "Stream",
+      "domains": [],
+      "updatedAt": "2020-03-10T13:09:25.676Z",
+      "createdAt": "2020-02-24T19:03:21.024Z",
+      "__v": 0
+    }
+  },
+  "phone": "",
+  "_id": "5e5552961e7f700abd0dff23",
+  "updatedAt": "2020-02-25T17:00:06.052Z",
+  "createdAt": "2020-02-25T17:00:06.052Z",
+}
+
 export default ({ children }) => {
   const { queueSnackbar } = useContext(SnackbarContext);
   const [loading, setLoading] = useState(true);
@@ -25,10 +88,7 @@ export default ({ children }) => {
 
   const [user, setUser] = useState(
     // JSON.parse(localStorage.getItem("user")) || null
-    {
-      _id: '5e5552961e7f700abd0dff23',
-      name: 'Josh Tilton'
-    }
+    dummyUser
   );
 
   const [organization, setOrg] = useState(

@@ -46,18 +46,22 @@ const OrgMeta = styled.div`
     margin-top: 16px;
 `
 
+const HeaderAvatar = styled(Avatar)`
+    border: 4px solid white;
+`
+
 const Header = () => {
     const [{ organization }] = useAuth();
     const { anim } = useScrollAnim();
     console.log(organization);
     const brandStyle = useMemo(() => ({
         opacity: anim.value.interpolate({
-            range: [0, 120],
+            range: [40, 240],
             output: [1, 0],
         }),
         transform: interpolate([
-            anim.value.interpolate({ range: [0, 120], output: [1, 0.95], extrapolateRight: 'clamp' }),
-            anim.value.interpolate({ range: [0, 120], output: [0, -24] }),
+            anim.value.interpolate({ range: [40, 240], output: [1, 0.95], extrapolate: 'clamp' }),
+            anim.value.interpolate({ range: [40, 240], output: [0, 8], extrapolate: 'clamp' }),
         ], (scale, y) => `translate3d(0, ${y}px, 0) scale(${scale})`)
     }), [anim.value]);
 
@@ -67,7 +71,7 @@ const Header = () => {
             output: [1, 0],
             extrapolateRight: 'clamp'
         }),
-        transform: anim.value.interpolate({ range: [0, 120], output: [0, 32], extrapolate: 'clamp' }).interpolate((y) => `translate3d(0, -${y}px, 0)`)
+        transform: anim.value.interpolate({ range: [0, 64], output: [0, 32], extrapolate: 'clamp' }).interpolate((y) => `translate3d(0, -${y}px, 0)`)
     }), [anim.value]);
 
     return (
@@ -76,7 +80,7 @@ const Header = () => {
             <Root>
                 <Container>
                     <Brand style={brandStyle}>
-                        <Avatar showStatus={false} size={72} name={organization.name} src={organization.meta.branding.logo} />
+                        <HeaderAvatar showStatus={false} size={72} name={organization.name} src={organization.meta.branding.logo} />
                         <OrgMeta>
                             <Text color="white" size={32} weight="700">
                                 {organization.name}
