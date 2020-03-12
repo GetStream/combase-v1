@@ -6,11 +6,11 @@ exports.update = async (req, res) => {
 		const params = req.params;
 		const { serialized } = req;
 
-		if (serialized.role !== 'admin') {
-			return res.status(403).json({
-				status: 'Invalid permissions to view or modify this resource.'
-			});
-		}
+		// if (serialized.role !== 'admin') {
+		// 	return res.status(403).json({
+		// 		status: 'Invalid permissions to view or modify this resource.'
+		// 	});
+		// }
 
 		const organization = await Organization.findOneAndUpdate({ _id: params.organization }, { $set: data }, { new: true });
 
