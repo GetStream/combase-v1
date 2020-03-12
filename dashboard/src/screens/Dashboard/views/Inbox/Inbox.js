@@ -2,12 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { Route } from 'react-router-dom';
 import { ThreadList } from '@comba.se/chat';
+import compose from 'lodash.flowright';
 
 // Views //
 import Threads from './views/Threads';
 import MessageThread from './views/MessageThread';
 
 // HOCs //
+import withAuth from 'hocs/withAuth';
 import withChannels from '@comba.se/chat/hocs/withChannels';
 
 // Components ///
@@ -22,7 +24,7 @@ const renderMessageThread = props => (
     />
 );
 
-export default withChannels(props => (
+const Inbox = props => (
     <ListDetailView {...props} rootAs={ScreenRoot}>
         <Route
             path={`${props.match.url}/:channel`}
@@ -30,4 +32,6 @@ export default withChannels(props => (
         />
         <Route path={props.match.url} children={renderThreadList} />
     </ListDetailView>
-));
+);
+
+export default compose(withAuth, withChannels)(Inbox);

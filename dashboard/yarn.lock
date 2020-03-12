@@ -990,17 +990,17 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@comba.se/chat@^0.0.10":
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/@comba.se/chat/-/chat-0.0.10.tgz#459bf3c0ee1b363c84adfb0490619c3456e07ae1"
-  integrity sha512-2ASxOzkSfZaIR2/Bf6KmW00ZG6i1UgF28GA/7U3ZIvhVrGmhYBcgjtwYpWiW1kw2EqGWEKqInSc1HMlc1chowg==
+"@comba.se/chat@^0.0.13":
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/@comba.se/chat/-/chat-0.0.13.tgz#3ae84ca72411adae51d6e420ce683583b451e38a"
+  integrity sha512-zBpLV975csV7XDX3IHP38r4GvL/mi2uAoSBfarQ+hQSxRAidkv3LPTohVeB2KGoOWNNr9Pdf5o7TnV+70OFAbA==
   dependencies:
     react-content-loader "^5.0.2"
 
-"@comba.se/ui@^0.0.65":
-  version "0.0.65"
-  resolved "https://registry.yarnpkg.com/@comba.se/ui/-/ui-0.0.65.tgz#2c897d87aea0f3154c141afb49b0e4d41cae4862"
-  integrity sha512-mVzU9i4FMssnD7oBRfskvNRCa2FLMW3lEzkiFMto+W065b8kAT0ySVS0k5URCi/MSdhuH+rt2hr+Q17ehhNACg==
+"@comba.se/ui@^0.0.67":
+  version "0.0.67"
+  resolved "https://registry.yarnpkg.com/@comba.se/ui/-/ui-0.0.67.tgz#b0c6f7ff82307c83bd5f339fb26e18150df09003"
+  integrity sha512-u6JGr2s00Zovr5nU37bUVUuw/HYTS41X4arJlyy6AeodHcqu0uQCg4csmxvhWoDILY2GWgIm71d3yW+OiMffQQ==
   dependencies:
     autosize "^4.0.2"
     browser-monads "^1.0.0"
@@ -7066,6 +7066,11 @@ lodash.debounce@4.0.8:
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
   integrity sha1-gteb/zCmfEAF/9XiUVMArZyk168=
 
+lodash.flowright@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.flowright/-/lodash.flowright-3.5.0.tgz#2b5fff399716d7e7dc5724fe9349f67065184d67"
+  integrity sha1-K1//OZcW1+fcVyT+k0n2cGUYTWc=
+
 lodash.includes@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/lodash.includes/-/lodash.includes-4.3.0.tgz#60bb98a87cb923c68ca1e51325483314849f553f"
@@ -9384,7 +9389,7 @@ react-app-polyfill@^1.0.6:
     regenerator-runtime "^0.13.3"
     whatwg-fetch "^3.0.0"
 
-"react-color@github:shreshthmohan/react-color", react-color@shreshthmohan/react-color:
+react-color@shreshthmohan/react-color:
   version "2.17.4"
   resolved "https://codeload.github.com/shreshthmohan/react-color/tar.gz/f9dbfe55eacbd230229223cc204ed144f9cd0448"
   dependencies:
