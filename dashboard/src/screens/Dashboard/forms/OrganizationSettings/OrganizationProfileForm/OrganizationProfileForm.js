@@ -101,6 +101,7 @@ const OrganizationProfileForm = () => {
     const handleSubmit = useCallback(
         async ({ _id, updatedAt, createdAt, ...values }) => {
             try {
+                console.log(values);
                 await request(`v1/organizations/${_id}`, 'put', {
                     body: JSON.stringify(values)
                 }, user.tokens.api);

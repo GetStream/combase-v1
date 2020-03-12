@@ -9,9 +9,11 @@ import request from "utils/request";
 
 import AuthContext from "./index";
 import SnackbarContext from "contexts/Snackbar";
+import ThemeSwitcherContext from 'contexts/ThemeSwitcher';
 
 export default ({ children }) => {
   const { queueSnackbar } = useContext(SnackbarContext);
+  const { updateOverrides } = useContext(ThemeSwitcherContext);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -73,9 +75,10 @@ export default ({ children }) => {
     id => {
       const org = organizations.filter(({ _id }) => _id === id)[0];
       localStorage.setItem("organization", JSON.stringify(org));
+      updateOverrides(org.meta.branding.colors);
       setOrg(org);
     },
-    [organizations, setOrg]
+    [organizations, setOrg, updateOverrides]
   );
 
   useEffect(() => {
@@ -92,8 +95,10 @@ export default ({ children }) => {
   const refetchCurrentOrg = useCallback(async () => {
     const org = await request(`v1/organizations/${organization._id}`, "get");
     localStorage.setItem("organization", JSON.stringify(org));
+    updateOverrides(org.meta.branding.colors);
+    console.log('refetch', org.meta.branding.colors);
     setOrg(org);
-  }, [organization]);
+  }, [organization, updateOverrides]);
 
   const value = useMemo(
     () => ({

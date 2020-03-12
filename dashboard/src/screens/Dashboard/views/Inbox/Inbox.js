@@ -1,7 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Route } from 'react-router-dom';
-import { ThreadList } from '@comba.se/chat';
 import compose from 'lodash.flowright';
 
 // Views //
