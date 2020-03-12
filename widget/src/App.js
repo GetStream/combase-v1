@@ -15,7 +15,7 @@ import { SnackbarProvider } from "@comba.se/ui/Snackbar";
 
 // Screens //
 import Home from 'screens/Home';
-import Inbox from 'screens/Inbox';
+import Thread from 'screens/Thread';
 
 const apiKey = "pyst6tqux4vf";
 const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWU1NTUyOTYxZTdmNzAwYWJkMGRmZjIzIn0.Z1WIshH9NZ54eVbcGeNOcfVSNGjUEOtLJ2FDuTfbtVI";
@@ -32,7 +32,7 @@ function App() {
           <StreamChatProvider {...{ apiKey, token, user }}>
             <Router>
               <Switch>
-                <Route path="/:channel" component={Inbox} />
+                <Route path="/:channel" component={Thread} />
                 <Route path="/" component={Home} />
               </Switch>
             </Router>

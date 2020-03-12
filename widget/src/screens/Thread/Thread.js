@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import compose from 'lodash.flowright';
 
 // HOCs //
+import withAuth from 'hocs/withAuth';
 import withChannels from '@comba.se/chat/hocs/withChannels';
 
 // Views //
@@ -12,7 +14,7 @@ const Root = styled.div`
     flex: 1;
 `
 
-const Inbox = ({ match, ...props }) => {
+const Thread = ({ match, ...props }) => {
     return (
         <Root>
             <MessageThread {...{match}} {...props} channelId={match.params.channel} />
@@ -20,4 +22,4 @@ const Inbox = ({ match, ...props }) => {
     );
 };
 
-export default withChannels(Inbox);
+export default compose(withAuth, withChannels)(Thread);
