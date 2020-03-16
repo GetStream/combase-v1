@@ -35,7 +35,7 @@ export default (WrappedComponent, routes = []) => props => {
   }), [user]);
 
   const chatClient = useInitClient(streamUser, config.stream ? config.stream.key : '', user.tokens.stream);
-
+  
   const value = useMemo(
     () => ({
       config,
