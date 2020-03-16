@@ -21,7 +21,6 @@ const MessageThread = (props) => {
         read
     } = props;
     const [{ user }] = useAuth();
-    console.log(props);
     const markRead = useCallback(async () => {
         if (channel) {
             await channel.markRead();

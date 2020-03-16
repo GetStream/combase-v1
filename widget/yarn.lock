@@ -943,10 +943,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@comba.se/chat@^0.0.13":
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/@comba.se/chat/-/chat-0.0.13.tgz#3ae84ca72411adae51d6e420ce683583b451e38a"
-  integrity sha512-zBpLV975csV7XDX3IHP38r4GvL/mi2uAoSBfarQ+hQSxRAidkv3LPTohVeB2KGoOWNNr9Pdf5o7TnV+70OFAbA==
+"@comba.se/chat@^0.0.22":
+  version "0.0.22"
+  resolved "https://registry.yarnpkg.com/@comba.se/chat/-/chat-0.0.22.tgz#38a94fc896d1762d5033acb7bd55cf59e0ad1f6f"
+  integrity sha512-WstEsSxTq8WSt9qmdJsZnsOFZ5kkCWc5WnxXRIp/5zTyOOuloXN1SebulwlR05bhxcUh5rQS9hf6OkbZrODYtA==
   dependencies:
     react-content-loader "^5.0.2"
 
