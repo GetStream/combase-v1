@@ -53,14 +53,14 @@ const renderForm = ({ dirty, handleSubmit, initialValues, isValid, values }) => 
                             <Text weight="500" size={14} color="primary">Welcome Message</Text>
                             <Text size={12} line={20} faded>The welcome message that will be displayed as soon as a user starts a new thread.</Text>
                         </InputInfo>
-                        <InputField textarea name="welcome.message" />
+                        <InputField multiline name="welcome.message" />
                     </Col>
                     <Col sm={6}>
                         <InputInfo>
                             <Text weight="500" size={14} color="primary">Response</Text>
                             <Text size={12} line={20} faded>The default auto-repsonse message that will send as soon as a user sends their first message.</Text>
                         </InputInfo>
-                        <InputField textarea name="response" />
+                        <InputField multiline name="response" />
                     </Col>
                 </Row>
                 <Row>

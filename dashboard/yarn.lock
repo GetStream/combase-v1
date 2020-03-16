@@ -997,10 +997,10 @@
   dependencies:
     react-content-loader "^5.0.2"
 
-"@comba.se/ui@^0.0.69":
-  version "0.0.69"
-  resolved "https://registry.yarnpkg.com/@comba.se/ui/-/ui-0.0.69.tgz#bb8dfe45cd916716a6696b10f95fb15a6bede542"
-  integrity sha512-Lb/FY06Yt05jgysiwlEDlfDBaQmvKY1TUuNNFTtjrgAfbw/piyx5vPUiMQNQPEaWLK6/OvvWj1H1ejeziOzUdw==
+"@comba.se/ui@^0.0.70":
+  version "0.0.70"
+  resolved "https://registry.yarnpkg.com/@comba.se/ui/-/ui-0.0.70.tgz#7a409b7962d13f57f1159923e532977dee71c8ba"
+  integrity sha512-+CSPEIhtm0x+UtTugMkjGx36JC5fCS9AzP2hK1F6Dv+RGFOEpsZRXUTPQnbrF6egrwBJlo7yciESqrIjcCwsaA==
   dependencies:
     autosize "^4.0.2"
     browser-monads "^1.0.0"
