@@ -71,12 +71,7 @@ const renderForm = ({ dirty, handleSubmit, initialValues, isValid, values }) => 
                         <InputField placeholder="Email" name="email" />
                     </Col>
                     <Col sm={6}>
-                        <InputField select placeholder="Title" name="title">
-                            <option value="" />
-                            <option value="Support Agent">Support Agent</option>
-                            <option value="Moderator">Moderator</option>
-                            <option value="Engineer">Engineer</option>
-                        </InputField>
+                        <InputField placeholder="Title" name="title" />
                     </Col>
                 </FormRow>
                 <Row>
