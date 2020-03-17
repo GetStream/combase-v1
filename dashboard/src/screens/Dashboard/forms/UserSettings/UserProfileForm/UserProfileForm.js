@@ -28,7 +28,7 @@ const AvatarCol = styled(Col)`
     margin-bottom: 32px;
 `
 
-const FormRow =  styled(Row)`
+const FormRow = styled(Row)`
     & + & {
         margin-top: 12px;
     }
@@ -71,7 +71,12 @@ const renderForm = ({ dirty, handleSubmit, initialValues, isValid, values }) => 
                         <InputField placeholder="Email" name="email" />
                     </Col>
                     <Col sm={6}>
-                        <InputField placeholder="Title" name="title" />
+                        <InputField select placeholder="Title" name="title">
+                            <option value="" />
+                            <option value="Support Agent">Support Agent</option>
+                            <option value="Moderator">Moderator</option>
+                            <option value="Engineer">Engineer</option>
+                        </InputField>
                     </Col>
                 </FormRow>
                 <Row>

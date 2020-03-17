@@ -17,6 +17,7 @@ import AgentSettingsItem from "components/SettingsListItem";
 import AgentDetailTransition from "./AgentDetailTransition";
 import TotalThreadsWidget from "./widgets/TotalThreadsWidget";
 import ChatActivityWidget from "./widgets/ChatActivityWidget";
+import Input from 'shared/Input';
 
 const Root = styled.div`
     margin-left: 96px;
@@ -123,10 +124,11 @@ const AgentDetail = ({ anim, location, history, match }) => {
                 title="Role"
                 text={`Change ${agent.name.first}s permission level`}
               >
-                <select value={agent.role}>
+                <Input select label="Role">
+                  <option value=""></option>
                   <option value="admin">Admin</option>
                   <option value="moderator">Moderator</option>
-                </select>
+                </Input>
               </AgentSettingsItem>
               <AgentSettingsItem
                 color="slate"
