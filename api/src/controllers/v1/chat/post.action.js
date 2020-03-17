@@ -34,11 +34,11 @@ exports.post = async (req, res) => {
 
 		const agent = available[Math.floor(Math.random() * available.length)];
 
-		const create = await Chat.create(...data, { agents: { assignee } });
+		const chat = await Chat.create(...data, { agents: { assignee } });
 
 		const { key, secret } = await StreamClient();
 		const client = new StreamChat(key, secret);
-		const channel = client.channel('commerce', create._id.toString(), {
+		const channel = client.channel('commerce', chat._id.toString(), {
 			members: [ agent, user ],
 			roles: {
 				agent: 'moderator',
@@ -54,7 +54,7 @@ exports.post = async (req, res) => {
 		const userToken = client.createToken(user);
 
 		res.status(200).json({
-			...create,
+			...chat,
 			tokens: {
 				agent: agentToken,
 				user: userToken
