@@ -10,9 +10,9 @@ exports.post = async (req, res) => {
 	try {
 		const data = req.body;
 
-		const { organization, user } = data.refs;
+		const { meta: { subject }, refs: { organization, user } } = data;
 
-		const agents = await Agent.find({ active: true }).lean();
+		const agents = await Agent.find({ active: true }).select('name title image availability refs').lean();
 
 		const ts = moment().format('dddd H').split(' ');
 		const day = ts[0].toLowerCase();
@@ -32,7 +32,10 @@ exports.post = async (req, res) => {
 
 		const agent = available[Math.floor(Math.random() * available.length)];
 
-		const chat = await Chat.create(...data, { agents: { assignee } });
+		const chat = await Chat.create({
+			meta: { subject },
+			refs: { user, organization, agents: { assignee: { agent } } }
+		});
 
 		const { key, secret } = await StreamClient();
 		const client = new StreamChat(key, secret);
@@ -48,11 +51,18 @@ exports.post = async (req, res) => {
 
 		await channel.create();
 
-		const agentToken = client.createToken(agent);
+		const agentToken = client.createToken(agent._id.toString());
 		const userToken = client.createToken(user);
 
 		res.status(200).json({
-			...chat,
+			agent: {
+				id: chat.refs.agents.assignee.agent._id,
+				name: chat.refs.agents.assignee.agent.name
+			},
+			user: {
+				id: chat.refs.user._id,
+				name: chat.refs.user.name
+			},
 			tokens: {
 				agent: agentToken,
 				user: userToken
