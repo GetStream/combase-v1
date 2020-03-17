@@ -22,10 +22,8 @@ exports.post = async (req, res) => {
 			.map((agent) => {
 				const a = agent.availability[day];
 
-				if (a.enabled) {
-					if (time >= a.hours.from && time <= a.hours.to) {
-						return agent._id;
-					}
+				if (a.enabled && time >= a.hours.from && time <= a.hours.to) {
+					return agent._id;
 				}
 
 				return [];
