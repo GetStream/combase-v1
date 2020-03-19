@@ -6,8 +6,13 @@ import Animated from "animated/lib/targets/react-dom";
 import { Button, Input } from '@comba.se/ui';
 import { PasswordIcon, RoleIcon } from "@comba.se/ui/Icons";
 
+// Utils //
+import request from 'utils/request';
+
 // Hooks //
+import useAuth from "hooks/useAuth";
 import useAgent from "hooks/useAgent";
+import { useSnackbar } from 'contexts/Snackbar';
 
 // Components //
 import Modal from "shared/Modal";
@@ -62,7 +67,9 @@ const Footer = styled.div`
 const AgentDetail = ({ anim, location, history, match }) => {
   const [dims, setDims] = useState(null);
   const [mounted, setMount] = useState(false);
-  const agent = useAgent(match ? match.params.agentId : null);
+  const [{ user }, { refetchUser }] = useAuth();
+  const { queueSnackbar } = useSnackbar();
+  const [agent, { refetchAgents }] = useAgent(match ? match.params.agentId : null);
   const [userRole, changeRole] = useState(agent ? agent.role : '');
 
   const rootRef = useCallback(el => {
@@ -71,10 +78,26 @@ const AgentDetail = ({ anim, location, history, match }) => {
     }
   }, []);
 
-  const handleChangeRole = useCallback(({ target: { value } }) => {
-    console.log(value);
-    changeRole(value);
-  }, []);
+  const handleChangeRole = useCallback(async ({ target: { value } }) => {
+    try {
+      changeRole(value);
+      await request(`v1/agents/${agent._id}`, 'put', {
+        body: JSON.stringify({ role: value })
+      }, user.tokens.api);
+      await refetchAgents();
+      queueSnackbar({
+        isError: false,
+        replace: true,
+        text: `${agent.name.first}'s role was updated! 👨‍💻`
+      });
+    } catch (error) {
+      queueSnackbar({
+        isError: true,
+        replace: true,
+        text: "Something went wrong!"
+      });
+    }
+  }, [agent._id]);
 
   const style = useMemo(
     () => ({

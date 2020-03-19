@@ -7,7 +7,7 @@ import usePrevious from 'hooks/usePrevious';
 import AgentsContext from 'contexts/Agents';
 
 export default agentId => {
-    const agents = useContext(AgentsContext);
+    const [agents, tabs, { refetchAgents }] = useContext(AgentsContext);
     const prevAgentId = usePrevious(agentId);
     const agent = useMemo(() => {
         if (!agentId && !prevAgentId) {
@@ -15,5 +15,5 @@ export default agentId => {
         }
         return agents.find(({ _id }) => (agentId || prevAgentId) === _id);
     }, [agents, agentId, prevAgentId]);
-    return agent;
+    return [agent, { refetchAgents }];
 };

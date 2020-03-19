@@ -14,6 +14,12 @@ export default () => {
   );
   const [{ user }] = useAuth();
 
+  const refetchAgents = useCallback(async () => {
+    const agents = await request(`v1/agents?refs.organization._id=${user.refs.organization._id}`, "get", null, user.tokens.api);
+    localStorage.setItem("agents", JSON.stringify(agents));
+    setAgents(agents);
+  }, [user]);
+
   const getAgents = useCallback(async () => {
     try {
       setLoading(true);
@@ -45,5 +51,5 @@ export default () => {
     getAgents();
   }, [getAgents]);
 
-  return [agents, tabs, { loading }];
+  return [agents, tabs, { loading, refetchAgents }];
 };

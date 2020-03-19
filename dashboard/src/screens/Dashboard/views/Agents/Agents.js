@@ -33,13 +33,14 @@ const renderAgentDetail = props => <AgentDetail {...props} />;
 const renderInviteAgents = props => <InviteAgents {...props} />;
 
 export default ({ history, match }) => {
-  const [agents, tabs] = useAgents();
+  const agentsData = useAgents();
+  const [agents, tabs] = agentsData;
   const onFABClick = useCallback(() => history.push(`${match.url}/invite`), [
     history,
     match
   ]);
   return (
-    <AgentsContext.Provider value={agents}>
+    <AgentsContext.Provider value={agentsData}>
       <Root>
         <FullScreenHeader
           icon={AgentsIcon}
