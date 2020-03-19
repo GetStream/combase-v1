@@ -5,17 +5,21 @@ import ThemeSwitcherContext from "./index";
 import * as themes from "styles/theme";
 
 export default ({ children }) => {
-  const [currentTheme, setTheme] = useState(
+  const [currentTheme, changeTheme] = useState(
     localStorage.getItem("theme") || "light"
   );
-  
+
   const [overrides, setOverrides] = useState(JSON.parse(localStorage.getItem('themeOverrides')) || {});
 
   const toggleTheme = useCallback(() => {
     const newTheme = currentTheme === "light" ? "dark" : "light";
     localStorage.setItem("theme", newTheme);
-    setTheme(newTheme);
+    changeTheme(newTheme);
   }, [currentTheme]);
+
+  const setTheme = useCallback((themeName) => {
+    changeTheme(themeName);
+  }, []);
 
   const updateOverrides = useCallback(values => {
     localStorage.setItem('themeOverrides', JSON.stringify(values));
@@ -28,15 +32,16 @@ export default ({ children }) => {
       isDarkMode: currentTheme === "dark",
       toggleTheme,
       updateOverrides,
+      setTheme,
     }),
-    [toggleTheme, currentTheme, updateOverrides]
+    [toggleTheme, currentTheme, updateOverrides, setTheme]
   );
-  
+
   const theme = useMemo(() => themes[currentTheme](overrides), [currentTheme, overrides]);
 
   return (
     <ThemeSwitcherContext.Provider {...{ value }}>
-      <ThemeProvider {...{theme}}>{children}</ThemeProvider>
+      <ThemeProvider {...{ theme }}>{children}</ThemeProvider>
     </ThemeSwitcherContext.Provider>
   );
 };

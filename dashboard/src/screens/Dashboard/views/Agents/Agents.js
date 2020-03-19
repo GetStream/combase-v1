@@ -49,7 +49,7 @@ export default ({ history, match }) => {
         <Container>
           <AgentsList {...{ agents, tabs }} {...{ onFABClick }} />
         </Container>
-        <Route path={`${match.url}/:agentId`} children={renderAgentDetail} />
+        <Route path={`${match.url}/:agentId`} render={renderAgentDetail} />
         <Route path={`${match.url}/invite`} children={renderInviteAgents} />
       </Root>
     </AgentsContext.Provider>

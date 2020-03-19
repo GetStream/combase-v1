@@ -3,7 +3,7 @@ import { findDOMNode } from "react-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Animated from "animated/lib/targets/react-dom";
-import { Button } from '@comba.se/ui';
+import { Button, Input } from '@comba.se/ui';
 import { PasswordIcon, RoleIcon } from "@comba.se/ui/Icons";
 
 // Hooks //
@@ -17,7 +17,6 @@ import AgentSettingsItem from "components/SettingsListItem";
 import AgentDetailTransition from "./AgentDetailTransition";
 import TotalThreadsWidget from "./widgets/TotalThreadsWidget";
 import ChatActivityWidget from "./widgets/ChatActivityWidget";
-import Input from 'shared/Input';
 
 const Root = styled.div`
     margin-left: 96px;
@@ -64,11 +63,17 @@ const AgentDetail = ({ anim, location, history, match }) => {
   const [dims, setDims] = useState(null);
   const [mounted, setMount] = useState(false);
   const agent = useAgent(match ? match.params.agentId : null);
+  const [userRole, changeRole] = useState(agent.role || '');
 
   const rootRef = useCallback(el => {
     if (el) {
       setDims(findDOMNode(el).getBoundingClientRect());
     }
+  }, []);
+
+  const handleChangeRole = useCallback(({ target: { value } }) => {
+    console.log(value);
+    changeRole(value);
   }, []);
 
   const style = useMemo(
@@ -124,8 +129,7 @@ const AgentDetail = ({ anim, location, history, match }) => {
                 title="Role"
                 text={`Change ${agent.name.first}s permission level`}
               >
-                <Input select label="Role">
-                  <option value=""></option>
+                <Input select label="Role" value={userRole} onChange={handleChangeRole}>
                   <option value="admin">Admin</option>
                   <option value="moderator">Moderator</option>
                 </Input>

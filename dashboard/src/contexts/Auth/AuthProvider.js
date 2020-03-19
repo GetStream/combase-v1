@@ -13,7 +13,7 @@ import ThemeSwitcherContext from 'contexts/ThemeSwitcher';
 
 export default ({ children }) => {
   const { queueSnackbar } = useContext(SnackbarContext);
-  const { updateOverrides } = useContext(ThemeSwitcherContext);
+  const { updateOverrides, setTheme } = useContext(ThemeSwitcherContext);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -52,6 +52,7 @@ export default ({ children }) => {
         });
         data.id = data._id;
         setUser(data);
+        setTheme(data.meta.theme);
         localStorage.setItem("user", JSON.stringify(data));
         setLoading(false);
       } catch (error) {
@@ -90,13 +91,13 @@ export default ({ children }) => {
     const userData = { tokens: user.tokens, ...data };
     localStorage.setItem("user", JSON.stringify(userData));
     setUser(userData);
+    setTheme(userData.meta.theme);
   }, [user]);
 
   const refetchCurrentOrg = useCallback(async () => {
     const org = await request(`v1/organizations/${organization._id}`, "get");
     localStorage.setItem("organization", JSON.stringify(org));
     updateOverrides(org.meta.branding.colors);
-    console.log('refetch', org.meta.branding.colors);
     setOrg(org);
   }, [organization, updateOverrides]);
 

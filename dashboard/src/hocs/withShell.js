@@ -23,32 +23,33 @@ const Root = styled.div`
 
 export default (WrappedComponent, routes = []) => props => {
   const [drawerOpen, toggleDrawer] = useState(false);
-  const [soundsEnabled, toggleSounds] = useState(true);
+  const [soundsEnabled, setSounds] = useState(true);
   const isMobile = useMedia("sm");
 
   const [config, { loading, error }] = useConfig();
   const [{ user }] = useAuth();
-  
+
   const streamUser = useMemo(() => ({
-      id: user._id,
-      name: `${user.name.first} ${user.name.last}`,
+    id: user._id,
+    name: `${user.name.first} ${user.name.last}`,
   }), [user]);
 
   const chatClient = useInitClient(streamUser, config.stream ? config.stream.key : '', user.tokens.stream);
-  
+
   const value = useMemo(
     () => ({
       config,
       sounds: {
         enabled: soundsEnabled,
-        toggle: () => toggleSounds(!soundsEnabled),
+        setSounds: (enabled) => setSounds(enabled),
+        toggle: () => setSounds(!soundsEnabled),
       },
       drawer: {
         open: drawerOpen,
         toggle: () => toggleDrawer(!drawerOpen)
       }
     }),
-    [config, drawerOpen, soundsEnabled, toggleDrawer, toggleSounds]
+    [config, drawerOpen, soundsEnabled, toggleDrawer, setSounds]
   );
 
   if (loading || !chatClient) {
