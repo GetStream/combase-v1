@@ -3,6 +3,7 @@ import AuthContext from "contexts/Auth";
 
 export default () => {
   const {
+    isFirstVisit,
     user,
     organization,
     organizations,
@@ -16,6 +17,6 @@ export default () => {
   } = useContext(AuthContext);
   return [
     { organization, organizations, user },
-    { loading, error, login, logout, setCurrentOrganization, refetchCurrentOrg, refetchUser }
+    { loading, error, login, logout, setCurrentOrganization, refetchCurrentOrg, refetchUser, isFirstVisit }
   ];
 };

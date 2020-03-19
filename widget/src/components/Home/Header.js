@@ -15,7 +15,8 @@ const Background = styled.div`
     right: 0;
     height: 320px;
     width: 100%;
-    background-color: ${({ theme }) => theme.color.primary};
+    background-color: ${({ theme }) => theme.color.off_white};
+    border-bottom: 1px solid ${({ theme }) => theme.color.border};
 `
 
 const Root = styled.div`
@@ -53,7 +54,7 @@ const HeaderAvatar = styled(Avatar)`
 const Header = () => {
     const [{ organization }] = useAuth();
     const { anim } = useScrollAnim();
-    console.log(organization);
+
     const brandStyle = useMemo(() => ({
         opacity: anim.value.interpolate({
             range: [40, 240],
@@ -82,16 +83,16 @@ const Header = () => {
                     <Brand style={brandStyle}>
                         <HeaderAvatar showStatus={false} size={72} name={organization.name} src={organization.meta.branding.logo} />
                         <OrgMeta>
-                            <Text color="white" size={32} weight="700">
+                            <Text size={32} weight="700">
                                 {organization.name}
                             </Text>
-                            <Tagline line={20} faded color="white" size={12} weight="500">
+                            <Tagline line={20} faded color="alt_text" size={12} weight="500">
                                 {organization.meta.tagline}
                             </Tagline>
                         </OrgMeta>
                     </Brand>
                     <Fill />
-                    <Text as={animated.p} style={textStyle} size={24} weight="700" color="white">Hello, Josh! <span role="img" aria-label="Waving">👋</span></Text>
+                    <Text as={animated.p} style={textStyle} size={24} weight="700" color="primary">Hello, Josh! <span role="img" aria-label="Waving">👋</span></Text>
                 </Container>
             </Root>
         </>

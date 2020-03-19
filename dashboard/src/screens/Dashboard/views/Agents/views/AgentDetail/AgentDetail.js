@@ -63,7 +63,7 @@ const AgentDetail = ({ anim, location, history, match }) => {
   const [dims, setDims] = useState(null);
   const [mounted, setMount] = useState(false);
   const agent = useAgent(match ? match.params.agentId : null);
-  const [userRole, changeRole] = useState(agent.role || '');
+  const [userRole, changeRole] = useState(agent ? agent.role : '');
 
   const rootRef = useCallback(el => {
     if (el) {

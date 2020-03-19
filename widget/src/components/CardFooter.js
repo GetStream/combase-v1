@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useHistory } from 'react-router-dom';
-import { Button } from "@comba.se/ui";
 
 // Components //
 const Root = styled.div`
@@ -11,14 +9,11 @@ const Root = styled.div`
     align-items: center;
 `;
 
-const CardFooter = () => {
-    const history = useHistory();
-    return (
-        <Root>
-            <div />
-            <Button onClick={() => history.push('/inbox/5e5f54c4c5a922f38b59aa19')} label="New Conversation" />
-        </Root>
-    );
-};
+const CardFooter = ({ children }) => (
+    <Root>
+        <div />
+        {children}
+    </Root>
+);
 
 export default CardFooter;

@@ -83,6 +83,7 @@ const dummyUser = {
 
 export default ({ children }) => {
   const { queueSnackbar } = useContext(SnackbarContext);
+  const [isFirstVisit, setFirstVisit] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -140,10 +141,6 @@ export default ({ children }) => {
     localStorage.removeItem("user");
   }, []);
 
-  useEffect(() => {
-    getOrg();
-  }, [getOrg]);
-
   const refetchUser = useCallback(async () => {
     const data = await request(`v1/agents/${user._id}`, "get");
     const userData = { tokens: user.tokens, ...data };
@@ -157,8 +154,16 @@ export default ({ children }) => {
     setOrg(org);
   }, [organization]);
 
+  useEffect(() => {
+    getOrg();
+    if (!user) {
+      setFirstVisit(true);
+    }
+  }, [getOrg, user]);
+
   const value = useMemo(
     () => ({
+      isFirstVisit,
       organization,
       refetchCurrentOrg,
       refetchUser,
@@ -169,6 +174,7 @@ export default ({ children }) => {
       logout
     }),
     [
+      isFirstVisit,
       organization,
       refetchCurrentOrg,
       refetchUser,
@@ -179,7 +185,7 @@ export default ({ children }) => {
       logout
     ]
   );
-
+  console.log('new user?', isFirstVisit);
   if (loading || !organization) {
     return (
       <LoadingRoot>
