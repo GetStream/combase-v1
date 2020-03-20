@@ -21,7 +21,7 @@ import PluginsList from 'components/PluginsList';
 const Root = styled(ScreenRoot)`
     flex: 1;
     padding-bottom: 40px;
-
+    overflow-y: scroll;
     @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
         overflow-y: scroll;
     }
