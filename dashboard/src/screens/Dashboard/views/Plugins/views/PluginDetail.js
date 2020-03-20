@@ -22,11 +22,15 @@ const Root = styled(Animated.div)`
     align-self: center;
     width: 100%;
     max-width: 504px;
-    min-height: 400px;
-    border-radius: ${({ theme }) => theme.borderRadius}px;
+    height: 100%;
     background-color: ${({ theme }) => theme.color.surface};
     box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.16)}
     z-index: ${({ theme }) => theme.z.modal};
+    @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
+        height: auto;
+        min-height: 400px;
+        border-radius: ${({ theme }) => theme.borderRadius}px;
+    }
 `;
 
 const Header = styled.div`
@@ -34,7 +38,11 @@ const Header = styled.div`
 `;
 
 const Content = styled.div`
-    padding: 0px 40px;
+    padding: 0px 24px;
+
+    @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
+        padding: 0px 40px;
+    }
 `;
 
 const Step = styled.div`
