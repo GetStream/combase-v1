@@ -21,6 +21,7 @@ const Input = styled.input`
     border: 0;
     font-size: 16px;
     font-weight: 500;
+    color: ${({ theme }) => theme.color.text};
     &::placeholder {
         color: ${({ theme }) => theme.color.gray};
     }

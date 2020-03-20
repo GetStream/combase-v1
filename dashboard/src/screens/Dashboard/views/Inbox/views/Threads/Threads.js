@@ -4,6 +4,8 @@ import { ThreadList } from "@comba.se/chat";
 import useChats from 'hooks/useChats';
 
 // Components //
+import MenuButton from 'shared/MenuButton';
+
 const Root = styled.div`
     flex: 1;
   order: -1;
@@ -21,10 +23,10 @@ const Root = styled.div`
 `;
 
 const Threads = () => {
-    const [chats, { error, loading }] = useChats();
-    return <Root>
-        <ThreadList {...{chats, error, loading }} />
-    </Root>
+  const [chats, { error, loading }] = useChats();
+  return <Root>
+    <ThreadList {...{ chats, error, loading }} leftButtonElement={MenuButton} />
+  </Root>
 }
 
 export default Threads;

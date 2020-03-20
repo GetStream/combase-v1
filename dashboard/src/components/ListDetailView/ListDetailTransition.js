@@ -49,6 +49,7 @@ class LeadTransition extends Component {
     // figure out what to do with the children
     const navigatingToParent = nextProps.atParent && !atParent;
     const navigatingToChild = !nextProps.atParent && atParent;
+    const navigatingPastChild = !nextProps.atParent && !atParent;
     if (navigatingToParent) {
       await this.setState(
         {
@@ -69,7 +70,7 @@ class LeadTransition extends Component {
           });
         }
       );
-    } else if (navigatingToChild) {
+    } else if (navigatingToChild || navigatingPastChild) {
       this.setState(
         {
           animating: true,
@@ -150,8 +151,8 @@ class LeadTransition extends Component {
             {!atParent && !animating
               ? null
               : atParent && animating
-              ? children
-              : previousChild || children}
+                ? children
+                : previousChild || children}
           </PageWrapper>
         ) : null}
         <Overlay style={this.overlayStyle} />
@@ -159,8 +160,8 @@ class LeadTransition extends Component {
           {atParent && animating
             ? previousChild
             : atParent && !animating
-            ? null
-            : children}
+              ? null
+              : children}
         </PageWrapper>
       </>
     );
