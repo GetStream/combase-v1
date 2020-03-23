@@ -64,7 +64,7 @@ export default ({ children }) => {
         setError(error);
       }
     },
-    [queueSnackbar]
+    [queueSnackbar, setTheme]
   );
 
   const logout = useCallback(() => {
@@ -92,7 +92,7 @@ export default ({ children }) => {
     localStorage.setItem("user", JSON.stringify(userData));
     setUser(userData);
     setTheme(userData.meta.theme);
-  }, [user]);
+  }, [user, setTheme]);
 
   const refetchCurrentOrg = useCallback(async () => {
     const org = await request(`v1/organizations/${organization._id}`, "get");

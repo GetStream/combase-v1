@@ -56,7 +56,7 @@ const AppSettings = () => {
         text: error.message
       })
     }
-  }, [isDarkMode]);
+  }, [isDarkMode, queueSnackbar, refetchUser, setTheme, user._id, user.meta]);
 
   const handleChangeSounds = useCallback(async () => {
     try {
@@ -82,7 +82,7 @@ const AppSettings = () => {
         text: error.message
       })
     }
-  }, [sounds]);
+  }, [sounds, queueSnackbar, refetchUser, user._id, user.meta]);
 
   return (
     <Root>

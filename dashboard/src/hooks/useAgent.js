@@ -7,7 +7,7 @@ import usePrevious from 'hooks/usePrevious';
 import AgentsContext from 'contexts/Agents';
 
 export default agentId => {
-    const [agents, tabs, { refetchAgents }] = useContext(AgentsContext);
+    const [agents, tabs, { refetchAgents }] = useContext(AgentsContext); // eslint-disable-line no-unused-vars
     const prevAgentId = usePrevious(agentId);
     const agent = useMemo(() => {
         if (!agentId && !prevAgentId) {
