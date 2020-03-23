@@ -16,9 +16,13 @@ const Root = styled.div`
 const Wrapper = styled.div`
   flex-direction: row;
   align-items: flex-start;
-  padding: 20px 16px 20px 24px;
+  padding: 20px 16px 20px 16px;
   border-radius: ${({ theme }) => theme.borderRadius}px;
   ${listItemInteractions}
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
+    padding: 20px 16px 20px 24px;
+  }
 `;
 
 const IconCol = styled.div`

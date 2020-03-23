@@ -26,6 +26,7 @@ const Root = styled(Animated.div)`
     background-color: ${({ theme }) => theme.color.surface};
     box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.16)}
     z-index: ${({ theme }) => theme.z.modal};
+    overflow-x: hidden;
     overflow-y: scroll;
 
     @media (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
