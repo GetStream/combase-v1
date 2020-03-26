@@ -10,6 +10,7 @@ import { ScrollAnimationProvider } from 'contexts/ScrollAnimation';
 import Home from 'screens/Home';
 
 // Components //
+import Credit from 'components/Credit';
 import Header from 'components/Header';
 import Switch from 'components/Switch';
 
@@ -26,6 +27,7 @@ const WidgetRoot = styled(animated.div)`
     & > div {
         overflow: hidden;
         overflow-y: scroll;
+        padding-bottom: 40px;
      
         &::-webkit-scrollbar {
             width: 0px;  /* Remove scrollbar space */
@@ -86,6 +88,7 @@ const Root = () => {
                                     <p>Hello from Thread</p>
                                 </div>
                             </Switch>
+                            <Credit />
                         </div>
                     </WidgetRoot>
                 </ScrollAnimationProvider>
