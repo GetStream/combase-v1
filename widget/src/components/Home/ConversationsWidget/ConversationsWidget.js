@@ -1,16 +1,9 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
-import { useHistory } from 'react-router-dom';
 import { Card, EmptyState, FAB } from "@comba.se/ui";
 import { InboxIcon } from "@comba.se/ui/Icons";
 import { ThreadItem } from '@comba.se/chat';
-
-// Utils //
-import request from 'utils/request';
-
-// Hooks //
-import useAuth from 'hooks/useAuth';
-import useChats from 'hooks/useChats';
+import { useStore } from 'contexts/Store';
 
 // Components //
 import CardHeader from 'components/CardHeader';
@@ -43,46 +36,41 @@ const renderThreads = (chats) => chats.length ? chats.map(({ channel: { id, data
 }) : <EmptyWrapper><EmptyState text="No Conversations!" /></EmptyWrapper>;
 
 const ThreadsWidget = ({ className }) => {
-    const history = useHistory();
-    const [{ organization, user }] = useAuth();
-    const [chats, { error, loading }] = useChats();
-    console.log(chats);
-    const createNewConversation = useCallback(async () => {
-        try {
-            await request('v1/chats', 'post', {
-                body: JSON.stringify({
-                    meta: {
-                        subject: "Chat",
-                    },
-                    refs: {
-                        user: user._id,
-                        agents: {
-                            assignee: {
-                                agent: "5e5f50e417fee2bee1092cc5"
-                            }
-                        },
-                        organization: organization._id,
-                    },
-                })
-            });
-        } catch (error) {
-            console.error(error);
-        }
-    }, []);
+    const [state, { setActiveChannel }] = useStore();
+    // const history = useHistory();
+    // const [{ organization, user }] = useAuth();
+    // const createNewConversation = useCallback(async () => {
+    //     try {
+    //         await request('v1/chats', 'post', {
+    //             body: JSON.stringify({
+    //                 meta: {
+    //                     subject: "Chat",
+    //                 },
+    //                 refs: {
+    //                     user: user._id,
+    //                     agents: {
+    //                         assignee: {
+    //                             agent: "5e5f50e417fee2bee1092cc5"
+    //                         }
+    //                     },
+    //                     organization: organization._id,
+    //                 },
+    //             })
+    //         });
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // }, []);
     return (
         <Root {...{ className }}>
             <CardHeader icon={InboxIcon} title="Conversations" />
             <List>
-                {!loading ? renderThreads(chats) : (
-                    <>
-                        <ThreadItem />
-                        <ThreadItem />
-                        <ThreadItem />
-                    </>
-                )}
+                <ThreadItem />
+                <ThreadItem />
+                <ThreadItem />
             </List>
             <CardFooter>
-                <NewConversationBtn onClick={createNewConversation} disablePortal size={48} />
+                <NewConversationBtn onClick={() => setActiveChannel('channel:id')} disablePortal size={48} />
             </CardFooter>
         </Root>
     );

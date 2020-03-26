@@ -15,8 +15,7 @@ const Background = styled(animated.div)`
     right: 0;
     height: 320px;
     width: 100%;
-    background-color: ${({ theme }) => theme.color.gray};
-    border-bottom: 1px solid ${({ theme }) => theme.color.border};
+    background-color: ${({ theme }) => theme.color.primary};
 `
 
 const Root = styled(animated.div)`
@@ -52,27 +51,27 @@ const HeaderAvatar = styled(Avatar)`
 `
 
 const Header = ({ transitionAnim }) => {
-    // const { anim } = useScrollAnim();
+    const { anim } = useScrollAnim();
 
-    // const brandStyle = useMemo(() => ({
-    //     opacity: anim.value.interpolate({
-    //         range: [40, 240],
-    //         output: [1, 0],
-    //     }),
-    //     transform: interpolate([
-    //         anim.value.interpolate({ range: [40, 240], output: [1, 0.95], extrapolate: 'clamp' }),
-    //         anim.value.interpolate({ range: [40, 240], output: [0, 8], extrapolate: 'clamp' }),
-    //     ], (scale, y) => `translate3d(0, ${y}px, 0) scale(${scale})`)
-    // }), [anim.value]);
+    const brandStyle = useMemo(() => ({
+        opacity: anim.value.interpolate({
+            range: [40, 240],
+            output: [1, 0],
+        }),
+        transform: interpolate([
+            anim.value.interpolate({ range: [40, 240], output: [1, 0.95], extrapolate: 'clamp' }),
+            anim.value.interpolate({ range: [40, 240], output: [0, 8], extrapolate: 'clamp' }),
+        ], (scale, y) => `translate3d(0, ${y}px, 0) scale(${scale})`)
+    }), [anim.value]);
 
-    // const textStyle = useMemo(() => ({
-    //     opacity: anim.value.interpolate({
-    //         range: [0, 64],
-    //         output: [1, 0],
-    //         extrapolateRight: 'clamp'
-    //     }),
-    //     transform: anim.value.interpolate({ range: [0, 64], output: [0, 32], extrapolate: 'clamp' }).interpolate((y) => `translate3d(0, -${y}px, 0)`)
-    // }), [anim.value]);
+    const textStyle = useMemo(() => ({
+        opacity: anim.value.interpolate({
+            range: [0, 64],
+            output: [1, 0],
+            extrapolateRight: 'clamp'
+        }),
+        transform: anim.value.interpolate({ range: [0, 64], output: [0, 32], extrapolate: 'clamp' }).interpolate((y) => `translate3d(0, -${y}px, 0)`)
+    }), [anim.value]);
 
     // const rootStyle = useMemo(() => ({
     //     height: transitionAnim.value.interpolate({
@@ -86,19 +85,19 @@ const Header = ({ transitionAnim }) => {
             <Background />
             <Root>
                 <Container>
-                    <Brand>
+                    <Brand style={brandStyle}>
                         <HeaderAvatar showStatus={false} size={72} name="Stream" />
                         <OrgMeta>
-                            <Text size={32} weight="700">
+                            <Text size={32} weight="700" color="white">
                                 Stream
                             </Text>
-                            <Tagline line={20} faded color="alt_text" size={12} weight="500">
+                            <Tagline line={20} faded color="white" size={12} weight="500">
                                 Ship Feeds & Chat Faster
                             </Tagline>
                         </OrgMeta>
                     </Brand>
                     <Fill />
-                    <Text as={animated.p} size={24} weight="700" color="primary">Hello, Luke! <span role="img" aria-label="Waving">👋</span></Text>
+                    <Text as={animated.p} style={textStyle} size={24} weight="700" color="white">Hello, Luke! <span role="img" aria-label="Waving">👋</span></Text>
                 </Container>
             </Root>
         </>

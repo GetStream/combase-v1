@@ -16,7 +16,20 @@ export default ({ children }) => {
 		});
 	}, []);
 
-	const value = useMemo(() => [state, { dispatch, toggleWidget }], [state, dispatch, toggleWidget]);
+	const clearActiveChannel = useCallback(() => {
+		dispatch({
+			type: 'activeChannel/clear',
+		});
+	}, []);
+
+	const setActiveChannel = useCallback((id) => {
+		dispatch({
+			type: 'activeChannel/set',
+			id,
+		});
+	}, []);
+
+	const value = useMemo(() => [state, { clearActiveChannel, dispatch, setActiveChannel, toggleWidget }], [clearActiveChannel, dispatch, setActiveChannel, state, toggleWidget]);
 
 	return (
 		<Context.Provider value={value}>

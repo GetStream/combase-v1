@@ -6,6 +6,8 @@ import { Container } from '@comba.se/ui';
 import { ScrollAnimationProvider } from 'contexts/ScrollAnimation';
 
 // Components //
+import ConversationsWidget from 'components/Home/ConversationsWidget';
+
 const Root = styled.div`
     flex: 1;
     width: 100%;
@@ -32,7 +34,8 @@ const Home = () => {
 
     return (
         <Content>
-
+            <ConversationsWidget />
+            <ConversationsWidget />
         </Content>
     );
 };

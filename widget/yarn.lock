@@ -943,10 +943,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@comba.se/chat@^0.0.31":
-  version "0.0.31"
-  resolved "https://registry.yarnpkg.com/@comba.se/chat/-/chat-0.0.31.tgz#6e4d813e66ea339d272800c14ee6ff1e407a86c6"
-  integrity sha512-PoJzJNcfTRXpfMJglLzWguIy6hZoqUyxGdF1hQIKoWNkcIPhS89wu98OjF8lUiEHG+W2Elje3JqvFzO+N7uzCg==
+"@comba.se/chat@^0.0.32":
+  version "0.0.32"
+  resolved "https://registry.yarnpkg.com/@comba.se/chat/-/chat-0.0.32.tgz#87e3cb67e8737a2b908af93c88359a8ae3c20c3b"
+  integrity sha512-plX1MJN0eqXuc04r2Ff6LFGwIFbpAXmzQ+es9+kHIyJ7C5Kp2K2gJoFivieIQjBql10RDw2Eh9bQQOhNtOHT0g==
   dependencies:
     "@comba.se/ui" "^0.0.79"
     react-content-loader "^5.0.2"
@@ -8757,7 +8757,7 @@ react-app-polyfill@^1.0.6:
     regenerator-runtime "^0.13.3"
     whatwg-fetch "^3.0.0"
 
-"react-color@github:shreshthmohan/react-color", react-color@shreshthmohan/react-color:
+react-color@shreshthmohan/react-color:
   version "2.17.4"
   resolved "https://codeload.github.com/shreshthmohan/react-color/tar.gz/f9dbfe55eacbd230229223cc204ed144f9cd0448"
   dependencies:

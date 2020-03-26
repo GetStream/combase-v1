@@ -9,6 +9,7 @@ export default ({ children, target = window }) => {
 
     useEffect(() => {
         if (!!target) {
+            console.log('init listener');
             target.addEventListener('scroll', onScroll);
             return () => target.removeEventListener('scroll', onScroll);
         }

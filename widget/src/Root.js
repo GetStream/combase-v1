@@ -1,9 +1,10 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { FAB } from '@comba.se/ui';
+import { FAB, Portal } from '@comba.se/ui';
 import { InboxIcon } from '@comba.se/ui/Icons';
 import { animated, useSpring } from 'react-spring';
 import { useStore } from 'contexts/Store';
+import { ScrollAnimationProvider } from 'contexts/ScrollAnimation';
 
 // Screens //
 import Home from 'screens/Home';
@@ -22,6 +23,15 @@ const WidgetRoot = styled(animated.div)`
     background-color: ${({ theme }) => theme.color.surface};
     box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.16);
     overflow: hidden;
+    & > div {
+        overflow: hidden;
+        overflow-y: scroll;
+     
+        &::-webkit-scrollbar {
+            width: 0px;  /* Remove scrollbar space */
+            background: transparent;  /* Optional: just make scrollbar invisible */
+        }
+    }
 `
 
 const Launcher = styled(FAB)`
@@ -29,8 +39,9 @@ const Launcher = styled(FAB)`
 `
 
 const Root = () => {
+    const [scrollRef, setScrollRef] = useState(null);
     const [mounted, setMounted] = useState(false);
-    const [{ isOpen }, { toggleWidget }] = useStore();
+    const [{ activeChannel, isOpen }, { toggleWidget }] = useStore();
     const { value: anim } = useSpring({
         value: isOpen ? 1 : 0, config: { mass: 1, friction: 20, tension: 300 }, onRest: ({ value }) => {
             if (value === 0) {
@@ -56,16 +67,29 @@ const Root = () => {
         }
     }, []);
 
+    const handleScrollRef = useCallback((el) => {
+        if (!scrollRef && el) {
+            setScrollRef(el);
+        }
+    }, []);
+
     return (
         <>
-            {mounted ? (
-                <WidgetRoot style={style}>
-                    <Header />
-                    <Switch>
-                        <Home active />
-                    </Switch>
-                </WidgetRoot>
-            ) : null}
+            <Portal unmount={!mounted}>
+                <ScrollAnimationProvider target={scrollRef}>
+                    <WidgetRoot style={style}>
+                        <div ref={handleScrollRef}>
+                            <Header />
+                            <Switch>
+                                <Home active={!activeChannel} />
+                                <div active={!!activeChannel}>
+                                    <p>Hello from Thread</p>
+                                </div>
+                            </Switch>
+                        </div>
+                    </WidgetRoot>
+                </ScrollAnimationProvider>
+            </Portal>
             <Launcher icon={InboxIcon} onClick={handleClick} />
         </>
     )
