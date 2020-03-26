@@ -943,17 +943,18 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@comba.se/chat@^0.0.22":
-  version "0.0.22"
-  resolved "https://registry.yarnpkg.com/@comba.se/chat/-/chat-0.0.22.tgz#38a94fc896d1762d5033acb7bd55cf59e0ad1f6f"
-  integrity sha512-WstEsSxTq8WSt9qmdJsZnsOFZ5kkCWc5WnxXRIp/5zTyOOuloXN1SebulwlR05bhxcUh5rQS9hf6OkbZrODYtA==
+"@comba.se/chat@^0.0.31":
+  version "0.0.31"
+  resolved "https://registry.yarnpkg.com/@comba.se/chat/-/chat-0.0.31.tgz#6e4d813e66ea339d272800c14ee6ff1e407a86c6"
+  integrity sha512-PoJzJNcfTRXpfMJglLzWguIy6hZoqUyxGdF1hQIKoWNkcIPhS89wu98OjF8lUiEHG+W2Elje3JqvFzO+N7uzCg==
   dependencies:
+    "@comba.se/ui" "^0.0.79"
     react-content-loader "^5.0.2"
 
-"@comba.se/ui@^0.0.67":
-  version "0.0.67"
-  resolved "https://registry.yarnpkg.com/@comba.se/ui/-/ui-0.0.67.tgz#b0c6f7ff82307c83bd5f339fb26e18150df09003"
-  integrity sha512-u6JGr2s00Zovr5nU37bUVUuw/HYTS41X4arJlyy6AeodHcqu0uQCg4csmxvhWoDILY2GWgIm71d3yW+OiMffQQ==
+"@comba.se/ui@^0.0.79":
+  version "0.0.79"
+  resolved "https://registry.yarnpkg.com/@comba.se/ui/-/ui-0.0.79.tgz#f7662f83fc9bcb6d02b64967b31d211c6e397fac"
+  integrity sha512-KdmJOK+T/io1YwUPmqOiqag3NZD5YKY+5Xc/z4vxG92osM7wz2T5PtUR+Y9lpcSRlOAoZfO0gvXvpgOjDuWXiw==
   dependencies:
     autosize "^4.0.2"
     browser-monads "^1.0.0"
@@ -8756,7 +8757,7 @@ react-app-polyfill@^1.0.6:
     regenerator-runtime "^0.13.3"
     whatwg-fetch "^3.0.0"
 
-react-color@shreshthmohan/react-color:
+"react-color@github:shreshthmohan/react-color", react-color@shreshthmohan/react-color:
   version "2.17.4"
   resolved "https://codeload.github.com/shreshthmohan/react-color/tar.gz/f9dbfe55eacbd230229223cc204ed144f9cd0448"
   dependencies:
