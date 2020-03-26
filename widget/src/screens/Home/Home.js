@@ -6,14 +6,9 @@ import { Container } from '@comba.se/ui';
 import { ScrollAnimationProvider } from 'contexts/ScrollAnimation';
 
 // Components //
-import Header from 'components/Home/Header';
-import ConversationsWidget from 'components/Home/ConversationsWidget';
-import KnowledgeBaseWidget from 'components/Home/KnowledgeBaseWidget';
-
 const Root = styled.div`
     flex: 1;
     width: 100%;
-    overflow: scroll;
 `;
 
 const Content = styled(Container)`
@@ -28,23 +23,17 @@ const Content = styled(Container)`
 
 const Home = () => {
     const [rootRef, setRootRef] = useState();
-    
-    const ref = useCallback((el) =>{
+
+    const ref = useCallback((el) => {
         if (el && !rootRef) {
             setRootRef(el);
         }
     }, [rootRef]);
 
     return (
-        <ScrollAnimationProvider target={rootRef}>
-            <Root {...{ref}}>
-                <Header />
-                <Content>
-                    <ConversationsWidget />
-                    <KnowledgeBaseWidget />
-                </Content>
-            </Root>
-        </ScrollAnimationProvider>
+        <Content>
+
+        </Content>
     );
 };
 

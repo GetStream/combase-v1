@@ -11,6 +11,7 @@ import GlobalStyles from '@comba.se/ui/styles/global';
 // Contexts //
 import { AuthProvider } from 'contexts/Auth';
 import { SnackbarProvider } from "@comba.se/ui/Snackbar";
+import { StoreProvider } from 'contexts/Store';
 
 import Root from './Root';
 
@@ -25,12 +26,10 @@ function App() {
   return (
     <ThemeProvider {...{ theme }}>
       <SnackbarProvider>
-        <AuthProvider>
-          <StreamChatProvider {...{ apiKey, token, user }}>
-            <Root />
-            <GlobalStyles />
-          </StreamChatProvider>
-        </AuthProvider>
+        <StoreProvider>
+          <Root />
+          <GlobalStyles />
+        </StoreProvider>
       </SnackbarProvider>
     </ThemeProvider>
   );
