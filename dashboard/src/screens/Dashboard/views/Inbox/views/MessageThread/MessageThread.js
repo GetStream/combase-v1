@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Route } from "react-router-dom";
 import { EmptyState, IconButton, LoadingState } from '@comba.se/ui';
 import { ChatIcon, CloseIcon, CloseChatIcon, InfoIcon, TransferIcon } from "@comba.se/ui/Icons";
-import Chat from "@comba.se/chat";
+import Chat, { ChatHeader, InputToolbar, MessagesList } from "@comba.se/chat";
 
 // CSS //
 import pageCard from "styles/css/pageCard";
@@ -18,8 +18,11 @@ import withChat from "@comba.se/chat/hocs/withChat";
 import SideDrawer from "../SideDrawer";
 
 // Components //
+import ListView from 'shared/ListView';
+
 const Root = styled.div`
   flex: 1;
+  height: 100%;
   z-index: 2;
   background-color: ${({ theme }) => theme.color.surface};
   flex-direction: row;
@@ -36,40 +39,22 @@ const EmptyRoot = styled(Root)`
   align-items: center;
 `;
 
-const ChatWrapper = styled.div`
-  width: 100%;
-`;
-
 // const dummyMessages = [
 //     { system: true, text: 'Start of your conversation with Luke S.' },
 // ];
 
-// TODO: Extract all attachments stuff into a hook, useAttachmentsUploader,
-// which uses useCurrentChannel internally to upload the images so we can
-// include it in the input toolbar instead rather than pass the onAttachment
-// and attachments array down through multiple components.
-
 const MessageThread = ({
-  channel,
   history,
-  isPartnerTyping,
-  match,
   loading,
-  loadMoreMessages,
-  messages,
-  partner,
-  read
+  match,
 }) => {
   const [{ user }] = useAuth();
 
-  const markRead = useCallback(async () => {
-    if (channel) {
-      await channel.markRead();
-    }
-  }, [channel]);
+  const renderThread = useCallback(({ match: { isExact } }) => {
+    console.log('render message thread');
+    const drawerOpen = !isExact;
 
-  const headerActions = useMemo(
-    () => [
+    const headerActions = [
       <IconButton color="alt_text" icon={CloseChatIcon} />,
       <IconButton
         color="alt_text"
@@ -85,22 +70,27 @@ const MessageThread = ({
           />
         )
       }} />
-    ],
-    [history, match]
-  );
+    ];
 
-  useEffect(() => {
-    if (match && match.params.channel) {
-      markRead();
-    }
-  }, [channel, match, markRead]);
-
-  const onSend = useCallback(
-    messages => {
-      channel.sendMessage(messages[0]);
-    },
-    [channel]
-  );
+    return (
+      <>
+        <Root {...{ drawerOpen }}>
+          {/* <ChatWrapper>/ */}
+          <Chat
+            key={match.params.channel}
+            channelId={match.params.channel}
+            user={user}
+          >
+            <ChatHeader headerActions={headerActions} onBackClick={history.goBack} />
+            <MessagesList />
+            <InputToolbar />
+          </Chat>
+          {/* </ChatWrapper> */}
+        </Root>
+        {/* <SideDrawer {...{ match, partner }} open={drawerOpen} /> */}
+      </>
+    );
+  }, [history, match]);
 
   if (!match) {
     return (
@@ -115,33 +105,9 @@ const MessageThread = ({
   ) : (
       <Route
         path={`${match.url}`}
-        children={({ match: { isExact } }) => {
-          const drawerOpen = !isExact;
-          return (
-            <>
-              <Root {...{ drawerOpen }}>
-                <ChatWrapper>
-                  <Chat
-                    showTypingIndicator={isPartnerTyping}
-                    onLoadMore={loadMoreMessages}
-                    channelId={channel.id}
-                    {...{
-                      headerActions,
-                      onSend,
-                      messages,
-                      partner,
-                      read,
-                      user
-                    }}
-                  />
-                </ChatWrapper>
-              </Root>
-              <SideDrawer {...{ match, partner }} open={drawerOpen} />
-            </>
-          );
-        }}
+        children={renderThread}
       />
     );
 };
 
-export default withChat(MessageThread);
+export default MessageThread;

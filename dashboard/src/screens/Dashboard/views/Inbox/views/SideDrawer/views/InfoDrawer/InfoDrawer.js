@@ -6,7 +6,7 @@ import { Avatar, Container, Text } from '@comba.se/ui';
 
 // Hooks //
 import useActivePlugins from 'hooks/useActivePlugins';
-import { useCurrentChannel } from 'stream-chat-hooks';
+import { useActiveChannel } from 'stream-chat-hooks';
 
 // Widgets //
 import ChatDataWidget from 'widgets/Combase/ChatDataWidget';
@@ -42,7 +42,7 @@ const Content = styled(Container)`
 // TODO: Use live email of user. Need to set as custom data
 // on their stream user.
 const InfoDrawer = ({ channelId, partner, ...props }) => {
-  const channel = useCurrentChannel(channelId);
+  const channel = useActiveChannel(channelId);
   const [plugins] = useActivePlugins();
   const enabledWidgets = useMemo(() => {
     if (plugins) {

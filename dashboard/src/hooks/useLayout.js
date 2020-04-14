@@ -1,28 +1,43 @@
-import { useCallback, useEffect, useState } from 'react';
-import ResizeObserver from 'utils/ResizeObserver';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import ResizeObserver from '@comba.se/ui/utils/ResizeObserver';
 
-export default () => {
+export default onResize => {
+    const [ref, setElRef] = useState(null);
     const [layout, setLayout] = useState(null);
-    const [el, setEl] = useState(null);
 
-    const setRef = useCallback(el => {
-        console.log('setRef');
-        setEl(el);
-    }, []);
+    const handleResize = useCallback(
+        entries => {
+            const [entry] = entries;
+            const { blockSize: height, inlineSize: width } = entry;
+            console.log('dims', width, height)
+            setLayout({ width, height });
 
-    const handleResize = useCallback(entries => {
-        console.log(entries);
-        const [entry] = entries;
-        setLayout(entry.contentRect);
-    }, []);
+            if (onResize) {
+                onResize({ width, height });
+            }
+        },
+        [onResize]
+    );
+
+    const observer = useMemo(() => new ResizeObserver(handleResize), [handleResize]);
 
     useEffect(() => {
-        const observer = new ResizeObserver(handleResize);
-        if (el) {
-            observer.observe(el);
-            return observer.disconnect();
+        if (ref) {
+            observer.observe(ref, {
+                box: 'border-box',
+            });
         }
-    }, [el]);
+        return () => observer.disconnect();
+    }, [observer, ref]);
+
+    const setRef = useCallback(
+        el => {
+            if (!ref && el) {
+                setElRef(el);
+            }
+        },
+        [ref]
+    );
 
     return [layout, setRef];
 };

@@ -5,9 +5,10 @@ import useChats from 'hooks/useChats';
 
 // Components //
 import MenuButton from 'shared/MenuButton';
+import ChatItem from 'shared/Chat/ChatItem';
 
 const Root = styled.div`
-    flex: 1;
+  flex: 1;
   order: -1;
   height: 100%;
   background-color: ${({ theme }) => theme.color.background};
@@ -22,10 +23,15 @@ const Root = styled.div`
   }
 `;
 
+// Custom Thread ListItem component `ChatItem`
+// Used to enhance the ThreadList with data from
+// mongo like status.
+const renderThread = ({ channel: { id }, refs: { user: partner }, ...rest }) => <ChatItem {...{ id, partner }} />;
+
 const Threads = () => {
-  const [chats, { error, loading }] = useChats();
+  const [chats, channels, { error, loading }] = useChats();
   return <Root>
-    <ThreadList {...{ chats, error, loading }} leftButtonElement={MenuButton} />
+    <ThreadList channels={chats} {...{ error, loading }} leftButtonElement={MenuButton} renderThread={renderThread} />
   </Root>
 }
 

@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@comba.se/chat": "^0.0.23",
-    "@comba.se/ui": "^0.0.78",
+    "@comba.se/chat": "^0.0.37",
+    "@comba.se/ui": "^0.0.79",
     "@juggle/resize-observer": "^3.1.2",
     "@material/react-switch": "^0.15.0",
     "@testing-library/jest-dom": "^5.1.1",
@@ -33,16 +33,22 @@
     "react-scrolllock": "^5.0.1",
     "react-sparklines": "^1.7.0",
     "react-spring": "^8.0.27",
+    "react-virtualized-auto-sizer": "^1.0.2",
+    "react-window": "^1.8.5",
     "recyclerlistview": "^3.0.0",
     "seamless-immutable": "^7.1.4",
     "stream-chat": "^1.5.0",
-    "stream-chat-hooks": "^0.0.9",
+    "stream-chat-hooks": "^0.0.12",
     "styled-components": "^5.0.1",
     "textarea-autogrow": "^1.0.0",
     "uifx": "^2.0.7",
     "uuid": "^7.0.2",
     "whatwg-fetch": "^3.0.0",
     "yup": "^0.28.3"
+  },
+  "resolutions": {
+    "@comba.se/chat": "^0.0.37",
+    "@comba.se/ui": "^0.0.79"
   },
   "scripts": {
     "start": "react-scripts start",

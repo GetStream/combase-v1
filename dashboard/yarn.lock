@@ -990,17 +990,18 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@comba.se/chat@^0.0.23":
-  version "0.0.23"
-  resolved "https://registry.yarnpkg.com/@comba.se/chat/-/chat-0.0.23.tgz#264476aa5754e37c01eebd905cc5d472083af0cb"
-  integrity sha512-JIHpm/ZCWxSl5sB0e2gkJYUEYs01NDxWdN8ObGvU1B2N202cYPYvC+YtjtvtEsa4L8YKnTcfrPsCGPfHUus78Q==
+"@comba.se/chat@^0.0.37":
+  version "0.0.37"
+  resolved "https://registry.yarnpkg.com/@comba.se/chat/-/chat-0.0.37.tgz#171fc6fc9cdb62573729d4f5300fd47815464b4f"
+  integrity sha512-k1s/zXvL4PUmeQGVBteLzTcbQW/4B6KT9LhY9Ye0lbMRAASKIt/Bb7tu067iw6P46+e4M0ha6WD4+eZj9nO9Vw==
   dependencies:
+    "@comba.se/ui" "^0.0.79"
     react-content-loader "^5.0.2"
 
-"@comba.se/ui@^0.0.78":
-  version "0.0.78"
-  resolved "https://registry.yarnpkg.com/@comba.se/ui/-/ui-0.0.78.tgz#52bc586a66c98ada401dc2fb48c47ad77a8a2a1b"
-  integrity sha512-dcJQqMHPY73V+dgyXSW3PURMx0liLxkLT4c1EGRFhBHgsg3sbWoh1CIR3wqhr7aLzkY8DIt+0cyFDIVQdn+3Og==
+"@comba.se/ui@^0.0.79":
+  version "0.0.79"
+  resolved "https://registry.yarnpkg.com/@comba.se/ui/-/ui-0.0.79.tgz#f7662f83fc9bcb6d02b64967b31d211c6e397fac"
+  integrity sha512-KdmJOK+T/io1YwUPmqOiqag3NZD5YKY+5Xc/z4vxG92osM7wz2T5PtUR+Y9lpcSRlOAoZfO0gvXvpgOjDuWXiw==
   dependencies:
     autosize "^4.0.2"
     browser-monads "^1.0.0"
@@ -7276,6 +7277,11 @@ mem@^4.0.0:
     mimic-fn "^2.0.0"
     p-is-promise "^2.0.0"
 
+"memoize-one@>=3.1.1 <6":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/memoize-one/-/memoize-one-5.1.1.tgz#047b6e3199b508eaec03504de71229b8eb1d75c0"
+  integrity sha512-HKeeBpWvqiVJD57ZUAsJNm71eHTykffzcLZVYWiVfQeI1rJtuEaS7hQiEpWfVVk18donPwJEcFKIkCmPJNOhHA==
+
 memory-fs@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/memory-fs/-/memory-fs-0.4.1.tgz#3a9a20b8462523e447cfbc7e8bb80ed667bfc552"
@@ -9383,7 +9389,7 @@ react-app-polyfill@^1.0.6:
     regenerator-runtime "^0.13.3"
     whatwg-fetch "^3.0.0"
 
-"react-color@github:shreshthmohan/react-color", react-color@shreshthmohan/react-color:
+react-color@shreshthmohan/react-color:
   version "2.17.4"
   resolved "https://codeload.github.com/shreshthmohan/react-color/tar.gz/f9dbfe55eacbd230229223cc204ed144f9cd0448"
   dependencies:
@@ -9589,6 +9595,19 @@ react-spring@^8.0.27:
   dependencies:
     "@babel/runtime" "^7.3.1"
     prop-types "^15.5.8"
+
+react-virtualized-auto-sizer@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-virtualized-auto-sizer/-/react-virtualized-auto-sizer-1.0.2.tgz#a61dd4f756458bbf63bd895a92379f9b70f803bd"
+  integrity sha512-MYXhTY1BZpdJFjUovvYHVBmkq79szK/k7V3MO+36gJkWGkrXKtyr4vCPtpphaTLRAdDNoYEYFZWE8LjN+PIHNg==
+
+react-window@^1.8.5:
+  version "1.8.5"
+  resolved "https://registry.yarnpkg.com/react-window/-/react-window-1.8.5.tgz#a56b39307e79979721021f5d06a67742ecca52d1"
+  integrity sha512-HeTwlNa37AFa8MDZFZOKcNEkuF2YflA0hpGPiTT9vR7OawEt+GZbfM6wqkBahD3D3pUjIabQYzsnY/BSJbgq6Q==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    memoize-one ">=3.1.1 <6"
 
 react@^16.13.1:
   version "16.13.1"
@@ -10655,10 +10674,10 @@ stream-browserify@^2.0.1:
     inherits "~2.0.1"
     readable-stream "^2.0.2"
 
-stream-chat-hooks@^0.0.9:
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/stream-chat-hooks/-/stream-chat-hooks-0.0.9.tgz#33ccccc6fa405df8298cc2ea0150678f48df1a94"
-  integrity sha512-0CQVU9e7/NoPOk1v25y/oGjACwjcVH2tJUmJlrHY54FNGgmOTzJ0tSrRTwT4+dcJ4sm6fVw3XZjLxlWpeMd7Kw==
+stream-chat-hooks@^0.0.12:
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/stream-chat-hooks/-/stream-chat-hooks-0.0.12.tgz#2f172652dec9285e8722084d611a4e4697bfb091"
+  integrity sha512-AF69OieyMYLKFvmqR7Yuh3W9UNk7Y74AEGPmMWhD5rLmY2w/bLFPKHQ3Jhwjgp9wEWj6JJbtgB9zdyl0nuq/CA==
 
 stream-chat@^1.5.0:
   version "1.5.0"

@@ -1,6 +1,8 @@
 import React, { useMemo, useState } from "react";
 import styled from "styled-components";
-import { ChatContext, useInitClient } from "stream-chat-hooks";
+import { useInitClient } from "stream-chat-hooks";
+import { ChatProvider } from "stream-chat-hooks/contexts/Chat";
+import { ChannelsProvider } from "stream-chat-hooks/contexts/Channels";
 import { LoadingState } from "@comba.se/ui";
 
 // Hooks //
@@ -27,14 +29,13 @@ export default (WrappedComponent, routes = []) => props => {
   const isMobile = useMedia("sm");
 
   const [config, { loading, error }] = useConfig();
-  const [{ user }] = useAuth();
+  const [{ organization, user }] = useAuth();
 
   const streamUser = useMemo(() => ({
     id: user._id,
     name: `${user.name.first} ${user.name.last}`,
   }), [user]);
-
-  const chatClient = useInitClient(streamUser, config.stream ? config.stream.key : '', user.tokens.stream);
+  const chatClient = useInitClient(config.stream ? config.stream.key : '', user.tokens.stream, streamUser);
 
   const value = useMemo(
     () => ({
@@ -52,6 +53,14 @@ export default (WrappedComponent, routes = []) => props => {
     [config, drawerOpen, soundsEnabled, toggleDrawer, setSounds]
   );
 
+  const channelsFilter = useMemo(
+    () => ({
+      organization: organization._id,
+      members: { $in: [user._id] },
+    }),
+    [organization, user]
+  );
+
   if (loading || !chatClient) {
     return <LoadingState key="loading" />;
   }
@@ -63,22 +72,24 @@ export default (WrappedComponent, routes = []) => props => {
 
   return (
     <ShellContext.Provider {...{ value }}>
-      <ChatContext.Provider value={chatClient}>
-        <Root>
-          {isMobile ? (
-            <Drawer
-              {...props}
-              {...{ routes }}
-              open={drawerOpen}
-              onClose={value.drawer.toggle}
-            />
-          ) : (
-              <Sidenav {...props} {...{ routes }} />
-            )}
-          <WrappedComponent {...props} />
-          <Helmet />
-        </Root>
-      </ChatContext.Provider>
+      <ChatProvider client={chatClient}>
+        <ChannelsProvider filter={channelsFilter} userId={user._id}>
+          <Root>
+            {isMobile ? (
+              <Drawer
+                {...props}
+                {...{ routes }}
+                open={drawerOpen}
+                onClose={value.drawer.toggle}
+              />
+            ) : (
+                <Sidenav {...props} {...{ routes }} />
+              )}
+            <WrappedComponent {...props} />
+            <Helmet />
+          </Root>
+        </ChannelsProvider>
+      </ChatProvider>
     </ShellContext.Provider>
   );
 };

@@ -4,11 +4,10 @@ import useAuth from "hooks/useAuth";
 import request from "utils/request";
 
 export default () => {
-  const [{ organization, user }] = useAuth();
+  const [{ user }] = useAuth();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const filter = useMemo(() => ({ organization: organization._id, members: { $in: [user._id] } }), [organization, user]);
-  const [channels, { loading: channelsLoading }] = useChannels(user._id, filter);
+  const [{ channels, loading: channelsLoading }] = useChannels();
   const [chats, setChats] = useState(
     JSON.parse(localStorage.getItem("chats")) || []
   );
@@ -46,5 +45,5 @@ export default () => {
   useEffect(() => {
     getChats();
   }, [getChats]);
-  return [chats, { loading, error }];
+  return [chats, channels, { loading, error }];
 };
