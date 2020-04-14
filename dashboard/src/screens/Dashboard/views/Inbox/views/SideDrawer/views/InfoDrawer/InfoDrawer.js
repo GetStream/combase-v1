@@ -41,7 +41,7 @@ const Content = styled(Container)`
 
 // TODO: Use live email of user. Need to set as custom data
 // on their stream user.
-const InfoDrawer = ({ channelId, partner, ...props }) => {
+const InfoDrawer = ({ channelId, ...props }) => {
   const channel = useActiveChannel(channelId);
   const [plugins] = useActivePlugins();
   const enabledWidgets = useMemo(() => {
@@ -52,16 +52,16 @@ const InfoDrawer = ({ channelId, partner, ...props }) => {
   return (
     <Root>
       <Header>
-        <Avatar size={136} name={partner.name} showStatus={partner.online} />
+        <Avatar size={136} name={channel.partner.name} showStatus={channel.partner.online} />
         <Text size={24} weight="600">
-          {partner.name}
+          {channel.partner.name}
         </Text>
         <Text size={12} faded weight="400">
-          {partner.online ? 'Active Now' : `Last active: ${moment(partner.last_active).fromNow()}`}
+          {channel.partner.online ? 'Active Now' : `Last active: ${moment(channel.partner.last_active).fromNow()}`}
         </Text>
       </Header>
-      <Content key={partner.id}>
-        <ChatDataWidget partnerId={partner.id} createdAt={channel.created_at} />
+      <Content key={channel.partner.id}>
+        <ChatDataWidget partnerId={channel.partner.id} createdAt={channel.created_at} />
         {enabledWidgets.includes('blaze_verify') ? <EmailVerificationWidget email="nick@getstream.io" /> : null}
         {enabledWidgets.includes('clearbit') ? <ClearbitWidget email="nick@getstream.io" /> : null}
       </Content>
@@ -70,7 +70,7 @@ const InfoDrawer = ({ channelId, partner, ...props }) => {
 };
 
 InfoDrawer.propTypes = {
-  partner: PropTypes.object.isRequired,
+  channelId: PropTypes.string,
 }
 
 export default InfoDrawer;

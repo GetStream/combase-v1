@@ -18,10 +18,10 @@ const Root = styled.div`
   transform: translateX(${({ open }) => (open ? 0 : 100)}%);
 `;
 
-const SideDrawer = ({ match, open, partner }) => (
+const SideDrawer = ({ match, open }) => (
   <Root {...{ open }}>
     <Switch>
-      <Route path={`${match.url}/info`} render={props => <InfoDrawer {...props} channelId={match.params.channel} {...{ partner }} />} />
+      <Route path={`${match.url}/info`} render={props => <InfoDrawer {...props} channelId={match.params.channel} />} />
       <Route path={`${match.url}/transfer`} render={() => "transfer"} />
     </Switch>
   </Root>

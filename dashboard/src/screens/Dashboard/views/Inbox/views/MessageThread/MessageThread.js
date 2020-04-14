@@ -87,7 +87,7 @@ const MessageThread = ({
           </Chat>
           {/* </ChatWrapper> */}
         </Root>
-        {/* <SideDrawer {...{ match, partner }} open={drawerOpen} /> */}
+        <SideDrawer {...{ match }} open={drawerOpen} />
       </>
     );
   }, [history, match]);
