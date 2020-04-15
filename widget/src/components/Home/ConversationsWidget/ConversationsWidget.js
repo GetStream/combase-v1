@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
-import { Card, EmptyState, FAB } from "@comba.se/ui";
-import { InboxIcon } from "@comba.se/ui/Icons";
+import { Button, Card, EmptyState, FAB } from "@comba.se/ui";
 import { ThreadItem } from '@comba.se/chat';
 import { useStore } from 'contexts/Store';
 
@@ -26,6 +25,7 @@ const NewConversationBtn = styled(FAB)`
     position: relative;
     bottom: 0;
     right: 0;
+    box-shadow: none;
 `
 
 const renderThreads = (chats) => chats.length ? chats.map(({ channel: { id, data, partner }, ...rest }, index) => {
@@ -35,7 +35,7 @@ const renderThreads = (chats) => chats.length ? chats.map(({ channel: { id, data
     )
 }) : <EmptyWrapper><EmptyState text="No Conversations!" /></EmptyWrapper>;
 
-const ThreadsWidget = ({ className }) => {
+const ConversationsWidget = ({ className }) => {
     const [state, { setActiveChannel }] = useStore();
     // const history = useHistory();
     // const [{ organization, user }] = useAuth();
@@ -63,17 +63,18 @@ const ThreadsWidget = ({ className }) => {
     // }, []);
     return (
         <Root {...{ className }}>
-            <CardHeader icon={InboxIcon} title="Conversations" />
+            <CardHeader title="Conversations" />
             <List>
                 <ThreadItem />
                 <ThreadItem />
                 <ThreadItem />
             </List>
             <CardFooter>
+                <Button flat label="See all" />
                 <NewConversationBtn onClick={() => setActiveChannel('channel:id')} disablePortal size={48} />
             </CardFooter>
         </Root>
     );
 };
 
-export default ThreadsWidget;
+export default ConversationsWidget;

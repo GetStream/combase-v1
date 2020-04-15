@@ -11,7 +11,6 @@ const Root = styled.div`
 
 const CardFooter = ({ children }) => (
     <Root>
-        <div />
         {children}
     </Root>
 );

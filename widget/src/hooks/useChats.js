@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useChannels } from "stream-chat-hooks";
-import useAuth from "hooks/useAuth";
+import { useAuth } from 'contexts/Auth';
 import request from "utils/request";
 
 export default () => {

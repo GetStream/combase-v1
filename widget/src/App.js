@@ -1,7 +1,6 @@
 import 'whatwg-fetch';
 
 import React from 'react';
-import { StreamChatProvider } from 'stream-chat-hooks';
 
 // Styles //
 import { ThemeProvider } from 'styled-components';
@@ -26,10 +25,12 @@ function App() {
   return (
     <ThemeProvider {...{ theme }}>
       <SnackbarProvider>
-        <StoreProvider>
-          <Root />
-          <GlobalStyles />
-        </StoreProvider>
+        <AuthProvider>
+          <StoreProvider>
+            <Root />
+            <GlobalStyles />
+          </StoreProvider>
+        </AuthProvider>
       </SnackbarProvider>
     </ThemeProvider>
   );

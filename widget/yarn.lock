@@ -943,10 +943,22 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@comba.se/chat@../../chat/dist":
+  version "0.0.37"
+  dependencies:
+    "@comba.se/ui" "^0.0.79"
+    react-content-loader "^5.0.2"
+
 "@comba.se/chat@^0.0.32":
   version "0.0.32"
   resolved "https://registry.yarnpkg.com/@comba.se/chat/-/chat-0.0.32.tgz#87e3cb67e8737a2b908af93c88359a8ae3c20c3b"
   integrity sha512-plX1MJN0eqXuc04r2Ff6LFGwIFbpAXmzQ+es9+kHIyJ7C5Kp2K2gJoFivieIQjBql10RDw2Eh9bQQOhNtOHT0g==
+  dependencies:
+    "@comba.se/ui" "^0.0.79"
+    react-content-loader "^5.0.2"
+
+"@comba.se/chat@file:../../chat/dist":
+  version "0.0.37"
   dependencies:
     "@comba.se/ui" "^0.0.79"
     react-content-loader "^5.0.2"
@@ -961,6 +973,9 @@
     react-color shreshthmohan/react-color
     react-content-loader "^5.0.2"
     uuid "^7.0.2"
+
+"@comba.se/ui@file:../../ui/dist":
+  version "0.0.79"
 
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"

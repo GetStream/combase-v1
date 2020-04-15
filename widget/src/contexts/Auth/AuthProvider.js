@@ -7,6 +7,9 @@ import React, {
 } from "react";
 import styled from 'styled-components';
 import request from "utils/request";
+import { useInitClient } from 'stream-chat-hooks';
+import { ChannelsProvider } from 'stream-chat-hooks/contexts/Channels';
+import { ChatProvider } from 'stream-chat-hooks/contexts/Chat';
 
 import AuthContext from "./index";
 import SnackbarContext from "@comba.se/ui/Snackbar";
@@ -83,13 +86,12 @@ const dummyUser = {
 
 export default ({ children }) => {
   const { queueSnackbar } = useContext(SnackbarContext);
-  const [isFirstVisit, setFirstVisit] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const [user, setUser] = useState(
-    // JSON.parse(localStorage.getItem("user")) || null
-    dummyUser
+    JSON.parse(localStorage.getItem("user")) || null
+    // dummyUser
   );
 
   const [organization, setOrg] = useState(
@@ -142,28 +144,20 @@ export default ({ children }) => {
   }, []);
 
   const refetchUser = useCallback(async () => {
-    const data = await request(`v1/agents/${user._id}`, "get");
+    const data = await request(`v1/users/${user._id}`, "get");
     const userData = { tokens: user.tokens, ...data };
     localStorage.setItem("user", JSON.stringify(userData));
     setUser(userData);
   }, [user]);
 
   const refetchCurrentOrg = useCallback(async () => {
-    const org = await request(`v1/organizations/${organization._id}`, "get");
+    const org = await request(`v1/organizations/${process.env.REACT_APP_ORGANIZATION_ID}`, "get");
     localStorage.setItem("organization", JSON.stringify(org));
     setOrg(org);
   }, [organization]);
 
-  useEffect(() => {
-    getOrg();
-    if (!user) {
-      setFirstVisit(true);
-    }
-  }, [getOrg, user]);
-
   const value = useMemo(
     () => ({
-      isFirstVisit,
       organization,
       refetchCurrentOrg,
       refetchUser,
@@ -174,7 +168,6 @@ export default ({ children }) => {
       logout
     }),
     [
-      isFirstVisit,
       organization,
       refetchCurrentOrg,
       refetchUser,
@@ -185,13 +178,37 @@ export default ({ children }) => {
       logout
     ]
   );
-  console.log('new user?', isFirstVisit);
-  if (loading || !organization) {
-    return (
-      <LoadingRoot>
-        <LoadingState />
-      </LoadingRoot>
-    );
+
+  const client = useInitClient('pyst6tqux4vf', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWU1NTUyOTYxZTdmNzAwYWJkMGRmZjIzIn0.Z1WIshH9NZ54eVbcGeNOcfVSNGjUEOtLJ2FDuTfbtVI');
+
+  const authorizeUser = useCallback(async () => {
+    if (user) {
+      await client.setUser({
+        id: user._id,
+        name: `${user.name.first} ${user.name.last.charAt(0)}.`
+      });
+      refetchUser();
+    } else {
+      await client.setAnonymousUser();
+      setLoading(false);
+    }
+  }, [client, user]);
+
+  useEffect(() => {
+    if (client) {
+      authorizeUser();
+    }
+  }, [client]);
+
+  if (loading || !client) {
+    return null
   }
-  return <AuthContext.Provider {...{ value }}>{children}</AuthContext.Provider>;
+
+  return (
+    <ChatProvider client={client}>
+      <ChannelsProvider>
+        <AuthContext.Provider {...{ value }}>{children}</AuthContext.Provider>
+      </ChannelsProvider>
+    </ChatProvider>
+  );
 };

@@ -8,17 +8,17 @@ const Root = styled.div`
     flex-direction: row;
     align-items: center;
     padding: 20px 24px 12px 24px;
-
-    & ${Text} {
-        margin-left: 8px;
-    }
 `;
 
-const CardHeader = ({ icon: Icon, title }) => {
+const Icon = styled.div`
+    margin-right: 8px;
+`;
+
+const CardHeader = ({ icon, title }) => {
     return (
         <Root>
-            <Icon color="text" />
-            <Text weight="600">{title}</Text>
+            {icon ? <Icon color="text" as={icon} /> : null}
+            <Text size={20} weight="600">{title}</Text>
         </Root>
     );
 };

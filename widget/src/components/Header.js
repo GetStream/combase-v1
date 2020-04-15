@@ -1,13 +1,15 @@
-import React, { useMemo } from 'react';
-import styled from 'styled-components';
+import React, { useContext, useMemo } from 'react';
+import styled, { ThemeContext } from 'styled-components';
 import { Avatar, Container, Fill, Text } from '@comba.se/ui';
-import { animated, interpolate } from 'react-spring';
+import { animated, interpolate, useSpring } from 'react-spring';
 
 // Hooks //
 import { useScrollAnim } from 'contexts/ScrollAnimation';
-import useAuth from 'hooks/useAuth';
+import { useAuth } from 'contexts/Auth';
 
 // Components //
+import ChatHeader from './ChatHeader';
+
 const Background = styled(animated.div)`
     position: fixed;
     top: 0;
@@ -24,14 +26,12 @@ const Root = styled(animated.div)`
     left: 0;
     right: 0;
     height: 320px;
-    padding: 32px 16px 64px 16px;
-    & ${Container} {
-        flex: 1;
-        justify-content: flex-end;
-    }
+    justify-content: flex-end;
+    overflow: hidden;
 `
 
 const Brand = styled(animated.div)`
+    margin-top: 40px;
     margin-bottom: 24px;
     justify-content: center; 
     align-items: center;
@@ -50,19 +50,50 @@ const HeaderAvatar = styled(Avatar)`
     border: 4px solid white;
 `
 
-const Header = ({ transitionAnim }) => {
+const ShrinkHeader = styled.div`
+    flex: 0 0 64px;
+    background-color: ${({ theme }) => theme.color.primary};
+`;
+
+const Header = ({ shrunk, transitionAnim }) => {
+    const theme = useContext(ThemeContext);
+    const { value: shrinkAnim } = useSpring({ value: shrunk ? 1 : 0 })
     const { anim } = useScrollAnim();
 
-    const brandStyle = useMemo(() => ({
-        opacity: anim.value.interpolate({
-            range: [40, 240],
-            output: [1, 0],
+    const rootStyle = useMemo(() => ({
+        height: shrinkAnim.interpolate({
+            range: [0, 1],
+            output: [320, 64]
         }),
+        backgroundColor: shrinkAnim.interpolate({
+            range: [0, 1],
+            output: [theme.color.primary, theme.color.surface]
+        }),
+        boxShadow: shrinkAnim.interpolate({
+            range: [0, 1],
+            output: [0, .08]
+        }).interpolate(v => `0px 4px 8px rgba(0, 0, 0, ${v})`)
+    }), []);
+
+    const containerStyle = useMemo(() => ({
         transform: interpolate([
             anim.value.interpolate({ range: [40, 240], output: [1, 0.95], extrapolate: 'clamp' }),
             anim.value.interpolate({ range: [40, 240], output: [0, 8], extrapolate: 'clamp' }),
-        ], (scale, y) => `translate3d(0, ${y}px, 0) scale(${scale})`)
-    }), [anim.value]);
+            shrinkAnim.interpolate({ range: [0, 1], output: [0, -100] })
+        ], (scale, y, y2) => `translate3d(0, calc(${y}px + ${y2}%), 0) scale(${scale})`),
+        opacity: shrinkAnim.interpolate({
+            range: [0, 1],
+            output: [1, 0]
+        })
+    }), [shrinkAnim]);
+
+    const titleStyle = useMemo(() => ({
+        opacity: anim.value.interpolate({
+            range: [40, 240],
+            output: [1, 0],
+            extrapolateRight: 'clamp'
+        }),
+    }), [anim]);
 
     const textStyle = useMemo(() => ({
         opacity: anim.value.interpolate({
@@ -70,35 +101,37 @@ const Header = ({ transitionAnim }) => {
             output: [1, 0],
             extrapolateRight: 'clamp'
         }),
-        transform: anim.value.interpolate({ range: [0, 64], output: [0, 32], extrapolate: 'clamp' }).interpolate((y) => `translate3d(0, -${y}px, 0)`)
+        zIndex: 3,
+        transform: interpolate([
+            anim.value.interpolate({ range: [0, 64], output: [0, 32], extrapolate: 'clamp' }),
+            shrinkAnim.interpolate({ range: [0, 1], output: [0, 200], extrapolate: 'clamp' }),
+        ], (y, y2) => `translate3d(0, -${y + y2}px, 0)`)
     }), [anim.value]);
 
-    // const rootStyle = useMemo(() => ({
-    //     height: transitionAnim.value.interpolate({
-    //         range: [0, 1],
-    //         output: [320, 64]
-    //     })
-    // }), []);
+    const chatHeaderStyle = useMemo(() => ({
+        opacity: shrinkAnim
+    }), []);
 
     return (
         <>
-            <Background />
-            <Root>
-                <Container>
-                    <Brand style={brandStyle}>
+            <Background style={rootStyle} />
+            <Root style={rootStyle}>
+                <Container as={animated.div} style={containerStyle}>
+                    <Brand>
                         <HeaderAvatar showStatus={false} size={72} name="Stream" />
                         <OrgMeta>
-                            <Text size={32} weight="700" color="white">
+                            <Text as={animated.p} style={titleStyle} size={32} weight="700" color="text">
                                 Stream
                             </Text>
-                            <Tagline line={20} faded color="white" size={12} weight="500">
+                            <Tagline as={animated.p} style={titleStyle} line={20} faded color="text" size={12} weight="500">
                                 Ship Feeds & Chat Faster
                             </Tagline>
                         </OrgMeta>
                     </Brand>
                     <Fill />
-                    <Text as={animated.p} style={textStyle} size={24} weight="700" color="white">Hello, Luke! <span role="img" aria-label="Waving">👋</span></Text>
+                    <Text as={animated.p} style={textStyle} size={24} weight="700" color="text">Hello, Luke! <span role="img" aria-label="Waving">👋</span></Text>
                 </Container>
+                <ChatHeader style={chatHeaderStyle} />
             </Root>
         </>
     );

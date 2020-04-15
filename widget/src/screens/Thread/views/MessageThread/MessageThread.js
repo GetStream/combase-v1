@@ -3,7 +3,7 @@ import { LoadingState } from '@comba.se/ui';
 import Chat from '@comba.se/chat';
 
 // Hooks //
-import useAuth from 'hooks/useAuth';
+import { useAuth } from 'contexts/Auth';
 
 // HOCs //
 import withChat from '@comba.se/chat/hocs/withChat';

@@ -8,15 +8,10 @@ import { ScrollAnimationProvider } from 'contexts/ScrollAnimation';
 // Components //
 import ConversationsWidget from 'components/Home/ConversationsWidget';
 
-const Root = styled.div`
-    flex: 1;
-    width: 100%;
-`;
-
-const Content = styled(Container)`
+const Root = styled(Container)`
     z-index: 2;
-    padding-bottom: 40px;
     margin-top: 280px;
+    padding-bottom: 40px;
 
     & > * + * {
         margin-top: 24px;
@@ -33,10 +28,10 @@ const Home = () => {
     }, [rootRef]);
 
     return (
-        <Content>
+        <Root>
             <ConversationsWidget />
             <ConversationsWidget />
-        </Content>
+        </Root>
     );
 };
 

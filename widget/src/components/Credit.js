@@ -6,10 +6,6 @@ import { Text } from '@comba.se/ui';
 import StreamLogo from 'components/StreamLogo';
 
 const Root = styled.div`
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
 	height: 40px;
 	display: flex;
 	align-items: center;
@@ -17,6 +13,7 @@ const Root = styled.div`
 	background-color: ${({ theme }) => theme.color.surface};
 	z-index: 10;
 	user-select: none;
+	box-shadow: 0px -8px 16px rgba(0, 0, 0, 0.04);
 `
 
 const Bubble = styled.a`
@@ -36,6 +33,6 @@ const Bubble = styled.a`
 	}
 `
 
-const Credit = () => <Root><Bubble href="https://getstream.io/chat" target="_blank" rel="noopener noreferrer"><StreamLogo color="blue" size={28} /><Text size={12} color="blue">Powered by Stream</Text></Bubble></Root>;
+const Credit = () => <Root><Bubble href="https://getstream.io/chat" target="_blank" rel="noopener noreferrer"><StreamLogo color="blue" size={28} /><Text size={12} color="blue" weight="500">Powered by Stream</Text></Bubble></Root>;
 
 export default Credit;

@@ -1,18 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
+import Chat, { MessagesList, InputToolbar } from '@comba.se/chat';
 
-// Views //
-import MessageThread from './views/MessageThread';
+// Hooks //
+import { useAuth } from 'contexts/Auth';
 
 // Components //
 const Root = styled.div`
     flex: 1;
-`
+`;
 
-const Thread = ({ match, ...props }) => {
+const Thread = ({ channelId, ...props }) => {
+    const { user } = useAuth();
+    console.log(channelId, user);
     return (
         <Root>
-            <MessageThread {...{match}} {...props} channelId={match.params.channel} />
+            <Chat
+                channelId={channelId}
+                user={user}
+            >
+                <MessagesList />
+                <InputToolbar />
+            </Chat>
         </Root>
     );
 };
