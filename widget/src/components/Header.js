@@ -35,7 +35,7 @@ const Brand = styled(animated.div)`
 `
 
 const Tagline = styled(Text)`
-    max-width: 288px;
+    max-width: 240px;
     margin-top: 4px;
 `
 
