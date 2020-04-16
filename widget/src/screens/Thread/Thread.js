@@ -42,6 +42,7 @@ const Thread = ({ match, transitionAnim, ...props }) => {
     return (
         <Root>
             <Chat
+                onSend={console.log}
                 channelId={channelId}
                 user={user}
             >
@@ -52,7 +53,7 @@ const Thread = ({ match, transitionAnim, ...props }) => {
                     <InputToolbar />
                 </Animated.div>
             </Chat>
-        </Root>
+        </Root >
     );
 };
 

@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
+import ReactDOM from 'react-dom';
 import { useSpring } from 'react-spring';
 import { window } from 'browser-monads';
 import Context from './index';
@@ -9,9 +10,10 @@ export default ({ children, target = window }) => {
 
     useEffect(() => {
         if (!!target) {
+            const el = ReactDOM.findDOMNode(target);
             console.log('init listener');
-            target.addEventListener('scroll', onScroll);
-            return () => target.removeEventListener('scroll', onScroll);
+            el.addEventListener('scroll', onScroll);
+            return () => el.removeEventListener('scroll', onScroll);
         }
     }, [onScroll, target]);
 

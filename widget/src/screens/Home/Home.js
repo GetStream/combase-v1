@@ -20,7 +20,6 @@ const Root = styled(Container)`
 `;
 
 const Home = ({ transitionAnim }) => {
-    const [rootRef, setRootRef] = useState();
 
     const style = useMemo(() => ({
         transform: [
@@ -33,13 +32,7 @@ const Home = ({ transitionAnim }) => {
             },
         ],
         zIndex: 1
-    }), [transitionAnim])
-
-    const ref = useCallback((el) => {
-        if (el && !rootRef) {
-            setRootRef(el);
-        }
-    }, [rootRef]);
+    }), [transitionAnim]);
 
     return (
         <Animated.div style={style}>

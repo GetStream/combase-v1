@@ -78,7 +78,7 @@ class LeadTransition extends Component {
 	render() {
 		const { children } = this.props;
 		const { previousChildren } = this.state;
-		console.log('previousChildren', previousChildren)
+
 		return (
 			<>
 				<Page>

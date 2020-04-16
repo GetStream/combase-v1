@@ -90,10 +90,10 @@ const InputToolbar = ({ placeholder }) => {
 	const onKeyDown = useCallback(
 		(e) => {
 			if (e.keyCode === 13 && !e.shiftKey) {
-				if (!text) {
-					return e.preventDefault();
+				e.preventDefault()
+				if (text) {
+					onSend({ text: text.trim(), attachments }, true);
 				}
-				onSend({ text: text.trim(), attachments }, true);
 			}
 			return false;
 		},

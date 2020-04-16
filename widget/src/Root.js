@@ -31,7 +31,11 @@ const WidgetRoot = styled(animated.div)`
     z-index: 9;
 `
 
-const ScrollWrapper = styled.div`
+const Wrapper = styled.div`
+    flex: 1;
+`;
+
+const ScrollWrapper = styled(Animated.div)`
    flex: 1;
     overflow: hidden;
     overflow-y: scroll;
@@ -52,6 +56,7 @@ const renderHeader = ({ match: { isExact } }) => (
 
 const Root = ({ location, match }) => {
     const [scrollRef, setScrollRef] = useState(null);
+    console.log(scrollRef);
     const [mounted, setMounted] = useState(false);
     const { user } = useAuth();
     const transitionAnim = useMemo(() => new Animated.Value(0), []);
@@ -64,14 +69,6 @@ const Root = ({ location, match }) => {
             }
         }
     })
-
-    const style = useMemo(() => ({
-        transform: anim.interpolate({
-            range: [0, 1],
-            output: [24, 0],
-        }).interpolate(v => `translate3d(0, ${v}px, 0)`),
-        opacity: anim
-    }), [anim]);
 
     const handleClick = useCallback(() => {
         if (!mounted) {
@@ -93,15 +90,26 @@ const Root = ({ location, match }) => {
     ), [transitionAnim]);
 
     const renderHome = useCallback((props) => (
-        <Home {...props} transitionAnim={transitionAnim} />
-    ), [transitionAnim]);
+        <ScrollWrapper ref={handleScrollRef}>
+            <Home {...props} transitionAnim={transitionAnim} />
+        </ScrollWrapper>
+    ), [handleScrollRef, transitionAnim]);
+
+
+    const style = useMemo(() => ({
+        transform: anim.interpolate({
+            range: [0, 1],
+            output: [24, 0],
+        }).interpolate(v => `translate3d(0, ${v}px, 0)`),
+        opacity: anim
+    }), [anim]);
 
     return (
         <>
             <Portal unmount={!mounted}>
                 <ScrollAnimationProvider target={scrollRef}>
                     <WidgetRoot style={style}>
-                        <ScrollWrapper ref={handleScrollRef}>
+                        <Wrapper>
                             <Transitioner anim={transitionAnim} atParent={match.isExact}>
                                 <Switch location={location}>
                                     <Route path="/:channelId" render={renderThread} />
@@ -109,7 +117,7 @@ const Root = ({ location, match }) => {
                                 </Switch>
                             </Transitioner>
                             <Route path="/" children={renderHeader} />
-                        </ScrollWrapper>
+                        </Wrapper>
                         <Credit />
                     </WidgetRoot>
                 </ScrollAnimationProvider>
