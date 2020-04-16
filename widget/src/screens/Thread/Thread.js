@@ -16,7 +16,7 @@ const Root = styled(Animated.div)`
 const Thread = ({ match, transitionAnim, ...props }) => {
     const { params: { channelId } } = match;
     const { user } = useAuth();
-    console.log('channel id', channelId);
+
     const messagesStyle = useMemo(() => ({
         flex: 1,
         transform: [
@@ -29,6 +29,7 @@ const Thread = ({ match, transitionAnim, ...props }) => {
         ],
         opacity: transitionAnim
     }), [transitionAnim]);
+
     const toolbarStyle = useMemo(() => ({
         transform: [
             {

@@ -56,9 +56,8 @@ const renderHeader = ({ match: { isExact } }) => (
 
 const Root = ({ location, match }) => {
     const [scrollRef, setScrollRef] = useState(null);
-    console.log(scrollRef);
+
     const [mounted, setMounted] = useState(false);
-    const { user } = useAuth();
     const transitionAnim = useMemo(() => new Animated.Value(0), []);
 
     const [{ isOpen }, { toggleWidget }] = useStore();
@@ -70,7 +69,7 @@ const Root = ({ location, match }) => {
         }
     })
 
-    const handleClick = useCallback(() => {
+    const toggleOpen = useCallback(() => {
         if (!mounted) {
             setMounted(true);
             toggleWidget();
@@ -122,7 +121,7 @@ const Root = ({ location, match }) => {
                     </WidgetRoot>
                 </ScrollAnimationProvider>
             </Portal>
-            <Launcher icon={InboxIcon} onClick={handleClick} />
+            <Launcher icon={InboxIcon} onClick={toggleOpen} />
         </>
     )
 }

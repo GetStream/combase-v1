@@ -11,7 +11,6 @@ export default ({ children, target = window }) => {
     useEffect(() => {
         if (!!target) {
             const el = ReactDOM.findDOMNode(target);
-            console.log('init listener');
             el.addEventListener('scroll', onScroll);
             return () => el.removeEventListener('scroll', onScroll);
         }
@@ -19,6 +18,7 @@ export default ({ children, target = window }) => {
 
     const value = useMemo(() => ({
         anim,
+        setScrollAnim: set
     }), [anim]);
 
     return (
