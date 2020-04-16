@@ -3,7 +3,6 @@ import Context from './index';
 import reducer from './reducer';
 
 const initialState = {
-	activeChannel: '',
 	isOpen: false,
 };
 
@@ -16,20 +15,7 @@ export default ({ children }) => {
 		});
 	}, []);
 
-	const clearActiveChannel = useCallback(() => {
-		dispatch({
-			type: 'activeChannel/clear',
-		});
-	}, []);
-
-	const setActiveChannel = useCallback((id) => {
-		dispatch({
-			type: 'activeChannel/set',
-			id,
-		});
-	}, []);
-
-	const value = useMemo(() => [state, { clearActiveChannel, dispatch, setActiveChannel, toggleWidget }], [clearActiveChannel, dispatch, setActiveChannel, state, toggleWidget]);
+	const value = useMemo(() => [state, { dispatch, toggleWidget }], [dispatch, state, toggleWidget]);
 
 	return (
 		<Context.Provider value={value}>

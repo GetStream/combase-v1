@@ -2,6 +2,9 @@ import 'whatwg-fetch';
 
 import React from 'react';
 
+// Router //
+import { MemoryRouter as Router, Route } from 'react-router-dom';
+
 // Styles //
 import { ThemeProvider } from 'styled-components';
 import { light as theme } from '@comba.se/ui/styles/theme';
@@ -21,13 +24,17 @@ const user = {
   name: 'Josh Tilton'
 };
 
+const renderRoot = (props) => <Root {...props} />
+
 function App() {
   return (
     <ThemeProvider {...{ theme }}>
       <SnackbarProvider>
         <AuthProvider>
           <StoreProvider>
-            <Root />
+            <Router>
+              <Route path="/" children={renderRoot} />
+            </Router>
             <GlobalStyles />
           </StoreProvider>
         </AuthProvider>

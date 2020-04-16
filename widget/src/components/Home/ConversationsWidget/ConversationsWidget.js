@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { Button, Card, EmptyState, FAB } from "@comba.se/ui";
 import { ThreadItem } from '@comba.se/chat';
 import { useStore } from 'contexts/Store';
@@ -71,7 +72,9 @@ const ConversationsWidget = ({ className }) => {
             </List>
             <CardFooter>
                 <Button flat label="See all" />
-                <NewConversationBtn onClick={() => setActiveChannel('channel:id')} disablePortal size={48} />
+                <Link to="/channelIdHere">
+                    <NewConversationBtn disablePortal size={48} />
+                </Link>
             </CardFooter>
         </Root>
     );

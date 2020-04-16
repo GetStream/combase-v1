@@ -1,7 +1,9 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
+import { Route, Switch } from 'react-router-dom';
 import { FAB, Portal } from '@comba.se/ui';
 import { InboxIcon } from '@comba.se/ui/Icons';
+import Animated from 'animated/lib/targets/react-dom';
 import { animated, useSpring } from 'react-spring';
 import { useStore } from 'contexts/Store';
 import { useAuth } from 'contexts/Auth';
@@ -14,7 +16,7 @@ import Thread from 'screens/Thread';
 // Components //
 import Credit from 'components/Credit';
 import Header from 'components/Header';
-import Switch from 'components/Switch';
+import Transitioner from 'components/Transitioner'
 
 const WidgetRoot = styled(animated.div)`
     position: fixed;
@@ -44,12 +46,17 @@ const Launcher = styled(FAB)`
     position: fixed;
 `
 
-const Root = () => {
+const renderHeader = ({ match: { isExact } }) => (
+    <Header shrunk={!isExact} />
+)
+
+const Root = ({ location, match }) => {
     const [scrollRef, setScrollRef] = useState(null);
     const [mounted, setMounted] = useState(false);
     const { user } = useAuth();
+    const transitionAnim = useMemo(() => new Animated.Value(0), []);
 
-    const [{ activeChannel, isOpen }, { toggleWidget }] = useStore();
+    const [{ isOpen }, { toggleWidget }] = useStore();
     const { value: anim } = useSpring({
         value: isOpen ? 1 : 0, config: { mass: 1, friction: 20, tension: 300 }, onRest: ({ value }) => {
             if (value === 0) {
@@ -81,17 +88,27 @@ const Root = () => {
         }
     }, []);
 
+    const renderThread = useCallback((props) => (
+        <Thread {...props} transitionAnim={transitionAnim} />
+    ), [transitionAnim]);
+
+    const renderHome = useCallback((props) => (
+        <Home {...props} transitionAnim={transitionAnim} />
+    ), [transitionAnim]);
+
     return (
         <>
             <Portal unmount={!mounted}>
                 <ScrollAnimationProvider target={scrollRef}>
                     <WidgetRoot style={style}>
                         <ScrollWrapper ref={handleScrollRef}>
-                            <Switch>
-                                <Home active={!activeChannel} />
-                                <Thread active={!!activeChannel} channelId={activeChannel} />
-                            </Switch>
-                            <Header shrunk={!!activeChannel} />
+                            <Transitioner anim={transitionAnim} atParent={match.isExact}>
+                                <Switch location={location}>
+                                    <Route path="/:channelId" render={renderThread} />
+                                    <Route path="/" render={renderHome} />
+                                </Switch>
+                            </Transitioner>
+                            <Route path="/" children={renderHeader} />
                         </ScrollWrapper>
                         <Credit />
                     </WidgetRoot>

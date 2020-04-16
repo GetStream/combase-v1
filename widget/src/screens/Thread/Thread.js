@@ -12,9 +12,10 @@ const Root = styled.div`
     flex: 1;
 `;
 
-const Thread = ({ channelId, ...props }) => {
+const Thread = ({ match, ...props }) => {
+    const { params: { channelId } } = match;
     const { user } = useAuth();
-    console.log(channelId, user);
+    console.log('channel id', channelId);
     return (
         <Root>
             <Chat

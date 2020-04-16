@@ -1,5 +1,6 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
+import Animated from 'animated/lib/targets/react-dom';
 import { Container } from '@comba.se/ui';
 
 // Contexts //
@@ -10,7 +11,7 @@ import ConversationsWidget from 'components/Home/ConversationsWidget';
 
 const Root = styled(Container)`
     z-index: 2;
-    margin-top: 280px;
+    margin-top: 200px;
     padding-bottom: 40px;
 
     & > * + * {
@@ -18,8 +19,21 @@ const Root = styled(Container)`
     }
 `;
 
-const Home = () => {
+const Home = ({ transitionAnim }) => {
     const [rootRef, setRootRef] = useState();
+
+    const style = useMemo(() => ({
+        transform: [
+            {
+                translateY: transitionAnim.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: ['0%', '100%'],
+                    extrapolate: 'clamp'
+                })
+            },
+        ],
+        zIndex: 1
+    }), [transitionAnim])
 
     const ref = useCallback((el) => {
         if (el && !rootRef) {
@@ -28,10 +42,12 @@ const Home = () => {
     }, [rootRef]);
 
     return (
-        <Root>
-            <ConversationsWidget />
-            <ConversationsWidget />
-        </Root>
+        <Animated.div style={style}>
+            <Root>
+                <ConversationsWidget />
+                <ConversationsWidget />
+            </Root>
+        </Animated.div>
     );
 };
 

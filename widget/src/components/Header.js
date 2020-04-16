@@ -15,7 +15,7 @@ const Background = styled(animated.div)`
     top: 0;
     left: 0;
     right: 0;
-    height: 320px;
+    height: 240px;
     width: 100%;
     background-color: ${({ theme }) => theme.color.primary};
 `
@@ -25,45 +25,38 @@ const Root = styled(animated.div)`
     top: 0;
     left: 0;
     right: 0;
-    height: 320px;
+    height: 240px;
     justify-content: flex-end;
     overflow: hidden;
 `
 
 const Brand = styled(animated.div)`
-    margin-top: 40px;
-    margin-bottom: 24px;
-    justify-content: center; 
-    align-items: center;
-    text-align: center;
+    padding: 16px;
 `
 
 const Tagline = styled(Text)`
     max-width: 288px;
+    margin-top: 4px;
 `
 
 const OrgMeta = styled.div`
-    margin-top: 16px;
+    ${'' /* margin-top: 16px; */}
 `
 
 const HeaderAvatar = styled(Avatar)`
-    border: 4px solid white;
+    ${'' /* border: 4px solid white; */}
 `
-
-const ShrinkHeader = styled.div`
-    flex: 0 0 64px;
-    background-color: ${({ theme }) => theme.color.primary};
-`;
 
 const Header = ({ shrunk, transitionAnim }) => {
     const theme = useContext(ThemeContext);
+    const { organization } = useAuth();
     const { value: shrinkAnim } = useSpring({ value: shrunk ? 1 : 0 })
     const { anim } = useScrollAnim();
 
     const rootStyle = useMemo(() => ({
         height: shrinkAnim.interpolate({
             range: [0, 1],
-            output: [320, 64]
+            output: [280, 64]
         }),
         backgroundColor: shrinkAnim.interpolate({
             range: [0, 1],
@@ -77,8 +70,8 @@ const Header = ({ shrunk, transitionAnim }) => {
 
     const containerStyle = useMemo(() => ({
         transform: interpolate([
-            anim.value.interpolate({ range: [40, 240], output: [1, 0.95], extrapolate: 'clamp' }),
-            anim.value.interpolate({ range: [40, 240], output: [0, 8], extrapolate: 'clamp' }),
+            anim.value.interpolate({ range: [0, 160], output: [1, 0.95], extrapolate: 'clamp' }),
+            anim.value.interpolate({ range: [0, 160], output: [0, 8], extrapolate: 'clamp' }),
             shrinkAnim.interpolate({ range: [0, 1], output: [0, -100] })
         ], (scale, y, y2) => `translate3d(0, calc(${y}px + ${y2}%), 0) scale(${scale})`),
         opacity: shrinkAnim.interpolate({
@@ -89,8 +82,16 @@ const Header = ({ shrunk, transitionAnim }) => {
 
     const titleStyle = useMemo(() => ({
         opacity: anim.value.interpolate({
-            range: [40, 240],
+            range: [0, 160],
             output: [1, 0],
+            extrapolateRight: 'clamp'
+        }),
+    }), [anim]);
+
+    const taglineStyle = useMemo(() => ({
+        opacity: anim.value.interpolate({
+            range: [0, 160],
+            output: [.56, 0],
             extrapolateRight: 'clamp'
         }),
     }), [anim]);
@@ -118,19 +119,20 @@ const Header = ({ shrunk, transitionAnim }) => {
             <Root style={rootStyle}>
                 <Container as={animated.div} style={containerStyle}>
                     <Brand>
-                        <HeaderAvatar showStatus={false} size={72} name="Stream" />
+                        <animated.div style={titleStyle}>
+                            <HeaderAvatar src={organization.meta.branding.logo} showStatus={false} size={72} name="Stream" />
+                        </animated.div>
                         <OrgMeta>
-                            <Text as={animated.p} style={titleStyle} size={32} weight="700" color="text">
-                                Stream
+                            <Text as={animated.p} style={titleStyle} size={28} weight="600" color="white">
+                                {organization.name}
                             </Text>
-                            <Tagline as={animated.p} style={titleStyle} line={20} faded color="text" size={12} weight="500">
-                                Ship Feeds & Chat Faster
+                            <Tagline as={animated.p} style={taglineStyle} line={24} color="white" size={16} weight="500">
+                                {organization.meta.tagline}
                             </Tagline>
                         </OrgMeta>
                     </Brand>
-                    <Fill />
-                    <Text as={animated.p} style={textStyle} size={24} weight="700" color="text">Hello, Luke! <span role="img" aria-label="Waving">👋</span></Text>
                 </Container>
+                <Fill />
                 <ChatHeader style={chatHeaderStyle} />
             </Root>
         </>

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 import { animated } from 'react-spring';
 import { Container, IconButton } from '@comba.se/ui';
 import { ArrowBackIcon } from '@comba.se/ui/Icons';
@@ -28,13 +29,13 @@ const Root = styled(animated.div)`
 
 
 const ChatHeader = ({ style }) => {
+	const history = useHistory();
 	const { organization } = useAuth();
-	const [_, { clearActiveChannel }] = useStore();
 	return (
 		<Root style={style}>
 			<Container>
 				<IconButton
-					onClick={clearActiveChannel}
+					onClick={history.goBack}
 					icon={ArrowBackIcon}
 				/>
 				<UserBlock avatar={organization.meta.branding.logo} name={organization.name} last_active={null} online />
