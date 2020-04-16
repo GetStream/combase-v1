@@ -31,9 +31,7 @@ const UserBlock = ({ avatar, last_active, name, online }) => {
 					{online
 						? 'Active Now'
 						: last_active
-							? `Last active: ${moment(
-								last_active
-							).fromNow()}`
+							? `Last active: ${moment(last_active).fromNow()}`
 							: 'Offline'}
 				</Text>
 			</Content>

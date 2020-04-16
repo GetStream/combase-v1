@@ -8,39 +8,14 @@ import StreamClient from 'utils/stream';
 
 exports.post = async (req, res) => {
 	try {
-		const data = req.body;
+		const { agent } = req.params;
+		const data = req.body
 
 		const { meta: { subject }, refs: { organization, user } } = data;
-
-		const agents = await Agent.find({ active: true }).select('name title image availability refs').lean();
 
 		const ts = moment().format('dddd H').split(' ');
 		const day = ts[0].toLowerCase();
 		const time = parseInt(ts[1], 10);
-
-		const available = agents
-			.map((agent) => {
-				const a = agent.availability[day];
-
-				if (a.enabled && time >= a.hours.from && time <= a.hours.to) {
-					return agent._id;
-				}
-
-				return [];
-			})
-			.flat(1);
-
-		let agent = {};
-
-		// TEMP: Currently availability isn't set up
-		// properly, so we need to fallback to a user
-		// temporarily
-		if (available.length) {
-			agent = available[Math.floor(Math.random() * available.length)];
-			agent = agent._id;
-		} else {
-			agent = "5e5f50e417fee2bee1092cc5"
-		}
 
 		const chat = await Chat.create({
 			meta: { subject },
@@ -61,7 +36,7 @@ exports.post = async (req, res) => {
 
 		await channel.create();
 
-		const agentToken = client.createToken(agent);
+		const agentToken = client.createToken(agent._id.toString());
 		const userToken = client.createToken(user);
 
 		res.status(200).json({

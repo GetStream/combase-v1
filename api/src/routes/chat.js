@@ -7,5 +7,6 @@ module.exports = api => {
 	api.route('/v1/chats/:chat').get(wrapAsync(get));
 	api.route('/v1/chats/:chat').put(wrapAsync(put));
 	api.route('/v1/chats').post(wrapAsync(post));
+	api.route('/v1/chats/:agent').post(wrapAsync(post));
 	api.route('/v1/chats/:chat').delete(wrapAsync(destroy));
 };

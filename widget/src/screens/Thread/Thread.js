@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import Chat, { MessagesList, InputToolbar } from '@comba.se/chat';
+import Chat, { MessagesList } from '@comba.se/chat';
 
 // Hooks //
 import { useAuth } from 'contexts/Auth';
 
 // Components //
+import InputToolbar from 'components/InputToolbar';
+
 const Root = styled.div`
     flex: 1;
 `;
