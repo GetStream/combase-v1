@@ -12,45 +12,47 @@ exports.post = async (req, res) => {
 
 		const { meta: { subject }, refs: { organization, user } } = data;
 
-		const agents = await Agent.find({ active: true }).select('name title image availability refs').lean();
+		// const agents = await Agent.find({ active: true }).select('name title image availability refs').lean();
 
-		const ts = moment().format('dddd H').split(' ');
-		const day = ts[0].toLowerCase();
-		const time = parseInt(ts[1], 10);
+		// const ts = moment().format('dddd H').split(' ');
+		// const day = ts[0].toLowerCase();
+		// const time = parseInt(ts[1], 10);
 
-		const available = agents
-			.map((agent) => {
-				const a = agent.availability[day];
+		// const available = agents
+		// 	.map((agent) => {
+		// 		const a = agent.availability[day];
 
-				if (a.enabled && time >= a.hours.from && time <= a.hours.to) {
-					return agent._id;
-				}
+		// 		if (a.enabled && time >= a.hours.from && time <= a.hours.to) {
+		// 			return agent._id;
+		// 		}
 
-				return [];
-			})
-			.flat(1);
+		// 		return [];
+		// 	})
+		// 	.flat(1);
 
-		let agent = {};
+		// let agent = {};
 
 		// TEMP: Currently availability isn't set up
 		// properly, so we need to fallback to a user
 		// temporarily
-		if (available.length) {
-			agent = available[Math.floor(Math.random() * available.length)];
-			agent = agent._id;
-		} else {
-			agent = "5e5f50e417fee2bee1092cc5"
-		}
+		// if (available.length) {
+		// 	agent = available[Math.floor(Math.random() * available.length)];
+		// 	agent = agent._id;
+		// } else {
+		// 	agent = "5e5f50e417fee2bee1092cc5"
+		// }
 
 		const chat = await Chat.create({
 			meta: { subject },
-			refs: { user, organization, agents: { assignee: { agent } } }
+			// refs: { user, organization, agents: { assignee: { agent } } }
+			refs: { user, organization }
 		});
 
 		const { key, secret } = await StreamClient();
 		const client = new StreamChat(key, secret);
 		const channel = client.channel('commerce', chat._id.toString(), {
-			members: [agent, user],
+			// members: [agent, user],
+			members: [user],
 			roles: {
 				agent: 'moderator',
 				user: 'channel_member'
@@ -61,20 +63,20 @@ exports.post = async (req, res) => {
 
 		await channel.create();
 
-		const agentToken = client.createToken(agent);
+		// const agentToken = client.createToken(agent);
 		const userToken = client.createToken(user);
 
 		res.status(200).json({
-			agent: {
-				id: chat.refs.agents.assignee.agent._id,
-				name: chat.refs.agents.assignee.agent.name
-			},
+			// agent: {
+			// 	id: chat.refs.agents.assignee.agent._id,
+			// 	name: chat.refs.agents.assignee.agent.name
+			// },
 			user: {
 				id: chat.refs.user._id,
 				name: chat.refs.user.name
 			},
 			tokens: {
-				agent: agentToken,
+				// agent: agentToken,
 				user: userToken
 			}
 		});

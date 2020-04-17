@@ -56,7 +56,7 @@ export const ChatSchema = new Schema(
 					agent: {
 						type: Schema.Types.ObjectId,
 						ref: 'Agent',
-						required: true,
+						required: false,
 						autopopulate: {
 							select: ['name', 'email'],
 						},
