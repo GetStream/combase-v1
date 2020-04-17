@@ -8,8 +8,6 @@ import { ArrowBackIcon } from '@comba.se/ui/Icons';
 // Hooks //
 import { useAuth } from 'contexts/Auth';
 
-import { useStore } from 'contexts/Store';
-
 // Components //
 import UserBlock from 'components/UserBlock';
 
@@ -30,14 +28,16 @@ const Root = styled(animated.div)`
 
 const ChatHeader = ({ style }) => {
 	const history = useHistory();
-	const { organization } = useAuth();
+	const { organization, user } = useAuth();
 	return (
 		<Root style={style}>
 			<Container>
-				<IconButton
-					onClick={history.goBack}
-					icon={ArrowBackIcon}
-				/>
+				{user ? (
+					<IconButton
+						onClick={history.goBack}
+						icon={ArrowBackIcon}
+					/>
+				) : null}
 				<UserBlock avatar={organization.meta.branding.logo} name={organization.name} last_active={null} online />
 			</Container>
 		</Root>

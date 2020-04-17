@@ -3,7 +3,12 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Button, Card, EmptyState, FAB } from "@comba.se/ui";
 import { ThreadItem } from '@comba.se/chat';
-import { useStore } from 'contexts/Store';
+
+// Hooks //
+import { useAuth } from 'contexts/Auth';
+
+// Utils //
+import request from 'utils/request';
 
 // Components //
 import CardHeader from 'components/CardHeader';
@@ -37,39 +42,49 @@ const renderThreads = (chats) => chats.length ? chats.map(({ channel: { id, data
 }) : <EmptyWrapper><EmptyState text="No Conversations!" /></EmptyWrapper>;
 
 const ConversationsWidget = ({ className }) => {
-    const [state, { setActiveChannel }] = useStore();
-    // const history = useHistory();
-    // const [{ organization, user }] = useAuth();
-    // const createNewConversation = useCallback(async () => {
-    //     try {
-    //         await request('v1/chats', 'post', {
-    //             body: JSON.stringify({
-    //                 meta: {
-    //                     subject: "Chat",
-    //                 },
-    //                 refs: {
-    //                     user: user._id,
-    //                     agents: {
-    //                         assignee: {
-    //                             agent: "5e5f50e417fee2bee1092cc5"
-    //                         }
-    //                     },
-    //                     organization: organization._id,
-    //                 },
-    //             })
-    //         });
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // }, []);
-    return (
-        <Root {...{ className }}>
-            <CardHeader title="Conversations" />
+    const { organization, user } = useAuth();
+    console.log(organization, user);
+    const createNewConversation = useCallback(async () => {
+        try {
+            await request('v1/chats', 'post', {
+                body: JSON.stringify({
+                    meta: {
+                        subject: "Chat",
+                    },
+                    refs: {
+                        user: user._id,
+                        agents: {
+                            assignee: {
+                                agent: "5e5f50e417fee2bee1092cc5"
+                            }
+                        },
+                        organization: organization._id,
+                    },
+                })
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    }, []);
+
+    const renderContent = useCallback(() => {
+        if (!user) {
+            return 'No User'
+        }
+
+        return (
             <List>
                 <ThreadItem />
                 <ThreadItem />
                 <ThreadItem />
             </List>
+        );
+    }, [user]);
+
+    return (
+        <Root {...{ className }}>
+            <CardHeader title="Conversations" />
+            {renderContent()}
             <CardFooter>
                 <Button flat label="See all" />
                 <Link to="/channelIdHere">

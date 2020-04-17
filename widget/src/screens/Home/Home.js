@@ -1,13 +1,15 @@
 import React, { useEffect, useMemo } from 'react';
 import styled from 'styled-components';
+import { Redirect } from 'react-router-dom';
 import Animated from 'animated/lib/targets/react-dom';
 import { Container } from '@comba.se/ui';
 
 // Contexts //
+import { useAuth } from 'contexts/Auth';
 import { useScrollAnim } from 'contexts/ScrollAnimation';
 
 // Components //
-import ConversationsWidget from 'components/Home/ConversationsWidget';
+import ConversationsWidget from 'components/ConversationsWidget';
 
 const Root = styled(Container)`
     z-index: 2;
@@ -19,8 +21,27 @@ const Root = styled(Container)`
     }
 `;
 
-const Home = ({ transitionAnim }) => {
+const Home = () => {
+    const { user } = useAuth();
     const { setScrollAnim } = useScrollAnim();
+
+    useEffect(() => {
+        setScrollAnim({ value: 0 })
+    }, [setScrollAnim]);
+
+    if (!user) {
+        return <Redirect to="/new" />
+    }
+
+    return (
+        <Root>
+            <ConversationsWidget />
+            <ConversationsWidget />
+        </Root>
+    );
+};
+
+export default ({ transitionAnim, ...props }) => {
     const style = useMemo(() => ({
         transform: [
             {
@@ -34,18 +55,9 @@ const Home = ({ transitionAnim }) => {
         zIndex: 1
     }), [transitionAnim]);
 
-    useEffect(() => {
-        setScrollAnim({ value: 0 })
-    }, [setScrollAnim]);
-
     return (
         <Animated.div style={style}>
-            <Root>
-                <ConversationsWidget />
-                <ConversationsWidget />
-            </Root>
+            <Home {...props} />
         </Animated.div>
     );
 };
-
-export default Home;
