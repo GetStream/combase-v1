@@ -18,6 +18,14 @@ import Credit from 'components/Credit';
 import Header from 'components/Header';
 import Transitioner from 'components/Transitioner'
 
+const Undersheet = styled.div`
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+`;
+
 const WidgetRoot = styled(animated.div)`
     position: fixed;
     bottom: 120px;
@@ -35,7 +43,7 @@ const Wrapper = styled.div`
     flex: 1;
 `;
 
-const ScrollWrapper = styled(Animated.div)`
+const ScrollWrapper = styled.div`
    flex: 1;
     overflow: hidden;
     overflow-y: scroll;
@@ -105,6 +113,7 @@ const Root = ({ location, match }) => {
 
     return (
         <>
+            {isOpen ? <Undersheet onClick={toggleWidget} /> : null}
             <Portal unmount={!mounted}>
                 <ScrollAnimationProvider target={scrollRef}>
                     <WidgetRoot style={style}>
