@@ -47,6 +47,16 @@ const HeaderAvatar = styled(Avatar)`
     ${'' /* border: 4px solid white; */}
 `
 
+const WelcomeChip = styled(animated.div)`
+    position: absolute;
+    top: 40px;
+    right: 16px;
+    padding: 4px 8px 4px 12px;
+    border-radius: 999px;
+    background-color: ${({ theme }) => theme.colorUtils.fade(theme.color.white, 0.12)};
+    transform: translateY(-50%);
+`;
+
 const Header = ({ shrunk, transitionAnim }) => {
     const theme = useContext(ThemeContext);
     const { organization } = useAuth();
@@ -96,13 +106,12 @@ const Header = ({ shrunk, transitionAnim }) => {
         }),
     }), [anim]);
 
-    const textStyle = useMemo(() => ({
+    const chipStyle = useMemo(() => ({
         opacity: anim.value.interpolate({
             range: [0, 64],
             output: [1, 0],
             extrapolateRight: 'clamp'
         }),
-        zIndex: 3,
         transform: interpolate([
             anim.value.interpolate({ range: [0, 64], output: [0, 32], extrapolate: 'clamp' }),
             shrinkAnim.interpolate({ range: [0, 1], output: [0, 200], extrapolate: 'clamp' }),
@@ -119,6 +128,7 @@ const Header = ({ shrunk, transitionAnim }) => {
             <Root style={rootStyle}>
                 <Container as={animated.div} style={containerStyle}>
                     <Brand>
+                        <WelcomeChip style={chipStyle}><Text color="white" size={12} weight="600">Welcome, Luke! <span role="img" aria-label="waving">👋</span></Text></WelcomeChip>
                         <animated.div style={titleStyle}>
                             <HeaderAvatar src={organization.meta.branding.logo} showStatus={false} size={72} name="Stream" />
                         </animated.div>

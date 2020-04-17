@@ -15,6 +15,7 @@ const Root = styled(Animated.div)`
 
 const Thread = ({ match, transitionAnim, ...props }) => {
     const { params: { channelId } } = match;
+
     const { user } = useAuth();
 
     const messagesStyle = useMemo(() => ({
