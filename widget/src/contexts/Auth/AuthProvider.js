@@ -112,6 +112,8 @@ export default ({ children }) => {
     }
   }, []);
 
+  const client = useInitClient('pyst6tqux4vf', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWU1NTUyOTYxZTdmNzAwYWJkMGRmZjIzIn0.Z1WIshH9NZ54eVbcGeNOcfVSNGjUEOtLJ2FDuTfbtVI');
+
   const login = useCallback(
     async (email, password) => {
       try {
@@ -147,8 +149,9 @@ export default ({ children }) => {
     const data = await request(`v1/users/${user._id}`, "get");
     const userData = { tokens: user.tokens, ...data };
     localStorage.setItem("user", JSON.stringify(userData));
+    await client.setUser({ id: userData._id, name: `${userData.name.first} ${userData.name.last.charAt(0)}.` })
     setUser(userData);
-  }, [user]);
+  }, [client, user]);
 
   const refetchCurrentOrg = useCallback(async () => {
     const org = await request(`v1/organizations/${process.env.REACT_APP_ORGANIZATION_ID}`, "get");
@@ -179,7 +182,6 @@ export default ({ children }) => {
     ]
   );
 
-  const client = useInitClient('pyst6tqux4vf', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWU1NTUyOTYxZTdmNzAwYWJkMGRmZjIzIn0.Z1WIshH9NZ54eVbcGeNOcfVSNGjUEOtLJ2FDuTfbtVI');
 
   const authorizeUser = useCallback(async () => {
     if (user) {
@@ -190,6 +192,7 @@ export default ({ children }) => {
       refetchUser();
     } else {
       await client.setAnonymousUser();
+      setUser({ _id: '!anon' });
       setLoading(false);
     }
   }, [client, user]);

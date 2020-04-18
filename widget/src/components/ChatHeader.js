@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { animated } from 'react-spring';
@@ -26,13 +27,13 @@ const Root = styled(animated.div)`
 `;
 
 
-const ChatHeader = ({ style }) => {
+const ChatHeader = ({ channelId, style }) => {
 	const history = useHistory();
 	const { organization, user } = useAuth();
 	return (
 		<Root style={style}>
 			<Container>
-				{user ? (
+				{user && channelId && channelId !== 'new' ? (
 					<IconButton
 						onClick={history.goBack}
 						icon={ArrowBackIcon}
@@ -42,6 +43,11 @@ const ChatHeader = ({ style }) => {
 			</Container>
 		</Root>
 	)
+}
+
+ChatHeader.propTypes = {
+	channelId: PropTypes.string,
+	style: PropTypes.object,
 }
 
 export default ChatHeader;

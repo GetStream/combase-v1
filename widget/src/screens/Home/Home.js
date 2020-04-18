@@ -29,7 +29,7 @@ const Home = () => {
         setScrollAnim({ value: 0 })
     }, [setScrollAnim]);
 
-    if (!user) {
+    if (user._id !== '!anon') {
         return <Redirect to="/new" />
     }
 

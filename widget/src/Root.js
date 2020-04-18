@@ -58,8 +58,8 @@ const Launcher = styled(FAB)`
     position: fixed;
 `
 
-const renderHeader = ({ match: { isExact } }) => (
-    <Header shrunk={!isExact} />
+const renderHeader = ({ match }) => (
+    <Header shrunk={!!match} match={match} />
 )
 
 const Root = ({ location, match }) => {
@@ -124,7 +124,7 @@ const Root = ({ location, match }) => {
                                     <Route path="/" render={renderHome} />
                                 </Switch>
                             </Transitioner>
-                            <Route path="/" children={renderHeader} />
+                            <Route path="/:channelId" children={renderHeader} />
                         </Wrapper>
                         <Credit />
                     </WidgetRoot>

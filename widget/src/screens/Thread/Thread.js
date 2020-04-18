@@ -5,6 +5,7 @@ import Animated from 'animated/lib/targets/react-dom';
 
 // Hooks //
 import { useAuth } from 'contexts/Auth';
+import useChatForm from 'hooks/useChatForm';
 
 // Components //
 import InputToolbar from 'components/InputToolbar';
@@ -17,6 +18,7 @@ const Thread = ({ match, transitionAnim, ...props }) => {
     const { params: { channelId } } = match;
 
     const { user } = useAuth();
+    const [messages, onSend] = useChatForm();
 
     const messagesStyle = useMemo(() => ({
         flex: 1,
@@ -41,15 +43,16 @@ const Thread = ({ match, transitionAnim, ...props }) => {
             }
         ]
     }), [transitionAnim]);
+
     return (
         <Root>
             <Chat
-                onSend={console.log}
+                onSend={onSend}
                 channelId={channelId}
                 user={user}
             >
                 <Animated.div style={messagesStyle}>
-                    <MessagesList />
+                    <MessagesList messages={messages} />
                 </Animated.div>
                 <Animated.div style={toolbarStyle}>
                     <InputToolbar />

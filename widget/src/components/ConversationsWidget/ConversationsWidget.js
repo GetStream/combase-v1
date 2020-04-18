@@ -43,7 +43,7 @@ const renderThreads = (chats) => chats.length ? chats.map(({ channel: { id, data
 
 const ConversationsWidget = ({ className }) => {
     const { organization, user } = useAuth();
-    console.log(organization, user);
+    const data = null;
     const createNewConversation = useCallback(async () => {
         try {
             await request('v1/chats', 'post', {
@@ -68,7 +68,7 @@ const ConversationsWidget = ({ className }) => {
     }, []);
 
     const renderContent = useCallback(() => {
-        if (!user) {
+        if (!user || !data) {
             return 'No User'
         }
 
@@ -79,7 +79,7 @@ const ConversationsWidget = ({ className }) => {
                 <ThreadItem />
             </List>
         );
-    }, [user]);
+    }, [data, user]);
 
     return (
         <Root {...{ className }}>

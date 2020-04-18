@@ -57,7 +57,7 @@ const WelcomeChip = styled(animated.div)`
     transform: translateY(-50%);
 `;
 
-const Header = ({ shrunk, transitionAnim }) => {
+const Header = ({ match, shrunk }) => {
     const theme = useContext(ThemeContext);
     const { organization } = useAuth();
     const { value: shrinkAnim } = useSpring({ value: shrunk ? 1 : 0 })
@@ -143,7 +143,7 @@ const Header = ({ shrunk, transitionAnim }) => {
                     </Brand>
                 </Container>
                 <Fill />
-                <ChatHeader style={chatHeaderStyle} />
+                <ChatHeader channelId={match ? match.params.channelId : null} style={chatHeaderStyle} />
             </Root>
         </>
     );
