@@ -1,8 +1,10 @@
 import 'dotenv/config';
 import { StreamChat } from 'stream-chat';
 
-export default async () => {
-	try {
+let client = null;
+
+export default () => {
+	if (!client) {
 		let apiKey;
 		let apiSecret;
 
@@ -25,7 +27,5 @@ export default async () => {
 		};
 
 		return client;
-	} catch (error) {
-		return new Error(Error);
 	}
 };
