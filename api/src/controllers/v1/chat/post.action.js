@@ -8,9 +8,7 @@ import StreamClient from 'utils/stream';
 
 exports.post = async (req, res) => {
 	try {
-		const data = req.body;
-
-		const { meta: { subject }, refs: { organization, user } } = data;
+		const { meta: { subject }, refs: { organization, user } } = req.body;
 
 		// const agents = await Agent.find({ active: true }).select('name title image availability refs').lean();
 

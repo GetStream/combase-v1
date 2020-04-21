@@ -82,6 +82,7 @@ export const ChatSchema = new Schema(
 						'Open',
 						'Pending User',
 						'Pending Agent',
+						'Waiting',
 						'Closed',
 						'Archived',
 					],
