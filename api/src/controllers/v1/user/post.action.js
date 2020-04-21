@@ -7,16 +7,18 @@ exports.post = async (req, res) => {
 	try {
 		const data = req.body;
 
-		const user = await User.findOneOrCreate({ email: data.email.trim() }, data);
+		const user = await User.findOneOrCreate({ "email.address": data.email.address }, data);
 
-		const { key, secret } = await StreamClient();
+		const { key, secret } = StreamClient();
 		const client = new StreamChat(key, secret);
 
-		await client.updateUser({
+		const streamUser = await client.setUser({
 			id: user._id.toString(),
 			name: user.name,
 			role: 'user'
 		});
+
+		console.log('stream user', streamUser);
 
 		res.status(200).json(user);
 	} catch (error) {
