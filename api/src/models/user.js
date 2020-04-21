@@ -14,16 +14,9 @@ export const UserSchema = new Schema(
 			trim: true
 		},
 		name: {
-			first: {
-				type: String,
-				trim: true,
-				required: true
-			},
-			last: {
-				type: String,
-				trim: true,
-				required: true
-			}
+			type: String,
+			trim: true,
+			required: true
 		},
 		email: {
 			address: {
