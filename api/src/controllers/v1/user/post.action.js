@@ -7,14 +7,14 @@ exports.post = async (req, res) => {
 	try {
 		const data = req.body;
 
-		const { _id, name } = await User.findOneOrCreate({ email: data.email }, data);
+		const user = await User.findOneOrCreate({ email: data.email }, data);
 
 		const { key, secret } = await StreamClient();
 		const client = new StreamChat(key, secret);
 
 		await client.updateUser({
-			id: _id.toString(),
-			name,
+			id: user._id.toString(),
+			name: user.name,
 			role: 'user'
 		});
 
