@@ -14,6 +14,7 @@ import request from 'utils/request';
 // Components //
 import CardHeader from 'components/CardHeader';
 import CardFooter from 'components/CardFooter';
+import ConversationItem from './ConversationItem';
 
 const Root = styled(Card)`
     width: 100%;  
@@ -59,7 +60,7 @@ const ConversationsWidget = ({ className }) => {
         return (
             <List>
                 {chats.map((chat) => {
-                    return <ThreadItem id={chat._id} />
+                    return <ConversationItem id={chat._id} />
                 })}
             </List>
         );

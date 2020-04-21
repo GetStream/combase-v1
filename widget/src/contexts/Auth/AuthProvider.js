@@ -246,7 +246,7 @@ export default ({ children }) => {
 
   return (
     <ChatProvider client={client}>
-      <ChannelsProvider>
+      <ChannelsProvider userId={user ? user._id : ''}>
         <AuthContext.Provider {...{ value }}>{children}</AuthContext.Provider>
       </ChannelsProvider>
     </ChatProvider>
