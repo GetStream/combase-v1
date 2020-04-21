@@ -13,9 +13,14 @@ exports.destroy = async (req, res) => {
 		// }
 
 		await User.findByIdAndRemove(data.user);
-		await Chat.remove({
-			'refs.organization': data.organization
-		});
+
+		// NOTE: Should the below not be refs.agents.assignee? and if
+		// so, do we even want to delete all of a users chats if they
+		// delete their account?
+
+		// await Chat.remove({
+		// 	'refs.organization': data.organization
+		// });
 
 		res.sendStatus(204);
 	} catch (error) {
