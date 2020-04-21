@@ -33,7 +33,7 @@ const ChatHeader = ({ channelId, style }) => {
 	return (
 		<Root style={style}>
 			<Container>
-				{user && channelId && channelId !== 'new' ? (
+				{user && user._id !== "!anon" && channelId && channelId !== 'new' ? (
 					<IconButton
 						onClick={history.goBack}
 						icon={ArrowBackIcon}

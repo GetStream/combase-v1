@@ -85,34 +85,47 @@ const dummyUser = {
 }
 
 export default ({ children }) => {
-  const { queueSnackbar } = useContext(SnackbarContext);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user")) || null
-    // dummyUser
   );
 
   const [organization, setOrg] = useState(
     JSON.parse(localStorage.getItem("organization")) || null
   );
 
-  const getOrg = useCallback(async () => {
+  const { queueSnackbar } = useContext(SnackbarContext);
+  const [loading, setLoading] = useState(!organization);
+  const [error, setError] = useState(null);
+
+  const client = useInitClient('pyst6tqux4vf', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWU1NTUyOTYxZTdmNzAwYWJkMGRmZjIzIn0.Z1WIshH9NZ54eVbcGeNOcfVSNGjUEOtLJ2FDuTfbtVI');
+
+  const createUser = useCallback(async ({ name, email }) => {
     try {
-      setLoading(true);
-      const data = await request(`v1/organizations/${process.env.REACT_APP_ORGANIZATION_ID}`, "get");
-      localStorage.setItem("organization", JSON.stringify(data));
-      setOrg(data);
+      // setLoading(true);
+      const data = await request("v1/users", "post", {
+        body: JSON.stringify({
+          email: {
+            address: email,
+          },
+          name,
+          refs: {
+            organization: process.env.REACT_APP_ORGANIZATION_ID,
+          }
+        })
+      });
+      data.id = data._id;
+      setUser(data);
+      localStorage.setItem("user", JSON.stringify(data));
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      queueSnackbar({
+        isError: true,
+        text: error.message
+      });
       setLoading(false);
       setError(error);
     }
   }, []);
-
-  const client = useInitClient('pyst6tqux4vf', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWU1NTUyOTYxZTdmNzAwYWJkMGRmZjIzIn0.Z1WIshH9NZ54eVbcGeNOcfVSNGjUEOtLJ2FDuTfbtVI');
 
   const login = useCallback(
     async (email, password) => {
@@ -145,25 +158,67 @@ export default ({ children }) => {
     localStorage.removeItem("user");
   }, []);
 
+  const createChat = useCallback(async () => {
+    try {
+      // TODO: Here we need to hit the chat endpoint - check postman
+      // we can then pass back the _id and redirect to the correct chat window.
+      // We should look into sending the initial message here too (maybe do it on the server.)
+    } catch (error) {
+      // TODO: Error handling.
+      console.log(error);
+    }
+  }, []);
+
   const refetchUser = useCallback(async () => {
     const data = await request(`v1/users/${user._id}`, "get");
     const userData = { tokens: user.tokens, ...data };
     localStorage.setItem("user", JSON.stringify(userData));
-    await client.setUser({ id: userData._id, name: `${userData.name.first} ${userData.name.last.charAt(0)}.` })
     setUser(userData);
+    setLoading(false);
   }, [client, user]);
 
   const refetchCurrentOrg = useCallback(async () => {
     const org = await request(`v1/organizations/${process.env.REACT_APP_ORGANIZATION_ID}`, "get");
     localStorage.setItem("organization", JSON.stringify(org));
     setOrg(org);
-  }, [organization]);
+    setLoading(false);
+  }, []);
+
+  const setStreamUser = useCallback(async (user) => {
+    if (user && user._id !== '!anon') {
+      await client.setUser({
+        id: user._id,
+        name: user.name,
+      }, user.tokens.stream);
+    } else {
+      await client.setAnonymousUser();
+      setUser({ _id: '!anon' });
+      setLoading(false);
+    }
+  }, [client]);
+
+  useEffect(() => {
+    console.log('updated', client);
+    if (client && !client.connecting && !client.anonymous) {
+      console.log('setting user to', user);
+      setStreamUser(user);
+    }
+  }, [client, setStreamUser, user]);
+
+  // On mount, refetch the organization, this will either populate
+  // the empty localstorage or silently hydrate it if data exists.
+  useEffect(() => {
+    refetchCurrentOrg();
+  }, [refetchCurrentOrg]);
 
   const value = useMemo(
     () => ({
+      createChat,
+      createUser,
       organization,
       refetchCurrentOrg,
       refetchUser,
+      setUser,
       user,
       loading,
       error,
@@ -171,6 +226,8 @@ export default ({ children }) => {
       logout
     }),
     [
+      createChat,
+      createUser,
       organization,
       refetchCurrentOrg,
       refetchUser,
@@ -178,30 +235,10 @@ export default ({ children }) => {
       loading,
       error,
       login,
-      logout
+      logout,
+      setUser,
     ]
   );
-
-
-  const authorizeUser = useCallback(async () => {
-    if (user) {
-      await client.setUser({
-        id: user._id,
-        name: `${user.name.first} ${user.name.last.charAt(0)}.`
-      });
-      refetchUser();
-    } else {
-      await client.setAnonymousUser();
-      setUser({ _id: '!anon' });
-      setLoading(false);
-    }
-  }, [client, user]);
-
-  useEffect(() => {
-    if (client) {
-      authorizeUser();
-    }
-  }, [client]);
 
   if (loading || !client) {
     return null

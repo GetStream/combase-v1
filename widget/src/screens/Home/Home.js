@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from 'react';
 import styled from 'styled-components';
 import { Redirect } from 'react-router-dom';
 import Animated from 'animated/lib/targets/react-dom';
-import { Container } from '@comba.se/ui';
+import { Card, Container } from '@comba.se/ui';
 
 // Contexts //
 import { useAuth } from 'contexts/Auth';
@@ -29,14 +29,14 @@ const Home = () => {
         setScrollAnim({ value: 0 })
     }, [setScrollAnim]);
 
-    if (user._id !== '!anon') {
+    if (user._id === '!anon') {
         return <Redirect to="/new" />
     }
 
     return (
         <Root>
             <ConversationsWidget />
-            <ConversationsWidget />
+            <Card style={{ height: 400 }} />
         </Root>
     );
 };

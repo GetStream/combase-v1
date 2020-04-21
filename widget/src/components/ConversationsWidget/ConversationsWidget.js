@@ -6,6 +6,7 @@ import { ThreadItem } from '@comba.se/chat';
 
 // Hooks //
 import { useAuth } from 'contexts/Auth';
+import useChats from 'hooks/useChats'
 
 // Utils //
 import request from 'utils/request';
@@ -43,43 +44,26 @@ const renderThreads = (chats) => chats.length ? chats.map(({ channel: { id, data
 
 const ConversationsWidget = ({ className }) => {
     const { organization, user } = useAuth();
-    const data = null;
-    const createNewConversation = useCallback(async () => {
-        try {
-            await request('v1/chats', 'post', {
-                body: JSON.stringify({
-                    meta: {
-                        subject: "Chat",
-                    },
-                    refs: {
-                        user: user._id,
-                        agents: {
-                            assignee: {
-                                agent: "5e5f50e417fee2bee1092cc5"
-                            }
-                        },
-                        organization: organization._id,
-                    },
-                })
-            });
-        } catch (error) {
-            console.error(error);
-        }
-    }, []);
+    const [chats, { loading }] = useChats();
 
     const renderContent = useCallback(() => {
-        if (!user || !data) {
-            return 'No User'
+        if (loading) {
+            return (
+                <List>
+                    <ThreadItem />
+                    <ThreadItem />
+                    <ThreadItem />
+                </List>
+            );
         }
-
         return (
             <List>
-                <ThreadItem />
-                <ThreadItem />
-                <ThreadItem />
+                {chats.map((chat) => {
+                    return <ThreadItem id={chat._id} />
+                })}
             </List>
         );
-    }, [data, user]);
+    }, [chats, loading, user]);
 
     return (
         <Root {...{ className }}>

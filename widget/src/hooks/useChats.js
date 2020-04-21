@@ -4,11 +4,11 @@ import { useAuth } from 'contexts/Auth';
 import request from "utils/request";
 
 export default () => {
-  const [{ organization, user }] = useAuth();
+  const { organization, user } = useAuth();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const filter = useMemo(() => ({ organization: organization._id, members: { $in: [user._id] } }), [organization, user]);
-  const [channels, { loading: channelsLoading }] = useChannels(user._id, filter);
+  const { channels, loading: channelsLoading } = useChannels(user._id, filter);
   const [chats, setChats] = useState(
     JSON.parse(localStorage.getItem("chats")) || []
   );
@@ -25,7 +25,7 @@ export default () => {
           `v1/chats?refs.user._id=${user._id}`,
           "get",
           null,
-          process.env.REACT_APP_API_KEY
+          user.tokens.stream
         );
 
         const chatData = data.map(chat => ({
@@ -42,7 +42,7 @@ export default () => {
     } else {
       setLoading(false);
     }
-  }, [user._id, channels, channelsLoading]);
+  }, [user._id, channels, channelsLoading, user.tokens.stream]);
   useEffect(() => {
     getChats();
   }, [getChats]);

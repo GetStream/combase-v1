@@ -102,6 +102,10 @@ const Root = ({ location, match }) => {
         </ScrollWrapper>
     ), [handleScrollRef, transitionAnim]);
 
+    const renderCredit = useCallback(({ match }) => {
+        return <Credit hasShadow={match} />
+    }, [])
+
 
     const style = useMemo(() => ({
         transform: anim.interpolate({
@@ -126,7 +130,7 @@ const Root = ({ location, match }) => {
                             </Transitioner>
                             <Route path="/:channelId" children={renderHeader} />
                         </Wrapper>
-                        <Credit />
+                        <Route path="/:channelId" children={renderCredit} />
                     </WidgetRoot>
                 </ScrollAnimationProvider>
             </Portal>

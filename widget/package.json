@@ -19,6 +19,7 @@
     "react-scripts": "3.4.0",
     "react-spring": "^8.0.27",
     "recyclerlistview": "^3.0.0",
+    "shortid": "^2.2.15",
     "stream-chat": "^1.4.0",
     "stream-chat-hooks": "^0.0.9",
     "styled-components": "^5.0.1",

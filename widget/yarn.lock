@@ -943,22 +943,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@comba.se/chat@../../chat/dist":
+"@comba.se/chat@^0.0.37":
   version "0.0.37"
-  dependencies:
-    "@comba.se/ui" "^0.0.79"
-    react-content-loader "^5.0.2"
-
-"@comba.se/chat@^0.0.32":
-  version "0.0.32"
-  resolved "https://registry.yarnpkg.com/@comba.se/chat/-/chat-0.0.32.tgz#87e3cb67e8737a2b908af93c88359a8ae3c20c3b"
-  integrity sha512-plX1MJN0eqXuc04r2Ff6LFGwIFbpAXmzQ+es9+kHIyJ7C5Kp2K2gJoFivieIQjBql10RDw2Eh9bQQOhNtOHT0g==
-  dependencies:
-    "@comba.se/ui" "^0.0.79"
-    react-content-loader "^5.0.2"
-
-"@comba.se/chat@file:../../chat/dist":
-  version "0.0.37"
+  resolved "https://registry.yarnpkg.com/@comba.se/chat/-/chat-0.0.37.tgz#171fc6fc9cdb62573729d4f5300fd47815464b4f"
+  integrity sha512-k1s/zXvL4PUmeQGVBteLzTcbQW/4B6KT9LhY9Ye0lbMRAASKIt/Bb7tu067iw6P46+e4M0ha6WD4+eZj9nO9Vw==
   dependencies:
     "@comba.se/ui" "^0.0.79"
     react-content-loader "^5.0.2"
@@ -973,9 +961,6 @@
     react-color shreshthmohan/react-color
     react-content-loader "^5.0.2"
     uuid "^7.0.2"
-
-"@comba.se/ui@file:../../ui/dist":
-  version "0.0.79"
 
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
@@ -7069,6 +7054,11 @@ nan@^2.12.1:
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.14.0.tgz#7818f722027b2459a86f0295d434d1fc2336c52c"
   integrity sha512-INOFj37C7k3AfaNTtX8RhsTw7qRy7eLET14cROi9+5HAVbbHuIWUHEauBv5qT4Av2tWasiTY1Jw6puUNqRJXQg==
 
+nanoid@^2.1.0:
+  version "2.1.11"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-2.1.11.tgz#ec24b8a758d591561531b4176a01e3ab4f0f0280"
+  integrity sha512-s/snB+WGm6uwi0WjsZdaVcuf3KJXlfGl2LcxgwkEwJF0D/BWzVWAZW/XY4bFaiR7s0Jk3FPvlnepg1H1b1UwlA==
+
 nanomatch@^1.2.9:
   version "1.2.13"
   resolved "https://registry.yarnpkg.com/nanomatch/-/nanomatch-1.2.13.tgz#b87a8aa4fc0de8fe6be88895b38983ff265bd119"
@@ -9662,6 +9652,13 @@ shellwords@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
   integrity sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==
+
+shortid@^2.2.15:
+  version "2.2.15"
+  resolved "https://registry.yarnpkg.com/shortid/-/shortid-2.2.15.tgz#2b902eaa93a69b11120373cd42a1f1fe4437c122"
+  integrity sha512-5EaCy2mx2Jgc/Fdn9uuDuNIIfWBpzY4XIlhoqtXF6qsf+/+SGZ+FxDdX/ZsMZiWupIWNqAEmiNY4RC+LSmCeOw==
+  dependencies:
+    nanoid "^2.1.0"
 
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"

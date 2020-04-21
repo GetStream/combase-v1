@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 import Chat, { MessagesList } from '@comba.se/chat';
 import Animated from 'animated/lib/targets/react-dom';
@@ -12,16 +12,24 @@ import InputToolbar from 'components/InputToolbar';
 
 const Root = styled(Animated.div)`
     flex: 1;
+    height: 100%;
+    & > div {
+        height: 100%;
+    }
+`;
+
+const HeaderSpacer = styled.div`
+    flex: 0 0 64px;
 `;
 
 const Thread = ({ match, transitionAnim, ...props }) => {
     const { params: { channelId } } = match;
 
-    const { user } = useAuth();
-    const [messages, onSend] = useChatForm();
+    const { user, createUser } = useAuth();
+    const [messages, onSend] = useChatForm(createUser);
 
     const messagesStyle = useMemo(() => ({
-        flex: 1,
+        height: 'calc(100% - 128px)',
         transform: [
             {
                 scale: transitionAnim.interpolate({
@@ -51,6 +59,7 @@ const Thread = ({ match, transitionAnim, ...props }) => {
                 channelId={channelId}
                 user={user}
             >
+                <HeaderSpacer />
                 <Animated.div style={messagesStyle}>
                     <MessagesList messages={messages} />
                 </Animated.div>
