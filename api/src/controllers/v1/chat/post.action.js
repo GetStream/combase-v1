@@ -76,7 +76,8 @@ exports.post = async (req, res) => {
 			tokens: {
 				// agent: agentToken,
 				user: userToken
-			}
+			},
+			...chat,
 		});
 	} catch (error) {
 		console.error(error);
