@@ -6,50 +6,23 @@ import Chat from 'models/chat';
 import Agent from 'models/agent';
 import StreamClient from 'utils/stream';
 
+// Used for creating a chat from the widget
+// Only adds a user to the chat so there is one member. 
+// Also sets stauts to 'Waiting' so we can start to 
+// round-robin and assign an agent.
+
 exports.post = async (req, res) => {
 	try {
 		const { meta: { subject }, refs: { organization, user } } = req.body;
 
-		// const agents = await Agent.find({ active: true }).select('name title image availability refs').lean();
-
-		// const ts = moment().format('dddd H').split(' ');
-		// const day = ts[0].toLowerCase();
-		// const time = parseInt(ts[1], 10);
-
-		// const available = agents
-		// 	.map((agent) => {
-		// 		const a = agent.availability[day];
-
-		// 		if (a.enabled && time >= a.hours.from && time <= a.hours.to) {
-		// 			return agent._id;
-		// 		}
-
-		// 		return [];
-		// 	})
-		// 	.flat(1);
-
-		// let agent = {};
-
-		// TEMP: Currently availability isn't set up
-		// properly, so we need to fallback to a user
-		// temporarily
-		// if (available.length) {
-		// 	agent = available[Math.floor(Math.random() * available.length)];
-		// 	agent = agent._id;
-		// } else {
-		// 	agent = "5e5f50e417fee2bee1092cc5"
-		// }
-
 		const chat = await Chat.create({
 			meta: { subject },
-			// refs: { user, organization, agents: { assignee: { agent } } }
 			refs: { user, organization }
 		});
 
 		const { key, secret } = await StreamClient();
 		const client = new StreamChat(key, secret);
 		const channel = client.channel('commerce', chat._id.toString(), {
-			// members: [agent, user],
 			members: [user],
 			roles: {
 				agent: 'moderator',
@@ -61,23 +34,13 @@ exports.post = async (req, res) => {
 
 		await channel.create();
 
-		// const agentToken = client.createToken(agent);
 		const userToken = client.createToken(user);
 
 		res.status(200).json({
-			// agent: {
-			// 	id: chat.refs.agents.assignee.agent._id,
-			// 	name: chat.refs.agents.assignee.agent.name
-			// },
-			user: {
-				id: chat.refs.user._id,
-				name: chat.refs.user.name
-			},
+			_id: chat._doc._id,
 			tokens: {
-				// agent: agentToken,
 				user: userToken
 			},
-			...chat,
 		});
 	} catch (error) {
 		console.error(error);
