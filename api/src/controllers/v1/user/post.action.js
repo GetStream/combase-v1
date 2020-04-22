@@ -7,7 +7,14 @@ exports.post = async (req, res) => {
 	try {
 		const data = req.body;
 
-		const { isNew, _doc: user } = await User.findOneOrCreate({ "email.address": data.email.address }, data);
+		let user = await User.findOne({ "email.address": data.email.address }).lean();
+		let created = false;
+
+		if (!user) {
+			const { _doc } = await User.create(data);
+			user = _doc;
+			created = true;
+		}
 
 		const { key, secret } = StreamClient();
 		const client = new StreamChat(key, secret);
@@ -20,7 +27,8 @@ exports.post = async (req, res) => {
 
 		const streamToken = client.createToken(user._id.toString())
 
-		res.status(200).json({ ...user, isNew, tokens: { stream: streamToken } });
+		res.status(200).json({ user: { ...user, tokens: { stream: streamToken } }, created });
+
 	} catch (error) {
 		console.error(error);
 		res.status(500).json({ error: error.message });
