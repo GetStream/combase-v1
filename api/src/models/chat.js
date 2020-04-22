@@ -86,7 +86,7 @@ export const ChatSchema = new Schema(
 						'Closed',
 						'Archived',
 					],
-					default: 'Open',
+					default: 'Waiting',
 				},
 				timestamp: {
 					type: Date,
