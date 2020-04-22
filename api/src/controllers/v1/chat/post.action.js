@@ -13,28 +13,40 @@ import StreamClient from 'utils/stream';
 
 exports.post = async (req, res) => {
 	try {
-		const { meta: { subject }, refs: { organization, user } } = req.body;
+		const { meta, organization, user, initialMessage } = req.body;
 
 		const chat = await Chat.create({
-			meta: { subject },
-			refs: { user, organization }
+			meta,
+			refs: {
+				organization,
+				user: user._id,
+			}
 		});
 
 		const { key, secret } = await StreamClient();
 		const client = new StreamChat(key, secret);
+
+		await client.setUser({
+			id: user._id,
+			name: user.name,
+			role: 'user',
+		});
+
 		const channel = client.channel('commerce', chat._id.toString(), {
-			members: [user],
+			members: [user._id],
 			roles: {
 				agent: 'moderator',
 				user: 'channel_member'
 			},
-			created_by_id: user,
+			created_by_id: user._id,
 			organization
 		});
 
 		await channel.create();
 
-		const userToken = client.createToken(user);
+		await channel.sendMessage({ text: initialMessage });
+
+		const userToken = client.createToken(user._id);
 
 		res.status(200).json({
 			_id: chat._doc._id,

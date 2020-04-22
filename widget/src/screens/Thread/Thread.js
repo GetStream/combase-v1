@@ -22,11 +22,23 @@ const HeaderSpacer = styled.div`
     flex: 0 0 64px;
 `;
 
-const Thread = ({ match, transitionAnim, ...props }) => {
+const Thread = ({ history, match, transitionAnim, ...props }) => {
     const { params: { channelId } } = match;
 
-    const { user, createUser } = useAuth();
-    const [messages, onSend] = useChatForm(createUser);
+    const { user, createChat, createUser } = useAuth();
+    const handleSubmit = useCallback(async ({ initialMessage, ...values }) => {
+        try {
+            const user = await createUser(values);
+            const data = await createChat(user, initialMessage);
+            console.log('chat created', data._id, 'initial message: ', initialMessage);
+            history.push(`/${data._id}`);
+        } catch (error) {
+            // TODO: Error handling 
+            console.log(error);
+        }
+    }, [createUser]);
+
+    const [messages, onSend] = useChatForm(handleSubmit);
 
     const messagesStyle = useMemo(() => ({
         height: 'calc(100% - 128px)',
@@ -61,7 +73,7 @@ const Thread = ({ match, transitionAnim, ...props }) => {
             >
                 <HeaderSpacer />
                 <Animated.div style={messagesStyle}>
-                    <MessagesList messages={messages} />
+                    <MessagesList messages={match.params.channelId === 'new' ? messages : undefined} />
                 </Animated.div>
                 <Animated.div style={toolbarStyle}>
                     <InputToolbar />

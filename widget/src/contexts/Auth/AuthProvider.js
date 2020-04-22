@@ -102,7 +102,7 @@ export default ({ children }) => {
   const createUser = useCallback(async ({ name, email }) => {
     try {
       // setLoading(true);
-      const data = await request("v1/users", "post", {
+      const { user: data, created } = await request("v1/users", "post", {
         body: JSON.stringify({
           email: {
             address: email,
@@ -117,6 +117,7 @@ export default ({ children }) => {
       setUser(data);
       localStorage.setItem("user", JSON.stringify(data));
       setLoading(false);
+      return data;
     } catch (error) {
       queueSnackbar({
         isError: true,
@@ -158,16 +159,27 @@ export default ({ children }) => {
     localStorage.removeItem("user");
   }, []);
 
-  const createChat = useCallback(async () => {
+  const createChat = useCallback(async (user, initialMessage) => {
     try {
       // TODO: Here we need to hit the chat endpoint - check postman
       // we can then pass back the _id and redirect to the correct chat window.
       // We should look into sending the initial message here too (maybe do it on the server.)
+      const data = await request(`v1/chats`, "post", {
+        body: JSON.stringify({
+          meta: {
+            subject: "chat"
+          },
+          organization: process.env.REACT_APP_ORGANIZATION_ID,
+          user,
+          initialMessage,
+        })
+      });
+      return data;
     } catch (error) {
       // TODO: Error handling.
       console.log(error);
     }
-  }, []);
+  }, [organization, user]);
 
   const refetchUser = useCallback(async () => {
     const data = await request(`v1/users/${user._id}`, "get");
