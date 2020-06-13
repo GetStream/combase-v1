@@ -16,21 +16,17 @@ tasks:
       redis-server
   - command: > # Start MongoDB
       mkdir -p /workspace/data && mongod --dbpath /workspace/data
-  - init: 'echo "TODO: Replace with init/build command"'
-    command: > # Initial Setup
-      gp env REACT_APP_API_ENDPOINT=http://localhost:3000 &&
-      nvm install 13 &&
-      cd api && yarn && cd .. &&
-      cd dashboard && yarn && cd .. &&
-      cd widget && yarn && cd ..
+  - init: nvm install 13 && cd api && yarn && cd ..
   - command: > # Start API
       cd api &&
       cp .env.gitpod .env &&
       yarn dev
-  - command: > # Start Dashboard
+  - init: cd dashboard && yarn && cd ..
+    command: > # Start Dashboard
       cd dashboard &&
       PORT=3001 SASS_PATH=./node_modules yarn start
-  - command: > # Start Widget
+  - init: cd widget && yarn && cd ..
+    command: > # Start Widget
       cd widget &&
       PORT=3002 yarn start
 
