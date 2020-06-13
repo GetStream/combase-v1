@@ -27,12 +27,14 @@ tasks:
       yarn dev
   - name: Dashboard
     command: > # Start Dashboard
+      export REACT_APP_API_ENDPOINT=`gp url 3000`/ &&
       gp await-port 3000 &&
       cd dashboard &&
       yarn --mutex file:/tmp/.yarn-mutex &&
       PORT=3001 SASS_PATH=./node_modules yarn start
   - name: Widget
     command: > # Start Widget
+      export REACT_APP_API_ENDPOINT=`gp url 3000`/ &&
       gp await-port 3000 &&
       cd widget &&
       yarn --mutex file:/tmp/.yarn-mutex &&
