@@ -12,14 +12,15 @@ ports:
     onOpen: ignore
 
 tasks:
-  - command: redis-server
-  - command: mkdir -p /workspace/data && mongod --dbpath /workspace/data
+  - command: > # Start Redis
+      redis-server
+  - command: > # Start MongoDB
+      mkdir -p /workspace/data && mongod --dbpath /workspace/data
   - init: 'echo "TODO: Replace with init/build command"'
-    command: > 
-      'echo "TODO: Replace with command to start project"'
+    command: > # Initial Setup
+      'echo "TODO: Replace with command to start project";'
+      gp env REACT_APP_API_ENDPOINT=http://localhost:3000;
       nvm install 13
-  - command: > # ENV vars
-      gp env REACT_APP_API_ENDPOINT=http://localhost:3000
   - command: > # Start API
       cd api;
       cp .env.gitpod .env;
