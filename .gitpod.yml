@@ -4,6 +4,8 @@ image:
 ports:
   - port: 3000
     onOpen: open-preview
+  - port: 6379 # Redis
+    onOpen: ignore
 
 tasks:
   - command: redis-server
