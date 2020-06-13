@@ -23,15 +23,15 @@ tasks:
       nvm install 13 &&
       cd api &&
       cp .env.gitpod .env &&
-      yarn &&
+      yarn;
       yarn dev
   - command: > # Start Dashboard
       cd dashboard &&
-      yarn &&
+      yarn;
       PORT=3001 SASS_PATH=./node_modules yarn start
   - command: > # Start Widget
       cd widget &&
-      yarn &&
+      yarn;
       PORT=3002 yarn start
 
 github:
