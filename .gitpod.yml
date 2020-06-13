@@ -23,6 +23,7 @@ tasks:
       nvm install 13 &&
       cd api &&
       cp .env.gitpod .env &&
+      yarn &&
       yarn dev
   - command: > # Start Dashboard
       cd dashboard &&
