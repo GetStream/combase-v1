@@ -2,11 +2,11 @@ image:
   file: .gitpod.Dockerfile
 
 ports:
-  - port: 3000
+  - port: 3000 # API
     onOpen: open-browser
-  - port: 3001
+  - port: 3001 # Dashboard
     onOpen: open-browser
-  - port: 3002
+  - port: 3002 # Widget
     onOpen: open-browser
   - port: 6379 # Redis
     onOpen: ignore
@@ -16,18 +16,19 @@ tasks:
       redis-server
   - command: > # Start MongoDB
       mkdir -p /workspace/data && mongod --dbpath /workspace/data
-  - init: nvm install 13 && cd api && cp .env.gitpod .env && yarn && cd ..
   - command: > # Start API
-      nvm use 13 &&
+      nvm install 13 &&
       cd api &&
+      cp .env.gitpod .env &&
+      yarn --mutex &&
       yarn dev
-  - init: cd dashboard && yarn && cd ..
-    command: > # Start Dashboard
+  - command: > # Start Dashboard
       cd dashboard &&
+      yarn --mutex &&
       PORT=3001 SASS_PATH=./node_modules yarn start
-  - init: cd widget && yarn && cd ..
-    command: > # Start Widget
+  - command: > # Start Widget
       cd widget &&
+      yarn --mutex &&
       PORT=3002 yarn start
 
 github:
