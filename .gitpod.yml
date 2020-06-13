@@ -14,22 +14,23 @@ ports:
 tasks:
   - command: redis-server
   - command: mkdir -p /workspace/data && mongod --dbpath /workspace/data
-  - command: nvm install 13
   - init: 'echo "TODO: Replace with init/build command"'
-    command: 'echo "TODO: Replace with command to start project"'
+    command: > 
+      'echo "TODO: Replace with command to start project"'
+      nvm install 13
   - command: > # ENV vars
       gp env REACT_APP_API_ENDPOINT=http://localhost:3000
   - command: > # Start API
-      cd api
-      cp .env.gitpod .env
+      cd api;
+      cp .env.gitpod .env;
       yarn dev
   - command: > # Start Dashboard
-      cd dashboard
-      yarn
+      cd dashboard;
+      yarn;
       PORT=3001 SASS_PATH=./node_modules yarn start
   - command: > # Start Widget
-      cd widget
-      yarn
+      cd widget;
+      yarn;
       PORT=3002 yarn start
 
 github:
