@@ -3,31 +3,36 @@ image:
 
 ports:
   - port: 3000 # API
-    onOpen: open-browser
+    onOpen: ignore
   - port: 3001 # Dashboard
     onOpen: open-browser
   - port: 3002 # Widget
-    onOpen: open-browser
+    onOpen: open-preview
   - port: 6379 # Redis
     onOpen: ignore
 
 tasks:
-  - command: > # Start Redis
+  - name: Redis
+    command: > # Start Redis
       redis-server
-  - command: > # Start MongoDB
+  - name: MongoDB
+    command: > # Start MongoDB
       mkdir -p /workspace/data && mongod --dbpath /workspace/data
-  - command: > # Start API
+  - name: API
+    command: > # Start API
       nvm install 13 &&
       cd api &&
       cp .env.gitpod .env &&
       yarn --mutex file:/tmp/.yarn-mutex &&
       yarn dev
-  - command: > # Start Dashboard
+  - name: Dashboard
+    command: > # Start Dashboard
       gp await-port 3000 &&
       cd dashboard &&
       yarn --mutex file:/tmp/.yarn-mutex &&
       PORT=3001 SASS_PATH=./node_modules yarn start
-  - command: > # Start Widget
+  - name: Widget
+    command: > # Start Widget
       gp await-port 3000 &&
       cd widget &&
       yarn --mutex file:/tmp/.yarn-mutex &&
