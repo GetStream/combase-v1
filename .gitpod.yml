@@ -20,15 +20,15 @@ tasks:
       nvm install 13 &&
       cd api &&
       cp .env.gitpod .env &&
-      yarn --mutex &&
+      yarn --mutex file:/tmp/.yarn-mutex &&
       yarn dev
   - command: > # Start Dashboard
       cd dashboard &&
-      yarn --mutex &&
+      yarn --mutex file:/tmp/.yarn-mutex &&
       PORT=3001 SASS_PATH=./node_modules yarn start
   - command: > # Start Widget
       cd widget &&
-      yarn --mutex &&
+      yarn --mutex file:/tmp/.yarn-mutex &&
       PORT=3002 yarn start
 
 github:
