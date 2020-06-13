@@ -18,20 +18,20 @@ tasks:
       mkdir -p /workspace/data && mongod --dbpath /workspace/data
   - init: 'echo "TODO: Replace with init/build command"'
     command: > # Initial Setup
-      gp env REACT_APP_API_ENDPOINT=http://localhost:3000
-  - command: > # Start API
+      gp env REACT_APP_API_ENDPOINT=http://localhost:3000 &&
       nvm install 13 &&
+      cd api && yarn && cd .. &&
+      cd dashboard && yarn && cd .. &&
+      cd widget && yarn && cd ..
+  - command: > # Start API
       cd api &&
       cp .env.gitpod .env &&
-      yarn;
       yarn dev
   - command: > # Start Dashboard
       cd dashboard &&
-      yarn;
       PORT=3001 SASS_PATH=./node_modules yarn start
   - command: > # Start Widget
       cd widget &&
-      yarn;
       PORT=3002 yarn start
 
 github:
