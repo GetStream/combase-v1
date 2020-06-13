@@ -23,10 +23,12 @@ tasks:
       yarn --mutex file:/tmp/.yarn-mutex &&
       yarn dev
   - command: > # Start Dashboard
+      gp await-port 3000 &&
       cd dashboard &&
       yarn --mutex file:/tmp/.yarn-mutex &&
       PORT=3001 SASS_PATH=./node_modules yarn start
   - command: > # Start Widget
+      gp await-port 3000 &&
       cd widget &&
       yarn --mutex file:/tmp/.yarn-mutex &&
       PORT=3002 yarn start
