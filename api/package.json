@@ -70,7 +70,7 @@
 		"ioredis": "^4.16.0",
 		"jsonwebtoken": "^8.5.1",
 		"lodash.find": "^4.6.0",
-		"moment": "^2.24.0",
+		"moment": "^2.29.2",
 		"mongoose": "^5.9.5",
 		"mongoose-autopopulate": "^0.12.0",
 		"mongoose-bcrypt": "^1.6.0",
