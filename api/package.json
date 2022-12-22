@@ -68,7 +68,7 @@
 		"helmet": "^3.21.3",
 		"hubspot": "^2.3.9",
 		"ioredis": "^4.16.0",
-		"jsonwebtoken": "^8.5.1",
+		"jsonwebtoken": "^9.0.0",
 		"lodash.find": "^4.6.0",
 		"moment": "^2.24.0",
 		"mongoose": "^5.9.5",
