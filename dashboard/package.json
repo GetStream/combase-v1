@@ -40,7 +40,7 @@
     "styled-components": "^5.0.1",
     "textarea-autogrow": "^1.0.0",
     "uifx": "^2.0.7",
-    "uuid": "^7.0.2",
+    "uuid": "^14.0.0",
     "whatwg-fetch": "^3.0.0",
     "yup": "^0.28.3"
   },
