@@ -20,7 +20,7 @@
     "lodash.isequal": "^4.5.0",
     "lodash.uniqby": "^4.7.0",
     "moment": "^2.24.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "popper.js": "^1.16.1",
     "react": "^16.13.1",
     "react-color": "shreshthmohan/react-color",
